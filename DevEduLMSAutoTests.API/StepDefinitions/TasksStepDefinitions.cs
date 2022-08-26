@@ -18,6 +18,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         private int _groupId;
         private int _taskId;
         private AuthenticationClient _authenticationClient;
+        private UsersClient _usersClient;
 
         [Given(@"register new users")]
         public void GivenRegisterNewUsers(Table table)
@@ -50,7 +51,9 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         [Given(@"manager add roles to users")]
         public void GivenManagerAddRolesToUsers()
         {
-            throw new PendingStepException();
+            _usersClient = new UsersClient();
+            _usersClient.AddNewRoleToUser(_methodistId, Options.RoleMethodist, _managerToken);
+            _usersClient.AddNewRoleToUser(_teacherId, Options.RoleTeacher, _managerToken);
         }
 
         [Given(@"manager create new group")]
