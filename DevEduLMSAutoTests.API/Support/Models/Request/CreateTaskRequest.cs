@@ -15,6 +15,6 @@
         public bool IsRequired { get; set; }
 
         [JsonPropertyName("courseIds")]
-        public int[] courseIds { get; set; }
+        public int[] CourseIds { get; set; }
     }
 }
