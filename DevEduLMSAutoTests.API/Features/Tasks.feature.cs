@@ -117,7 +117,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Ilya",
                             "Baikov",
                             "string",
-                            "ilya016@student.com",
+                            "ilya022@student.com",
                             "ilya1",
                             "password",
                             "SaintPetersburg",
@@ -128,7 +128,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Maksim",
                             "Karbainov",
                             "string",
-                            "ilya017@methodist.com",
+                            "ilya023@methodist.com",
                             "maksim1",
                             "password",
                             "SaintPetersburg",
@@ -139,7 +139,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Elisey",
                             "Kakoyto",
                             "string",
-                            "ilya018@techer.com",
+                            "ilya024@techer.com",
                             "elisey1",
                             "password",
                             "SaintPetersburg",
@@ -153,13 +153,13 @@ this.ScenarioInitialize(scenarioInfo);
                             "Email",
                             "Password"});
                 table2.AddRow(new string[] {
-                            "ilya016@student.com",
+                            "ilya022@student.com",
                             "password"});
                 table2.AddRow(new string[] {
-                            "ilya017@methodist.com",
+                            "ilya023@methodist.com",
                             "password"});
                 table2.AddRow(new string[] {
-                            "ilya018@techer.com",
+                            "ilya024@techer.com",
                             "password"});
                 table2.AddRow(new string[] {
                             "marina@example.com",
