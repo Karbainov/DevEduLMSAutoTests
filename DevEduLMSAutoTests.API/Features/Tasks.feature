@@ -6,14 +6,14 @@ A short summary of the feature
 Scenario: Add new task for students by methodist
 	Given register new users
 	| FirstName | LastName  | Patronymic | Email                 | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber |
-	| Ilya      | Baikov    | string     | ilya001@student.com   | ilya1    | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 |
-	| Maksim    | Karbainov | string     | ilya002@methodist.com | maksim1  | password | SaintPetersburg | 01.01.1995 | string        | 89997776655 |
-	| Elisey    | Kakoyto   | string     | ilya003@techer.com    | elisey1  | password | SaintPetersburg | 02.02.1996 | string        | 89996665544 |
+	| Ilya      | Baikov    | string     | ilya016@student.com   | ilya1    | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 |
+	| Maksim    | Karbainov | string     | ilya017@methodist.com | maksim1  | password | SaintPetersburg | 01.01.1995 | string        | 89997776655 |
+	| Elisey    | Kakoyto   | string     | ilya018@techer.com    | elisey1  | password | SaintPetersburg | 02.02.1996 | string        | 89996665544 |
 	And authorize users
 	| Email                 | Password     |
-	| ilya001@student.com   | password     |
-	| ilya002@methodist.com | password     |
-	| ilya003@techer.com    | password     |
+	| ilya016@student.com   | password     |
+	| ilya017@methodist.com | password     |
+	| ilya018@techer.com    | password     |
 	| marina@example.com    | marinamarina |
 	And manager add roles to users
 	And manager create new group

@@ -35,7 +35,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             _authenticationClient = new AuthenticationClient();
             _studentId = _authenticationClient.RegisterUser(studentRegisterRequest).Id;
             _methodistId = _authenticationClient.RegisterUser(methodistRegisterRequest).Id;
-            _studentId = _authenticationClient.RegisterUser(teacherRegisterRequest).Id;
+            _teacherId = _authenticationClient.RegisterUser(teacherRegisterRequest).Id;
 
         }
 
@@ -57,8 +57,8 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         public void GivenManagerAddRolesToUsers()
         {
             _usersClient = new UsersClient();
-            _usersClient.AddNewRoleToUser(_methodistId, Options.RoleMethodist, _managerToken);
-            _usersClient.AddNewRoleToUser(_teacherId, Options.RoleTeacher, _managerToken);
+            _usersClient.AddNewRoleToUser(_methodistId, Options.RoleMethodist, _managerToken, HttpStatusCode.NoContent);
+            _usersClient.AddNewRoleToUser(_teacherId, Options.RoleTeacher, _managerToken, HttpStatusCode.NoContent);
         }
 
         [Given(@"manager create new group")]
