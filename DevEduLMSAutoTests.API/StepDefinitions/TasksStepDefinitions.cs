@@ -19,6 +19,11 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         private int _taskId;
         private AuthenticationClient _authenticationClient;
         private UsersClient _usersClient;
+        private GroupsClient _groupsClient;
+        private TasksClient _tasksClient;
+        private HomeworksClient _homeworksClient;
+        private CreateNewTaskResponse _expectedTask;
+        private GetHomeworkByGroupIdResponse _expectedHomework;
 
         [Given(@"register new users")]
         public void GivenRegisterNewUsers(Table table)
@@ -59,43 +64,66 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         [Given(@"manager create new group")]
         public void GivenManagerCreateNewGroup(Table table)
         {
-            throw new PendingStepException();
+            _groupsClient = new GroupsClient();
+            CreateGroupRequest newGroup = table.CreateInstance<CreateGroupRequest>();
+            _groupId = _groupsClient.CreateNewGroup(newGroup, _managerToken).Id;
         }
 
         [Given(@"manager add users to group")]
         public void GivenManagerAddUsersToGroup()
         {
-            throw new PendingStepException();
+            _groupsClient = new GroupsClient();
+            _groupsClient.AddUserToGroup(_groupId, _teacherId, Options.RoleTeacher, _managerToken);
+            _groupsClient.AddUserToGroup(_groupId, _studentId, Options.RoleStudent, _managerToken);
         }
 
         [Given(@"methodist create new task")]
         public void GivenMethodistCreateNewTask(Table table)
         {
-            throw new PendingStepException();
+            CreateTaskByMethodistRequest newTask = table.CreateInstance<CreateTaskByMethodistRequest>();
+            _tasksClient = new TasksClient();
+            _taskId = _tasksClient.AddTaskByMethodist(newTask, _methodistToken).Id;
         }
 
         [Given(@"methodist update task")]
         public void GivenMethodistUpdateTask(Table table)
         {
-            throw new PendingStepException();
+            UpdateTaskRequest newTask = table.CreateInstance<UpdateTaskRequest>();
+            _tasksClient = new TasksClient();
+            CreateNewTaskResponse task = _tasksClient.UpdateTask(newTask, _taskId, _methodistToken);
+            _expectedTask = task;
+
         }
 
         [When(@"teacher see task")]
         public void WhenTeacherSeeTask()
         {
-            throw new PendingStepException();
+            _tasksClient = new TasksClient();
+            List<CreateNewTaskResponse> actualTasks = _tasksClient.GetTasksByGroupId(_groupId, _teacherToken);
+            CollectionAssert.Contains(actualTasks, _expectedTask);
         }
 
         [When(@"teacher post task")]
         public void WhenTeacherPostTask(Table table)
         {
-            throw new PendingStepException();
+            AddHomeworkRequest newHomework = table.CreateInstance<AddHomeworkRequest>();
+            _homeworksClient = new HomeworksClient();
+            int homeworkId = _homeworksClient.AddHomework(newHomework, _groupId, _taskId, _teacherToken).Id;
+            _expectedHomework = new GetHomeworkByGroupIdResponse()
+            {
+                Task = _expectedTask,
+                StartDate = newHomework.StartDate,
+                EndDate = newHomework.EndDate,
+                Id = homeworkId
+            };
         }
 
         [Then(@"student should sees task")]
         public void ThenStudentShouldSeesTask()
         {
-            throw new PendingStepException();
+            _homeworksClient = new HomeworksClient();
+            List<GetHomeworkByGroupIdResponse> actualHomeworks= _homeworksClient.GetAllHomeworksByGroupId(_groupId, _studentToken);
+            CollectionAssert.Contains(actualHomeworks, _expectedHomework);
         }
     }
 }
