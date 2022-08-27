@@ -1,7 +1,4 @@
-﻿using DevEduLMSAutoTests.API.Support.Models.Response;
-using DevEduLMSAutoTests.API.Support.Models.Request;
-
-namespace DevEduLMSAutoTests.API.Clients
+﻿namespace DevEduLMSAutoTests.API.Clients
 {
     public class AuthenticationClient
     {
