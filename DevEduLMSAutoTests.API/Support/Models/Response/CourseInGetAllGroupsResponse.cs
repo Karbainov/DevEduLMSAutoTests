@@ -10,5 +10,13 @@
 
         [JsonPropertyName("isDeleted")]
         public bool IsDeleted { get; set; }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is CourseInGetAllGroupsResponse response &&
+                   Id == response.Id &&
+                   Name == response.Name &&
+                   IsDeleted == response.IsDeleted;
+        }
     }
 }

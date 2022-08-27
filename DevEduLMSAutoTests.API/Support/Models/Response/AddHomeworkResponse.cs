@@ -10,5 +10,13 @@
 
         [JsonPropertyName("endDate")]
         public string EndDate { get; set; }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is AddHomeworkResponse response &&
+                   Id == response.Id &&
+                   StartDate == response.StartDate &&
+                   EndDate == response.EndDate;
+        }
     }
 }
