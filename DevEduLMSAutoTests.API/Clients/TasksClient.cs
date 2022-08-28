@@ -26,7 +26,7 @@
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             HttpRequestMessage message = new HttpRequestMessage()
             {
-                Method = HttpMethod.Post,
+                Method = HttpMethod.Put,
                 RequestUri = new System.Uri($"{Urls.Tasks}/{taskId}"),
                 Content = new StringContent(json, Encoding.UTF8, "application/json")
             };
