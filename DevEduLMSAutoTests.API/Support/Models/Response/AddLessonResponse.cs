@@ -25,7 +25,7 @@ namespace DevEduLMSAutoTests.API.Support.Models.Response
         public AddTeacherResponse Teacher { get; set; }
 
         [JsonPropertyName("topics")]
-        public List<AddTopicsResponse> Topics { get; set; }
+        public List<AddTopicResponse> Topics { get; set; }
 
         [JsonPropertyName("isDeleted")]
         public bool IsDeleted { get; set; }

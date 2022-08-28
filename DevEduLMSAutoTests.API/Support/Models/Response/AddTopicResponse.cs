@@ -1,6 +1,6 @@
 ﻿namespace DevEduLMSAutoTests.API.Support.Models.Response
 {
-    public class AddTopicsResponse
+    public class AddTopicResponse
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }
