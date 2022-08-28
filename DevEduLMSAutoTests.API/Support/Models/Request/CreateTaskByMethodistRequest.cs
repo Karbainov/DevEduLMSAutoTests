@@ -1,6 +1,6 @@
 ﻿namespace DevEduLMSAutoTests.API.Support.Models.Request
 {
-    public class CreateTaskRequest
+    public class CreateTaskByMethodistRequest
     {
         [JsonPropertyName("name")]
         public string Name { get; set; }

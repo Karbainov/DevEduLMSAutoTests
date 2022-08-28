@@ -29,5 +29,19 @@ namespace DevEduLMSAutoTests.API.Support.Models.Response
 
         [JsonPropertyName("paymentsCount")]
         public int PaymentsCount { get; set; }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is GetAllGroupsResponse response &&
+                   Id == response.Id &&
+                   Name == response.Name &&
+                   Course == response.Course &&
+                   GroupStatus == response.GroupStatus &&
+                   StartDate == response.StartDate &&
+                   EndDate == response.EndDate &&
+                   Timetable == response.Timetable &&
+                   PaymentPerMonth == response.PaymentPerMonth &&
+                   PaymentsCount == response.PaymentsCount;
+        }
     }
 }

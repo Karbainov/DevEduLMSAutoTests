@@ -1,6 +1,6 @@
 ﻿namespace DevEduLMSAutoTests.API.Support.Models.Response
 {
-    public class AddHomeworkResponse
+    public class GetHomeworkByGroupIdResponse
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }
@@ -11,12 +11,16 @@
         [JsonPropertyName("endDate")]
         public string EndDate { get; set; }
 
+        [JsonPropertyName("task")]
+        public CreateNewTaskResponse Task { get; set; }
+
         public override bool Equals(object? obj)
         {
-            return obj is AddHomeworkResponse response &&
+            return obj is GetHomeworkByGroupIdResponse response &&
                    Id == response.Id &&
                    StartDate == response.StartDate &&
-                   EndDate == response.EndDate;
+                   EndDate == response.EndDate &&
+                   Task == response.Task;
         }
     }
 }

@@ -52,5 +52,26 @@ namespace DevEduLMSAutoTests.API.Support.Models.Response
 
         [JsonPropertyName("groups")]
         public List<GetAllGroupsResponse> Groups { get; set; }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is RegisterResponse response &&
+                   Id == response.Id &&
+                   FirstName == response.FirstName &&
+                   LastName == response.LastName &&
+                   Email == response.Email &&
+                   Photo == response.Photo &&
+                   //EqualityComparer<List<string>>.Default.Equals(Roles, response.Roles) &&
+                   Patronymic == response.Patronymic &&
+                   Username == response.Username &&
+                   RegistrationDate == response.RegistrationDate &&
+                   BirthDate == response.BirthDate &&
+                   GitHubAccount == response.GitHubAccount &&
+                   PhoneNumber == response.PhoneNumber &&
+                   ExileDate == response.ExileDate &&
+                   City == response.City
+                   //&& EqualityComparer<List<GetAllGroupsResponse>>.Default.Equals(Groups, response.Groups)
+                   ;
+        }
     }
 }
