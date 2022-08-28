@@ -18,16 +18,16 @@ Scenario: Сreating an activity for students by teacher
 	And manager create new group
 	| Name         | CourseId | GroupStatusId | StartDate  | EndDate    | Timetable | PaymentPerMonth | PaymentsCount |
 	| GropForTest01| 01       | Forming       | 27.08.2022 | 31.12.2022 | string    | 1000            | 10            |
-	And methodist add topic 
+	And methodist create topic 
 	| Name                | Duration |
 	|creating a calculator|      2   |
-	And teacher creates a lesson
+	And teacher create a lesson
 	| Date        | AdditionalMaterials | GroupId | Name  | LinkToRecord    | TopicIds |IsPublished |
 	|01.09.2022   |   string            | Forming |string |string           | Forming  |true        |
 	And teacher saves the lesson as a draft
-	And teacher publishes a draft lesson
+	When teacher publishes a draft lesson
 	When lesson recording appears
-	And teacher edits the created lesson
+	And teacher update lesson
     | AdditionalMaterials | LinkToRecord    | Date       |TopicIds |
 	|   string            |string           |01.09.2022  |Forming  |
     Then teacher publishes a lesson

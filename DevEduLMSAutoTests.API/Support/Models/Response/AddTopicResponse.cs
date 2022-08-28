@@ -3,7 +3,7 @@
     public class AddTopicResponse
     {
         [JsonPropertyName("id")]
-        public int Id { get; set; }
+        public int IdTopic { get; set; }
 
         [JsonPropertyName("name")]
         public string Name { get; set; }
