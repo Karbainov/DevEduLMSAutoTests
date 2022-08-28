@@ -1,7 +1,7 @@
 ﻿
 namespace DevEduLMSAutoTests.API.Support.Models.Response
 {
-    public class AddLessonsResponse
+    public class AddLessonResponse
     {
         [JsonPropertyName("id")]
         public int IdLesson { get; set; }

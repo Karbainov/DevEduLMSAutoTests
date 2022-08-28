@@ -1,6 +1,6 @@
 ﻿namespace DevEduLMSAutoTests.API.Support.Models.Request
 {
-    public class AddLessonsRequest
+    public class AddLessonRequest
     {
         [JsonPropertyName("date")]
         public DateTime Date { get; set; }
