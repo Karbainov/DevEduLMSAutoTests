@@ -117,7 +117,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Ilya",
                             "Baikov",
                             "string",
-                            "ilya022@student.com",
+                            "ilya003@student.com",
                             "ilya1",
                             "password",
                             "SaintPetersburg",
@@ -128,7 +128,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Maksim",
                             "Karbainov",
                             "string",
-                            "ilya023@methodist.com",
+                            "ilya004@methodist.com",
                             "maksim1",
                             "password",
                             "SaintPetersburg",
@@ -139,7 +139,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Elisey",
                             "Kakoyto",
                             "string",
-                            "ilya024@techer.com",
+                            "ilya005@techer.com",
                             "elisey1",
                             "password",
                             "SaintPetersburg",
@@ -153,21 +153,18 @@ this.ScenarioInitialize(scenarioInfo);
                             "Email",
                             "Password"});
                 table2.AddRow(new string[] {
-                            "ilya022@student.com",
+                            "ilya003@student.com",
                             "password"});
                 table2.AddRow(new string[] {
-                            "ilya023@methodist.com",
+                            "ilya004@methodist.com",
                             "password"});
                 table2.AddRow(new string[] {
-                            "ilya024@techer.com",
+                            "ilya005@techer.com",
                             "password"});
-                table2.AddRow(new string[] {
-                            "marina@example.com",
-                            "marinamarina"});
 #line 12
  testRunner.And("authorize users", ((string)(null)), table2, "And ");
 #line hidden
-#line 18
+#line 17
  testRunner.And("manager add roles to users", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
@@ -188,10 +185,10 @@ this.ScenarioInitialize(scenarioInfo);
                             "string",
                             "5000",
                             "10"});
-#line 19
+#line 18
  testRunner.And("manager create new group", ((string)(null)), table3, "And ");
 #line hidden
-#line 22
+#line 21
  testRunner.And("manager add users to group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
@@ -206,7 +203,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "link",
                             "true",
                             "1370"});
-#line 23
+#line 22
  testRunner.And("methodist create new task", ((string)(null)), table4, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
@@ -219,10 +216,10 @@ this.ScenarioInitialize(scenarioInfo);
                             "qweqweqwe",
                             "New link",
                             "true"});
-#line 26
+#line 25
  testRunner.And("methodist update task", ((string)(null)), table5, "And ");
 #line hidden
-#line 29
+#line 28
  testRunner.When("teacher see task", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
@@ -231,10 +228,10 @@ this.ScenarioInitialize(scenarioInfo);
                 table6.AddRow(new string[] {
                             "15.09.2022",
                             "30.09.2022"});
-#line 30
+#line 29
  testRunner.And("teacher post task", ((string)(null)), table6, "And ");
 #line hidden
-#line 33
+#line 32
  testRunner.Then("student should sees task", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

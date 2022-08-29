@@ -14,5 +14,7 @@ namespace DevEduLMSAutoTests.API.Support
         public const string RoleTeacher = "Teacher";
         public const string RoleTutor = "Tutor";
         public const string RoleStudent = "Student";
+        public const string ManagersEmail = "marina@example.com";
+        public const string ManagersPassword = "marinamarina";
     }
 }

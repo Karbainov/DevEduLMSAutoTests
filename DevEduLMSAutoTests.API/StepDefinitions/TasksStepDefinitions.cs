@@ -46,7 +46,11 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             SignInRequest studentSignInRequest = signInRequests[0];
             SignInRequest methodistSignInRequest = signInRequests[1];
             SignInRequest teacherSignInRequest = signInRequests[2];
-            SignInRequest managerSignInRequest = signInRequests[3];
+            SignInRequest managerSignInRequest = new SignInRequest()
+            {
+                Email = Options.ManagersEmail,
+                Password = Options.ManagersPassword,
+            };
             _studentToken = _authenticationClient.AuthorizeUser(studentSignInRequest);
             _methodistToken = _authenticationClient.AuthorizeUser(methodistSignInRequest);
             _teacherToken = _authenticationClient.AuthorizeUser(teacherSignInRequest);
