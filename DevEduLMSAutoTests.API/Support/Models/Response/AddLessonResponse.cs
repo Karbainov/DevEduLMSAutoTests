@@ -29,5 +29,19 @@ namespace DevEduLMSAutoTests.API.Support.Models.Response
 
         [JsonPropertyName("isDeleted")]
         public bool IsDeleted { get; set; }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is AddLessonResponse response &&
+                   IdLesson == response.IdLesson &&
+                   Date.Date == response.Date.Date &&
+                   Name == response.Name &&
+                   AdditionalMaterials == response.AdditionalMaterials &&
+                   LinkToRecord == response.LinkToRecord &&
+                   Number == response.Number &&
+                   //EqualityComparer<AddTeacherResponse>.Default.Equals(Teacher, response.Teacher) &&
+                   //EqualityComparer<List<AddTopicResponse>>.Default.Equals(Topics, response.Topics) &&
+                   IsDeleted == response.IsDeleted;
+        }
     }
 }

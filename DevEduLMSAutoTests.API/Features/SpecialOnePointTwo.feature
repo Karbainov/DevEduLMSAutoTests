@@ -4,18 +4,17 @@ A short summary of the feature
 
 @teacher
 Scenario: Сreating an activity for students by teacher
-	Given the first number is 50
-	Given register new users
+	Given register new user
 	| FirstName   | LastName  | Patronymic | Email                | Username  | Password  | City            | BirthDate  | GitHubAccount | PhoneNumber |
 	| Milana      | Maxina    | string     | maxina1@techer.com   | maxina1    | password | SaintPetersburg | 01.01.1995 | string        | 89817051818 |
 	| Valeria     | Puzikova  | string     | lera@methodist.com   | lera1      | password | SaintPetersburg | 01.02.1996 | string        | 89071961416 |
-	And authorize users
+	And authorize user
 	| Email                 | Password     |
 	| maxina1@techer.com    | password     |
 	| lera@methodist.com    | password     |
 	| marina@example.com    | marinamarina |
 	And manager add roles to user
-	And manager create new group
+	And manager create new groups
 	| Name         | CourseId | GroupStatusId | StartDate  | EndDate    | Timetable | PaymentPerMonth | PaymentsCount |
 	| GropForTest01| 01       | Forming       | 27.08.2022 | 31.12.2022 | string    | 1000            | 10            |
 	And methodist create topic 

@@ -1,10 +1,3 @@
-﻿using DevEduLMSAutoTests.API.Clients;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace DevEduLMSAutoTests.API.StepDefinitions
 {
     [Binding]
@@ -25,20 +18,19 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         private LessonsClient _lessonsClient;
         private AddLessonResponse _expectedLesson;
 
-
-       [Given(@"register new users")]
-        public void GivenRegisterNewUsers(Table table)
+        [Given(@"register new user")]
+        public void GivenRegisterNewUser(Table table)
         {
             List<RegisterRequest> registerRequests = table.CreateSet<RegisterRequest>().ToList();
             RegisterRequest methodistRegisterRequest = registerRequests[0];
             RegisterRequest teacherRegisterRequest = registerRequests[1];
             _authenticationClient = new AuthenticationClient();
             _methodistId = _authenticationClient.RegisterUser(methodistRegisterRequest).Id;
-            _teacherId = _authenticationClient.RegisterUser(teacherRegisterRequest).Id;         
+            _teacherId = _authenticationClient.RegisterUser(teacherRegisterRequest).Id;
         }
 
-        [Given(@"authorize users")]
-        public void GivenAuthorizeUsers(Table table)
+        [Given(@"authorize user")]
+        public void GivenAuthorizeUser(Table table)
         {
             List<SignInRequest> signInRequests = table.CreateSet<SignInRequest>().ToList();
             SignInRequest methodistSignInRequest = signInRequests[0];
@@ -49,16 +41,16 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             _managerToken = _authenticationClient.AuthorizeUser(managerSignInRequest);
         }
 
-        [Given(@"manager add roles to users")]
-        public void GivenManagerAddRolesToUsers()
+        [Given(@"manager add roles to user")]
+        public void GivenManagerAddRolesToUser()
         {
             _usersClient = new UsersClient();
             _usersClient.AddNewRoleToUser(_methodistId, Options.RoleMethodist, _managerToken, HttpStatusCode.NoContent);
             _usersClient.AddNewRoleToUser(_teacherId, Options.RoleTeacher, _managerToken, HttpStatusCode.NoContent);
         }
 
-        [Given(@"manager create new group")]
-        public void GivenManagerCreateNewGroup(Table table)
+        [Given(@"manager create new groups")]
+        public void GivenManagerCreateNewGroups(Table table)
         {
             _groupsClient = new GroupsClient();
             CreateGroupRequest newGroup = table.CreateInstance<CreateGroupRequest>();
@@ -68,36 +60,34 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         [Given(@"methodist create topic")]
         public void GivenMethodistCreateTopic(Table table)
         {
-            AddTopicRequest newTopic= table.CreateInstance<AddTopicRequest>();
+            AddTopicRequest newTopic = table.CreateInstance<AddTopicRequest>();
             _topicsClient = new TopicsClient();
             _topicId = _topicsClient.AddTopicsByMethodist(newTopic, _methodistToken).IdTopic;
         }
 
         [Given(@"teacher create a lesson")]
-        public void GiverTeacherCreateLesson(Table table)
+        public void GivenTeacherCreateALesson(Table table)
         {
-            AddLessonRequest newLesson=table.CreateInstance<AddLessonRequest>();
+            AddLessonRequest newLesson = table.CreateInstance<AddLessonRequest>();
             _lessonsClient = new LessonsClient();
             _lessonId = _lessonsClient.AddLessonByTeacher(newLesson, _teacherToken).IdLesson;
         }
 
-
-        [Given(@"teacher update lesson")]
-        public void GivenTeacherUpdateLesson(Table table)
+        [When(@"teacher update lesson")]
+        public void WhenTeacherUpdateLesson(Table table)
         {
-            UpdateLessonRequest newLesson= table.CreateInstance<UpdateLessonRequest>();
+            UpdateLessonRequest newLesson = table.CreateInstance<UpdateLessonRequest>();
             _lessonsClient = new LessonsClient();
             AddLessonResponse lesson = _lessonsClient.UpdateLesson(newLesson, _lessonId, _teacherToken);
             _expectedLesson = lesson;
         }
 
-        [Then(@"teacher see lesson")]
-        public void WhenTeacherGetIdLesson()
+        [Then(@"teacher publishes a lesson")]
+        public void ThenTeacherPublishesALesson()
         {
             _lessonsClient = new LessonsClient();
-            List <AddLessonResponse> actualLesson=_lessonsClient.GetAllLessonsByTeacherId(_teacherId, _methodistToken);
+            List<AddLessonResponse> actualLesson = _lessonsClient.GetAllLessonsByTeacherId(_teacherId, _methodistToken);
             CollectionAssert.Contains(actualLesson, _expectedLesson);
         }
     }
-
 }
