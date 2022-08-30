@@ -30,5 +30,10 @@
                    IsRequired == response.IsRequired &&
                    IsDeleted == response.IsDeleted;
         }
+
+        public override string ToString()
+        {
+            return $"Id {Id}, Name {Name}, Descr {Description}, Links {Links}, IsReq {IsRequired}, IsDel {IsDeleted}";
+        }
     }
 }

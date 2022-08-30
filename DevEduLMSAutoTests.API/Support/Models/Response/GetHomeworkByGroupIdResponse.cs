@@ -22,5 +22,10 @@
                    EndDate == response.EndDate &&
                    Task == response.Task;
         }
+
+        public override string ToString()
+        {
+            return $"ID {Id}, Start {StartDate}, End {EndDate}, Task: {Task}";
+        }
     }
 }
