@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DevEduLMSAutoTests.API.Support.Models.Response
+﻿namespace DevEduLMSAutoTests.API.Support.Models.Response
 {
     public class RegisterResponse
     {
@@ -55,13 +49,40 @@ namespace DevEduLMSAutoTests.API.Support.Models.Response
 
         public override bool Equals(object? obj)
         {
+            if (obj == null || !(obj is RegisterResponse))
+            {
+                return false;
+            }
+            List<string> roles = ((RegisterResponse)obj).Roles;
+            if (roles.Count != this.Roles.Count)
+            {
+                return false;
+            }
+            for (int i = 0; i < roles.Count; i++)
+            {
+                if (!roles[i].Equals(this.Roles[i]))
+                {
+                    return false;
+                }
+            }
+            List<GetAllGroupsResponse> groups = ((RegisterResponse)obj).Groups;
+            if (groups.Count != this.Groups.Count)
+            {
+                return false;
+            }
+            for (int i = 0; i < groups.Count; i++)
+            {
+                if (!groups[i].Equals(this.Groups[i]))
+                {
+                    return false;
+                }
+            }
             return obj is RegisterResponse response &&
                    Id == response.Id &&
                    FirstName == response.FirstName &&
                    LastName == response.LastName &&
                    Email == response.Email &&
                    Photo == response.Photo &&
-                   //EqualityComparer<List<string>>.Default.Equals(Roles, response.Roles) &&
                    Patronymic == response.Patronymic &&
                    Username == response.Username &&
                    RegistrationDate == response.RegistrationDate &&
@@ -69,9 +90,7 @@ namespace DevEduLMSAutoTests.API.Support.Models.Response
                    GitHubAccount == response.GitHubAccount &&
                    PhoneNumber == response.PhoneNumber &&
                    ExileDate == response.ExileDate &&
-                   City == response.City
-                   //&& EqualityComparer<List<GetAllGroupsResponse>>.Default.Equals(Groups, response.Groups)
-                   ;
+                   City == response.City;
         }
     }
 }

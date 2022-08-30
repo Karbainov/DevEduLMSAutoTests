@@ -1,6 +1,6 @@
 ﻿namespace DevEduLMSAutoTests.API.Support.Models.Response
 {
-    public class GetAllGroupsResponse
+    public class GetGroupByIdResponse
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }
@@ -29,9 +29,18 @@
         [JsonPropertyName("paymentsCount")]
         public int PaymentsCount { get; set; }
 
+        [JsonPropertyName("students")]
+        public List<BriefUserInfoResponse> Students { get; set; }
+
+        [JsonPropertyName("teachers")]
+        public List<BriefUserInfoResponse> Teachers { get; set; }
+
+        [JsonPropertyName("tutors")]
+        public List<BriefUserInfoResponse> Tutors { get; set; }
+
         public override bool Equals(object? obj)
         {
-            if (obj == null || !(obj is GetAllGroupsResponse))
+            if (obj == null || !(obj is GetGroupByIdResponse))
             {
                 return false;
             }
@@ -40,7 +49,43 @@
             {
                 return false;
             }
-            return obj is GetAllGroupsResponse response &&
+            List<BriefUserInfoResponse> students = ((GetGroupByIdResponse)obj).Students;
+            if (students.Count != this.Students.Count)
+            {
+                return false;
+            }
+            for (int i = 0; i < students.Count; i++)
+            {
+                if (!students[i].Equals(this.Students[i]))
+                {
+                    return false;
+                }
+            }
+            List<BriefUserInfoResponse> teachers = ((GetGroupByIdResponse)obj).Teachers;
+            if (teachers.Count != this.Teachers.Count)
+            {
+                return false;
+            }
+            for (int i = 0; i < teachers.Count; i++)
+            {
+                if (!teachers[i].Equals(this.Teachers[i]))
+                {
+                    return false;
+                }
+            }
+            List<BriefUserInfoResponse> tutors = ((GetGroupByIdResponse)obj).Tutors;
+            if (tutors.Count != this.Tutors.Count)
+            {
+                return false;
+            }
+            for (int i = 0; i < tutors.Count; i++)
+            {
+                if (!tutors[i].Equals(this.Tutors[i]))
+                {
+                    return false;
+                }
+            }
+            return obj is GetGroupByIdResponse response &&
                    Id == response.Id &&
                    Name == response.Name &&
                    GroupStatus == response.GroupStatus &&
