@@ -204,10 +204,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("teacher saves the lesson as a draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 28
- testRunner.When("teacher publishes a draft lesson", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("teacher publishes a draft lesson", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 29
- testRunner.When("lesson recording appears", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("lesson recording appears", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                             "AdditionalMaterials",
@@ -216,14 +216,14 @@ this.ScenarioInitialize(scenarioInfo);
                             "TopicIds"});
                 table6.AddRow(new string[] {
                             "string",
-                            "string",
+                            "http://fjfjf.com",
                             "01.09.2022",
-                            "Forming"});
+                            "668"});
 #line 30
- testRunner.And("teacher update lesson", ((string)(null)), table6, "And ");
+ testRunner.When("teacher update lesson", ((string)(null)), table6, "When ");
 #line hidden
 #line 33
-    testRunner.Then("teacher publishes a lesson", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then("teacher can see published a lesson", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

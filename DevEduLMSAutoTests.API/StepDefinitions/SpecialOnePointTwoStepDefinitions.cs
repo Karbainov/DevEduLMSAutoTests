@@ -85,6 +85,24 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             _lessonId = _lessonsClient.AddLessonByTeacher(newLesson, _teacherToken).IdLesson;
         }
 
+        [Given(@"teacher saves the lesson as a draft")]
+        public void GivenTeacherSavesLessonDraft()
+        {
+            throw new PendingStepException();
+        }
+
+        [Given(@"teacher publishes a draft lesson")]
+        public void GivenTeacherPublishesDraftLesson()
+        {
+            throw new PendingStepException();
+        }
+
+        [Given(@"lesson recording appears")]
+        public void Givenƒesson ecording‘ppears()
+        {
+            throw new PendingStepException();
+        }
+
         [When(@"teacher update lesson")]
         public void WhenTeacherUpdateLesson(Table table)
         {
@@ -94,11 +112,11 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             _expectedLesson = lesson;
         }
 
-        [Then(@"teacher publishes a lesson")]
+        [Then(@"teacher can see published a lesson")]
         public void ThenTeacherPublishesALesson()
         {
             _lessonsClient = new LessonsClient();
-            List<AddLessonResponse> actualLesson = _lessonsClient.GetAllLessonsByTeacherId(_teacherId, _methodistToken);
+            List<AddLessonResponse> actualLesson = _lessonsClient.GetAllLessonsByTeacherId(_teacherId, _teacherToken);
             CollectionAssert.Contains(actualLesson, _expectedLesson);
         }
     }

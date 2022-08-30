@@ -25,9 +25,9 @@ Scenario: Сreating an activity for students by teacher
 	| Date        | AdditionalMaterials | GroupId | Name  | LinkToRecord       | TopicIds |IsPublished |
 	|11.09.2022   |   string            | 1583    |string |http://fjfjf.com    | 668      |true        |
 	And teacher saves the lesson as a draft
-	When teacher publishes a draft lesson
-	When lesson recording appears
-	And teacher update lesson
+	And teacher publishes a draft lesson
+	And lesson recording appears
+	When teacher update lesson
     | AdditionalMaterials | LinkToRecord    | Date       |TopicIds |
-	|   string            |string           |01.09.2022  |Forming  |
-    Then teacher publishes a lesson
+	|   string            |http://fjfjf.com |01.09.2022  |668      |
+    Then teacher can see published a lesson

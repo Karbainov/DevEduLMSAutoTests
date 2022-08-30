@@ -7,7 +7,7 @@ namespace DevEduLMSAutoTests.API.Support.Models.Response
         public int IdLesson { get; set; }
 
         [JsonPropertyName("date")]
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
 
         [JsonPropertyName("name")]
         public string Name { get; set; }
@@ -34,7 +34,7 @@ namespace DevEduLMSAutoTests.API.Support.Models.Response
         {
             return obj is AddLessonResponse response &&
                    IdLesson == response.IdLesson &&
-                   Date.Date == response.Date.Date &&
+                   Date == response.Date &&
                    Name == response.Name &&
                    AdditionalMaterials == response.AdditionalMaterials &&
                    LinkToRecord == response.LinkToRecord &&
