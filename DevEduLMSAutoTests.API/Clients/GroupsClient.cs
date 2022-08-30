@@ -26,8 +26,9 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Post,
-                RequestUri = new System.Uri($"Urls.Groups/{groupId}/user/{userId}/role/{role}"),
+                RequestUri = new System.Uri($"{Urls.Groups}/{groupId}/user/{userId}/role/{role}"),
             };
+            HttpResponseMessage responseMessage = client.Send(message);
         }
     }
 }

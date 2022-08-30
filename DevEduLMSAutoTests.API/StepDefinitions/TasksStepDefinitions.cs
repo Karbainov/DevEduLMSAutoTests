@@ -9,7 +9,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
     public class TasksStepDefinitions
     {
         private string _studentToken;
-        private string _managerToken;
+        private string _adminToken;
         private string _methodistToken;
         private string _teacherToken;
         private int _studentId;
@@ -39,6 +39,17 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
 
         }
 
+        [Given(@"authorize admin")]
+        public void GivenAuthorizeAdmin()
+        {
+            SignInRequest adminSignInRequest = new SignInRequest()
+            {
+                Email = Options.AdminsEmail,
+                Password = Options.AdminsPassword,
+            };
+            _adminToken = _authenticationClient.AuthorizeUser(adminSignInRequest);
+        }
+
         [Given(@"authorize users")]
         public void GivenAuthorizeUsers(Table table)
         {
@@ -46,23 +57,17 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             SignInRequest studentSignInRequest = signInRequests[0];
             SignInRequest methodistSignInRequest = signInRequests[1];
             SignInRequest teacherSignInRequest = signInRequests[2];
-            SignInRequest managerSignInRequest = new SignInRequest()
-            {
-                Email = Options.ManagersEmail,
-                Password = Options.ManagersPassword,
-            };
             _studentToken = _authenticationClient.AuthorizeUser(studentSignInRequest);
             _methodistToken = _authenticationClient.AuthorizeUser(methodistSignInRequest);
             _teacherToken = _authenticationClient.AuthorizeUser(teacherSignInRequest);
-            _managerToken = _authenticationClient.AuthorizeUser(managerSignInRequest);
         }
 
         [Given(@"manager add roles to users")]
         public void GivenManagerAddRolesToUsers()
         {
             _usersClient = new UsersClient();
-            _usersClient.AddNewRoleToUser(_methodistId, Options.RoleMethodist, _managerToken, HttpStatusCode.NoContent);
-            _usersClient.AddNewRoleToUser(_teacherId, Options.RoleTeacher, _managerToken, HttpStatusCode.NoContent);
+            _usersClient.AddNewRoleToUser(_methodistId, Options.RoleMethodist, _adminToken, HttpStatusCode.NoContent);
+            _usersClient.AddNewRoleToUser(_teacherId, Options.RoleTeacher, _adminToken, HttpStatusCode.NoContent);
         }
 
         [Given(@"manager create new group")]
@@ -70,15 +75,15 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         {
             _groupsClient = new GroupsClient();
             CreateGroupRequest newGroup = table.CreateInstance<CreateGroupRequest>();
-            _groupId = _groupsClient.CreateNewGroup(newGroup, _managerToken).Id;
+            _groupId = _groupsClient.CreateNewGroup(newGroup, _adminToken).Id;
         }
 
         [Given(@"manager add users to group")]
         public void GivenManagerAddUsersToGroup()
         {
             _groupsClient = new GroupsClient();
-            _groupsClient.AddUserToGroup(_groupId, _teacherId, Options.RoleTeacher, _managerToken);
-            _groupsClient.AddUserToGroup(_groupId, _studentId, Options.RoleStudent, _managerToken);
+            _groupsClient.AddUserToGroup(_groupId, _teacherId, Options.RoleTeacher, _adminToken);
+            _groupsClient.AddUserToGroup(_groupId, _studentId, Options.RoleStudent, _adminToken);
         }
 
         [Given(@"methodist create new task")]
@@ -94,9 +99,8 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         {
             UpdateTaskRequest newTask = table.CreateInstance<UpdateTaskRequest>();
             _tasksClient = new TasksClient();
-            CreateNewTaskResponse task = _tasksClient.UpdateTask(newTask, _taskId, _methodistToken);
+            CreateNewTaskResponse task = _tasksClient.UpdateTask(newTask, _taskId, _methodistToken, HttpStatusCode.OK);
             _expectedTask = task;
-
         }
 
         [When(@"teacher see task")]
