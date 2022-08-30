@@ -11,6 +11,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         private int _groupId;
         private int _topicId;
         private int _lessonId;
+        private string _adminToken;
         private AuthenticationClient _authenticationClient;
         private UsersClient _usersClient;
         private GroupsClient _groupsClient;
@@ -29,6 +30,17 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             _teacherId = _authenticationClient.RegisterUser(teacherRegisterRequest).Id;
         }
 
+        [Given(@"authorize admina")]
+        public void GivenAuthorizeAdmin()
+        {
+            SignInRequest adminSignInRequest = new SignInRequest()
+            {
+                Email = Options.AdminsEmail,
+                Password = Options.AdminsPassword,
+            };
+            _adminToken = _authenticationClient.AuthorizeUser(adminSignInRequest);
+        }
+
         [Given(@"authorize user")]
         public void GivenAuthorizeUser(Table table)
         {
@@ -45,8 +57,8 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         public void GivenManagerAddRolesToUser()
         {
             _usersClient = new UsersClient();
-            _usersClient.AddNewRoleToUser(_methodistId, Options.RoleMethodist, _managerToken, HttpStatusCode.NoContent);
-            _usersClient.AddNewRoleToUser(_teacherId, Options.RoleTeacher, _managerToken, HttpStatusCode.NoContent);
+            _usersClient.AddNewRoleToUser(_methodistId, Options.RoleMethodist, _adminToken, HttpStatusCode.NoContent);
+            _usersClient.AddNewRoleToUser(_teacherId, Options.RoleTeacher, _adminToken, HttpStatusCode.NoContent);
         }
 
         [Given(@"manager create new groups")]

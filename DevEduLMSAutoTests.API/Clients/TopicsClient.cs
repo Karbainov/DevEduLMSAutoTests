@@ -13,7 +13,6 @@
                 RequestUri = new System.Uri(Urls.Topics),
                 Content = new StringContent(json, Encoding.UTF8, "application/json")
             };
-
             HttpResponseMessage response = client.Send(message);
             AddTopicResponse responseTopic = JsonSerializer.Deserialize<AddTopicResponse>
                 (response.Content.ReadAsStringAsync().Result)!;
