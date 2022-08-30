@@ -52,5 +52,19 @@
                 (response.Content.ReadAsStringAsync().Result)!;
             return responseTasks;
         }
+        public CreateNewTaskResponse GetTaskById(int taskId, string teacherToken)
+        {
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", teacherToken);
+            HttpRequestMessage message = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new System.Uri($"{Urls.Tasks}/{taskId}")
+            };
+            HttpResponseMessage response = client.Send(message);
+            CreateNewTaskResponse responseTask = JsonSerializer.Deserialize<CreateNewTaskResponse>
+                (response.Content.ReadAsStringAsync().Result)!;
+            return responseTask;
+        }
     }
 }
