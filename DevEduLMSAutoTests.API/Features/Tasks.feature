@@ -1,8 +1,10 @@
 ﻿Feature: Tasks
 
-A short summary of the feature
+The methodist creates a task, edits it.
+The teacher posts this task.
+The student sees it.
 
-@methodist
+@methodist @admin @teacher @student @task @homework
 Scenario: Add new task for students by methodist
 	Given register new users
 	| FirstName | LastName  | Patronymic | Email                 | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber |
@@ -21,11 +23,11 @@ Scenario: Add new task for students by methodist
 	| GropForTest1 | 1370     | Forming       | 26.08.2022 | 26.08.2023 | string    | 5000            | 10            |
 	And manager add users to group
 	And methodist create new task
-	| Name          | Description | Links | IsRequired | CourseIds |
-	| FirstTaskTest | qweqwe      | link  | true       | 1370      |
+	| Name | Description | Links | IsRequired | CourseIds |
+	| Test | Test        | Link  | true       | 1370      |
 	And methodist update task
-	| Name    | Description | Links    | IsRequired |
-	| NewName | qweqweqwe   | New link | true       |
+	| Name | Description | Links | IsRequired |
+	| 1    | 2           | 3     | true       |
 	#When teacher see task
 	When teacher sees task by id
 	And teacher post task
