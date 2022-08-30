@@ -21,19 +21,7 @@
 
   <ItemGroup>
     <Folder Include="Drivers\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Features\SpecialOnePointTwo.feature.cs">
-      <DependentUpon>SpecialOnePointTwo.feature</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <SpecFlowFeatureFiles Update="Features\SpecialOnePointTwo.feature">
-      <Visible>$(UsingMicrosoftNETSdk)</Visible>
-      <CodeBehindFile>%(RelativeDir)%(Filename).feature$(DefaultLanguageSourceExtension)</CodeBehindFile>
-    </SpecFlowFeatureFiles>
+    <Folder Include="StepDefinitions\" />
   </ItemGroup>
 
 </Project>
