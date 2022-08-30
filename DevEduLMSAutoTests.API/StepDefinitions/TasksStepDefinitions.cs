@@ -32,6 +32,8 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             RegisterRequest studentRegisterRequest = registerRequests[0];
             RegisterRequest methodistRegisterRequest = registerRequests[1];
             RegisterRequest teacherRegisterRequest = registerRequests[2];
+            ClearTables ddd = new ClearTables();
+            ddd.ClearDB();
             _authenticationClient = new AuthenticationClient();
             _studentId = _authenticationClient.RegisterUser(studentRegisterRequest).Id;
             _methodistId = _authenticationClient.RegisterUser(methodistRegisterRequest).Id;
