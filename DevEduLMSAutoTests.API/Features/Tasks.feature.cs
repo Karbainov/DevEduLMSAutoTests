@@ -117,7 +117,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Ilya",
                             "Baikov",
                             "string",
-                            "ilya057@student.com",
+                            "ilya060@student.com",
                             "ilya1",
                             "password",
                             "SaintPetersburg",
@@ -128,7 +128,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Maksim",
                             "Karbainov",
                             "string",
-                            "ilya058@methodist.com",
+                            "ilya061@methodist.com",
                             "maksim1",
                             "password",
                             "SaintPetersburg",
@@ -139,7 +139,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Elisey",
                             "Kakoyto",
                             "string",
-                            "ilya059@techer.com",
+                            "ilya062@techer.com",
                             "elisey1",
                             "password",
                             "SaintPetersburg",
@@ -159,13 +159,13 @@ this.ScenarioInitialize(scenarioInfo);
                             "Email",
                             "Password"});
                 table2.AddRow(new string[] {
-                            "ilya057@student.com",
+                            "ilya060@student.com",
                             "password"});
                 table2.AddRow(new string[] {
-                            "ilya058@methodist.com",
+                            "ilya061@methodist.com",
                             "password"});
                 table2.AddRow(new string[] {
-                            "ilya059@techer.com",
+                            "ilya062@techer.com",
                             "password"});
 #line 14
  testRunner.And("authorize users", ((string)(null)), table2, "And ");
