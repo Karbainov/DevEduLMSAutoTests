@@ -22,7 +22,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         private GroupsClient _groupsClient;
         private TasksClient _tasksClient;
         private HomeworksClient _homeworksClient;
-        private CreateNewTaskResponse _expectedTask;
+        private TaskResponse _expectedTask;
         private GetHomeworkByGroupIdResponse _expectedHomework;
 
         [Given(@"register new users")]
@@ -32,8 +32,6 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             RegisterRequest studentRegisterRequest = registerRequests[0];
             RegisterRequest methodistRegisterRequest = registerRequests[1];
             RegisterRequest teacherRegisterRequest = registerRequests[2];
-            ClearTables ddd = new ClearTables();
-            ddd.ClearDB();
             _authenticationClient = new AuthenticationClient();
             _studentId = _authenticationClient.RegisterUser(studentRegisterRequest).Id;
             _methodistId = _authenticationClient.RegisterUser(methodistRegisterRequest).Id;
@@ -101,7 +99,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         {
             UpdateTaskRequest newTask = table.CreateInstance<UpdateTaskRequest>();
             _tasksClient = new TasksClient();
-            CreateNewTaskResponse task = _tasksClient.UpdateTask(newTask, _taskId, _methodistToken, HttpStatusCode.OK);
+            TaskResponse task = _tasksClient.UpdateTask(newTask, _taskId, _methodistToken, HttpStatusCode.OK);
             _expectedTask = task;
         }
 
@@ -109,7 +107,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         public void WhenTeacherSeeTask()
         {
             _tasksClient = new TasksClient();
-            List<CreateNewTaskResponse> actualTasks = _tasksClient.GetTasksByGroupId(_groupId, _teacherToken);
+            List<TaskResponse> actualTasks = _tasksClient.GetTasksByGroupId(_groupId, _teacherToken);
             CollectionAssert.Contains(actualTasks, _expectedTask);
         }
 
@@ -117,7 +115,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         public void WhenTeacherSeesTaskById()
         {
             _tasksClient = new TasksClient();
-            CreateNewTaskResponse actualTask = _tasksClient.GetTaskById(_taskId, _teacherToken);
+            TaskResponse actualTask = _tasksClient.GetTaskById(_taskId, _teacherToken);
             Assert.AreEqual(_expectedTask, actualTask);
         }
 
@@ -129,7 +127,15 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             int homeworkId = _homeworksClient.AddHomework(newHomework, _groupId, _taskId, _teacherToken).Id;
             _expectedHomework = new GetHomeworkByGroupIdResponse()
             {
-                Task = _expectedTask,
+                TaskInHW = new TaskResponse()
+                {
+                    Id = _expectedTask.Id,
+                    Name = _expectedTask.Name,
+                    Description = _expectedTask.Description,
+                    Links = _expectedTask.Links,
+                    IsRequired = _expectedTask.IsRequired,
+                    IsDeleted = _expectedTask.IsDeleted
+                },
                 StartDate = newHomework.StartDate,
                 EndDate = newHomework.EndDate,
                 Id = homeworkId
@@ -141,6 +147,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         {
             _homeworksClient = new HomeworksClient();
             List<GetHomeworkByGroupIdResponse> actualHomeworks= _homeworksClient.GetAllHomeworksByGroupId(_groupId, _studentToken);
+
             CollectionAssert.Contains(actualHomeworks, _expectedHomework);
         }
     }
