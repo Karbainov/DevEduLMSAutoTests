@@ -111,6 +111,14 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             CollectionAssert.Contains(actualTasks, _expectedTask);
         }
 
+        [When(@"teacher sees task by id")]
+        public void WhenTeacherSeesTaskById()
+        {
+            _tasksClient = new TasksClient();
+            CreateNewTaskResponse actualTask = _tasksClient.GetTaskById(_taskId, _teacherToken);
+            Assert.AreEqual(_expectedTask, actualTask);
+        }
+
         [When(@"teacher post task")]
         public void WhenTeacherPostTask(Table table)
         {
