@@ -9,7 +9,7 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Post,
-                RequestUri = new System.Uri($"{Urls.Users2}/{userId}/role/{role}")
+                RequestUri = new System.Uri($"{Urls.Users}/{userId}/role/{role}")
             };
             HttpResponseMessage response = client.Send(message);
             HttpStatusCode actualCode = response.StatusCode;
