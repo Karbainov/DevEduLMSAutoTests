@@ -32,6 +32,8 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             RegisterRequest studentRegisterRequest = registerRequests[0];
             RegisterRequest methodistRegisterRequest = registerRequests[1];
             RegisterRequest teacherRegisterRequest = registerRequests[2];
+            ClearTables ddd = new ClearTables();
+            ddd.ClearDB();
             _authenticationClient = new AuthenticationClient();
             _studentId = _authenticationClient.RegisterUser(studentRegisterRequest).Id;
             _methodistId = _authenticationClient.RegisterUser(methodistRegisterRequest).Id;
@@ -109,6 +111,14 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             _tasksClient = new TasksClient();
             List<CreateNewTaskResponse> actualTasks = _tasksClient.GetTasksByGroupId(_groupId, _teacherToken);
             CollectionAssert.Contains(actualTasks, _expectedTask);
+        }
+
+        [When(@"teacher sees task by id")]
+        public void WhenTeacherSeesTaskById()
+        {
+            _tasksClient = new TasksClient();
+            CreateNewTaskResponse actualTask = _tasksClient.GetTaskById(_taskId, _teacherToken);
+            Assert.AreEqual(_expectedTask, actualTask);
         }
 
         [When(@"teacher post task")]

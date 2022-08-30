@@ -12,5 +12,6 @@
         public const string ManagersPassword = "marinamarina";
         public const string AdminsEmail = "user@example.com";
         public const string AdminsPassword = "stringst";
+        public const string ConnectionString = @"Data Source = 80.78.240.16;Initial Catalog = DevEdu;Persist Security Info = True;User ID = student;Password = qwe!23;";
     }
 }
