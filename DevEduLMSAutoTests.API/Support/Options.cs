@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DevEduLMSAutoTests.API.Support
+﻿namespace DevEduLMSAutoTests.API.Support
 {
     public class Options
     {
@@ -14,5 +8,9 @@ namespace DevEduLMSAutoTests.API.Support
         public const string RoleTeacher = "Teacher";
         public const string RoleTutor = "Tutor";
         public const string RoleStudent = "Student";
+        public const string ManagersEmail = "marina@example.com";
+        public const string ManagersPassword = "marinamarina";
+        public const string AdminsEmail = "user@example.com";
+        public const string AdminsPassword = "stringst";
     }
 }

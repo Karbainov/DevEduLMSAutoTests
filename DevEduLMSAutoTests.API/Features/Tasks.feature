@@ -6,16 +6,16 @@ A short summary of the feature
 Scenario: Add new task for students by methodist
 	Given register new users
 	| FirstName | LastName  | Patronymic | Email                 | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber |
-	| Ilya      | Baikov    | string     | ilya022@student.com   | ilya1    | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 |
-	| Maksim    | Karbainov | string     | ilya023@methodist.com | maksim1  | password | SaintPetersburg | 01.01.1995 | string        | 89997776655 |
-	| Elisey    | Kakoyto   | string     | ilya024@techer.com    | elisey1  | password | SaintPetersburg | 02.02.1996 | string        | 89996665544 |
+	| Ilya      | Baikov    | string     | ilya063@student.com   | ilya1    | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 |
+	| Maksim    | Karbainov | string     | ilya064@methodist.com | maksim1  | password | SaintPetersburg | 01.01.1995 | string        | 89997776655 |
+	| Elisey    | Kakoyto   | string     | ilya065@techer.com    | elisey1  | password | SaintPetersburg | 02.02.1996 | string        | 89996665544 |
+	And authorize admin
+	And manager add roles to users
 	And authorize users
 	| Email                 | Password     |
-	| ilya022@student.com   | password     |
-	| ilya023@methodist.com | password     |
-	| ilya024@techer.com    | password     |
-	| marina@example.com    | marinamarina |
-	And manager add roles to users
+	| ilya063@student.com   | password     |
+	| ilya064@methodist.com | password     |
+	| ilya065@techer.com    | password     |
 	And manager create new group
 	| Name         | CourseId | GroupStatusId | StartDate  | EndDate    | Timetable | PaymentPerMonth | PaymentsCount |
 	| GropForTest1 | 1370     | Forming       | 26.08.2022 | 26.08.2023 | string    | 5000            | 10            |

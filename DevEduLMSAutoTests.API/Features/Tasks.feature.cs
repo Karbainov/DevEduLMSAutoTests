@@ -107,7 +107,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Ilya",
                             "Baikov",
                             "string",
-                            "ilya022@student.com",
+                            "ilya063@student.com",
                             "ilya1",
                             "password",
                             "SaintPetersburg",
@@ -118,7 +118,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Maksim",
                             "Karbainov",
                             "string",
-                            "ilya023@methodist.com",
+                            "ilya064@methodist.com",
                             "maksim1",
                             "password",
                             "SaintPetersburg",
@@ -129,7 +129,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Elisey",
                             "Kakoyto",
                             "string",
-                            "ilya024@techer.com",
+                            "ilya065@techer.com",
                             "elisey1",
                             "password",
                             "SaintPetersburg",
@@ -139,28 +139,28 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
  testRunner.Given("register new users", ((string)(null)), table7, "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Email",
-                            "Password"});
-                table8.AddRow(new string[] {
-                            "ilya022@student.com",
-                            "password"});
-                table8.AddRow(new string[] {
-                            "ilya023@methodist.com",
-                            "password"});
-                table8.AddRow(new string[] {
-                            "ilya024@techer.com",
-                            "password"});
-                table8.AddRow(new string[] {
-                            "marina@example.com",
-                            "marinamarina"});
 #line 12
- testRunner.And("authorize users", ((string)(null)), table8, "And ");
+ testRunner.And("authorize admin", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 18
+#line 13
  testRunner.And("manager add roles to users", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Email",
+                            "Password"});
+                table2.AddRow(new string[] {
+                            "ilya063@student.com",
+                            "password"});
+                table2.AddRow(new string[] {
+                            "ilya064@methodist.com",
+                            "password"});
+                table2.AddRow(new string[] {
+                            "ilya065@techer.com",
+                            "password"});
+#line 14
+ testRunner.And("authorize users", ((string)(null)), table2, "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
                             "CourseId",
                             "GroupStatusId",
