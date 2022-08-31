@@ -120,7 +120,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Milana",
                             "Maxina",
                             "string",
-                            "maxina04@techer.com",
+                            "maxina04@teacher.com",
                             "maxina1",
                             "password",
                             "SaintPetersburg",
@@ -143,7 +143,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "lera04@methodist.com",
                             "password"});
                 table2.AddRow(new string[] {
-                            "maxina04@techer.com",
+                            "maxina04@teacher.com",
                             "password"});
                 table2.AddRow(new string[] {
                             "marina@example.com",
@@ -192,22 +192,19 @@ this.ScenarioInitialize(scenarioInfo);
                 table5.AddRow(new string[] {
                             "11.09.2022",
                             "string",
-                            "1583",
+                            "1633",
                             "string",
                             "http://fjfjf.com",
-                            "668",
-                            "true"});
+                            "697",
+                            "false"});
 #line 24
- testRunner.And("teacher create a lesson", ((string)(null)), table5, "And ");
-#line hidden
-#line 27
- testRunner.And("teacher saves the lesson as a draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("teacher create a lesson a draft", ((string)(null)), table5, "And ");
 #line hidden
 #line 28
- testRunner.And("teacher publishes a draft lesson", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("admin add teacher group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 29
- testRunner.And("lesson recording appears", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("teacher sees the published lesson", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                             "AdditionalMaterials",
@@ -218,7 +215,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "string",
                             "http://fjfjf.com",
                             "01.09.2022",
-                            "668"});
+                            "697"});
 #line 30
  testRunner.When("teacher update lesson", ((string)(null)), table6, "When ");
 #line hidden

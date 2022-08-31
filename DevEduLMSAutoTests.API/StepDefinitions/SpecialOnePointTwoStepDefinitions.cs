@@ -69,6 +69,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             _groupId = _groupsClient.CreateNewGroup(newGroup, _managerToken).Id;
         }
 
+
         [Given(@"methodist create topic")]
         public void GivenMethodistCreateTopic(Table table)
         {
@@ -77,7 +78,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             _topicId = _topicsClient.AddTopicsByMethodist(newTopic, _methodistToken).IdTopic;
         }
 
-        [Given(@"teacher create a lesson")]
+        [Given(@"teacher create a lesson a draft")]
         public void GivenTeacherCreateALesson(Table table)
         {
             AddLessonRequest newLesson = table.CreateInstance<AddLessonRequest>();
@@ -85,22 +86,20 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             _lessonId = _lessonsClient.AddLessonByTeacher(newLesson, _teacherToken).IdLesson;
         }
 
-        [Given(@"teacher saves the lesson as a draft")]
-        public void GivenTeacherSavesLessonDraft()
+        [Given(@"admin add teacher group")]
+        public void GivenAdminAddTeacherGroup()
         {
-            throw new PendingStepException();
+            _groupsClient = new GroupsClient();
+            _groupsClient.AddUserToGroup(_groupId, _teacherId, Options.RoleTeacher, _adminToken);
         }
 
-        [Given(@"teacher publishes a draft lesson")]
-        public void GivenTeacherPublishesDraftLesson()
-        {
-            throw new PendingStepException();
-        }
 
-        [Given(@"lesson recording appears")]
-        public void Givenƒesson ecording‘ppears()
+        [Given(@"teacher sees the published lesson")]
+        public void GivenTeacherSeesThePublishedLesson()
         {
-            throw new PendingStepException();
+            _lessonsClient = new LessonsClient();
+            List<AddLessonResponse> actualLesson = _lessonsClient.GetAllLessonsByTeacherId(_teacherId, _teacherToken);
+            CollectionAssert.Contains(actualLesson, _expectedLesson);
         }
 
         [When(@"teacher update lesson")]
