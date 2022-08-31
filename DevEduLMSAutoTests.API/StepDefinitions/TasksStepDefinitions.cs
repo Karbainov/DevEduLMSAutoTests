@@ -49,8 +49,8 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             _tasksClient = new TasksClient();
             _homeworksClient = new HomeworksClient();
         }
-        [Given(@"register new users with roles 1")]
-        public void GivenRegisterNewUsersWithRoles1(Table table)
+        [Given(@"register new users with roles")]
+        public void GivenRegisterNewUsersWithRoles(Table table)
         {
             _adminToken = _authenticationClient.AuthorizeUser(new SignInRequest() { Email = Options.AdminsEmail, Password = Options.AdminsPassword });
             _newUsers = table.CreateSet<RegistationModelWithRole>().ToList();

@@ -7,7 +7,7 @@ The student sees it.
 
 @methodist @admin @teacher @student @task @homework
 Scenario: Add new task for students by methodist
-	Given register new users with roles 1
+	Given register new users with roles
 	| FirstName | LastName   | Patronymic | Email                 | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role      |
 	| Ilya      | Baikov     | string     | ilya075@student.com   | ilya1    | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student   |
 	| Maksim    | Karbainov  | string     | ilya076@methodist.com | maksim1  | password | SaintPetersburg | 01.01.1995 | string        | 89997776655 | Methodist |
