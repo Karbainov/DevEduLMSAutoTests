@@ -1,6 +1,7 @@
 ﻿Feature: Tasks
 
 The methodist creates a task, edits it.
+The teacher sees this task.
 The teacher posts this task.
 The student sees it.
 
