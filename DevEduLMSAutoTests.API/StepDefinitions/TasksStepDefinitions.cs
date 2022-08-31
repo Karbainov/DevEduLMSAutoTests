@@ -61,27 +61,35 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
                 switch (user.Role)
                 {
                     case $"{Options.RoleTeacher}":
-                        _teachersIds.Add(id);
-                        _usersClient.AddNewRoleToUser(id, user.Role, _adminToken, HttpStatusCode.NoContent);
-                        _teachersTokens.Add(_authenticationClient.AuthorizeUser(new SignInRequest()
-                        { Email = user.Email, Password = user.Password }));
+                        {
+                            _teachersIds.Add(id);
+                            _usersClient.AddNewRoleToUser(id, user.Role, _adminToken, HttpStatusCode.NoContent);
+                            _teachersTokens.Add(_authenticationClient.AuthorizeUser(new SignInRequest()
+                            { Email = user.Email, Password = user.Password }));
+                        }
                         break;
                     case $"{Options.RoleTutor}":
-                        _tutorsIds.Add(id);
-                        _usersClient.AddNewRoleToUser(id, user.Role, _adminToken, HttpStatusCode.NoContent);
-                        _tutorsTokens.Add(_authenticationClient.AuthorizeUser(new SignInRequest()
-                        { Email = user.Email, Password = user.Password }));
+                        {
+                            _tutorsIds.Add(id);
+                            _usersClient.AddNewRoleToUser(id, user.Role, _adminToken, HttpStatusCode.NoContent);
+                            _tutorsTokens.Add(_authenticationClient.AuthorizeUser(new SignInRequest()
+                            { Email = user.Email, Password = user.Password }));
+                        }
                         break;
                     case $"{Options.RoleMethodist}":
-                        _methodistsIds.Add(id);
-                        _usersClient.AddNewRoleToUser(id, user.Role, _adminToken, HttpStatusCode.NoContent);
-                        _methodistsTokens.Add(_authenticationClient.AuthorizeUser(new SignInRequest()
-                        { Email = user.Email, Password = user.Password }));
+                        {
+                            _methodistsIds.Add(id);
+                            _usersClient.AddNewRoleToUser(id, user.Role, _adminToken, HttpStatusCode.NoContent);
+                            _methodistsTokens.Add(_authenticationClient.AuthorizeUser(new SignInRequest()
+                            { Email = user.Email, Password = user.Password }));
+                        }
                         break;
                     case $"{Options.RoleStudent}":
-                        _studentsIds.Add(id);
-                        _studentsTokens.Add(_authenticationClient.AuthorizeUser(new SignInRequest()
-                        { Email = user.Email, Password = user.Password }));
+                        {
+                            _studentsIds.Add(id);
+                            _studentsTokens.Add(_authenticationClient.AuthorizeUser(new SignInRequest()
+                            { Email = user.Email, Password = user.Password }));
+                        }
                         break;
                 }
             }
@@ -95,8 +103,6 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             _tutorMainToken = _tutorsTokens.FirstOrDefault();
         }
 
-
-
         [Given(@"register new users")]
         public void GivenRegisterNewUsers(Table table)
         {
@@ -107,7 +113,6 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             _studentMainId = _authenticationClient.RegisterUser(studentRegisterRequest).Id;
             _methodistMainId = _authenticationClient.RegisterUser(methodistRegisterRequest).Id;
             _teacherMainId = _authenticationClient.RegisterUser(teacherRegisterRequest).Id;
-
         }
 
         [Given(@"authorize admin")]
