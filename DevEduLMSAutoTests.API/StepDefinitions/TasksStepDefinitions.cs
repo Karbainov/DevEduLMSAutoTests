@@ -141,8 +141,8 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         [Given(@"manager add roles to users")]
         public void GivenManagerAddRolesToUsers()
         {
-            _usersClient.AddNewRoleToUser(_methodistMainId, Options.RoleMethodist, _adminToken, HttpStatusCode.NoContent);
-            _usersClient.AddNewRoleToUser(_teacherMainId, Options.RoleTeacher, _adminToken, HttpStatusCode.NoContent);
+            _usersClient.AddNewRoleToUser(_methodistMainId, Options.RoleMethodist, _adminToken);
+            _usersClient.AddNewRoleToUser(_teacherMainId, Options.RoleTeacher, _adminToken);
         }
 
         [Given(@"manager create new group")]
@@ -170,7 +170,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         public void GivenMethodistUpdateTask(Table table)
         {
             UpdateTaskRequest newTask = table.CreateInstance<UpdateTaskRequest>();
-            TaskResponse task = _tasksClient.UpdateTask(newTask, _taskId, _methodistMainToken, HttpStatusCode.OK);
+            TaskResponse task = _tasksClient.UpdateTask(newTask, _taskId, _methodistMainToken);
             _expectedTask = task;
         }
 

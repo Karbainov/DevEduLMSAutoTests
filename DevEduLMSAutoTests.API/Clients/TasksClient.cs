@@ -2,7 +2,7 @@
 {
     public class TasksClient
     {
-        public TaskResponse AddTaskByMethodist(CreateTaskByMethodistRequest newTask, string methodistToken)
+        public TaskResponse AddTaskByMethodist(CreateTaskByMethodistRequest newTask, string methodistToken, HttpStatusCode expectedCode = HttpStatusCode.OK)
         {
             string json = JsonSerializer.Serialize(newTask);
             HttpClient client = new HttpClient();
@@ -19,7 +19,7 @@
             return responseTask;
         }
 
-        public TaskResponse UpdateTask(UpdateTaskRequest newTask, int taskId, string token, HttpStatusCode expectedCode)
+        public TaskResponse UpdateTask(UpdateTaskRequest newTask, int taskId, string token, HttpStatusCode expectedCode = HttpStatusCode.OK)
         {
             string json = JsonSerializer.Serialize(newTask);
             HttpClient client = new HttpClient();

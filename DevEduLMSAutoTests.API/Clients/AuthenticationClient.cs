@@ -20,7 +20,7 @@
             return response;
         }
 
-        public string AuthorizeUser(SignInRequest request)
+        public string AuthorizeUser(SignInRequest request, HttpStatusCode expectedCode = HttpStatusCode.OK)
         {
             string json = JsonSerializer.Serialize(request);
             HttpClient client = new HttpClient();
@@ -31,6 +31,8 @@
                 Content = new StringContent(json, Encoding.UTF8, "application/json")
             };
             HttpResponseMessage responseMessage = client.Send(message);
+            HttpStatusCode actualCode = responseMessage.StatusCode;
+            Assert.AreEqual(expectedCode, actualCode);
             string token = responseMessage.Content.ReadAsStringAsync().Result;
             return token;
         }
