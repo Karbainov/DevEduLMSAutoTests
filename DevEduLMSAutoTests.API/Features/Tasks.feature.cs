@@ -218,6 +218,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 35
  testRunner.And("methodist update task", ((string)(null)), table4, "And ");
 #line hidden
+#line 38
+ testRunner.When("teacher see task", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
 #line 39
  testRunner.When("teacher sees task by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden

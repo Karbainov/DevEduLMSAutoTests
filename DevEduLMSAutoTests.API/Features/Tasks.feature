@@ -1,7 +1,6 @@
 ﻿Feature: Tasks
 
 The methodist creates a task, edits it.
-The teacher sees this task.
 The teacher posts this task.
 The student sees it.
 
@@ -35,7 +34,7 @@ Scenario: Add new task for students by methodist
 	And methodist update task
 	| Name | Description | Links | IsRequired |
 	| 1    | 2           | 3     | true       |
-	#When teacher see task
+	#When teacher see task by groupId
 	When teacher sees task by id
 	And teacher post task
 	| StartDate  | EndDate    |

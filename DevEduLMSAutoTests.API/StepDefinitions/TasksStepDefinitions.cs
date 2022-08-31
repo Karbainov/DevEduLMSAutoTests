@@ -174,7 +174,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             _expectedTask = task;
         }
 
-        [When(@"teacher see task")]
+        [When(@"teacher see task by groupId")]
         public void WhenTeacherSeeTask()
         {
             List<TaskResponse> actualTasks = _tasksClient.GetTasksByGroupId(_groupId, _teacherMainToken);
