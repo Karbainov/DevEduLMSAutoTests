@@ -8,9 +8,9 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
     {
         private List<string> _usersToken;
         private string _managerToken;
-        private List<int> _usersId;
-        private List<int> _teachersId;
-        private List<int> _tutorsId;
+        private List<RegisterResponse> _students;
+        private List<RegisterResponse> _teachers;
+        private List<RegisterResponse> _tutors;
         private int _groupId;
         private AuthenticationClient _authenticationClient;
         private UsersClient _usersClient;
@@ -20,24 +20,48 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         ManagerCreatesAGroupAddsUsersStepDefinitions()
         {
             _usersToken = new List<string>();
-            _usersId = new List<int>();
-            _teachersId = new List<int>();
-            _tutorsId = new List<int>();
+            _students = new List<RegisterResponse>();
+            _teachers = new List<RegisterResponse>();
+            _tutors = new List<RegisterResponse>();
             _authenticationClient = new AuthenticationClient();
             _usersClient = new UsersClient();
             _groupsClient = new GroupsClient();
             _groupMappers = new GroupMappers();
         }
 
-        [Given(@"register new users in the service")]
-        public void GivenRegisterNewUsersInTheService(Table table)
+        [Given(@"register new students in service")]
+        public void GivenRegisterNewStudentsInService(Table table)
         {
             List<RegisterRequest> registerRequests = table.CreateSet<RegisterRequest>().ToList();
             HttpStatusCode expectedRegistrationCode = HttpStatusCode.Created;
             foreach (var registerUser in registerRequests)
             {
-                var usertId = _authenticationClient.RegisterUser(registerUser, expectedRegistrationCode).Id;
-                _usersId.Add(usertId);
+                var student = _authenticationClient.RegisterUser(registerUser, expectedRegistrationCode);
+                _students.Add(student);
+            }
+        }
+
+        [Given(@"register new teachers in service")]
+        public void GivenRegisterNewTeachersInService(Table table)
+        {
+            List<RegisterRequest> registerRequests = table.CreateSet<RegisterRequest>().ToList();
+            HttpStatusCode expectedRegistrationCode = HttpStatusCode.Created;
+            foreach (var registerUser in registerRequests)
+            {
+                var teacher = _authenticationClient.RegisterUser(registerUser, expectedRegistrationCode);
+                _teachers.Add(teacher);
+            }
+        }
+
+        [Given(@"register new tutors in service")]
+        public void GivenRegisterNewTutorsInService(Table table)
+        {
+            List<RegisterRequest> registerRequests = table.CreateSet<RegisterRequest>().ToList();
+            HttpStatusCode expectedRegistrationCode = HttpStatusCode.Created;
+            foreach (var registerUser in registerRequests)
+            {
+                var tutor = _authenticationClient.RegisterUser(registerUser, expectedRegistrationCode);
+                _tutors.Add(tutor);
             }
         }
 
@@ -52,16 +76,14 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         [Given(@"manager add roles to users in service")]
         public void GivenManagerAddRolesToUsersInService()
         {
-            _teachersId.Add(_usersId[3]);
-            _tutorsId.Add(_usersId[4]);
             HttpStatusCode expectedCode = HttpStatusCode.NoContent;
-            foreach(var teacherId in _teachersId)
+            foreach(var teacher in _teachers)
             {
-                _usersClient.AddNewRoleToUser(teacherId, Options.RoleTeacher, _managerToken, expectedCode);
+                _usersClient.AddNewRoleToUser(teacher.Id, Options.RoleTeacher, _managerToken, expectedCode);
             }
-            foreach (var tutorId in _tutorsId)
+            foreach (var tutor in _tutors)
             {
-                _usersClient.AddNewRoleToUser(tutorId, Options.RoleTutor, _managerToken, expectedCode);
+                _usersClient.AddNewRoleToUser(tutor.Id, Options.RoleTutor, _managerToken, expectedCode);
             }
         }
 
@@ -77,19 +99,17 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         public void WhenManagerAddUsersToGroupInService()
         {
             HttpStatusCode expectedCode = HttpStatusCode.NoContent;
-            foreach(var teacherId in _teachersId)
+            foreach(var teacher in _teachers)
             {
-                _groupsClient.AddUserToGroup(_groupId, teacherId, Options.RoleTeacher, _managerToken, expectedCode);
-                _usersId.Remove(teacherId);
+                _groupsClient.AddUserToGroup(_groupId, teacher.Id, Options.RoleTeacher, _managerToken, expectedCode);
             }
-            foreach (var tutorId in _tutorsId)
+            foreach (var tutor in _tutors)
             {
-                _groupsClient.AddUserToGroup(_groupId, tutorId, Options.RoleTutor, _managerToken, expectedCode);
-                _usersId.Remove(tutorId);
+                _groupsClient.AddUserToGroup(_groupId, tutor.Id, Options.RoleTutor, _managerToken, expectedCode);
             }
-            foreach (var id in _usersId)
+            foreach (var student in _students)
             {
-                _groupsClient.AddUserToGroup(_groupId, id, Options.RoleStudent, _managerToken, expectedCode);
+                _groupsClient.AddUserToGroup(_groupId, student.Id, Options.RoleStudent, _managerToken, expectedCode);
             }
         }
 

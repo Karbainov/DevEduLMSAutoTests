@@ -31,18 +31,10 @@
 
         public override bool Equals(object? obj)
         {
-            if (obj == null || !(obj is GetAllGroupsResponse))
-            {
-                return false;
-            }
-            CourseInGetAllGroupsResponse course = ((GetAllGroupsResponse)obj).Course;
-            if (!course.Id.Equals(this.Course.Id) || !course.Name.Equals(this.Course.Name) || !course.IsDeleted.Equals(this.Course.IsDeleted))
-            {
-                return false;
-            }
             return obj is GetAllGroupsResponse response &&
                    Id == response.Id &&
                    Name == response.Name &&
+                   Course.Equals(response.Course) &&
                    GroupStatus == response.GroupStatus &&
                    StartDate == response.StartDate &&
                    EndDate == response.EndDate &&
