@@ -20,7 +20,7 @@
                    Id == response.Id &&
                    StartDate == response.StartDate &&
                    EndDate == response.EndDate &&
-                   TaskInHW == response.TaskInHW;
+                   TaskInHW.Equals(response.TaskInHW);
         }
 
         public override string ToString()
