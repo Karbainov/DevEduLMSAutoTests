@@ -94,11 +94,11 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         }
 
 
-        [Given(@"teacher sees the published lesson")]
-        public void GivenTeacherSeesThePublishedLesson()
+        [Given(@"teacher sees a draft lesson")]
+        public void GivenTeacherSeesADraftLesson()
         {
             _lessonsClient = new LessonsClient();
-            List<AddLessonResponse> actualLesson = _lessonsClient.GetAllLessonsByTeacherId(_teacherId, _teacherToken);
+            List<AddLessonResponse> actualLesson = _lessonsClient.GetAllLessonsUnpublishedByGroupId(_groupId, _teacherToken);
             CollectionAssert.Contains(actualLesson, _expectedLesson);
         }
 
@@ -115,7 +115,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         public void ThenTeacherPublishesALesson()
         {
             _lessonsClient = new LessonsClient();
-            List<AddLessonResponse> actualLesson = _lessonsClient.GetAllLessonsByTeacherId(_teacherId, _teacherToken);
+            List<AddLessonResponse> actualLesson = _lessonsClient.GetAllLessonsUnpublishedByGroupId(_teacherId, _teacherToken);
             CollectionAssert.Contains(actualLesson, _expectedLesson);
         }
     }

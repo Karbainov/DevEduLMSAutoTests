@@ -76,12 +76,10 @@ namespace DevEduLMSAutoTests.API.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Сreating an activity for students by teacher")]
         [NUnit.Framework.CategoryAttribute("teacher")]
-        [NUnit.Framework.CategoryAttribute("student")]
         public void СreatingAnActivityForStudentsByTeacher()
         {
             string[] tagsOfScenario = new string[] {
-                    "teacher",
-                    "student"};
+                    "teacher"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Сreating an activity for students by teacher", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
@@ -109,7 +107,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Valeria",
                             "Puzikova",
                             "string",
-                            "lera04@methodist.com",
+                            "lera010@methodist.com",
                             "lera1",
                             "password",
                             "SaintPetersburg",
@@ -120,7 +118,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Milana",
                             "Maxina",
                             "string",
-                            "maxina04@teacher.com",
+                            "maxina010@teacher.com",
                             "maxina1",
                             "password",
                             "SaintPetersburg",
@@ -140,10 +138,10 @@ this.ScenarioInitialize(scenarioInfo);
                             "Email",
                             "Password"});
                 table2.AddRow(new string[] {
-                            "lera04@methodist.com",
+                            "lera010@methodist.com",
                             "password"});
                 table2.AddRow(new string[] {
-                            "maxina04@teacher.com",
+                            "maxina010@teacher.com",
                             "password"});
                 table2.AddRow(new string[] {
                             "marina@example.com",
@@ -192,11 +190,11 @@ this.ScenarioInitialize(scenarioInfo);
                 table5.AddRow(new string[] {
                             "11.09.2022",
                             "string",
-                            "1633",
+                            "1654",
                             "string",
                             "http://fjfjf.com",
-                            "697",
-                            "false"});
+                            "703",
+                            "true"});
 #line 24
  testRunner.And("teacher create a lesson a draft", ((string)(null)), table5, "And ");
 #line hidden
@@ -204,7 +202,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("admin add teacher group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 29
- testRunner.And("teacher sees the published lesson", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("teacher sees a draft lesson", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                             "AdditionalMaterials",
@@ -215,7 +213,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "string",
                             "http://fjfjf.com",
                             "01.09.2022",
-                            "697"});
+                            "703"});
 #line 30
  testRunner.When("teacher update lesson", ((string)(null)), table6, "When ");
 #line hidden
