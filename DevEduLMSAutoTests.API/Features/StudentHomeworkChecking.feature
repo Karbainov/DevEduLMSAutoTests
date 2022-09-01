@@ -20,6 +20,7 @@ Scenario: Student pass the homework from the second time
 	| Email               | Password |
 	| lidyasha@blabla.com | 12345678 |
 	And Create new group
-
+	| Name             | Description |
+	| Best Course Ever | Bla bla bla |
 	When [action]
 	Then [outcome]
