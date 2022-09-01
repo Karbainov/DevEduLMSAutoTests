@@ -12,7 +12,7 @@
         public string EndDate { get; set; }
 
         [JsonPropertyName("task")]
-        public CreateNewTaskResponse Task { get; set; }
+        public TaskResponse TaskInHW { get; set; }
 
         public override bool Equals(object? obj)
         {
@@ -20,7 +20,12 @@
                    Id == response.Id &&
                    StartDate == response.StartDate &&
                    EndDate == response.EndDate &&
-                   Task == response.Task;
+                   TaskInHW.Equals(response.TaskInHW);
+        }
+
+        public override string ToString()
+        {
+            return $"ID {Id}, Start {StartDate}, End {EndDate}, Task: {TaskInHW}";
         }
     }
 }

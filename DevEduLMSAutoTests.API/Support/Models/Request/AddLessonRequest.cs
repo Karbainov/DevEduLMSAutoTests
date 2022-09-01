@@ -3,7 +3,7 @@
     public class AddLessonRequest
     {
         [JsonPropertyName("date")]
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
 
         [JsonPropertyName("additionalMaterials")]
         public string AdditionalMaterials { get; set; }

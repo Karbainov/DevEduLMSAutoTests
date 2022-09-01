@@ -11,12 +11,14 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         private int _groupId;
         private int _topicId;
         private int _lessonId;
+        private string _adminToken;
         private AuthenticationClient _authenticationClient;
         private UsersClient _usersClient;
         private GroupsClient _groupsClient;
         private TopicsClient _topicsClient;
         private LessonsClient _lessonsClient;
-        private AddLessonResponse _expectedLesson;
+        private List<AddLessonResponse> _expectedLesson;
+        private AddLessonResponse _expectedLessonUp;
 
         [Given(@"register new user")]
         public void GivenRegisterNewUser(Table table)
@@ -27,6 +29,17 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             _authenticationClient = new AuthenticationClient();
             _methodistId = _authenticationClient.RegisterUser(methodistRegisterRequest).Id;
             _teacherId = _authenticationClient.RegisterUser(teacherRegisterRequest).Id;
+        }
+
+        [Given(@"authorize admina")]
+        public void GivenAuthorizeAdmin()
+        {
+            SignInRequest adminSignInRequest = new SignInRequest()
+            {
+                Email = Options.AdminsEmail,
+                Password = Options.AdminsPassword,
+            };
+            _adminToken = _authenticationClient.AuthorizeUser(adminSignInRequest);
         }
 
         [Given(@"authorize user")]
@@ -45,8 +58,8 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         public void GivenManagerAddRolesToUser()
         {
             _usersClient = new UsersClient();
-            _usersClient.AddNewRoleToUser(_methodistId, Options.RoleMethodist, _managerToken, HttpStatusCode.NoContent);
-            _usersClient.AddNewRoleToUser(_teacherId, Options.RoleTeacher, _managerToken, HttpStatusCode.NoContent);
+            _usersClient.AddNewRoleToUser(_methodistId, Options.RoleMethodist, _adminToken, HttpStatusCode.NoContent);
+            _usersClient.AddNewRoleToUser(_teacherId, Options.RoleTeacher, _adminToken, HttpStatusCode.NoContent);
         }
 
         [Given(@"manager create new groups")]
@@ -57,6 +70,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             _groupId = _groupsClient.CreateNewGroup(newGroup, _managerToken).Id;
         }
 
+
         [Given(@"methodist create topic")]
         public void GivenMethodistCreateTopic(Table table)
         {
@@ -65,12 +79,28 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             _topicId = _topicsClient.AddTopicsByMethodist(newTopic, _methodistToken).IdTopic;
         }
 
-        [Given(@"teacher create a lesson")]
+        [Given(@"teacher create a lesson a draft")]
         public void GivenTeacherCreateALesson(Table table)
         {
             AddLessonRequest newLesson = table.CreateInstance<AddLessonRequest>();
             _lessonsClient = new LessonsClient();
             _lessonId = _lessonsClient.AddLessonByTeacher(newLesson, _teacherToken).IdLesson;
+        }
+
+        [Given(@"admin add teacher group")]
+        public void GivenAdminAddTeacherGroup()
+        {
+            _groupsClient = new GroupsClient();
+            _groupsClient.AddUserToGroup(_groupId, _teacherId, Options.RoleTeacher, _adminToken);
+        }
+
+
+        [Given(@"teacher sees a draft lesson")]
+        public void GivenTeacherSeesADraftLesson()
+        {
+            _lessonsClient = new LessonsClient();
+            List<AddLessonResponse> actualLesson = _lessonsClient.GetAllLessonsUnpublishedByGroupId(_groupId, _teacherToken);
+            CollectionAssert.Contains(actualLesson, _expectedLesson);
         }
 
         [When(@"teacher update lesson")]
@@ -79,14 +109,14 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             UpdateLessonRequest newLesson = table.CreateInstance<UpdateLessonRequest>();
             _lessonsClient = new LessonsClient();
             AddLessonResponse lesson = _lessonsClient.UpdateLesson(newLesson, _lessonId, _teacherToken);
-            _expectedLesson = lesson;
+            _expectedLessonUp = lesson;
         }
 
-        [Then(@"teacher publishes a lesson")]
+        [Then(@"teacher can see published a lesson")]
         public void ThenTeacherPublishesALesson()
         {
             _lessonsClient = new LessonsClient();
-            List<AddLessonResponse> actualLesson = _lessonsClient.GetAllLessonsByTeacherId(_teacherId, _methodistToken);
+            List<AddLessonResponse> actualLesson = _lessonsClient.GetAllLessonsGroupId(_groupId, _teacherToken);
             CollectionAssert.Contains(actualLesson, _expectedLesson);
         }
     }
