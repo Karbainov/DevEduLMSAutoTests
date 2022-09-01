@@ -12,15 +12,15 @@ Scenario: Student pass the homework from the second time
 	| FirstName | LastName | Patronymic | Email               | Username | Password | City     | BirthDate  | GitHubAccount | PhoneNumber |
 	| Lidiya    | Ivanova  | Victorovna | lidyasha@blabla.com | Lidya    | 12345678 | Orenburg | 18.05.1990 | string        | 89995556633 |
 	| Vasiliy   | Druzhin  | Nikitich   | vasya@blabla.com    | Vaselyok | 12345678 | Penza    | 29.02.1999 | string        | 84445552211 |
-	Given Authorize as admin
-	| Email            | Password |
-	| user@example.com | stringst |
+	Given Authorize as manager
+	| Email              | Password     |
+	| marina@example.com | marinamarina |
 	And  Give teacher role to one user
 	And Admin create new course
 	| Name             | Description |
 	| Best Course Ever | Bla bla bla |
-	And Admin create new group
-	And Admin add student to group
+	And Manager create new group
+	And Manager add student to group
 	Given Authorize as teacher
 	| Email               | Password |
 	| lidyasha@blabla.com | 12345678 |

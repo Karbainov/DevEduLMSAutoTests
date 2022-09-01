@@ -1,12 +1,34 @@
-﻿using System;
+﻿using DevEduLMSAutoTests.API.Clients;
+using DevEduLMSAutoTests.API.Support.Models.Request;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using TechTalk.SpecFlow.Assist;
 
 namespace DevEduLMSAutoTests.API.StepDefinitions
 {
-    internal class StudentHomeworkCheckingStepDefinitions
+    [Binding]
+    public class StudentHomeworkCheckingStepDefinitions
     {
+        private List<int> _registerUsersIds;
+        private AuthenticationClient _authenticationClient;
+        public StudentHomeworkCheckingStepDefinitions()
+        {
+            _registerUsersIds = new List<int>();
+            _authenticationClient = new AuthenticationClient();
+        }
+
+        [Given(@"Register two users")]
+        public void GivenRegisterTwoUsers(Table table)
+        {
+            List<RegistrationRequest> usersRegistartion = table.CreateSet<RegistrationRequest>().ToList();
+            foreach(var user in usersRegistartion)
+            {
+                _authenticationClient.RegisterUser(user, HttpStatusCode.Created);
+            }
+        }
     }
 }
