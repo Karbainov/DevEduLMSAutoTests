@@ -16,11 +16,18 @@ Scenario: Student pass the homework from the second time
 	| Email            | Password |
 	| user@example.com | stringst |
 	And  Give teacher role to one user
+	And Admin create new course
+	| Name             | Description |
+	| Best Course Ever | Bla bla bla |
+	And Admin create new group
+	And Admin add student to group
 	Given Authorize as teacher
 	| Email               | Password |
 	| lidyasha@blabla.com | 12345678 |
-	And Create new group
-	| Name             | Description |
-	| Best Course Ever | Bla bla bla |
-	When [action]
-	Then [outcome]
+	And Teacher create new task
+	And Add new homework
+	And Student send passed homework
+	But Teacher decline student's homework
+	And Student send homework from the second time
+	When Teacher approve it
+	Then Homework passed
