@@ -6,14 +6,14 @@ A short summary of the feature
 Scenario: Сreating an activity for students by teacher
 	Given register new user
 	| FirstName   | LastName  | Patronymic | Email                | Username  | Password  | City            | BirthDate  | GitHubAccount | PhoneNumber |
-	| Valeria     | Puzikova  | string     | lera010@methodist.com | lera1      | password | SaintPetersburg | 01.02.1996 | string        | 89071961416 |
-	| Milana      | Maxina    | string     | maxina010@teacher.com  | maxina1    | password | SaintPetersburg | 01.01.1995 | string        | 89817051818 |
+	| Valeria     | Puzikova  | string     | lera012@methodist.com | lera1      | password | SaintPetersburg | 01.02.1996 | string        | 89071961416 |
+	| Milana      | Maxina    | string     | maxina012@teacher.com  | maxina1    | password | SaintPetersburg | 01.01.1995 | string        | 89817051818 |
 	And authorize admina
 	And manager add roles to user
 	And authorize user
 	| Email                 | Password     |
-	| lera010@methodist.com  | password     |
-	| maxina010@teacher.com   | password     |
+	| lera012@methodist.com  | password     |
+	| maxina012@teacher.com   | password     |
 	| marina@example.com    | marinamarina |
 	And manager create new groups
 	| Name         | CourseId | GroupStatusId | StartDate  | EndDate    | Timetable | PaymentPerMonth | PaymentsCount |

@@ -17,7 +17,8 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         private GroupsClient _groupsClient;
         private TopicsClient _topicsClient;
         private LessonsClient _lessonsClient;
-        private AddLessonResponse _expectedLesson;
+        private List<AddLessonResponse> _expectedLesson;
+        private AddLessonResponse _expectedLessonUp;
 
         [Given(@"register new user")]
         public void GivenRegisterNewUser(Table table)
@@ -108,14 +109,14 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             UpdateLessonRequest newLesson = table.CreateInstance<UpdateLessonRequest>();
             _lessonsClient = new LessonsClient();
             AddLessonResponse lesson = _lessonsClient.UpdateLesson(newLesson, _lessonId, _teacherToken);
-            _expectedLesson = lesson;
+            _expectedLessonUp = lesson;
         }
 
         [Then(@"teacher can see published a lesson")]
         public void ThenTeacherPublishesALesson()
         {
             _lessonsClient = new LessonsClient();
-            List<AddLessonResponse> actualLesson = _lessonsClient.GetAllLessonsUnpublishedByGroupId(_teacherId, _teacherToken);
+            List<AddLessonResponse> actualLesson = _lessonsClient.GetAllLessonsGroupId(_groupId, _teacherToken);
             CollectionAssert.Contains(actualLesson, _expectedLesson);
         }
     }

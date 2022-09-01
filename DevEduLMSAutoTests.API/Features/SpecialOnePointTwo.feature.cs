@@ -107,7 +107,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Valeria",
                             "Puzikova",
                             "string",
-                            "lera010@methodist.com",
+                            "lera012@methodist.com",
                             "lera1",
                             "password",
                             "SaintPetersburg",
@@ -118,7 +118,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Milana",
                             "Maxina",
                             "string",
-                            "maxina010@teacher.com",
+                            "maxina012@teacher.com",
                             "maxina1",
                             "password",
                             "SaintPetersburg",
@@ -138,10 +138,10 @@ this.ScenarioInitialize(scenarioInfo);
                             "Email",
                             "Password"});
                 table2.AddRow(new string[] {
-                            "lera010@methodist.com",
+                            "lera012@methodist.com",
                             "password"});
                 table2.AddRow(new string[] {
-                            "maxina010@teacher.com",
+                            "maxina012@teacher.com",
                             "password"});
                 table2.AddRow(new string[] {
                             "marina@example.com",
