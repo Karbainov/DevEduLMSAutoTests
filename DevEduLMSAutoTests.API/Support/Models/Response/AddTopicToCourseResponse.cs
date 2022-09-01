@@ -20,25 +20,26 @@ namespace DevEduLMSAutoTests.API.Support.Models.Response
 
         public override bool Equals(object? obj)
         {
-            bool flag = true;
             if (obj == null || !(obj is AddTopicToCourseResponse))
             {
-                flag = false;
+                return false;
             }
-            else
+            List<AddTopicResponse> topics = ((AddCourseResponse)obj).Topics;
+            if (topics.Count != this.Topics.Count)
             {
-                AddTopicToCourseResponse model = (AddTopicToCourseResponse)obj;
-                if (model.Id != this.Id ||
-                    model.Position != this.Position ||
-                    model.Topics != this.Topics ||
-                    model.Id != this.Id ||
-                    model.IsDeleted != this.IsDeleted
-                    )
+                return false;
+            }
+            for (int i = 0; i < topics.Count; i++)
+            {
+                if (!topics[i].Equals(this.Topics[i]))
                 {
-                    flag = false;
+                    return false;
                 }
             }
-            return flag;
+            return obj is AddTopicToCourseResponse response &&
+                   Id == response.Id &&
+                   Position == response.Position &&
+                   IsDeleted == response.IsDeleted;
         }
     }
 }

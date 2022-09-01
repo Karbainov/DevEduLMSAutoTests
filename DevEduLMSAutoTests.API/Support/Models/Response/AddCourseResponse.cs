@@ -21,25 +21,27 @@ namespace DevEduLMSAutoTests.API.Support.Models.Response
 
         public override bool Equals(object? obj)
         {
-            bool flag = true;
             if (obj == null || !(obj is AddCourseResponse))
             {
-                flag = false;
+                return false;
             }
-            else
+            List<AddTopicResponse> topics = ((AddCourseResponse)obj).Topics;
+            if (topics.Count != this.Topics.Count)
             {
-                AddCourseResponse model = (AddCourseResponse)obj;
-                if (model.Description != this.Description ||
-                    model.Topics != this.Topics ||
-                    model.Id != this.Id ||
-                    model.Name != this.Name ||
-                    model.IsDeleted != this.IsDeleted
-                    )
+                return false;
+            }
+            for (int i = 0; i < topics.Count; i++)
+            {
+                if (!topics[i].Equals(this.Topics[i]))
                 {
-                    flag = false;
+                    return false;
                 }
             }
-            return flag;
+            return obj is AddCourseResponse response &&
+                   Description == response.Description &&
+                   Id == response.Id &&
+                   Name == response.Name &&
+                   IsDeleted == response.IsDeleted;
         }
     }
 }

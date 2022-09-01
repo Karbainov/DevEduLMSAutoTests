@@ -14,6 +14,11 @@
         private CoursesClient _coursesClient;
         private TopicsClient _topicsClient;
         private AddCourseResponse _actualCourse;
+        private UpdateTopicResponse _actualTopic;
+        private UpdateTopicResponse _expectedTopic;
+        private AddTopicToCourseResponse _actualTopicPosition;
+        private AddTopicToCourseResponse _expectedTopicPosition;
+
 
         [Given(@"register new user metodist")]
         public void GivenRegisterNewUsers(Table table)
@@ -72,7 +77,7 @@
             _topicsClient.AddTopicToCourse(newTopic, _coursesId, _topicId, _methodistToken);
         }
 
-        [Given(@"I can see the course with topic")]
+        [Given(@"methodist can see the course with topic")]
         public void GivenGetCourseWithTopicByCourseId()
         {
             _topicsClient = new TopicsClient();
@@ -80,17 +85,17 @@
             AddTopicResponse topic = new AddTopicResponse()
             {
                 IdTopic = _topicId,
-                Name = "functions8",
+                Name = "functions13",
                 Duration = 12
             };
             List<AddTopicResponse> listTopics = new List<AddTopicResponse>();
             listTopics.Add(topic);
             AddCourseResponse _expectedCourse = new AddCourseResponse()
             {
-                Description = "New Java course",
+                Description = "New java course",
                 Topics = listTopics,
                 Id = _coursesId,
-                Name = "Base Java8",
+                Name = "Base Java13",
                 IsDeleted = false
 
             };
@@ -98,6 +103,45 @@
             Assert.AreEqual(_expectedCourse, _actualCourse);
 
         }
+
+        [Given(@"methodist update topic")]
+        public void GivenUpdateTopics(Table table)
+        {
+            UpdateTopicRequest newTopic = table.CreateInstance<UpdateTopicRequest>();
+            _topicsClient = new TopicsClient();
+            _expectedTopic = _topicsClient.UpdateTopic(newTopic, _topicId, _methodistToken);
+        }
+
+        [Given(@"methodist can see updated topic")]
+        public void GivenGetTopicById()
+        {
+            _topicsClient = new TopicsClient();
+            _actualTopic = _topicsClient.GetTopicById(_topicId, _methodistToken);
+
+            Assert.AreEqual(_expectedTopic, _actualTopic);
+        }
+
+        [Given(@"methodist change order of topics")]
+        public void GivenAddNewPositionToTopic(Table table)
+        {
+            UpdateTopicPositionRequest newTopic = new UpdateTopicPositionRequest()
+            {
+                Position = table.CreateInstance<AddTopicToCourseRequest>().Position,
+                topicId = _topicId
+            };
+            _topicsClient = new TopicsClient();
+            _expectedTopicPosition = _topicsClient.UpdateTopicPositionInCourse(newTopic, _coursesId, _methodistToken);
+        }
+
+        [Given(@"methodist can see changed order")]
+        public void GivenGetAllTopicsInCourseById()
+        {
+            _topicsClient = new TopicsClient();
+            HttpStatusCode expectedCode = HttpStatusCode.OK;
+            List<AddTopicToCourseResponse> listOfTopics = _topicsClient.GetAllTopicsInTheCourseById(_coursesId, _methodistToken, expectedCode);
+            CollectionAssert.Contains(listOfTopics, _expectedTopicPosition);
+        }
+           
 
         [Given(@"list of all courses should contains the course with topic")]
         public void GivenCoursesContainsANewCourse()

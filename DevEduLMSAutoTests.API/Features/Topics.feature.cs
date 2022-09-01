@@ -107,7 +107,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Maksim",
                             "Metodist",
                             "string",
-                            "maksimmetodist13@student.com",
+                            "maksimmetodist18@student.com",
                             "metodist",
                             "password",
                             "SaintPetersburg",
@@ -133,7 +133,7 @@ testRunner.Given("register new user metodist", ((string)(null)), table12, "Given
                             "Email",
                             "Password"});
                 table14.AddRow(new string[] {
-                            "maksimmetodist13@student.com",
+                            "maksimmetodist18@student.com",
                             "password"});
 #line 14
  testRunner.And("authorize user as methodist", ((string)(null)), table14, "And ");
@@ -142,7 +142,7 @@ testRunner.Given("register new user metodist", ((string)(null)), table12, "Given
                             "Name",
                             "Description"});
                 table15.AddRow(new string[] {
-                            "Base Java8",
+                            "Base Java13",
                             "New java course"});
 #line 17
  testRunner.And("methodist create a course", ((string)(null)), table15, "And ");
@@ -151,7 +151,7 @@ testRunner.Given("register new user metodist", ((string)(null)), table12, "Given
                             "Name",
                             "Duration"});
                 table16.AddRow(new string[] {
-                            "functions8",
+                            "functions13",
                             "12"});
 #line 20
  testRunner.And("methodist create a topic", ((string)(null)), table16, "And ");
@@ -164,7 +164,29 @@ testRunner.Given("register new user metodist", ((string)(null)), table12, "Given
     testRunner.And("methodist add topic to course", ((string)(null)), table17, "And ");
 #line hidden
 #line 26
- testRunner.And("I can see the course with topic", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("methodist can see the course with topic", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Name",
+                            "Duration"});
+                table18.AddRow(new string[] {
+                            "cycles2",
+                            "20"});
+#line 28
+ testRunner.And("methodist update topic", ((string)(null)), table18, "And ");
+#line hidden
+#line 31
+ testRunner.And("methodist can see updated topic", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Position"});
+                table19.AddRow(new string[] {
+                            "2"});
+#line 32
+    testRunner.And("methodist change order of topics", ((string)(null)), table19, "And ");
+#line hidden
+#line 35
+ testRunner.And("methodist can see changed order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
