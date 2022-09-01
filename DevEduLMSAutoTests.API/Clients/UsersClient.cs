@@ -1,12 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using DevEduLMSAutoTests.API.Support;
+using DevEduLMSAutoTests.API.Support.Models.Request;
+using NUnit.Framework;
+using System.Net;
+using System.Net.Http.Headers;
 using System.Text;
-using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace DevEduLMSAutoTests.API.Clients
 {
-    internal class UsersClient
+    public class UsersClient
     {
+        public void AddRoleToUser(AddRoleToUserRequest model, string token, HttpStatusCode expected)
+        {
+            string json = JsonSerializer.Serialize(model);
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            HttpRequestMessage message = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Post,
+                RequestUri = new Uri($"{Urls.Users}/{model.UserId}/role/{model.Role}"),
+                Content = new StringContent(json, Encoding.UTF8, "application/json")
+            };
+            HttpResponseMessage response = client.Send(message);
+            HttpStatusCode actual = response.StatusCode;
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

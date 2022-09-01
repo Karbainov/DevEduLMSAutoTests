@@ -8,9 +8,9 @@ using System.Text.Json;
 
 namespace DevEduLMSAutoTests.API.Clients
 {
-    public class TasksClient
+    public class HomeworksClient
     {
-        public HttpContent CreateTask(AddTasksByTeacherRequest model, string token, HttpStatusCode expected)
+        public HttpContent AddHomework(AddHomeworkByTeacherRequest model, string token, HttpStatusCode expected)
         {
             string json = JsonSerializer.Serialize(model);
             HttpClient client = new HttpClient();
@@ -18,7 +18,7 @@ namespace DevEduLMSAutoTests.API.Clients
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Post,
-                RequestUri = new Uri($"{Urls.Tasks}/teacher"),
+                RequestUri = new Uri($"{Urls.Homeworks}/group/{model.GroupId}/task/{model.TaskId}"),
                 Content = new StringContent(json, Encoding.UTF8, "application/json")
             };
             HttpResponseMessage response = client.Send(message);
