@@ -10,17 +10,17 @@ Teacher approve it
 Scenario: Student pass the homework from the second time
 	Given Register two users
 	| FirstName | LastName | Patronymic | Email               | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber |
-	| Лидия     | Иванова  | Викторовна | lidyasha@blabla.com | Lidya    | password | SaintPetersburg | 1990-05-10 | string        | 89995556633 |
-	| Василий   | Дружин   | Иванович   | vasya@blabla.com    | Vaselyok | password | SaintPetersburg | 1999-02-06 | string        | 89905552211 |
+	| Lidiya    | Ivanova  | Victorovna | lidyasha@blabla.com | Lidya    | password | SaintPetersburg | 15.12.1990 | string        | 89995556633 |
+	| Vasiliy   | Druzhin  | Ivanovich  | vasya@blabla.com    | Vaselyok | password | SaintPetersburg | 05.06.1999 | string        | 89905552211 |
 	Given Authorize as manager
 	| Email              | Password     |
 	| marina@example.com | marinamarina |
-	And  Give teacher role to one user
-	And Admin create new course
-	| Name             | Description |
-	| Best Course Ever | Bla bla bla |
+	And Give teacher role to first user
 	And Manager create new group
+	| Name   | CourseId | GroupStatusId | StartDate  | EndDate    | Timetable | PaymentPerMonth | PaymentsCount |
+	| BlaBla | 2371     | Learning      | 11.10.2022 | 15.04.2023 | Morning   | 900             | 25            |
 	And Manager add student to group
+	And Manager add teacher to group
 	Given Authorize as teacher
 	| Email               | Password |
 	| lidyasha@blabla.com | 12345678 |

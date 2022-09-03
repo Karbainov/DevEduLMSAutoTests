@@ -1,5 +1,6 @@
 ﻿using DevEduLMSAutoTests.API.Support;
 using DevEduLMSAutoTests.API.Support.Models.Request;
+using DevEduLMSAutoTests.API.Support.Models.Response;
 using NUnit.Framework;
 using System.Net;
 using System.Net.Http.Headers;
@@ -10,7 +11,7 @@ namespace DevEduLMSAutoTests.API.Clients
 {
     public class GroupsClient
     {
-        public HttpContent AddNewGroup(AddGroupRequest model, string token, HttpStatusCode expected)
+        public GroupsResponse AddNewGroup(AddGroupRequest model, string token, HttpStatusCode expected)
         {
             string json = JsonSerializer.Serialize(model);
             HttpClient client = new HttpClient();
@@ -24,10 +25,11 @@ namespace DevEduLMSAutoTests.API.Clients
             HttpResponseMessage response = client.Send(message);
             HttpStatusCode actual = response.StatusCode;
             Assert.AreEqual(expected, actual);
-            return response.Content;
+            GroupsResponse content = JsonSerializer.Deserialize<GroupsResponse>(response.Content.ReadAsStringAsync().Result);
+            return content;
         }
 
-        public HttpContent AddUserToGroup(AddUserToGroupRequest model, string token, HttpStatusCode expected)
+        public void AddUserToGroup(AddUserToGroupRequest model, string token, HttpStatusCode expected)
         {
             string json = JsonSerializer.Serialize(model);
             HttpClient client = new HttpClient();
@@ -41,7 +43,6 @@ namespace DevEduLMSAutoTests.API.Clients
             HttpResponseMessage response = client.Send(message);
             HttpStatusCode actual = response.StatusCode;
             Assert.AreEqual(expected, actual);
-            return response.Content;
         }
     }
 }

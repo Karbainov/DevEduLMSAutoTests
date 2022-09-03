@@ -1,5 +1,6 @@
 ﻿using DevEduLMSAutoTests.API.Support;
 using DevEduLMSAutoTests.API.Support.Models.Request;
+using DevEduLMSAutoTests.API.Support.Models.Response;
 using NUnit.Framework;
 using System.Net;
 using System.Text;
@@ -9,7 +10,7 @@ namespace DevEduLMSAutoTests.API.Clients
 {
     public class AuthenticationClient
     {
-        public HttpContent RegisterUser(RegistrationRequest model, HttpStatusCode expected)
+        public AddUserResponse RegisterUser(RegistrationRequest model, HttpStatusCode expected)
         {
             string json = JsonSerializer.Serialize(model);
             HttpClient client = new HttpClient();
@@ -22,10 +23,12 @@ namespace DevEduLMSAutoTests.API.Clients
             HttpResponseMessage response = client.Send(message);
             HttpStatusCode actual = response.StatusCode;
             Assert.AreEqual(expected, actual);
-            return response.Content;
+            string content = response.Content.ReadAsStringAsync().Result;
+            AddUserResponse addUserResponse = JsonSerializer.Deserialize<AddUserResponse>(content);
+            return addUserResponse;
         }
 
-        public HttpContent Authorize(AuthorizationRequest model, HttpStatusCode expected)
+        public string Authorize(AuthorizationRequest model, HttpStatusCode expected)
         {
             string json = JsonSerializer.Serialize(model);
             HttpClient client = new HttpClient();
@@ -38,7 +41,8 @@ namespace DevEduLMSAutoTests.API.Clients
             HttpResponseMessage response = client.Send(message);
             HttpStatusCode actual = response.StatusCode;
             Assert.AreEqual(expected, actual);
-            return response.Content;
+            string token = response.Content.ReadAsStringAsync().Result;
+            return token;
         }
     }
 }

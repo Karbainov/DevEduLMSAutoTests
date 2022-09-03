@@ -1,5 +1,6 @@
 ﻿using DevEduLMSAutoTests.API.Support;
 using DevEduLMSAutoTests.API.Support.Models.Request;
+using DevEduLMSAutoTests.API.Support.Models.Response;
 using NUnit.Framework;
 using System.Net;
 using System.Net.Http.Headers;
@@ -10,7 +11,7 @@ namespace DevEduLMSAutoTests.API.Clients
 {
     public class TasksClient
     {
-        public HttpContent CreateTask(AddTasksByTeacherRequest model, string token, HttpStatusCode expected)
+        public AddTasksByTeacherResponse CreateTask(AddTasksByTeacherRequest model, string token, HttpStatusCode expected)
         {
             string json = JsonSerializer.Serialize(model);
             HttpClient client = new HttpClient();
@@ -24,7 +25,8 @@ namespace DevEduLMSAutoTests.API.Clients
             HttpResponseMessage response = client.Send(message);
             HttpStatusCode actual = response.StatusCode;
             Assert.AreEqual(expected, actual);
-            return response.Content;
+            AddTasksByTeacherResponse content = JsonSerializer.Deserialize<AddTasksByTeacherResponse>(response.Content.ReadAsStringAsync().Result);
+            return content;
         }
     }
 }
