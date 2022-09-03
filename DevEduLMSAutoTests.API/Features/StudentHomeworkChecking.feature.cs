@@ -115,27 +115,27 @@ this.ScenarioInitialize(scenarioInfo);
                             "GitHubAccount",
                             "PhoneNumber"});
                 table1.AddRow(new string[] {
-                            "Lidiya",
-                            "Ivanova",
-                            "Victorovna",
+                            "Лидия",
+                            "Иванова",
+                            "Викторовна",
                             "lidyasha@blabla.com",
                             "Lidya",
-                            "12345678",
-                            "Orenburg",
-                            "18.05.1990",
+                            "password",
+                            "SaintPetersburg",
+                            "1990-05-10",
                             "string",
                             "89995556633"});
                 table1.AddRow(new string[] {
-                            "Vasiliy",
-                            "Druzhin",
-                            "Nikitich",
+                            "Василий",
+                            "Дружин",
+                            "Иванович",
                             "vasya@blabla.com",
                             "Vaselyok",
-                            "12345678",
-                            "Penza",
-                            "29.02.1999",
+                            "password",
+                            "SaintPetersburg",
+                            "1999-02-06",
                             "string",
-                            "84445552211"});
+                            "89905552211"});
 #line 11
  testRunner.Given("Register two users", ((string)(null)), table1, "Given ");
 #line hidden

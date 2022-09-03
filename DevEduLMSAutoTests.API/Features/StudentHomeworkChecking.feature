@@ -9,9 +9,9 @@ Teacher approve it
 @studentHomework
 Scenario: Student pass the homework from the second time
 	Given Register two users
-	| FirstName | LastName | Patronymic | Email               | Username | Password | City     | BirthDate  | GitHubAccount | PhoneNumber |
-	| Lidiya    | Ivanova  | Victorovna | lidyasha@blabla.com | Lidya    | 12345678 | Orenburg | 18.05.1990 | string        | 89995556633 |
-	| Vasiliy   | Druzhin  | Nikitich   | vasya@blabla.com    | Vaselyok | 12345678 | Penza    | 29.02.1999 | string        | 84445552211 |
+	| FirstName | LastName | Patronymic | Email               | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber |
+	| Лидия     | Иванова  | Викторовна | lidyasha@blabla.com | Lidya    | password | SaintPetersburg | 1990-05-10 | string        | 89995556633 |
+	| Василий   | Дружин   | Иванович   | vasya@blabla.com    | Vaselyok | password | SaintPetersburg | 1999-02-06 | string        | 89905552211 |
 	Given Authorize as manager
 	| Email              | Password     |
 	| marina@example.com | marinamarina |

@@ -13,11 +13,9 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
     [Binding]
     public class StudentHomeworkCheckingStepDefinitions
     {
-        private List<int> _registerUsersIds;
         private AuthenticationClient _authenticationClient;
         public StudentHomeworkCheckingStepDefinitions()
         {
-            _registerUsersIds = new List<int>();
             _authenticationClient = new AuthenticationClient();
         }
 
