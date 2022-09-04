@@ -1,12 +1,4 @@
-﻿using DevEduLMSAutoTests.API.Support;
-using DevEduLMSAutoTests.API.Support.Models.Request;
-using DevEduLMSAutoTests.API.Support.Models.Response;
-using NUnit.Framework;
-using System.Net;
-using System.Text;
-using System.Text.Json;
-
-namespace DevEduLMSAutoTests.API.Clients
+﻿namespace DevEduLMSAutoTests.API.Clients
 {
     public class AuthenticationClient
     {
@@ -24,7 +16,7 @@ namespace DevEduLMSAutoTests.API.Clients
             HttpStatusCode actual = response.StatusCode;
             Assert.AreEqual(expected, actual);
             string content = response.Content.ReadAsStringAsync().Result;
-            AddUserResponse addUserResponse = JsonSerializer.Deserialize<AddUserResponse>(content);
+            AddUserResponse addUserResponse = JsonSerializer.Deserialize<AddUserResponse>(content)!;
             return addUserResponse;
         }
 

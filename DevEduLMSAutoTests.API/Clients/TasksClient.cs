@@ -25,7 +25,7 @@ namespace DevEduLMSAutoTests.API.Clients
             HttpResponseMessage response = client.Send(message);
             HttpStatusCode actual = response.StatusCode;
             Assert.AreEqual(expected, actual);
-            AddTasksByTeacherResponse content = JsonSerializer.Deserialize<AddTasksByTeacherResponse>(response.Content.ReadAsStringAsync().Result);
+            AddTasksByTeacherResponse content = JsonSerializer.Deserialize<AddTasksByTeacherResponse>(response.Content.ReadAsStringAsync().Result)!;
             return content;
         }
     }

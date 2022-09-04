@@ -29,16 +29,14 @@ namespace DevEduLMSAutoTests.API.Clients
             return content;
         }
 
-        public void AddUserToGroup(AddUserToGroupRequest model, string token, HttpStatusCode expected)
+        public void AddUserToGroup(int groupId, int userId, string role, string token, HttpStatusCode expected = HttpStatusCode.NoContent)
         {
-            string json = JsonSerializer.Serialize(model);
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Post,
-                RequestUri = new Uri($"{Urls.Groups}/{model.GroupId}/user/{model.UserId}/role/{model.RoleId}"),
-                Content = new StringContent(json, Encoding.UTF8, "application/json")
+                RequestUri = new Uri($"{Urls.Groups}/{groupId}/user/{userId}/role/{role}"),
             };
             HttpResponseMessage response = client.Send(message);
             HttpStatusCode actual = response.StatusCode;

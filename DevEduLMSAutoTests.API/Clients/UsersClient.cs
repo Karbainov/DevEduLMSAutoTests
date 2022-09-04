@@ -10,16 +10,14 @@ namespace DevEduLMSAutoTests.API.Clients
 {
     public class UsersClient
     {
-        public void AddRoleToUser(AddRoleToUserRequest model, string token, HttpStatusCode expected)
+        public void AddRoleToUser(int id, string role, string token, HttpStatusCode expected = HttpStatusCode.NoContent)
         {
-            string json = JsonSerializer.Serialize(model);
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Post,
-                RequestUri = new Uri($"{Urls.Users}/{model.UserId}/role/{model.Role}"),
-                Content = new StringContent(json, Encoding.UTF8, "application/json")
+                RequestUri = new Uri($"{Urls.Users}/{id}/role/{role}"),
             };
             HttpResponseMessage response = client.Send(message);
             HttpStatusCode actual = response.StatusCode;
