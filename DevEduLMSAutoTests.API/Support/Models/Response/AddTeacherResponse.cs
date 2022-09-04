@@ -16,5 +16,15 @@
 
         [JsonPropertyName("photo")]
         public string Photo { get; set; }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is AddTeacherResponse response &&
+                   IdTeacher == response.IdTeacher &&
+                   FirstName == response.FirstName &&
+                   LastName == response.LastName &&
+                   Email == response.Email &&
+                   Photo == response.Photo;
+        }
     }
 }

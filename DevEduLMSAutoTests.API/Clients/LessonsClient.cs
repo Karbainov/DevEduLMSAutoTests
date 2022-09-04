@@ -36,14 +36,14 @@
             return responseLesson;
         }
 
-        public List <AddLessonResponse> GetAllLessonsByTeacherId( int teacherId, string teacherToken)
+        public List <AddLessonResponse> GetAllLessonsGroupId( int groupId, string teacherToken)
         {
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", teacherToken);
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Get,
-                RequestUri = new System.Uri($"{Urls.Lessons}/by-teacherId/{teacherId}")
+                RequestUri = new System.Uri($"{Urls.Lessons}/by-teacherId/{groupId}")
             };
             HttpResponseMessage response = client.Send(message);
             List<AddLessonResponse> responseLessons = JsonSerializer.Deserialize<List<AddLessonResponse>>
@@ -51,6 +51,20 @@
             return responseLessons;
         }
 
+        public List<AddLessonResponse> GetAllLessonsUnpublishedByGroupId(int groupId, string teacherToken)
+        {
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", teacherToken);
+            HttpRequestMessage message = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new System.Uri($"{Urls.Lessons}/unpublished/by-groupId/{groupId}")
+            };
+            HttpResponseMessage response = client.Send(message);
+            List<AddLessonResponse> responseLessons = JsonSerializer.Deserialize<List<AddLessonResponse>>
+                (response.Content.ReadAsStringAsync().Result)!;
+            return responseLessons;
+        }
 
     }
 }

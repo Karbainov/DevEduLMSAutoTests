@@ -10,5 +10,13 @@
 
         [JsonPropertyName("duration")]
         public int Duration { get; set; }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is AddTopicResponse response &&
+                   IdTopic == response.IdTopic &&
+                   Name == response.Name &&
+                   Duration == response.Duration;
+        }
     }
 }
