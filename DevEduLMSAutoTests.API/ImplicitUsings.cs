@@ -13,3 +13,4 @@ global using System.Text.Json;
 global using DevEduLMSAutoTests.API.Support;
 global using DevEduLMSAutoTests.API.Support.Models.Response;
 global using DevEduLMSAutoTests.API.Support.Models.Request;
+global using DevEduLMSAutoTests.API.Clients;

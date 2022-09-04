@@ -2,7 +2,7 @@
 {
     public class UsersClient
     {
-        public void AddNewRoleToUser(int userId, string role, string token, HttpStatusCode expectedCode)
+        public void AddNewRoleToUser(int userId, string role, string token, HttpStatusCode expectedCode = HttpStatusCode.NoContent)
         {
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);

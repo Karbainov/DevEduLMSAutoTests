@@ -2,7 +2,7 @@
 {
     public class GroupsClient
     {
-        public GetAllGroupsResponse CreateNewGroup(CreateGroupRequest newGroup, string managerToken, HttpStatusCode expectedCode)
+        public GetAllGroupsResponse CreateNewGroup(CreateGroupRequest newGroup, string managerToken, HttpStatusCode expectedCode = HttpStatusCode.Created)
         {
             string json = JsonSerializer.Serialize(newGroup);
             HttpClient client = new HttpClient();
@@ -21,7 +21,7 @@
             return response;
         }
 
-        public GetGroupByIdResponse GetGroupById(int id, string token, HttpStatusCode expectedCode)
+        public void AddUserToGroup(int groupId, int userId, string role, string managerToken, HttpStatusCode expectedCode = HttpStatusCode.NoContent)
         {
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);

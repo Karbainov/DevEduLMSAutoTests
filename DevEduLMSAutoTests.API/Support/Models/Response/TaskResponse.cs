@@ -1,6 +1,6 @@
 ﻿namespace DevEduLMSAutoTests.API.Support.Models.Response
 {
-    public class CreateNewTaskResponse
+    public class TaskResponse
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }
@@ -22,13 +22,18 @@
 
         public override bool Equals(object? obj)
         {
-            return obj is CreateNewTaskResponse response &&
+            return obj is TaskResponse response &&
                    Id == response.Id &&
                    Name == response.Name &&
                    Description == response.Description &&
                    Links == response.Links &&
                    IsRequired == response.IsRequired &&
                    IsDeleted == response.IsDeleted;
+        }
+
+        public override string ToString()
+        {
+            return $"Id {Id}, Name {Name}, Descr {Description}, Links {Links}, IsReq {IsRequired}, IsDel {IsDeleted}";
         }
     }
 }
