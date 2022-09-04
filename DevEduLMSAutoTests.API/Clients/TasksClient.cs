@@ -66,7 +66,7 @@
                 (response.Content.ReadAsStringAsync().Result)!;
             return responseTask;
         }
-        public AddTasksByTeacherResponse CreateTask(AddTasksByTeacherRequest model, string token, HttpStatusCode expected)
+        public AddTasksByTeacherResponse CreateTask(AddTasksByTeacherRequest model, string token, HttpStatusCode expected = HttpStatusCode.Created)
         {
             string json = JsonSerializer.Serialize(model);
             HttpClient client = new HttpClient();

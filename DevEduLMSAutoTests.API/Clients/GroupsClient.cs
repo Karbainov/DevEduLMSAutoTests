@@ -21,7 +21,7 @@
             return response;
         }
 
-        public GetGroupByIdResponse GetGroupById(int id, string managerToken, HttpStatusCode expectedCode)
+        public GetGroupByIdResponse GetGroupById(int id, string managerToken, HttpStatusCode expectedCode = HttpStatusCode.OK)
         {
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", managerToken);

@@ -101,7 +101,7 @@
         {
             AddTasksByTeacherRequest task = table.CreateInstance<AddTasksByTeacherRequest>();
             task.GroupId = _groupId;
-            _taskId = _tasksClient.CreateTask(task, _teacherToken, HttpStatusCode.Created).Id;
+            _taskId = _tasksClient.CreateTask(task, _teacherToken).Id;
         }
 
         [Given(@"Add new homework")]

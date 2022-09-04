@@ -1,13 +1,4 @@
-﻿using DevEduLMSAutoTests.API.Support;
-using DevEduLMSAutoTests.API.Support.Models.Request;
-using DevEduLMSAutoTests.API.Support.Models.Response;
-using NUnit.Framework;
-using System.Net;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Text.Json;
-
-namespace DevEduLMSAutoTests.API.Clients
+﻿namespace DevEduLMSAutoTests.API.Clients
 {
     public class StudentHomeworksClient
     {
@@ -25,7 +16,7 @@ namespace DevEduLMSAutoTests.API.Clients
             HttpResponseMessage response = client.Send(message);
             HttpStatusCode actual = response.StatusCode;
             Assert.AreEqual(expected, actual);
-            AddStudentHomeworkResponse content = JsonSerializer.Deserialize<AddStudentHomeworkResponse>(response.Content.ReadAsStringAsync().Result);
+            AddStudentHomeworkResponse content = JsonSerializer.Deserialize<AddStudentHomeworkResponse>(response.Content.ReadAsStringAsync().Result)!;
             return content;
         }
 
@@ -41,7 +32,7 @@ namespace DevEduLMSAutoTests.API.Clients
             HttpResponseMessage response = client.Send(message);
             HttpStatusCode actual = response.StatusCode;
             Assert.AreEqual(expected, actual);
-            AddStudentHomeworkResponse content = JsonSerializer.Deserialize<AddStudentHomeworkResponse>(response.Content.ReadAsStringAsync().Result);
+            AddStudentHomeworkResponse content = JsonSerializer.Deserialize<AddStudentHomeworkResponse>(response.Content.ReadAsStringAsync().Result)!;
             return content;
         }
         public AddStudentHomeworkResponse Approve(int id, string token, HttpStatusCode expected)
@@ -56,7 +47,7 @@ namespace DevEduLMSAutoTests.API.Clients
             HttpResponseMessage response = client.Send(message);
             HttpStatusCode actual = response.StatusCode;
             Assert.AreEqual(expected, actual);
-            AddStudentHomeworkResponse content = JsonSerializer.Deserialize<AddStudentHomeworkResponse>(response.Content.ReadAsStringAsync().Result);
+            AddStudentHomeworkResponse content = JsonSerializer.Deserialize<AddStudentHomeworkResponse>(response.Content.ReadAsStringAsync().Result)!;
             return content;
         }
 
@@ -74,7 +65,7 @@ namespace DevEduLMSAutoTests.API.Clients
             HttpResponseMessage response = client.Send(message);
             HttpStatusCode actual = response.StatusCode;
             Assert.AreEqual(expected, actual);
-            AddStudentHomeworkResponse content = JsonSerializer.Deserialize<AddStudentHomeworkResponse>(response.Content.ReadAsStringAsync().Result);
+            AddStudentHomeworkResponse content = JsonSerializer.Deserialize<AddStudentHomeworkResponse>(response.Content.ReadAsStringAsync().Result)!;
             return content;
         }
 
@@ -90,7 +81,7 @@ namespace DevEduLMSAutoTests.API.Clients
             HttpResponseMessage response = client.Send(message);
             HttpStatusCode actual = response.StatusCode;
             Assert.AreEqual(expected, actual);
-            AddStudentHomeworkResponse content = JsonSerializer.Deserialize<AddStudentHomeworkResponse>(response.Content.ReadAsStringAsync().Result);
+            AddStudentHomeworkResponse content = JsonSerializer.Deserialize<AddStudentHomeworkResponse>(response.Content.ReadAsStringAsync().Result)!;
             return content;
         }
 

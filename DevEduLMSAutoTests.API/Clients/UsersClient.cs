@@ -16,7 +16,7 @@
             Assert.AreEqual(expectedCode, actualCode);
         }
 
-        public RegisterResponse GetUserInfoByToken(string token, HttpStatusCode expectedCode)
+        public RegisterResponse GetUserInfoByToken(string token, HttpStatusCode expectedCode = HttpStatusCode.OK)
         {
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);

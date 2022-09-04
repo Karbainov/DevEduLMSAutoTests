@@ -1,12 +1,4 @@
-﻿using DevEduLMSAutoTests.API.Support;
-using DevEduLMSAutoTests.API.Support.Models.Request;
-using NUnit.Framework;
-using System.Net;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Text.Json;
-
-namespace DevEduLMSAutoTests.API.Clients
+﻿namespace DevEduLMSAutoTests.API.Clients
 {
     public class CoursesClient
     {

@@ -1,6 +1,3 @@
-using DevEduLMSAutoTests.API.Clients;
-using DevEduLMSAutoTests.API.Support.Mappers;
-
 namespace DevEduLMSAutoTests.API.StepDefinitions
 {
     [Binding]
@@ -33,10 +30,9 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         public void GivenRegisterNewStudentsInService(Table table)
         {
             List<RegisterRequest> registerRequests = table.CreateSet<RegisterRequest>().ToList();
-            HttpStatusCode expectedRegistrationCode = HttpStatusCode.Created;
             foreach (var registerUser in registerRequests)
             {
-                var student = _authenticationClient.RegisterUser(registerUser, expectedRegistrationCode);
+                var student = _authenticationClient.RegisterUser(registerUser);
                 _students.Add(student);
             }
         }
@@ -45,10 +41,9 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         public void GivenRegisterNewTeachersInService(Table table)
         {
             List<RegisterRequest> registerRequests = table.CreateSet<RegisterRequest>().ToList();
-            HttpStatusCode expectedRegistrationCode = HttpStatusCode.Created;
             foreach (var registerUser in registerRequests)
             {
-                var teacher = _authenticationClient.RegisterUser(registerUser, expectedRegistrationCode);
+                var teacher = _authenticationClient.RegisterUser(registerUser);
                 _teachers.Add(teacher);
             }
         }
@@ -57,10 +52,9 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         public void GivenRegisterNewTutorsInService(Table table)
         {
             List<RegisterRequest> registerRequests = table.CreateSet<RegisterRequest>().ToList();
-            HttpStatusCode expectedRegistrationCode = HttpStatusCode.Created;
             foreach (var registerUser in registerRequests)
             {
-                var tutor = _authenticationClient.RegisterUser(registerUser, expectedRegistrationCode);
+                var tutor = _authenticationClient.RegisterUser(registerUser);
                 _tutors.Add(tutor);
             }
         }
@@ -69,47 +63,43 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         public void GivenAuthorizeManagerInServise(Table table)
         {
             SignInRequest managerSignInRequest = table.CreateInstance<SignInRequest>();
-            HttpStatusCode expectedAuthorizationCode = HttpStatusCode.OK;
-            _managerToken = _authenticationClient.AuthorizeUser(managerSignInRequest, expectedAuthorizationCode);
+            _managerToken = _authenticationClient.AuthorizeUser(managerSignInRequest);
         }
 
         [Given(@"manager add roles to users in service")]
         public void GivenManagerAddRolesToUsersInService()
         {
-            HttpStatusCode expectedCode = HttpStatusCode.NoContent;
             foreach(var teacher in _teachers)
             {
-                _usersClient.AddNewRoleToUser(teacher.Id, Options.RoleTeacher, _managerToken, expectedCode);
+                _usersClient.AddNewRoleToUser(teacher.Id, Options.RoleTeacher, _managerToken);
             }
             foreach (var tutor in _tutors)
             {
-                _usersClient.AddNewRoleToUser(tutor.Id, Options.RoleTutor, _managerToken, expectedCode);
+                _usersClient.AddNewRoleToUser(tutor.Id, Options.RoleTutor, _managerToken);
             }
         }
 
         [When(@"manager create new group in service")]
         public void WhenManagerCreateNewGroupInService(Table table)
         {
-            HttpStatusCode expectedRegistrationCode = HttpStatusCode.Created;
             CreateGroupRequest newGroup = table.CreateInstance<CreateGroupRequest>();
-            _groupId = _groupsClient.CreateNewGroup(newGroup, _managerToken, expectedRegistrationCode).Id;
+            _groupId = _groupsClient.CreateNewGroup(newGroup, _managerToken).Id;
         }
 
         [When(@"manager add users to group in service")]
         public void WhenManagerAddUsersToGroupInService()
         {
-            HttpStatusCode expectedCode = HttpStatusCode.NoContent;
             foreach(var teacher in _teachers)
             {
-                _groupsClient.AddUserToGroup(_groupId, teacher.Id, Options.RoleTeacher, _managerToken, expectedCode);
+                _groupsClient.AddUserToGroup(_groupId, teacher.Id, Options.RoleTeacher, _managerToken);
             }
             foreach (var tutor in _tutors)
             {
-                _groupsClient.AddUserToGroup(_groupId, tutor.Id, Options.RoleTutor, _managerToken, expectedCode);
+                _groupsClient.AddUserToGroup(_groupId, tutor.Id, Options.RoleTutor, _managerToken);
             }
             foreach (var student in _students)
             {
-                _groupsClient.AddUserToGroup(_groupId, student.Id, Options.RoleStudent, _managerToken, expectedCode);
+                _groupsClient.AddUserToGroup(_groupId, student.Id, Options.RoleStudent, _managerToken);
             }
         }
 
@@ -117,10 +107,9 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         public void ThenAuthorizeUsersInService(Table table)
         {
             List<SignInRequest> signInRequests = table.CreateSet<SignInRequest>().ToList();
-            HttpStatusCode expectedAuthorizationCode = HttpStatusCode.OK;
             foreach (var signInUser in signInRequests)
             {
-                var userToken = _authenticationClient.AuthorizeUser(signInUser, expectedAuthorizationCode);
+                var userToken = _authenticationClient.AuthorizeUser(signInUser);
                 _usersToken.Add(userToken);
             }
         }
@@ -128,12 +117,11 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         [Then(@"check the user's group in service")]
         public void ThenCheckTheUsersGroupInService()
         {
-            HttpStatusCode expectedCode = HttpStatusCode.OK;
-            GetGroupByIdResponse actualGroup = _groupsClient.GetGroupById(_groupId, _managerToken, expectedCode);
+            GetGroupByIdResponse actualGroup = _groupsClient.GetGroupById(_groupId, _managerToken);
             GetAllGroupsResponse group = _groupMappers.MappGetGroupByIdResponseToGetAllGroupsResponse(actualGroup);
             foreach (var userToken in _usersToken)
             {
-                RegisterResponse user = _usersClient.GetUserInfoByToken(userToken, expectedCode);
+                RegisterResponse user = _usersClient.GetUserInfoByToken(userToken);
                 Assert.AreEqual(group, user.Groups.Find(i => i.Id == group.Id));
             }
         }
