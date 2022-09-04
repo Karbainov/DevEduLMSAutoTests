@@ -1,8 +1,6 @@
-﻿using System.Text.Json.Serialization;
-
-namespace DevEduLMSAutoTests.API.Support.Models.Request
+﻿namespace DevEduLMSAutoTests.API.Support.Models.Request
 {
-    public class AddGroupRequest
+    public class CreateGroupRequest
     {
         [JsonPropertyName("name")]
         public string Name { get; set; }
@@ -18,12 +16,12 @@ namespace DevEduLMSAutoTests.API.Support.Models.Request
 
         [JsonPropertyName("endDate")]
         public string EndDate { get; set; }
-
+        
         [JsonPropertyName("timetable")]
         public string Timetable { get; set; }
 
         [JsonPropertyName("paymentPerMonth")]
-        public int PaymentPerMonth { get; set; }
+        public decimal PaymentPerMonth { get; set; }
 
         [JsonPropertyName("paymentsCount")]
         public int PaymentsCount { get; set; }

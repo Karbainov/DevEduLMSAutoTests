@@ -1,16 +1,18 @@
-﻿namespace DevEduLMSAutoTests.API.Support
+﻿using TechTalk.SpecFlow;
+
+namespace DevEduLMSAutoTests.API.Support
 {
     [Binding]
     public sealed class Hooks
     {
-        private ClearBase _clearTables;
+        private ClearTables _clearTables;
         public Hooks()
         {
-            _clearTables = new ClearBase();
+            _clearTables = new ClearTables();
         }
 
-        [BeforeScenario]
-        public void BeforeScenario()
+        [BeforeScenario(new string[] {"@sudent", "@teacher", "@methodist"})]
+        public void BeforeScenarioWithTag()
         {
             _clearTables.ClearDB();
         }
