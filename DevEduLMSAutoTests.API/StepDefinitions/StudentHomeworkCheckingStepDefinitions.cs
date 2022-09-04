@@ -115,8 +115,8 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             {
                 TaskId = _taskId,
                 GroupId = _groupId,
-                StartDate = "04.09.22",
-                EndDate = "21.09.22"
+                StartDate = "15.09.2022",
+                EndDate = "28.09.2022"
             };
             _homeworkId = _homeworksClient.AddHomework(model, _teacherToken, HttpStatusCode.Created).Id;
         }
@@ -127,7 +127,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             _studentToken = _authenticationClient.Authorize(authStudent, HttpStatusCode.OK);
         }
         [Given(@"Student send passed homework")]
-        public void GivenStudentSenPassedHomework()
+        public void GivenStudentSendPassedHomework()
         {
             AddHomeworkByStudentRequest model = new AddHomeworkByStudentRequest()
             {

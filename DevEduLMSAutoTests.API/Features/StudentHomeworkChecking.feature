@@ -18,7 +18,7 @@ Scenario: Student pass the homework from the second time
 	And Give teacher role to first user
 	And Manager create new group
 	| Name   | CourseId | GroupStatusId | StartDate  | EndDate    | Timetable | PaymentPerMonth | PaymentsCount |
-	| BlaBla | 2371     | Forming       | 05.09.2022 | 15.04.2023 | Morning   | 900             | 20            |
+	| BlaBla | 2371     | Forming       | 08.09.2022 | 15.04.2023 | Morning   | 900             | 20            |
 	And Manager add student to group
 	And Manager add teacher to group
 	Given Authorize as teacher
