@@ -61,6 +61,9 @@ namespace DevEduLMSAutoTests.API.Support
                                 
                 command.CommandText = "delete from dbo.[Group_Material]";
                 command.ExecuteNonQuery();
+
+                command.CommandText = "delete from dbo.[Student_Homework]";
+                command.ExecuteNonQuery();
                 
                 command.CommandText = "delete from dbo.[Homework]";
                 command.ExecuteNonQuery();
@@ -80,8 +83,6 @@ namespace DevEduLMSAutoTests.API.Support
                 command.CommandText = "delete from dbo.[Comment]";
                 command.ExecuteNonQuery();
                 
-                command.CommandText = "delete from dbo.[Student_Homework]";
-                command.ExecuteNonQuery();
                 
                 command.CommandText = "delete from dbo.[Notification]";
                 command.ExecuteNonQuery();

@@ -9,8 +9,8 @@
         private TasksClient _tasksClient;
         private HomeworksClient _homeworksClient;
         private StudentHomeworksClient _studentHomeworksClient;
-        private List<AddUserResponse> _students;
-        private List<AddUserResponse> _teachers;
+        private List<RegisterResponse> _students;
+        private List<RegisterResponse> _teachers;
         private string _homeworkStatus;
         private string _managerToken;
         private string _teacherToken;
@@ -27,17 +27,17 @@
             _homeworksClient = new HomeworksClient();
             _tasksClient = new TasksClient();
             _studentHomeworksClient = new StudentHomeworksClient();
-            _students = new List<AddUserResponse>();
-            _teachers = new List<AddUserResponse>();
+            _students = new List<RegisterResponse>();
+            _teachers = new List<RegisterResponse>();
         }
 
         [Given(@"Register students")]
         public void GivenRegisterStudents(Table table)
         {
-            List<RegistrationRequest> usersRegistartion = table.CreateSet<RegistrationRequest>().ToList();
+            List<RegisterRequest> usersRegistartion = table.CreateSet<RegisterRequest>().ToList();
             foreach(var user in usersRegistartion)
             {
-                AddUserResponse student = _authenticationClient.RegisterUser(user, HttpStatusCode.Created);
+                RegisterResponse student = _authenticationClient.RegisterUser(user);
                 _students.Add(student);
             };
         }
@@ -45,10 +45,10 @@
         [Given(@"Register teachers")]
         public void GivenRegisterTeachers(Table table)
         {
-            List<RegistrationRequest> usersRegistartion = table.CreateSet<RegistrationRequest>().ToList();
+            List<RegisterRequest> usersRegistartion = table.CreateSet<RegisterRequest>().ToList();
             foreach (var user in usersRegistartion)
             {
-                AddUserResponse teacher = _authenticationClient.RegisterUser(user, HttpStatusCode.Created);
+                RegisterResponse teacher = _authenticationClient.RegisterUser(user);
                 _teachers.Add(teacher);
             };
         }
@@ -56,8 +56,8 @@
         [Given(@"Authorize as manager")]
         public void GivenAuthorizeAsManager(Table table)
         {
-            AuthorizationRequest authManager = table.CreateInstance<AuthorizationRequest>();
-            _managerToken = _authenticationClient.Authorize(authManager, HttpStatusCode.OK);
+            SignInRequest authManager = table.CreateInstance<SignInRequest>();
+            _managerToken = _authenticationClient.AuthorizeUser(authManager);
         }
 
         [Given(@"Give teacher role to first user")]
@@ -65,15 +65,15 @@
         {      
             foreach (var teacher in _teachers)
             {
-                _usersClient.AddRoleToUser(teacher.Id, Options.RoleTeacher, _managerToken);
+                _usersClient.AddNewRoleToUser(teacher.Id, Options.RoleTeacher, _managerToken);
             }
         }
 
         [Given(@"Manager create new group")]
         public void GivenManagerCreateNewGroup(Table table)
         {
-            AddGroupRequest group = table.CreateInstance<AddGroupRequest>();
-            _groupId = _groupsClient.AddNewGroup(group, _managerToken, HttpStatusCode.Created).Id;
+            CreateGroupRequest group = table.CreateInstance<CreateGroupRequest>();
+            _groupId = _groupsClient.CreateNewGroup(group, _managerToken, HttpStatusCode.Created).Id;
         }
 
         [Given(@"Manager add users to group")]
@@ -92,8 +92,8 @@
         [Given(@"Authorize as teacher")]
         public void GivenAuthorizeAsTeacher(Table table)
         {
-            AuthorizationRequest authManager = table.CreateInstance<AuthorizationRequest>();
-            _teacherToken = _authenticationClient.Authorize(authManager, HttpStatusCode.OK);
+            SignInRequest authManager = table.CreateInstance<SignInRequest>();
+            _teacherToken = _authenticationClient.AuthorizeUser(authManager);
         }
 
         [Given(@"Teacher create new task")]
@@ -107,17 +107,15 @@
         [Given(@"Add new homework")]
         public void GivenAddNewHomework(Table table)
         {
-            AddHomeworkByTeacherRequest homework = table.CreateInstance<AddHomeworkByTeacherRequest>();
-            homework.GroupId = _groupId;
-            homework.TaskId = _taskId;
-            _homeworkId = _homeworksClient.AddHomework(homework, _teacherToken, HttpStatusCode.Created).Id;
+            AddHomeworkRequest homework = table.CreateInstance<AddHomeworkRequest>();
+            _homeworkId = _homeworksClient.AddHomework(homework, _groupId, _taskId,  _teacherToken).Id;
         }
 
         [Given(@"Authorize as student")]
         public void GivenAuthorizeAsStudent(Table table)
         {
-            AuthorizationRequest authStudent = table.CreateInstance<AuthorizationRequest>();
-            _studentToken = _authenticationClient.Authorize(authStudent, HttpStatusCode.OK);
+            SignInRequest authStudent = table.CreateInstance<SignInRequest>();
+            _studentToken = _authenticationClient.AuthorizeUser(authStudent);
         }
 
         [Given(@"Student send passed homework")]

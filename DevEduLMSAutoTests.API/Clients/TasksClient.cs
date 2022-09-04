@@ -71,8 +71,8 @@
             string json = JsonSerializer.Serialize(model);
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            {
             HttpRequestMessage message = new HttpRequestMessage()
+            {
                 RequestUri = new Uri($"{Urls.Tasks}/teacher"),
                 Method = HttpMethod.Post,
                 Content = new StringContent(json, Encoding.UTF8, "application/json")
