@@ -49,6 +49,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             _tasksClient = new TasksClient();
             _homeworksClient = new HomeworksClient();
         }
+
         [Given(@"register new users with roles")]
         public void GivenRegisterNewUsersWithRoles(Table table)
         {
@@ -60,7 +61,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
                 int id = _authenticationClient.RegisterUser(registerRequest).Id;
                 switch (user.Role)
                 {
-                    case $"{Options.RoleTeacher}":
+                    case Options.RoleTeacher:
                         {
                             _teachersIds.Add(id);
                             _usersClient.AddNewRoleToUser(id, user.Role, _adminToken, HttpStatusCode.NoContent);
@@ -68,7 +69,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
                             { Email = user.Email, Password = user.Password }));
                         }
                         break;
-                    case $"{Options.RoleTutor}":
+                    case Options.RoleTutor:
                         {
                             _tutorsIds.Add(id);
                             _usersClient.AddNewRoleToUser(id, user.Role, _adminToken, HttpStatusCode.NoContent);
@@ -76,7 +77,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
                             { Email = user.Email, Password = user.Password }));
                         }
                         break;
-                    case $"{Options.RoleMethodist}":
+                    case Options.RoleMethodist:
                         {
                             _methodistsIds.Add(id);
                             _usersClient.AddNewRoleToUser(id, user.Role, _adminToken, HttpStatusCode.NoContent);
@@ -84,7 +85,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
                             { Email = user.Email, Password = user.Password }));
                         }
                         break;
-                    case $"{Options.RoleStudent}":
+                    case Options.RoleStudent:
                         {
                             _studentsIds.Add(id);
                             _studentsTokens.Add(_authenticationClient.AuthorizeUser(new SignInRequest()
