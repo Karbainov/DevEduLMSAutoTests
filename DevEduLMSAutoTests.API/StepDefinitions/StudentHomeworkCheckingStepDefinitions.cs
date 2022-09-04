@@ -1,11 +1,7 @@
 ﻿using DevEduLMSAutoTests.API.Clients;
 using DevEduLMSAutoTests.API.Support.Models.Request;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using NUnit.Framework;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow.Assist;
 
 namespace DevEduLMSAutoTests.API.StepDefinitions
@@ -17,17 +13,25 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         private UsersClient _usersClient;
         private GroupsClient _groupsClient;
         private TasksClient _tasksClient;
+        private HomeworksClient _homeworksClient;
+        private StudentHomeworksClient _studentHomeworksClient;
         private List<int> _userIds;
+        private string _homeworkStatus;
         private string _managerToken;
         private string _teacherToken;
+        private string _studentToken;
         private int _groupId;
         private int _taskId;
+        private int _homeworkId;
+        private int _studentHomeworkId;
         public StudentHomeworkCheckingStepDefinitions()
         {
             _authenticationClient = new AuthenticationClient();
             _usersClient = new UsersClient();
             _groupsClient = new GroupsClient();
+            _homeworksClient = new HomeworksClient();
             _tasksClient = new TasksClient();
+            _studentHomeworksClient = new StudentHomeworksClient();
             _userIds = new List<int>();
         }
 
@@ -61,7 +65,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         public void GivenManagerCreateNewGroup(Table table)
         {
             AddGroupRequest group = table.CreateInstance<AddGroupRequest>();
-            _groupId = _groupsClient.AddNewGroup(group, _managerToken, HttpStatusCode.NoContent).Id;
+            _groupId = _groupsClient.AddNewGroup(group, _managerToken, HttpStatusCode.Created).Id;
         }
         [Given(@"Manager add student to group")]
         public void GivenManagerAddStudentToGroup()
@@ -104,6 +108,60 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             };
             _taskId = _tasksClient.CreateTask(model, _teacherToken, HttpStatusCode.Created).Id;
         }
-
+        [Given(@"Add new homework")]
+        public void GivenAddNewHomework()
+        {
+            AddHomeworkByTeacherRequest model = new AddHomeworkByTeacherRequest()
+            {
+                TaskId = _taskId,
+                GroupId = _groupId,
+                StartDate = "04.09.22",
+                EndDate = "21.09.22"
+            };
+            _homeworkId = _homeworksClient.AddHomework(model, _teacherToken, HttpStatusCode.Created).Id;
+        }
+        [Given(@"Authorize as student")]
+        public void GivenAuthorizeAsStudent(Table table)
+        {
+            AuthorizationRequest authStudent = table.CreateInstance<AuthorizationRequest>();
+            _studentToken = _authenticationClient.Authorize(authStudent, HttpStatusCode.OK);
+        }
+        [Given(@"Student send passed homework")]
+        public void GivenStudentSenPassedHomework()
+        {
+            AddHomeworkByStudentRequest model = new AddHomeworkByStudentRequest()
+            {
+                Answer = "string",
+                HomeworkId = _homeworkId
+            };
+            _studentHomeworkId = _studentHomeworksClient.AddHomework(model, _studentToken, HttpStatusCode.Created).Id;
+        }
+        [Given(@"Teacher decline student's homework")]
+        public void GivenTeacherDeclineStudentsHomework()
+        {
+            _studentHomeworksClient.DeclineHomework(_studentHomeworkId, _teacherToken, HttpStatusCode.OK);
+        }
+        [Given(@"Student send homework from the second time")]
+        public void GivenStudentSendHomeworkFromTheSecondTime()
+        {
+            AddHomeworkByStudentRequest model = new AddHomeworkByStudentRequest()
+            {
+                Answer = "string",
+                HomeworkId = _studentHomeworkId
+            };
+            _studentHomeworksClient.AddHomework(model, _studentToken, HttpStatusCode.Created);
+        }
+        [When(@"Teacher approve it")]
+        public void WhenTeacherApproveIt()
+        {
+            _studentHomeworksClient.Approve(_homeworkId, _teacherToken, HttpStatusCode.OK);
+        }
+        [Then(@"Homework passed")]
+        public void ThenHomeworkPassed()
+        {
+            _homeworkStatus = _studentHomeworksClient.GetStudenthomeworkById(_homeworkId, _studentToken, HttpStatusCode.OK).Status;
+            string expectedStstus = "Done";
+            Assert.AreEqual(expectedStstus, _homeworkStatus);
+        }
     }
 }

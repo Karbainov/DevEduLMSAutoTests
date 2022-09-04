@@ -18,14 +18,17 @@ Scenario: Student pass the homework from the second time
 	And Give teacher role to first user
 	And Manager create new group
 	| Name   | CourseId | GroupStatusId | StartDate  | EndDate    | Timetable | PaymentPerMonth | PaymentsCount |
-	| BlaBla | 2371     | Learning      | 11.10.2022 | 15.04.2023 | Morning   | 900             | 25            |
+	| BlaBla | 2371     | Forming       | 05.09.2022 | 15.04.2023 | Morning   | 900             | 20            |
 	And Manager add student to group
 	And Manager add teacher to group
 	Given Authorize as teacher
 	| Email               | Password |
-	| lidyasha@blabla.com | 12345678 |
+	| lidyasha@blabla.com | password |
 	And Teacher create new task
 	And Add new homework
+	Given Authorize as student
+	| Email            | Password |
+	| vasya@blabla.com | password |
 	And Student send passed homework
 	But Teacher decline student's homework
 	And Student send homework from the second time
