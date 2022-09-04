@@ -21,10 +21,10 @@
             return response;
         }
 
-        public void AddUserToGroup(int groupId, int userId, string role, string managerToken, HttpStatusCode expectedCode = HttpStatusCode.NoContent)
+        public GetGroupByIdResponse GetGroupById(int id, string managerToken, HttpStatusCode expectedCode)
         {
             HttpClient client = new HttpClient();
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", managerToken);
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Get,
@@ -38,7 +38,7 @@
             return response;
         }
 
-        public void AddUserToGroup(int groupId, int userId, string role, string managerToken, HttpStatusCode expectedCode)
+        public void AddUserToGroup(int groupId, int userId, string role, string managerToken, HttpStatusCode expectedCode = HttpStatusCode.NoContent)
         {
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", managerToken);
