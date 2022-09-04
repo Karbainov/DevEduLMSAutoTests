@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
+
 
 namespace DevEduLMSAutoTests.API.Support.Models.Request
 {
-    public class SignInRequest
+    public class AuthorizationRequest
     {
         [JsonPropertyName("email")]
         public string Email { get; set; }

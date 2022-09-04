@@ -1,5 +1,4 @@
-﻿
-namespace DevEduLMSAutoTests.API.Support.Models.Response
+﻿namespace DevEduLMSAutoTests.API.Support.Models.Response
 {
     public class GetAllGroupsResponse
     {
@@ -25,7 +24,7 @@ namespace DevEduLMSAutoTests.API.Support.Models.Response
         public string Timetable { get; set; }
 
         [JsonPropertyName("paymentPerMonth")]
-        public int PaymentPerMonth { get; set; }
+        public decimal PaymentPerMonth { get; set; }
 
         [JsonPropertyName("paymentsCount")]
         public int PaymentsCount { get; set; }
@@ -35,7 +34,7 @@ namespace DevEduLMSAutoTests.API.Support.Models.Response
             return obj is GetAllGroupsResponse response &&
                    Id == response.Id &&
                    Name == response.Name &&
-                   Course == response.Course &&
+                   Course.Equals(response.Course) &&
                    GroupStatus == response.GroupStatus &&
                    StartDate == response.StartDate &&
                    EndDate == response.EndDate &&
