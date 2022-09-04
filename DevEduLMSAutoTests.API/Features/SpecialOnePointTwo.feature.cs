@@ -76,10 +76,16 @@ namespace DevEduLMSAutoTests.API.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Сreating an activity for students by teacher")]
         [NUnit.Framework.CategoryAttribute("teacher")]
+        [NUnit.Framework.CategoryAttribute("methodist")]
+        [NUnit.Framework.CategoryAttribute("admin")]
+        [NUnit.Framework.CategoryAttribute("manager")]
         public void СreatingAnActivityForStudentsByTeacher()
         {
             string[] tagsOfScenario = new string[] {
-                    "teacher"};
+                    "teacher",
+                    "methodist",
+                    "admin",
+                    "manager"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Сreating an activity for students by teacher", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
@@ -107,7 +113,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Valeria",
                             "Puzikova",
                             "string",
-                            "lera012@methodist.com",
+                            "lera013@methodist.com",
                             "lera1",
                             "password",
                             "SaintPetersburg",
@@ -118,7 +124,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Milana",
                             "Maxina",
                             "string",
-                            "maxina012@teacher.com",
+                            "maxina013@teacher.com",
                             "maxina1",
                             "password",
                             "SaintPetersburg",

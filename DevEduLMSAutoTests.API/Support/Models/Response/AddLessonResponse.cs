@@ -41,6 +41,7 @@ namespace DevEduLMSAutoTests.API.Support.Models.Response
                    Number == response.Number &&
                    //EqualityComparer<AddTeacherResponse>.Default.Equals(Teacher, response.Teacher) &&
                    //EqualityComparer<List<AddTopicResponse>>.Default.Equals(Topics, response.Topics) &&
+                   Teacher.Equals(response.Teacher)&&
                    IsDeleted == response.IsDeleted;
         }
     }

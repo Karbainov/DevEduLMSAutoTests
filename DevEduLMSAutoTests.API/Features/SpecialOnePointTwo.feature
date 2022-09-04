@@ -2,12 +2,12 @@
 
 A short summary of the feature
 
-@teacher 
+@teacher @methodist @admin @manager 
 Scenario: Сreating an activity for students by teacher
 	Given register new user
 	| FirstName   | LastName  | Patronymic | Email                | Username  | Password  | City            | BirthDate  | GitHubAccount | PhoneNumber |
-	| Valeria     | Puzikova  | string     | lera012@methodist.com | lera1      | password | SaintPetersburg | 01.02.1996 | string        | 89071961416 |
-	| Milana      | Maxina    | string     | maxina012@teacher.com  | maxina1    | password | SaintPetersburg | 01.01.1995 | string        | 89817051818 |
+	| Valeria     | Puzikova  | string     | lera013@methodist.com | lera1      | password | SaintPetersburg | 01.02.1996 | string        | 89071961416 |
+	| Milana      | Maxina    | string     | maxina013@teacher.com  | maxina1    | password | SaintPetersburg | 01.01.1995 | string        | 89817051818 |
 	And authorize admina
 	And manager add roles to user
 	And authorize user
