@@ -5,19 +5,21 @@ A short summary of the feature
 @tag1
 Scenario:  Creating an assignment by a methodologist for students
 Given Open DevEdu web page
-When Enter the username and password of the methodologist
-And Click botton "to come in"
-And Click button "add task"
-When Create draft Homework
-And Click button "save as draft"
-And See all created homeworks
-When Click link "edit"
-And Methodist edits homework
-And Click button "save as draft"
+When authorization user as methodist
+#| Email                 | Password |
+#| lera013@methodist.com | password |  
+And methodist click botton to come in
+And methodist click button add task
+When methodist create draft Homework
+And methodist click button save as draft
+And methodist see all created homeworks
+When methodist click link edit
+And methodist edits homework
+And methodist click button save as draft
 And Authorization in as a teacher
-And Click buttom "homework assignment", 
-And Fill out a new assignment form
-When Click button "publish"
+And teacher click buttom homework assignment
+And teacher fill out a new assignment form
+When teacher click button publish
 Then student should sees homework
 
 
