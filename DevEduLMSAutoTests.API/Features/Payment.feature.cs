@@ -20,22 +20,22 @@ namespace DevEduLMSAutoTests.API.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Topics")]
-    public partial class TopicsFeature
+    [NUnit.Framework.DescriptionAttribute("Payment")]
+    public partial class PaymentFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-#line 1 "Topics.feature"
+#line 1 "Payment.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Topics", "A short summary of the feature", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Payment", "A short summary of the feature", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,14 +74,14 @@ namespace DevEduLMSAutoTests.API.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Add new topics for courses by methodist")]
-        [NUnit.Framework.CategoryAttribute("methodist")]
-        public void AddNewTopicsForCoursesByMethodist()
+        [NUnit.Framework.DescriptionAttribute("Add payments by manager")]
+        [NUnit.Framework.CategoryAttribute("manager")]
+        public void AddPaymentsByManager()
         {
             string[] tagsOfScenario = new string[] {
-                    "methodist"};
+                    "manager"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add new topics for courses by methodist", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add payments by manager", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -92,7 +92,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table30 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -103,81 +103,62 @@ this.ScenarioInitialize(scenarioInfo);
                             "BirthDate",
                             "GitHubAccount",
                             "PhoneNumber"});
-                table30.AddRow(new string[] {
-                            "Maksim",
-                            "Metodist",
+                table7.AddRow(new string[] {
+                            "Alex",
+                            "Smith",
                             "string",
-                            "maksimmetodist32@student.com",
-                            "metodist",
+                            "mister5@student.com",
+                            "mister",
                             "password",
                             "SaintPetersburg",
                             "23.07.1993",
                             "string",
                             "89998887766"});
 #line 7
-testRunner.Given("register new user metodist", ((string)(null)), table30, "Given ");
+testRunner.Given("register as user", ((string)(null)), table7, "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table31 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password"});
-                table31.AddRow(new string[] {
+                table8.AddRow(new string[] {
                             "marina@example.com",
                             "marinamarina"});
 #line 10
- testRunner.And("authorize user as manager", ((string)(null)), table31, "And ");
+    testRunner.And("authorize as manager", ((string)(null)), table8, "And ");
 #line hidden
+                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Date",
+                            "Sum",
+                            "IsPaid"});
+                table9.AddRow(new string[] {
+                            "01.02.2001",
+                            "2000",
+                            "true"});
 #line 13
- testRunner.And("manager add role metodist to user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("manager add payment to student user", ((string)(null)), table9, "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table32 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Email",
-                            "Password"});
-                table32.AddRow(new string[] {
-                            "maksimmetodist32@student.com",
-                            "password"});
-#line 14
- testRunner.And("authorize user as methodist", ((string)(null)), table32, "And ");
+#line 16
+ testRunner.And("manager can see this payment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table33 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Name",
-                            "Duration"});
-                table33.AddRow(new string[] {
-                            "functions14",
-                            "12"});
+                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Date",
+                            "Sum",
+                            "IsPaid"});
+                table10.AddRow(new string[] {
+                            "03.02.2021",
+                            "3000",
+                            "true"});
 #line 17
- testRunner.And("methodist create a topic", ((string)(null)), table33, "And ");
+ testRunner.And("manager updates this payment", ((string)(null)), table10, "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table34 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Position"});
-                table34.AddRow(new string[] {
-                            "1"});
 #line 20
-    testRunner.And("methodist add topic to course", ((string)(null)), table34, "And ");
+ testRunner.And("manager can see the updated payment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 23
- testRunner.And("methodist can see the list of all topics in course with this topic", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 21
+ testRunner.And("manager delete this payment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table35 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Name",
-                            "Duration"});
-                table35.AddRow(new string[] {
-                            "cycles3",
-                            "20"});
-#line 24
- testRunner.And("methodist update topic", ((string)(null)), table35, "And ");
-#line hidden
-#line 27
- testRunner.And("methodist can see updated topic", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-                TechTalk.SpecFlow.Table table36 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Position"});
-                table36.AddRow(new string[] {
-                            "22"});
-#line 28
-    testRunner.And("methodist change order of topics", ((string)(null)), table36, "And ");
-#line hidden
-#line 31
- testRunner.And("methodist can see changed order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 22
+ testRunner.And("manager can see that the payment deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
