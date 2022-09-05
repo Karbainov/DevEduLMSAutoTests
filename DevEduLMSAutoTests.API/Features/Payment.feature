@@ -6,7 +6,7 @@ A short summary of the feature
 Scenario: Add payments by manager
 Given register as user
     | FirstName | LastName  | Patronymic | Email                          | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber |
-	| Alex      | Smith     | string     | mister4@student.com            | mister   | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 |
+	| Alex      | Smith     | string     | mister5@student.com            | mister   | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 |
     And authorize as manager
 	| Email                 | Password     |
 	| marina@example.com    | marinamarina |

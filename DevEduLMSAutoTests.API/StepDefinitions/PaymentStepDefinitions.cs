@@ -69,13 +69,15 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         [Given(@"manager delete this payment")]
         public void GivenManagerDeleteThisPayment()
         {
-            throw new PendingStepException();
+            HttpStatusCode expectedCode = HttpStatusCode.NoContent;
+            _paymentClient.DeletePaymentById(_userId, _managerToken, expectedCode);
         }
 
         [Given(@"manager can see that the payment deleted")]
         public void GivenManagerCanSeeThatThePaymentDeleted()
         {
-            throw new PendingStepException();
+            List<AddPaymentToUserResponse> listOfPayments = _paymentClient.GetPaymentsByUserId(_userId, _managerToken);
+            CollectionAssert.DoesNotContain(listOfPayments, _updatedPayment);
         }
 
     }
