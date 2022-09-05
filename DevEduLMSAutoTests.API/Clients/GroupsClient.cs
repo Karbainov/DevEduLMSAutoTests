@@ -21,6 +21,23 @@
             return response;
         }
 
+        public GetGroupByIdResponse GetGroupById(int id, string managerToken, HttpStatusCode expectedCode = HttpStatusCode.OK)
+        {
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", managerToken);
+            HttpRequestMessage message = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new System.Uri($"{Urls.Groups}/{id}"),
+            };
+            HttpResponseMessage responseMessage = client.Send(message);
+            HttpStatusCode actualCode = responseMessage.StatusCode;
+            Assert.AreEqual(expectedCode, actualCode);
+            GetGroupByIdResponse response = JsonSerializer.Deserialize<GetGroupByIdResponse>
+                (responseMessage.Content.ReadAsStringAsync().Result)!;
+            return response;
+        }
+
         public void AddUserToGroup(int groupId, int userId, string role, string managerToken, HttpStatusCode expectedCode = HttpStatusCode.NoContent)
         {
             HttpClient client = new HttpClient();

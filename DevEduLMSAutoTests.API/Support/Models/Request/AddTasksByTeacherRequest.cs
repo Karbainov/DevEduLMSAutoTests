@@ -18,11 +18,5 @@ namespace DevEduLMSAutoTests.API.Support.Models.Request
 
         [JsonPropertyName("groupId")]
         public int GroupId { get; set; }
-
-        [JsonPropertyName("startDate")]
-        public string StartDate { get; set; }
-
-        [JsonPropertyName("endDate")]
-        public string EndDate { get; set; }
     }
 }

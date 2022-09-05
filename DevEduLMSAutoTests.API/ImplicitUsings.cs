@@ -14,3 +14,4 @@ global using DevEduLMSAutoTests.API.Support;
 global using DevEduLMSAutoTests.API.Support.Models.Response;
 global using DevEduLMSAutoTests.API.Support.Models.Request;
 global using DevEduLMSAutoTests.API.Clients;
+global using DevEduLMSAutoTests.API.Support.Mappers;

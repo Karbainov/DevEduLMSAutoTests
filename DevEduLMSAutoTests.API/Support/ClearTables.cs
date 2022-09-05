@@ -56,10 +56,13 @@ namespace DevEduLMSAutoTests.API.Support
                 command.CommandText = "delete from dbo.[Course_Topic]";
                 command.ExecuteNonQuery();
                 
-                command.CommandText = "delete from dbo.[Topic] where Id not in (703)";
+                command.CommandText = "delete from dbo.[Topic]";
                 command.ExecuteNonQuery();
                                 
                 command.CommandText = "delete from dbo.[Group_Material]";
+                command.ExecuteNonQuery();
+
+                command.CommandText = "delete from dbo.[Student_Homework]";
                 command.ExecuteNonQuery();
                 
                 command.CommandText = "delete from dbo.[Homework]";
@@ -74,14 +77,12 @@ namespace DevEduLMSAutoTests.API.Support
                 command.CommandText = "delete from dbo.[Task]";
                 command.ExecuteNonQuery();
                 
-                command.CommandText = "delete from dbo.[Group] where Id not in (1647)";
+                command.CommandText = "delete from dbo.[Group]";
                 command.ExecuteNonQuery();
                 
                 command.CommandText = "delete from dbo.[Comment]";
                 command.ExecuteNonQuery();
                 
-                command.CommandText = "delete from dbo.[Student_Homework]";
-                command.ExecuteNonQuery();
                 
                 command.CommandText = "delete from dbo.[Notification]";
                 command.ExecuteNonQuery();

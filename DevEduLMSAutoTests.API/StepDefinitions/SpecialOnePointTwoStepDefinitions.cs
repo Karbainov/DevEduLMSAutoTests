@@ -83,6 +83,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         public void GivenTeacherCreateALesson(Table table)
         {
             AddLessonRequest newLesson = table.CreateInstance<AddLessonRequest>();
+            newLesson.TopicIds = new List<int>() { _topicId };
             _lessonsClient = new LessonsClient();
             _lessonId = _lessonsClient.AddLessonByTeacher(newLesson, _teacherToken).IdLesson;
         }
@@ -108,6 +109,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         {
             UpdateLessonRequest newLesson = table.CreateInstance<UpdateLessonRequest>();
             _lessonsClient = new LessonsClient();
+            newLesson.TopicIds = new List<int>() { _topicId };
             AddLessonResponse lesson = _lessonsClient.UpdateLesson(newLesson, _lessonId, _teacherToken);
             _expectedLessonUp = lesson;
         }
