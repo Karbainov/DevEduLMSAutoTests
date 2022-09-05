@@ -8,16 +8,16 @@
         private string _methodistToken;
         private int _topicId;
         private int _methodistId;
-        private int _coursesId;
+        private int _coursesId = 2371;
         private AuthenticationClient _authenticationClient;
         private UsersClient _usersClient;
-        private CoursesClient _coursesClient;
         private TopicsClient _topicsClient;
         private AddCourseResponse _actualCourse;
         private UpdateTopicResponse _actualTopic;
         private UpdateTopicResponse _expectedTopic;
         private AddTopicToCourseResponse _actualTopicPosition;
-        private AddTopicToCourseResponse _expectedTopicPosition;
+        private List<AddTopicToCourseResponse> _expectedTopicPosition;
+        private AddTopicToCourseResponse _newTopic;
 
 
         [Given(@"register new user metodist")]
@@ -53,14 +53,6 @@
             _usersClient.AddNewRoleToUser(_methodistId, Options.RoleMethodist, _managerToken, HttpStatusCode.NoContent);
         }
 
-        [Given(@"methodist create a course")]
-        public void GivenMethodistCreateNewCourse(Table table)
-        {
-            AddCourseRequest newCourse = table.CreateInstance<AddCourseRequest>();
-            _coursesClient = new CoursesClient();
-            _coursesId = _coursesClient.AddCoursesByMethodist(newCourse, _methodistToken).Id;
-        }
-
         [Given(@"methodist create a topic")]
         public void GivenMethodistCreateNewTopic(Table table)
         {
@@ -74,34 +66,16 @@
         {
             AddTopicToCourseRequest newTopic = table.CreateInstance<AddTopicToCourseRequest>();
             _topicsClient = new TopicsClient();
-            _topicsClient.AddTopicToCourse(newTopic, _coursesId, _topicId, _methodistToken);
+            _newTopic = _topicsClient.AddTopicToCourse(newTopic, _coursesId, _topicId, _methodistToken);
         }
 
-        [Given(@"methodist can see the course with topic")]
-        public void GivenGetCourseWithTopicByCourseId()
+        [Given(@"methodist can see the list of all topics in course with this topic")]
+        public void GivenGetTopicsInCourseToCheckIfTopicContainsInTheCourse()
         {
             _topicsClient = new TopicsClient();
-            _actualCourse = _topicsClient.GetCourseWithTopicsById(_coursesId, _methodistToken);
-            AddTopicResponse topic = new AddTopicResponse()
-            {
-                IdTopic = _topicId,
-                Name = "functions13",
-                Duration = 12
-            };
-            List<AddTopicResponse> listTopics = new List<AddTopicResponse>();
-            listTopics.Add(topic);
-            AddCourseResponse _expectedCourse = new AddCourseResponse()
-            {
-                Description = "New java course",
-                Topics = listTopics,
-                Id = _coursesId,
-                Name = "Base Java13",
-                IsDeleted = false
-
-            };
-            Assert.NotNull(_expectedCourse);
-            Assert.AreEqual(_expectedCourse, _actualCourse);
-
+            HttpStatusCode expectedCode = HttpStatusCode.OK;
+            List<AddTopicToCourseResponse> listOfTopics = _topicsClient.GetAllTopicsInTheCourseById(_coursesId, _methodistToken, expectedCode);
+            CollectionAssert.Contains(listOfTopics, _newTopic);
         }
 
         [Given(@"methodist update topic")]
@@ -124,13 +98,16 @@
         [Given(@"methodist change order of topics")]
         public void GivenAddNewPositionToTopic(Table table)
         {
+
             UpdateTopicPositionRequest newTopic = new UpdateTopicPositionRequest()
             {
-                Position = table.CreateInstance<AddTopicToCourseRequest>().Position,
+                Position = table.CreateInstance<UpdateTopicPositionRequest>().Position,
                 topicId = _topicId
             };
+            List<UpdateTopicPositionRequest> inputTopics = new List<UpdateTopicPositionRequest>();
+            inputTopics.Add(newTopic);
             _topicsClient = new TopicsClient();
-            _expectedTopicPosition = _topicsClient.UpdateTopicPositionInCourse(newTopic, _coursesId, _methodistToken);
+            _expectedTopicPosition = _topicsClient.UpdateTopicPositionInCourse(inputTopics, _coursesId, _methodistToken);
         }
 
         [Given(@"methodist can see changed order")]
@@ -139,19 +116,10 @@
             _topicsClient = new TopicsClient();
             HttpStatusCode expectedCode = HttpStatusCode.OK;
             List<AddTopicToCourseResponse> listOfTopics = _topicsClient.GetAllTopicsInTheCourseById(_coursesId, _methodistToken, expectedCode);
-            CollectionAssert.Contains(listOfTopics, _expectedTopicPosition);
+            AddTopicToCourseResponse updatedTopicPosition = _expectedTopicPosition[0];
+            CollectionAssert.Contains(listOfTopics, updatedTopicPosition);
         }
-           
 
-        [Given(@"list of all courses should contains the course with topic")]
-        public void GivenCoursesContainsANewCourse()
-        {
-            _coursesClient = new CoursesClient();
-            HttpStatusCode expectedCode = HttpStatusCode.OK;
-            List<AddCourseResponse> allCourses = _coursesClient.GetAllCourses(_methodistToken, expectedCode);
-            CollectionAssert.Contains(allCourses, _actualCourse);
-            
-        }
 
     }
 }

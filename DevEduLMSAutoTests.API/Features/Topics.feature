@@ -6,32 +6,28 @@ A short summary of the feature
 Scenario: Add new topics for courses by methodist
 Given register new user metodist
 	| FirstName | LastName  | Patronymic | Email                          | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber |
-	| Maksim    | Metodist  | string     | maksimmetodist18@student.com   | metodist | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 |
+	| Maksim    | Metodist  | string     | maksimmetodist32@student.com   | metodist | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 |
 	And authorize user as manager
 	| Email                 | Password     |
 	| marina@example.com    | marinamarina |
 	And manager add role metodist to user
 	And authorize user as methodist
 	| Email                          | Password |
-	| maksimmetodist18@student.com    | password |
-	And  methodist create a course
-	| Name        | Description     |
-	| Base Java13 | New java course |
+	| maksimmetodist32@student.com    | password |
 	And methodist create a topic
-	| Name       | Duration  |
-	| functions13 | 12       |
+	| Name        | Duration  |
+	| functions14 | 12       |
     And methodist add topic to course
 	| Position |
 	| 1        |
-	And methodist can see the course with topic
-	#And list of all courses should contains the course with topic
+	And methodist can see the list of all topics in course with this topic
 	And methodist update topic 
 	| Name    | Duration |
-	| cycles2 | 20       |
+	| cycles3 | 20       |
 	And methodist can see updated topic
     And methodist change order of topics
 	| Position |
-	| 2        |
+	| 22       |
 	And methodist can see changed order
 
 	

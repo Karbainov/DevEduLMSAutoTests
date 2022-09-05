@@ -13,7 +13,7 @@ namespace DevEduLMSAutoTests.API.Support.Models.Response
         [JsonPropertyName("position")]
         public int Position { get; set; }
         [JsonPropertyName("topics")]
-        public List<AddTopicResponse> Topics { get; set; }
+        public AddTopicResponse Topics { get; set; }
 
         [JsonPropertyName("isDeleted")]
         public bool IsDeleted { get; set; }
@@ -24,18 +24,7 @@ namespace DevEduLMSAutoTests.API.Support.Models.Response
             {
                 return false;
             }
-            List<AddTopicResponse> topics = ((AddCourseResponse)obj).Topics;
-            if (topics.Count != this.Topics.Count)
-            {
-                return false;
-            }
-            for (int i = 0; i < topics.Count; i++)
-            {
-                if (!topics[i].Equals(this.Topics[i]))
-                {
-                    return false;
-                }
-            }
+            AddTopicResponse topics = ((AddTopicToCourseResponse)obj).Topics;
             return obj is AddTopicToCourseResponse response &&
                    Id == response.Id &&
                    Position == response.Position &&

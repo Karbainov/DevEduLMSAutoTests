@@ -107,7 +107,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Maksim",
                             "Metodist",
                             "string",
-                            "maksimmetodist18@student.com",
+                            "maksimmetodist32@student.com",
                             "metodist",
                             "password",
                             "SaintPetersburg",
@@ -133,59 +133,50 @@ testRunner.Given("register new user metodist", ((string)(null)), table12, "Given
                             "Email",
                             "Password"});
                 table14.AddRow(new string[] {
-                            "maksimmetodist18@student.com",
+                            "maksimmetodist32@student.com",
                             "password"});
 #line 14
  testRunner.And("authorize user as methodist", ((string)(null)), table14, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
-                            "Description"});
+                            "Duration"});
                 table15.AddRow(new string[] {
-                            "Base Java13",
-                            "New java course"});
+                            "functions14",
+                            "12"});
 #line 17
- testRunner.And("methodist create a course", ((string)(null)), table15, "And ");
+ testRunner.And("methodist create a topic", ((string)(null)), table15, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Name",
-                            "Duration"});
+                            "Position"});
                 table16.AddRow(new string[] {
-                            "functions13",
-                            "12"});
+                            "1"});
 #line 20
- testRunner.And("methodist create a topic", ((string)(null)), table16, "And ");
+    testRunner.And("methodist add topic to course", ((string)(null)), table16, "And ");
+#line hidden
+#line 23
+ testRunner.And("methodist can see the list of all topics in course with this topic", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Position"});
-                table17.AddRow(new string[] {
-                            "1"});
-#line 23
-    testRunner.And("methodist add topic to course", ((string)(null)), table17, "And ");
-#line hidden
-#line 26
- testRunner.And("methodist can see the course with topic", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-                TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
                             "Duration"});
-                table18.AddRow(new string[] {
-                            "cycles2",
+                table17.AddRow(new string[] {
+                            "cycles3",
                             "20"});
-#line 28
- testRunner.And("methodist update topic", ((string)(null)), table18, "And ");
+#line 24
+ testRunner.And("methodist update topic", ((string)(null)), table17, "And ");
 #line hidden
-#line 31
+#line 27
  testRunner.And("methodist can see updated topic", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
                             "Position"});
-                table19.AddRow(new string[] {
-                            "2"});
-#line 32
-    testRunner.And("methodist change order of topics", ((string)(null)), table19, "And ");
+                table18.AddRow(new string[] {
+                            "22"});
+#line 28
+    testRunner.And("methodist change order of topics", ((string)(null)), table18, "And ");
 #line hidden
-#line 35
+#line 31
  testRunner.And("methodist can see changed order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

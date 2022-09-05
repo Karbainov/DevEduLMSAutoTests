@@ -68,7 +68,7 @@
             return responseTopic;
         }
 
-        public AddTopicToCourseResponse UpdateTopicPositionInCourse(UpdateTopicPositionRequest newTopic, int courseId, string methodistToken)
+        public List<AddTopicToCourseResponse> UpdateTopicPositionInCourse(List<UpdateTopicPositionRequest> newTopic, int courseId, string methodistToken)
         {
             string json = JsonSerializer.Serialize(newTopic);
             HttpClient client = new HttpClient();
@@ -80,7 +80,7 @@
                 Content = new StringContent(json, Encoding.UTF8, "application/json")
             };
             HttpResponseMessage response = client.Send(message);
-            AddTopicToCourseResponse responseTopic = JsonSerializer.Deserialize<AddTopicToCourseResponse>
+            List<AddTopicToCourseResponse> responseTopic = JsonSerializer.Deserialize<List<AddTopicToCourseResponse>>
                 (response.Content.ReadAsStringAsync().Result)!;
             return responseTopic;
         }
