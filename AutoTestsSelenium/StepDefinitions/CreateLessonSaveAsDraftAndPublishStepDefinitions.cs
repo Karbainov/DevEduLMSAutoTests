@@ -12,6 +12,11 @@ namespace AutoTestsSelenium.StepDefinitions
     {
         private IWebDriver _driver;
 
+        private readonly By _emailInput = By.XPath("//input[@name='email']");
+        private readonly By _passwordInput = By.XPath("//input[@name='password']");
+        private readonly By _enterButton = By.XPath("//button[text()='Войти']");
+        private readonly By _newLessonButton = By.CssSelector("a[href='/new-lesson']");
+
         [Given(@"Open a browser and go to devedu page")]
         public void GivenOpenABrowserAndGoToDeveduPage()
         {
@@ -24,19 +29,20 @@ namespace AutoTestsSelenium.StepDefinitions
         public void GivenLoginAsTescher(Table table)
         {
             AuthModel authModel = table.CreateInstance<AuthModel>();
-            var emailBox = _driver.FindElement(By.XPath("//*[@id=\"root\"]/div/main/div[1]/form/div[1]/input"));
+            var emailBox = _driver.FindElement(_emailInput);
             emailBox.SendKeys(authModel.Email);
-            var passwordBox = _driver.FindElement(By.XPath("//*[@id=\"root\"]/div/main/div[1]/form/div[2]/input"));
+            var passwordBox = _driver.FindElement(_passwordInput);
             passwordBox.Clear();
             passwordBox.SendKeys(authModel.Password);
-            var enterButton = _driver.FindElement(By.XPath("//*[@id=\"root\"]/div/main/div[1]/form/div[3]/button[1]"));
+            var enterButton = _driver.FindElement(_enterButton);
             enterButton.Click();
         }
 
         [Given(@"Click on create lesson")]
         public void GivenClickOnCreateLesson()
         {
-            var addLesson = _driver.FindElement(By.XPath("/html/body/div/div/aside/div/nav/a[3]"));
+            Thread.Sleep(1000);
+            var addLesson = _driver.FindElement(_newLessonButton);
             addLesson.Click();
         }
     }
