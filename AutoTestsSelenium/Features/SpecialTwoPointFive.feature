@@ -6,8 +6,6 @@ A short summary of the feature
 Scenario:  Creating an assignment by a methodologist for students
 Given Open DevEdu web page
 When authorization user as methodist
-#| Email                 | Password |
-#| lera013@methodist.com | password |  
 And methodist click botton to come in
 And methodist click button add task
 When methodist create draft Homework

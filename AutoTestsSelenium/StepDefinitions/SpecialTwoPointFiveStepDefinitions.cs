@@ -6,6 +6,9 @@ namespace AutoTestsSelenium.StepDefinitions
     public class SpecialTwoPointFiveStepDefinitions
     {
         private IWebDriver _driver;
+        private readonly By _emailInput = By.XPath("//input[@ class='form-input']");
+        private readonly By _passwordInput = By.XPath("//input[@class='form-input custom-password']");
+        private readonly By _enterButton = By.XPath("//button[@class='sc-bczRLJ iJvUkY btn btn-fill flex-container']");
 
         [Given(@"Open DevEdu web page")]
         public void GivenOpenDevEduWebPage()
@@ -18,7 +21,14 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"authorization user as methodist")]
         public void WhenAuthorizationUserAsMethodist()
         {
-            
+            var emailBox = _driver.FindElement(_emailInput);
+            emailBox.SendKeys("lera013@methodist.com");
+            var passBox = _driver.FindElement(_passwordInput);
+            passBox.Clear();
+            passBox.SendKeys("password");
+            var enterButton = _driver.FindElement(_enterButton);
+            enterButton.Click();
+
         }
 
         [When(@"methodist click botton to come in")]
