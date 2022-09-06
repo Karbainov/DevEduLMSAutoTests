@@ -9,6 +9,8 @@ namespace AutoTestsSelenium.StepDefinitions
         private readonly By _emailInput = By.XPath("//input[@ class='form-input']");
         private readonly By _passwordInput = By.XPath("//input[@class='form-input custom-password']");
         private readonly By _enterButton = By.XPath("//button[@class='sc-bczRLJ iJvUkY btn btn-fill flex-container']");
+        private readonly By _choiceCombobox = By.XPath("/html/body/div/div/aside/div/div[1]/div[2]/div/div/div/div/svg");
+        //private readonly By _roleMetho = By.XPath("//html/body/div/div/aside/div/div[1]/div[2]/div/div/div/div");
 
         [Given(@"Open DevEdu web page")]
         public void GivenOpenDevEduWebPage()
@@ -26,16 +28,25 @@ namespace AutoTestsSelenium.StepDefinitions
             var passBox = _driver.FindElement(_passwordInput);
             passBox.Clear();
             passBox.SendKeys("password");
-            var enterButton = _driver.FindElement(_enterButton);
-            enterButton.Click();
-
         }
 
         [When(@"methodist click botton to come in")]
         public void WhenMethodistClickBottonToComeIn()
         {
-            throw new PendingStepException();
+            var enter = _driver.FindElement(_enterButton);
+            enter.Click();          
         }
+
+        [When(@"methodist chooses the role of methodist")]
+        public void WhenMethodistChoosesTheRoleOfMethodist()
+        {
+            var choiceCombobox=_driver.FindElement(_choiceCombobox);
+            choiceCombobox.Click();
+
+            //var roleMeth = _driver.FindElement(_roleMetho);
+            //roleMeth.Click();
+        }
+
 
         [When(@"methodist click button add task")]
         public void WhenMethodistClickButtonAddTask()

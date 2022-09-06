@@ -7,6 +7,8 @@ Scenario:  Creating an assignment by a methodologist for students
 Given Open DevEdu web page
 When authorization user as methodist
 And methodist click botton to come in
+And methodist chooses the role of methodist 
+#супер тупо, но при входе нужно это выбрать,хотя ты уже зашел подметоистом его меил ипароль
 And methodist click button add task
 When methodist create draft Homework
 And methodist click button save as draft
