@@ -1,10 +1,13 @@
 using AutoTestsSelenium.Support;
+using AutoTestsSelenium.Support.Models.Request;
 using System;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
+
     public class CreateLessonSaveAsDraftAndPublishStepDefinitions
     {
         private IWebDriver _driver;
@@ -18,13 +21,14 @@ namespace AutoTestsSelenium.StepDefinitions
         }
 
         [Given(@"Login as teacher")]
-        public void GivenLoginAsTescher()
+        public void GivenLoginAsTescher(Table table)
         {
+            AuthModel authModel = table.CreateInstance<AuthModel>();
             var emailBox = _driver.FindElement(By.XPath("//*[@id=\"root\"]/div/main/div[1]/form/div[1]/input"));
-            emailBox.SendKeys("anton@example.com");
+            emailBox.SendKeys(authModel.Email);
             var passwordBox = _driver.FindElement(By.XPath("//*[@id=\"root\"]/div/main/div[1]/form/div[2]/input"));
             passwordBox.Clear();
-            passwordBox.SendKeys("antonanton");
+            passwordBox.SendKeys(authModel.Password);
             var enterButton = _driver.FindElement(By.XPath("//*[@id=\"root\"]/div/main/div[1]/form/div[3]/button[1]"));
             enterButton.Click();
         }
@@ -32,7 +36,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [Given(@"Click on create lesson")]
         public void GivenClickOnCreateLesson()
         {
-            var addLesson = _driver.FindElement(By.XPath("//*[@id=\"root\"]/div/aside/div/nav/a[3]"));
+            var addLesson = _driver.FindElement(By.XPath("/html/body/div/div/aside/div/nav/a[3]"));
             addLesson.Click();
         }
     }

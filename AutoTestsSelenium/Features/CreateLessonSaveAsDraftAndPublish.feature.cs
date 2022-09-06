@@ -103,10 +103,16 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
  testRunner.Given("Open a browser and go to devedu page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
+                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Email",
+                            "Password"});
+                table1.AddRow(new string[] {
+                            "anton@example.com",
+                            "antonanton"});
 #line 8
- testRunner.Given("Login as teacher", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("Login as teacher", ((string)(null)), table1, "Given ");
 #line hidden
-#line 9
+#line 11
  testRunner.And("Click on create lesson", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
