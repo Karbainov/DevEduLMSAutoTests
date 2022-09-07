@@ -19,7 +19,7 @@ namespace AutoTestsSelenium.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class ChangeOfPersonalAccountFeature : object, Xunit.IClassFixture<ChangeOfPersonalAccountFeature.FixtureData>, System.IDisposable
+    public partial class PhotoСhangeFeature : object, Xunit.IClassFixture<PhotoСhangeFeature.FixtureData>, System.IDisposable
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -28,10 +28,10 @@ namespace AutoTestsSelenium.Features
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "ChangeOfPersonalAccount.feature"
+#line 1 "PhotoСhange.feature"
 #line hidden
         
-        public ChangeOfPersonalAccountFeature(ChangeOfPersonalAccountFeature.FixtureData fixtureData, AutoTestsSelenium_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public PhotoСhangeFeature(PhotoСhangeFeature.FixtureData fixtureData, AutoTestsSelenium_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();
@@ -40,8 +40,7 @@ namespace AutoTestsSelenium.Features
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "ChangeOfPersonalAccount", "The user changes personal data: first name, patronymic, last name, date of birth." +
-                    "", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "PhotoСhange", "User changes photo", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -81,16 +80,16 @@ namespace AutoTestsSelenium.Features
             this.TestTearDown();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="User data changes")]
-        [Xunit.TraitAttribute("FeatureTitle", "ChangeOfPersonalAccount")]
-        [Xunit.TraitAttribute("Description", "User data changes")]
+        [Xunit.SkippableFactAttribute(DisplayName="User changes photo")]
+        [Xunit.TraitAttribute("FeatureTitle", "PhotoСhange")]
+        [Xunit.TraitAttribute("Description", "User changes photo")]
         [Xunit.TraitAttribute("Category", "tag1")]
-        public void UserDataChanges()
+        public void UserChangesPhoto()
         {
             string[] tagsOfScenario = new string[] {
                     "tag1"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User data changes", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User changes photo", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -104,40 +103,22 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
  testRunner.Given("Open a browser in DevEducation web page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Login",
-                            "Password"});
-                table1.AddRow(new string[] {
-                            "marina@example.com",
-                            "marinamarina"});
 #line 8
- testRunner.When("Enter login account", ((string)(null)), table1, "When ");
+ testRunner.When("Enter login \"marina@example.com\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 11
+#line 9
+ testRunner.And("Enter password \"marinamarina\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 10
  testRunner.Then("Click button account login", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 12
+#line 11
  testRunner.Given("Go to account settings", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
-                            "LastName",
-                            "FirstName",
-                            "Patronymic",
-                            "GitHub",
-                            "Phone"});
-                table2.AddRow(new string[] {
-                            "Максина",
-                            "Марина",
-                            "Сергеевна",
-                            "https://github.com/",
-                            "89435235475"});
+#line 12
+ testRunner.When("Photo change", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
 #line 13
- testRunner.When("Change LastName, FirstName, Patronymic, GitHub, Phone", ((string)(null)), table2, "When ");
-#line hidden
-#line 16
- testRunner.And("Change Date Birth", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 17
  testRunner.Then("Save changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -151,12 +132,12 @@ this.ScenarioInitialize(scenarioInfo);
             
             public FixtureData()
             {
-                ChangeOfPersonalAccountFeature.FeatureSetup();
+                PhotoСhangeFeature.FeatureSetup();
             }
             
             void System.IDisposable.Dispose()
             {
-                ChangeOfPersonalAccountFeature.FeatureTearDown();
+                PhotoСhangeFeature.FeatureTearDown();
             }
         }
     }
