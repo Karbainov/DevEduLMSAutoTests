@@ -4,3 +4,6 @@ global using Xunit;
 global using System;
 global using TechTalk.SpecFlow;
 global using OpenQA.Selenium;
+global using AutoTestsSelenium.Support.Models.Request;
+global using TechTalk.SpecFlow.Assist;
+global using OpenQA.Selenium.Chrome;
