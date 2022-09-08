@@ -145,10 +145,11 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         }
 
         [Given(@"manager create new group")]
-        public void GivenManagerCreateNewGroup(Table table)
+        public string GivenManagerCreateNewGroup(Table table)
         {
             CreateGroupRequest newGroup = table.CreateInstance<CreateGroupRequest>();
             _groupId = _groupsClient.CreateNewGroup(newGroup, _managerToken).Id;
+            return newGroup.Name;
         }
 
         [Given(@"manager add users to group")]
