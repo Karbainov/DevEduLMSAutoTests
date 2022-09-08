@@ -57,7 +57,7 @@
         [Given(@"Authorize as manager")]
         public void GivenAuthorizeAsManager(Table table)
         {
-            SignInRequest authManager = table.CreateInstance<SignInRequest>();
+            SwaggerSignInRequest authManager = table.CreateInstance<SwaggerSignInRequest>();
             _managerToken = _authenticationClient.AuthorizeUser(authManager);
         }
 
@@ -93,7 +93,7 @@
         [Given(@"Authorize as teacher")]
         public void GivenAuthorizeAsTeacher(Table table)
         {
-            SignInRequest authManager = table.CreateInstance<SignInRequest>();
+            SwaggerSignInRequest authManager = table.CreateInstance<SwaggerSignInRequest>();
             _teacherToken = _authenticationClient.AuthorizeUser(authManager);
         }
 
@@ -115,7 +115,7 @@
         [Given(@"Authorize as student")]
         public void GivenAuthorizeAsStudent(Table table)
         {
-            SignInRequest authStudent = table.CreateInstance<SignInRequest>();
+            SwaggerSignInRequest authStudent = table.CreateInstance<SwaggerSignInRequest>();
             _studentToken = _authenticationClient.AuthorizeUser(authStudent);
         }
 

@@ -59,7 +59,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         [Given(@"authorize manager in service")]
         public void GivenAuthorizeManagerInService(Table table)
         {
-            SignInRequest managerSignInRequest = table.CreateInstance<SignInRequest>();
+            SwaggerSignInRequest managerSignInRequest = table.CreateInstance<SwaggerSignInRequest>();
             _managerToken = _authenticationClient.AuthorizeUser(managerSignInRequest);
         }
 
@@ -103,7 +103,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         [Then(@"authorize users in service")]
         public void ThenAuthorizeUsersInService(Table table)
         {
-            List<SignInRequest> signInRequests = table.CreateSet<SignInRequest>().ToList();
+            List<SwaggerSignInRequest> signInRequests = table.CreateSet<SwaggerSignInRequest>().ToList();
             foreach (var signInUser in signInRequests)
             {
                 var userToken = _authenticationClient.AuthorizeUser(signInUser);

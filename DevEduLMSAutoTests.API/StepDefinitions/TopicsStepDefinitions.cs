@@ -33,16 +33,16 @@
         [Given(@"authorize user as manager")]
         public void GivenAuthorizeUsers(Table table)
         {
-            List<SignInRequest> signInRequests = table.CreateSet<SignInRequest>().ToList();
-            SignInRequest managerSignInRequest = signInRequests[0];
+            List<SwaggerSignInRequest> signInRequests = table.CreateSet<SwaggerSignInRequest>().ToList();
+            SwaggerSignInRequest managerSignInRequest = signInRequests[0];
             _managerToken = _authenticationClient.AuthorizeUser(managerSignInRequest);
         }
 
         [Given(@"authorize user as methodist")]
         public void GivenAuthorizeUsersAsMethodist(Table table)
         {
-            List<SignInRequest> signInRequests = table.CreateSet<SignInRequest>().ToList();
-            SignInRequest methodistSignInRequest = signInRequests[0];
+            List<SwaggerSignInRequest> signInRequests = table.CreateSet<SwaggerSignInRequest>().ToList();
+            SwaggerSignInRequest methodistSignInRequest = signInRequests[0];
             _methodistToken = _authenticationClient.AuthorizeUser(methodistSignInRequest);
         }
 

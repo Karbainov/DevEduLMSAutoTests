@@ -31,7 +31,10 @@
 
   <ItemGroup>
     <Folder Include="Drivers\" />
-    <Folder Include="StepDefinitions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DevEduLMSAutoTests.API\DevEduLMSAutoTests.API.csproj" />
   </ItemGroup>
 
 </Project>
