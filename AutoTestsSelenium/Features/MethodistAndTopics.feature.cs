@@ -113,10 +113,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("authorize as methodist", ((string)(null)), table9, "When ");
 #line hidden
 #line 11
- testRunner.And("methodist click \"courses\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("methodist click courses button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
- testRunner.And("methodist choose course to edit and click \"edit\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("methodist choose course to edit and click edit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
                             "TopicNumber",
@@ -130,13 +130,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("methodist add new topic", ((string)(null)), table10, "And ");
 #line hidden
 #line 16
- testRunner.And("methodist should see the updated topics in the course", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 17
  testRunner.And("methodist edit courses order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 18
- testRunner.And("methodist should see the updated order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 17
+ testRunner.And("methodist should see the updated topics in the course", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
