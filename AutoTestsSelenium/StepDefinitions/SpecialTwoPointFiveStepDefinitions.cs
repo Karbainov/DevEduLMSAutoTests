@@ -1,3 +1,4 @@
+using AutoTestsSelenium.Support.Models.Request;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace AutoTestsSelenium.StepDefinitions
@@ -6,11 +7,19 @@ namespace AutoTestsSelenium.StepDefinitions
     public class SpecialTwoPointFiveStepDefinitions
     {
         private IWebDriver _driver;
-        private readonly By _emailInput = By.XPath("//input[@ class='form-input']");
-        private readonly By _passwordInput = By.XPath("//input[@class='form-input custom-password']");
-        private readonly By _enterButton = By.XPath("//button[@class='sc-bczRLJ iJvUkY btn btn-fill flex-container']");
-        private readonly By _homeworkButton = By.XPath("//span[text()='Домашние задания'] ");
-        private readonly By _createHomework = By.XPath("//button[@class='sc-bczRLJ iJvUkY btn btn-fill flex-container']");
+        private RegistrationWindow _registrationWindow;
+        private SingInWindow _singInWindow;
+        private HomeworkWindow _homeworkWindow;
+
+        SpecialTwoPointFiveStepDefinitions()
+        {
+            _driver = new ChromeDriver();
+            _registrationWindow = new RegistrationWindow();
+            _singInWindow = new SingInWindow();
+            _homeworkWindow = new HomeworkWindow();
+        }
+        
+        //private readonly By _createHomework = By.XPath("//button[@class='sc-bczRLJ iJvUkY btn btn-fill flex-container']");
         private readonly By _choiceGroupNumber = By.XPath("//span[text()='QA Automation'] ");
         private readonly By _nameCreateHomework = By.XPath("//input[@class='form-input']");
         private readonly By _textInputCreateHomework = By.XPath("//textarea[@class='form-input']");
@@ -29,9 +38,9 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenAuthorizationUserAsMethodist(Table table)
         {
             SingInRequest singInRequest = table.CreateInstance<SingInRequest>();
-            var emailBox = _driver.FindElement(_emailInput);
+            var emailBox = _driver.FindElement(_singInWindow.XPathEmailBox);
             emailBox.SendKeys(singInRequest.Email);
-            var passBox = _driver.FindElement(_passwordInput);
+            var passBox = _driver.FindElement(_singInWindow.XPathPasswordBox);
             passBox.Clear();
             passBox.SendKeys(singInRequest.Password);
         }
@@ -39,7 +48,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"methodist click botton to come in")]
         public void WhenMethodistClickBottonToComeIn()
         {
-            var enter = _driver.FindElement(_enterButton);
+            var enter = _driver.FindElement(_singInWindow.XPathSingInButton);
             enter.Click();
             Thread.Sleep(1000);
         }
@@ -47,10 +56,10 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"methodist click button add task")]
         public void WhenMethodistClickButtonAddTask()
         {
-            var homework = _driver.FindElement(_homeworkButton);
+            var homework = _driver.FindElement(_homeworkWindow.XPathHomeworkButton);
             homework.Click();
 
-            var createHomework = _driver.FindElement(_createHomework);
+            var createHomework = _driver.FindElement(_homeworkWindow.XpathCreateHomework);
             createHomework.Click();
             Thread.Sleep(1000);
         }
