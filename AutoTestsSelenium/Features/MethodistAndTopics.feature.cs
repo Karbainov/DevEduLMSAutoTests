@@ -19,7 +19,7 @@ namespace AutoTestsSelenium.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class SpecialTwoPointFiveFeature : object, Xunit.IClassFixture<SpecialTwoPointFiveFeature.FixtureData>, System.IDisposable
+    public partial class MethodistAndTopicsFeature : object, Xunit.IClassFixture<MethodistAndTopicsFeature.FixtureData>, System.IDisposable
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -28,10 +28,10 @@ namespace AutoTestsSelenium.Features
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "SpecialTwoPointFive.feature"
+#line 1 "MethodistAndTopics.feature"
 #line hidden
         
-        public SpecialTwoPointFiveFeature(SpecialTwoPointFiveFeature.FixtureData fixtureData, AutoTestsSelenium_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public MethodistAndTopicsFeature(MethodistAndTopicsFeature.FixtureData fixtureData, AutoTestsSelenium_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();
@@ -40,7 +40,7 @@ namespace AutoTestsSelenium.Features
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "SpecialTwoPointFive", "A short summary of the feature", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "MethodistAndTopics", "A short summary of the feature", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -80,16 +80,16 @@ namespace AutoTestsSelenium.Features
             this.TestTearDown();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Creating an assignment by a methodologist for students")]
-        [Xunit.TraitAttribute("FeatureTitle", "SpecialTwoPointFive")]
-        [Xunit.TraitAttribute("Description", "Creating an assignment by a methodologist for students")]
+        [Xunit.SkippableFactAttribute(DisplayName="Creating new topics by a methodist for students")]
+        [Xunit.TraitAttribute("FeatureTitle", "MethodistAndTopics")]
+        [Xunit.TraitAttribute("Description", "Creating new topics by a methodist for students")]
         [Xunit.TraitAttribute("Category", "tag1")]
-        public void CreatingAnAssignmentByAMethodologistForStudents()
+        public void CreatingNewTopicsByAMethodistForStudents()
         {
             string[] tagsOfScenario = new string[] {
                     "tag1"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Creating an assignment by a methodologist for students", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Creating new topics by a methodist for students", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -101,63 +101,42 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 7
- testRunner.Given("Open DevEdu web page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("Open DevEducation web", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password"});
-                table11.AddRow(new string[] {
+                table9.AddRow(new string[] {
                             "maksim@example.com",
                             "maksimmaksim"});
 #line 8
- testRunner.When("authorization user as methodist", ((string)(null)), table11, "When ");
+ testRunner.When("authorize as methodist", ((string)(null)), table9, "When ");
 #line hidden
 #line 11
- testRunner.And("methodist click botton to come in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("methodist click \"courses\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
- testRunner.And("methodist click button add task", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("methodist choose course to edit and click \"edit\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                            "TopicNumber",
                             "Name",
-                            "Description",
-                            "LinkToRecord"});
-                table12.AddRow(new string[] {
-                            "ЗаданиеЗадание",
-                            "string",
-                            "http://fjfjf.com"});
+                            "Duration"});
+                table10.AddRow(new string[] {
+                            "7",
+                            "Двумерные массивы",
+                            "12"});
 #line 13
- testRunner.When("methodist create draft Homework", ((string)(null)), table12, "When ");
+ testRunner.And("methodist add new topic", ((string)(null)), table10, "And ");
 #line hidden
 #line 16
- testRunner.Then("methodist click button save as draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("methodist should see the updated topics in the course", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 17
- testRunner.When("methodist see all created homeworks", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("methodist edit courses order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 18
- testRunner.And("methodist click link edit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 19
- testRunner.When("methodist edits homework", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 20
- testRunner.Then("methodist click button save draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 21
- testRunner.And("teacher authorization", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 22
- testRunner.And("teacher click button homework assignment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 23
- testRunner.When("teacher fill out a new assignment form", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 24
- testRunner.And("teacher click button publish", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 25
- testRunner.Then("student should sees homework", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("methodist should see the updated order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -170,12 +149,12 @@ this.ScenarioInitialize(scenarioInfo);
             
             public FixtureData()
             {
-                SpecialTwoPointFiveFeature.FeatureSetup();
+                MethodistAndTopicsFeature.FeatureSetup();
             }
             
             void System.IDisposable.Dispose()
             {
-                SpecialTwoPointFiveFeature.FeatureTearDown();
+                MethodistAndTopicsFeature.FeatureTearDown();
             }
         }
     }

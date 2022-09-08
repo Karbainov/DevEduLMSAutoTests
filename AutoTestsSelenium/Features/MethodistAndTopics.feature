@@ -4,8 +4,8 @@ A short summary of the feature
 
 @tag1
 Scenario:  Creating new topics by a methodist for students
-	Given Open DevEducation web page
-	When authorization user as methodist
+	Given Open DevEducation web
+	When authorize as methodist
 	| Email                 | Password     |
 	| maksim@example.com    | maksimmaksim |
 	And methodist click "courses" button 
