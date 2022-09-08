@@ -19,6 +19,7 @@
         private int _taskId;
         private int _homeworkId;
         private int _studentHomeworkId;
+
         public StudentHomeworkCheckingStepDefinitions()
         {
             _authenticationClient = new AuthenticationClient();

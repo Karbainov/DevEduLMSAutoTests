@@ -1,6 +1,4 @@
-﻿using TechTalk.SpecFlow;
-
-namespace DevEduLMSAutoTests.API.Support
+﻿namespace DevEduLMSAutoTests.API.Support
 {
     [Binding]
     public sealed class Hooks
