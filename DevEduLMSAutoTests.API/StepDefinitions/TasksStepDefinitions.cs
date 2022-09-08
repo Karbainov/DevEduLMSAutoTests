@@ -1,5 +1,3 @@
-using TechTalk.SpecFlow;
-
 namespace DevEduLMSAutoTests.API.StepDefinitions
 {
     [Binding]
