@@ -14,4 +14,5 @@ Scenario:  Creating new topics by a methodist for students
 	| TopicNumber | Name              | Duration |
 	| 7           | Двумерные массивы | 12       |
 	And methodist edit courses order 
+	And methodist delete first topic
 	And methodist should see the updated topics in the course

@@ -13,7 +13,7 @@
         private readonly By _saveTopicButton = By.XPath("//button[@class='sc-bczRLJ iJvUkY btn btn-fill flex-container']");
 
         private readonly By _drugAndDropTopic = By.XPath("//div[@data-rbd-drag-handle-draggable-id='Базовое понимание классов']");
-        private readonly By _placeToDrop = By.XPath("//*[@id='root']/div/main/div[1]/div[3]/div[1]");
+        private readonly By _placeToDrop = By.XPath("//input[@value='1']/ancestor::div");
 
         MethodistAndTopicsStepDefinitions()
         {
@@ -77,6 +77,13 @@
 
             Thread.Sleep(2000);
         }
+
+        [When(@"methodist delete first topic")]
+        public void WhenMethodistDeleteFirstTopic()
+        {
+            throw new PendingStepException();
+        }
+
 
         [When(@"methodist should see the updated topics in the course")]
         public void WhenMethodistShouldSeeTheUpdatedTopicsInTheCourse()

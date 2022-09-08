@@ -133,6 +133,9 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("methodist edit courses order", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 17
+ testRunner.And("methodist delete first topic", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 18
  testRunner.And("methodist should see the updated topics in the course", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
