@@ -66,7 +66,7 @@
         {      
             foreach (var teacher in _teachers)
             {
-                _usersClient.AddNewRoleToUser(teacher.Id, Options.RoleTeacher, _managerToken);
+                _usersClient.AddNewRoleToUser(teacher.Id, OptionsSwagger.RoleTeacher, _managerToken);
             }
         }
 
@@ -82,11 +82,11 @@
         {
             foreach (var student in _students)
             {
-                _groupsClient.AddUserToGroup(_groupId, student.Id, Options.RoleStudent, _managerToken);
+                _groupsClient.AddUserToGroup(_groupId, student.Id, OptionsSwagger.RoleStudent, _managerToken);
             }
             foreach (var teacher in _teachers)
             {
-                _groupsClient.AddUserToGroup(_groupId, teacher.Id, Options.RoleTeacher, _managerToken);
+                _groupsClient.AddUserToGroup(_groupId, teacher.Id, OptionsSwagger.RoleTeacher, _managerToken);
             }
         }
 
@@ -158,7 +158,7 @@
         {
             _homeworkStatus = _studentHomeworksClient.GetStudenthomeworkById(_homeworkId, _studentToken, HttpStatusCode.OK).Status;
             string expectedStstus = "Done";
-            Assert.AreEqual(expectedStstus, _homeworkStatus);
+            Assert.Equal(expectedStstus, _homeworkStatus);
         }
     }
 }

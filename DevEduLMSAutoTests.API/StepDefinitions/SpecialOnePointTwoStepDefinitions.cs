@@ -36,8 +36,8 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         {
             SwaggerSignInRequest adminSignInRequest = new SwaggerSignInRequest()
             {
-                Email = Options.AdminsEmail,
-                Password = Options.AdminsPassword,
+                Email = OptionsSwagger.AdminsEmail,
+                Password = OptionsSwagger.AdminsPassword,
             };
             _adminToken = _authenticationClient.AuthorizeUser(adminSignInRequest);
         }
@@ -58,8 +58,8 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         public void GivenManagerAddRolesToUser()
         {
             _usersClient = new UsersClient();
-            _usersClient.AddNewRoleToUser(_methodistId, Options.RoleMethodist, _adminToken, HttpStatusCode.NoContent);
-            _usersClient.AddNewRoleToUser(_teacherId, Options.RoleTeacher, _adminToken, HttpStatusCode.NoContent);
+            _usersClient.AddNewRoleToUser(_methodistId, OptionsSwagger.RoleMethodist, _adminToken, HttpStatusCode.NoContent);
+            _usersClient.AddNewRoleToUser(_teacherId, OptionsSwagger.RoleTeacher, _adminToken, HttpStatusCode.NoContent);
         }
 
         [Given(@"manager create new groups")]
@@ -92,7 +92,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         public void GivenAdminAddTeacherGroup()
         {
             _groupsClient = new GroupsClient();
-            _groupsClient.AddUserToGroup(_groupId, _teacherId, Options.RoleTeacher, _adminToken);
+            _groupsClient.AddUserToGroup(_groupId, _teacherId, OptionsSwagger.RoleTeacher, _adminToken);
         }
 
 
@@ -101,7 +101,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         {
             _lessonsClient = new LessonsClient();
             List<AddLessonResponse> actualLesson = _lessonsClient.GetAllLessonsUnpublishedByGroupId(_groupId, _teacherToken);
-            CollectionAssert.Contains(actualLesson, _expectedLesson);
+            Assert.Equal(_expectedLesson, actualLesson);
         }
 
         [When(@"teacher update lesson")]
@@ -119,7 +119,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         {
             _lessonsClient = new LessonsClient();
             List<AddLessonResponse> actualLesson = _lessonsClient.GetAllLessonsGroupId(_groupId, _teacherToken);
-            CollectionAssert.Contains(actualLesson, _expectedLesson);
+            Assert.Equal(_expectedLesson, actualLesson);
         }
     }
 }

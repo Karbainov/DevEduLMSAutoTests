@@ -6,7 +6,7 @@
         {
             get
             {
-                return By.XPath($"//*[text()='к заданию']");
+                return By.XPath($"//*[@class='arrow-right ']");
             }
             private set { }
         }
@@ -14,7 +14,7 @@
         {
             get
             {
-                return By.XPath($"//input[@name='answer']/..");
+                return By.XPath($"//input[@name='answer']");
             }
             private set { }
         }

@@ -51,7 +51,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         [Given(@"register new users with roles")]
         public void GivenRegisterNewUsersWithRoles(Table table)
         {
-            _managerToken = _authenticationClient.AuthorizeUser(new SwaggerSignInRequest() { Email = Options.ManagersEmail, Password = Options.ManagersPassword });
+            _managerToken = _authenticationClient.AuthorizeUser(new SwaggerSignInRequest() { Email = OptionsSwagger.ManagersEmail, Password = OptionsSwagger.ManagersPassword });
             _newUsers = table.CreateSet<RegistationModelWithRole>().ToList();
             foreach (var user in _newUsers)
             {
@@ -59,7 +59,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
                 int id = _authenticationClient.RegisterUser(registerRequest).Id;
                 switch (user.Role)
                 {
-                    case Options.RoleTeacher:
+                    case OptionsSwagger.RoleTeacher:
                         {
                             _teachersIds.Add(id);
                             _usersClient.AddNewRoleToUser(id, user.Role, _managerToken, HttpStatusCode.NoContent);
@@ -67,7 +67,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
                             { Email = user.Email, Password = user.Password }));
                         }
                         break;
-                    case Options.RoleTutor:
+                    case OptionsSwagger.RoleTutor:
                         {
                             _tutorsIds.Add(id);
                             _usersClient.AddNewRoleToUser(id, user.Role, _managerToken, HttpStatusCode.NoContent);
@@ -75,7 +75,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
                             { Email = user.Email, Password = user.Password }));
                         }
                         break;
-                    case Options.RoleMethodist:
+                    case OptionsSwagger.RoleMethodist:
                         {
                             _methodistsIds.Add(id);
                             _usersClient.AddNewRoleToUser(id, user.Role, _managerToken, HttpStatusCode.NoContent);
@@ -83,7 +83,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
                             { Email = user.Email, Password = user.Password }));
                         }
                         break;
-                    case Options.RoleStudent:
+                    case OptionsSwagger.RoleStudent:
                         {
                             _studentsIds.Add(id);
                             _studentsTokens.Add(_authenticationClient.AuthorizeUser(new SwaggerSignInRequest()
@@ -119,8 +119,8 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         {
             SwaggerSignInRequest adminSignInRequest = new SwaggerSignInRequest()
             {
-                Email = Options.AdminsEmail,
-                Password = Options.AdminsPassword,
+                Email = OptionsSwagger.AdminsEmail,
+                Password = OptionsSwagger.AdminsPassword,
             };
             _managerToken = _authenticationClient.AuthorizeUser(adminSignInRequest);
         }
@@ -140,8 +140,8 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         [Given(@"manager add roles to users")]
         public void GivenManagerAddRolesToUsers()
         {
-            _usersClient.AddNewRoleToUser(_methodistMainId, Options.RoleMethodist, _managerToken);
-            _usersClient.AddNewRoleToUser(_teacherMainId, Options.RoleTeacher, _managerToken);
+            _usersClient.AddNewRoleToUser(_methodistMainId, OptionsSwagger.RoleMethodist, _managerToken);
+            _usersClient.AddNewRoleToUser(_teacherMainId, OptionsSwagger.RoleTeacher, _managerToken);
         }
 
         [Given(@"manager create new group")]
@@ -157,15 +157,15 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         {
             foreach(var student in _studentsIds)
             {
-                _groupsClient.AddUserToGroup(_groupId, student, Options.RoleStudent, _managerToken);
+                _groupsClient.AddUserToGroup(_groupId, student, OptionsSwagger.RoleStudent, _managerToken);
             }
             foreach(var techer in _teachersIds)
             {
-                _groupsClient.AddUserToGroup(_groupId, techer, Options.RoleTeacher, _managerToken);
+                _groupsClient.AddUserToGroup(_groupId, techer, OptionsSwagger.RoleTeacher, _managerToken);
             }
-            foreach(var tutor in _teachersIds)
+            foreach(var tutor in _tutorsIds)
             {
-                _groupsClient.AddUserToGroup(_groupId, tutor, Options.RoleTutor, _managerToken);
+                _groupsClient.AddUserToGroup(_groupId, tutor, OptionsSwagger.RoleTutor, _managerToken);
             }
         }
 
@@ -188,14 +188,14 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         public void WhenTeacherSeeTask()
         {
             List<TaskResponse> actualTasks = _tasksClient.GetTasksByGroupId(_groupId, _teacherMainToken);
-            CollectionAssert.Contains(actualTasks, _expectedTask);
+            Assert.Contains(_expectedTask, actualTasks);
         }
 
         [When(@"teacher sees task by id")]
         public void WhenTeacherSeesTaskById()
         {
             TaskResponse actualTask = _tasksClient.GetTaskById(_taskId, _teacherMainToken);
-            Assert.AreEqual(_expectedTask, actualTask);
+            Assert.Equal(_expectedTask, actualTask);
         }
 
         [When(@"teacher post task")]
@@ -225,7 +225,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         {
             List<GetHomeworkByGroupIdResponse> actualHomeworks = _homeworksClient.
                 GetAllHomeworksByGroupId(_groupId, _studentMainToken);
-            CollectionAssert.Contains(actualHomeworks, _expectedHomework);
+            Assert.Contains(_expectedHomework, actualHomeworks);
         }
     }
 }

@@ -48,7 +48,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         public void GivenManagerCanSeeThisPayment()
         {
             List<AddPaymentToUserResponse> listOfPayments = _paymentClient.GetPaymentsByUserId(_userId, _managerToken);
-            CollectionAssert.Contains(listOfPayments, _userPayment);
+            Assert.Contains(_userPayment, listOfPayments);
         }
 
         [Given(@"manager updates this payment")]
@@ -63,7 +63,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         public void GivenManagerCanSeeTheUpdatedPayment()
         {
             List<AddPaymentToUserResponse> listOfPayments = _paymentClient.GetPaymentsByUserId(_userId, _managerToken);
-            CollectionAssert.Contains(listOfPayments, _updatedPayment);
+            Assert.Contains(_updatedPayment, listOfPayments);
         }
 
         [Given(@"manager delete this payment")]
@@ -77,7 +77,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         public void GivenManagerCanSeeThatThePaymentDeleted()
         {
             List<AddPaymentToUserResponse> listOfPayments = _paymentClient.GetPaymentsByUserId(_userId, _managerToken);
-            CollectionAssert.DoesNotContain(listOfPayments, _updatedPayment);
+            Assert.DoesNotContain(_updatedPayment, listOfPayments);
         }
 
     }
