@@ -11,7 +11,7 @@ namespace DevEduMLSAutoTests.Api.Support
             _clearTables = new ClearTables();
         }
 
-        [BeforeScenario(new string[] { "@sudent", "@teacher", "@methodist" })]
+        [BeforeScenario(new string[] { "@sudent", "@teacher", "@methodist", "@studentHomework", "@manager"})]
         public void BeforeScenarioWithTag()
         {
             _clearTables.ClearDB();
