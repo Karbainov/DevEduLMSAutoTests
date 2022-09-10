@@ -1,51 +1,47 @@
-using DevEduLMSAutoTests.API.StepDefinitions;
-using DevEduLMSAutoTests.API.Support.Models.Request;
-using DevEduLMSAutoTests.API.Support;
-
 namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
     public class StatisticsStepDefinitions
     {
         private TasksStepDefinitions _stepsBySwagger;
-        private List<SingInRequest> _studensSignIn;
-        private SingInRequest _teacherSingIn;
+        private List<SwaggerSignInRequest> _studensSignIn;
+        private SwaggerSignInRequest _teacherSingIn;
         private IWebDriver _driver;
         private SingInWindow _singInElements;
         private NavigatePanelElements _navigateButtons;
         private string _groupName;
         private TeachersHomeworkWindow _teacersHomeworkWindowElements;
         private StudentsHomeworkWindow _studentsHomeworkWindowElements;
-        private ClearTables clearDB;
+        private ClearTables _clearDB;
 
 
         public StatisticsStepDefinitions()
         {
             _stepsBySwagger = new TasksStepDefinitions();
-            _studensSignIn = new List<SingInRequest>();
+            _studensSignIn = new List<SwaggerSignInRequest>();
             _driver = new ChromeDriver();
             _singInElements = new SingInWindow();
             _navigateButtons = new NavigatePanelElements();
             _teacersHomeworkWindowElements = new TeachersHomeworkWindow();
             _studentsHomeworkWindowElements = new StudentsHomeworkWindow();
-            clearDB = new ClearTables();
+            _clearDB = new ClearTables();
         }
 
         [Given(@"register new users with roles")]
         public void GivenRegisterNewUsersWithRoles(Table table)
         {
-            clearDB.ClearDB();
+            _clearDB.ClearDB();
             _stepsBySwagger.GivenRegisterNewUsersWithRoles(table);
             List<RegistationModelWithRole> users = table.CreateSet<RegistationModelWithRole>().ToList();
             foreach(var user in users)
             {
                 if(user.Role == "Student")
                 {
-                    _studensSignIn.Add(new SingInRequest() { Email=user.Email, Password = user.Password });
+                    _studensSignIn.Add(new SwaggerSignInRequest() { Email=user.Email, Password = user.Password });
                 }
                 else if(user.Role == "Teacher")
                 {
-                    _teacherSingIn = new SingInRequest() {Email=user.Email, Password=user.Password };
+                    _teacherSingIn = new SwaggerSignInRequest() {Email=user.Email, Password=user.Password };
                 }
             }
         }
@@ -76,7 +72,7 @@ namespace AutoTestsSelenium.StepDefinitions
             _driver.FindElement(_singInElements.XPathSingInButton).Click();
             Thread.Sleep(100);
             _driver.FindElement(_navigateButtons.XPathSwitchRoleButton).Click();
-            _driver.FindElement(_navigateButtons.XPathRoleButton(Options.RoleTeacher)).Click();
+            _driver.FindElement(_navigateButtons.XPathRoleButton(OptionsSwagger.RoleTeacher)).Click();
             _driver.FindElement(_navigateButtons.XPathNewHomeworkButton).Click();
             _driver.FindElement(_teacersHomeworkWindowElements.XPathGroupRB).Click();
             var dateTB = _driver.FindElement(_teacersHomeworkWindowElements.XPathStartDateTextBox);
@@ -123,7 +119,7 @@ namespace AutoTestsSelenium.StepDefinitions
             _driver.FindElement(_singInElements.XPathSingInButton).Click();
             Thread.Sleep(100);
             _driver.FindElement(_navigateButtons.XPathSwitchRoleButton).Click();
-            _driver.FindElement(_navigateButtons.XPathRoleButton(Options.RoleTeacher)).Click();
+            _driver.FindElement(_navigateButtons.XPathRoleButton(OptionsSwagger.RoleTeacher)).Click();
             _driver.FindElement(_navigateButtons.XPathCheckHomeworksButton).Click();            
         }
 

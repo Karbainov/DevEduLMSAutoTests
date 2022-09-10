@@ -55,14 +55,14 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         [Given(@"authorize manager in service")]
         public void GivenAuthorizeManagerInService()
         {
-            _managerToken = _authenticationClient.AuthorizeUser(new SignInRequest { Email = Options.ManagersEmail, Password = Options.ManagersPassword});
+            _managerToken = _authenticationClient.AuthorizeUser(new SwaggerSignInRequest { Email = OptionsSwagger.ManagersEmail, Password = OptionsSwagger.ManagersPassword});
         }
 
         [Given(@"manager add roles to users in service")]
         public void GivenManagerAddRolesToUsersInService()
         {
-            _usersClient.AddNewRoleToUser(_teacherId, Options.RoleTeacher, _managerToken);
-            _usersClient.AddNewRoleToUser(_tutorId, Options.RoleTutor, _managerToken);
+            _usersClient.AddNewRoleToUser(_teacherId, OptionsSwagger.RoleTeacher, _managerToken);
+            _usersClient.AddNewRoleToUser(_tutorId, OptionsSwagger.RoleTutor, _managerToken);
         }
 
         [When(@"manager create new group in service")]
@@ -75,9 +75,9 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         [When(@"manager add users to group in service")]
         public void WhenManagerAddUsersToGroupInService()
         {
-            _groupsClient.AddUserToGroup(_groupId, _teacherId, Options.RoleTeacher, _managerToken);
-            _groupsClient.AddUserToGroup(_groupId, _tutorId, Options.RoleTutor, _managerToken);
-            _groupsClient.AddUserToGroup(_groupId, _studentId, Options.RoleStudent, _managerToken);
+            _groupsClient.AddUserToGroup(_groupId, _teacherId, OptionsSwagger.RoleTeacher, _managerToken);
+            _groupsClient.AddUserToGroup(_groupId, _tutorId, OptionsSwagger.RoleTutor, _managerToken);
+            _groupsClient.AddUserToGroup(_groupId, _studentId, OptionsSwagger.RoleStudent, _managerToken);
         }
 
         [Then(@"authorize users in service and check the user's group in service")]
@@ -87,9 +87,9 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             GetAllGroupsResponse group = _groupMappers.MappGetGroupByIdResponseToGetAllGroupsResponse(actualGroup);
             foreach (var user in _users)
             {
-                var userToken = _authenticationClient.AuthorizeUser(new SignInRequest { Email = user.Email, Password = user.Password});
+                var userToken = _authenticationClient.AuthorizeUser(new SwaggerSignInRequest { Email = user.Email, Password = user.Password});
                 RegisterResponse actualUser = _usersClient.GetUserInfoByToken(userToken);
-                Assert.AreEqual(group, actualUser.Groups.Find(i => i.Id == group.Id));
+                Assert.Equal(group, actualUser.Groups.Find(i => i.Id == group.Id));
             }
         }
     }

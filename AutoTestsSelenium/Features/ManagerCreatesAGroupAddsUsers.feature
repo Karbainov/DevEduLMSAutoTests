@@ -1,11 +1,10 @@
-﻿Feature: FrontManagerCreatesAGroupAddsUsers
+﻿Feature: ManagerCreatesAGroupAddsUsers
 
 A short summary of the feature
 
 @manager @teacher @tutor @student
-Scenario: Front manager creates a group adds students and appoints a teacher and tutor
-Given open the brouser and open DevEducation web page
-And registration users in service
+Scenario: Manager creates a group adds students and appoints a teacher and tutor
+Given registration users in service
 | FirstName | LastName   | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 | Isabella  | Abramson   | string     | isi@gmail.com    | Bella    | 11345578 | SaintPetersburg | 22.05.2001 | string        | 89514551247 | Student |
 | Maksim    | Karbainov  | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |

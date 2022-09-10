@@ -10,6 +10,7 @@
             }
             private set { }
         }
+
         public By XPathSwitchRoleButton
         {
             get
@@ -27,6 +28,7 @@
             }
             private set { }
         }
+
         public By XPathCheckHomeworksButton
         {
             get
@@ -35,6 +37,7 @@
             }
             private set { }
         }
+
         public By XPathExitButton
         {
             get
@@ -43,26 +46,27 @@
             }
             private set { }
         }
+
         public By XPathRoleButton(string role)
         {
             switch (role)
             {
-                case Options.RoleTeacher:
+                case OptionsSwagger.RoleTeacher:
                     role = "Преподаватель";
                     break;
-                case Options.RoleTutor:
+                case OptionsSwagger.RoleTutor:
                     role = "Тьютор";
                     break;
-                case Options.RoleManager:
+                case OptionsSwagger.RoleManager:
                     role = "Менеджер";
                     break;
-                case Options.RoleAdmin:
+                case OptionsSwagger.RoleAdmin:
                     role = "Администратор";
                     break;
-                case Options.RoleStudent:
+                case OptionsSwagger.RoleStudent:
                     role = "Студент";
                     break;
-                case Options.RoleMethodist:
+                case OptionsSwagger.RoleMethodist:
                     role = "Методист";
                     break;
             }

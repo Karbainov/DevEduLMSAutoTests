@@ -1,67 +1,63 @@
 namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
-    public class FrontManagerCreatesAGroupAddsUsersStepDefinitions
+    public class ManagerCreatesAGroupAddsUsersStepDefinitions
     {
         private ManagerCreatesAGroupAddsUsersStepDefinitions _managerCreatesAGroupAddsUsersBySwagger;
         private IWebDriver _driver;
         private SingInWindow _singInWindow;
         private CreateGroupWindow _createGroupWindow;
-        private StudentLessons _studentLessons;
-        private TeacherLessons _teacherLessons;
-        private TutorLessons _tutorLessons;
+        private StudentLessonsWindow _studentLessons;
+        private TeacherLessonsWindow _teacherLessons;
+        private TutorLessonsWindow _tutorLessons;
         private Actions _action;
         private RegistationModelWithRole _student;
         private RegistationModelWithRole _teacher;
         private RegistationModelWithRole _tutor;
+        private ClearTables _clearDB;
 
-        public FrontManagerCreatesAGroupAddsUsersStepDefinitions()
+        public ManagerCreatesAGroupAddsUsersStepDefinitions()
         {
             _managerCreatesAGroupAddsUsersBySwagger = new ManagerCreatesAGroupAddsUsersStepDefinitions();
             _driver = new ChromeDriver();
             _singInWindow = new SingInWindow();
             _createGroupWindow = new CreateGroupWindow();
-            _studentLessons = new StudentLessons();
-            _teacherLessons = new TeacherLessons();
-            _tutorLessons = new TutorLessons();
+            _studentLessons = new StudentLessonsWindow();
+            _teacherLessons = new TeacherLessonsWindow();
+            _tutorLessons = new TutorLessonsWindow();
             _action = new Actions(_driver);
             _student = new RegistationModelWithRole();
             _teacher = new RegistationModelWithRole();
             _tutor = new RegistationModelWithRole();
-        }
-
-        [Given(@"open the brouser and open DevEducation web page")]
-        public void GivenOpenTheBrouserAndOpenDevEducationWebPage()
-        {
-            _driver.Manage().Window.Maximize();
-            _driver.Navigate().GoToUrl(Urls.Host);
+            _clearDB = new ClearTables();
         }
 
         [Given(@"registration users in service")]
         public void GivenRegistrationUsersInService(Table table)
         {
+            _clearDB.ClearDB();
             List<RegistationModelWithRole> users = table.CreateSet<RegistationModelWithRole>().ToList();
             foreach (var user in users)
             {
                 switch (user.Role)
                 {
-                    case DevEduLMSAutoTests.API.Support.Options.RoleStudent:
+                    case OptionsSwagger.RoleStudent:
                         {
                             _student = user;
                         }
                         break;
-                    case DevEduLMSAutoTests.API.Support.Options.RoleTeacher:
+                    case OptionsSwagger.RoleTeacher:
                         {
                             _teacher = user;
                         }
                         break;
-                    case DevEduLMSAutoTests.API.Support.Options.RoleTutor:
+                    case OptionsSwagger.RoleTutor:
                         {
                             _tutor = user;
                         }
                         break;
                 }
-                _managerCreatesAGroupAddsUsersBySwagger.GivenRegisterNewUsersInService(table);
+                _managerCreatesAGroupAddsUsersBySwagger.GivenRegistrationUsersInService(table);
             }
         }
 

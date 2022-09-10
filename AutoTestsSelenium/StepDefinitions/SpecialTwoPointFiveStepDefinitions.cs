@@ -1,5 +1,3 @@
-using static System.Net.Mime.MediaTypeNames;
-
 namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
@@ -28,7 +26,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"authorization user as methodist")]
         public void WhenAuthorizationUserAsMethodist(Table table)
         {
-            SingInRequest singInRequest = table.CreateInstance<SingInRequest>();
+            SwaggerSignInRequest singInRequest = table.CreateInstance<SwaggerSignInRequest>();
             var emailBox = _driver.FindElement(_emailInput);
             emailBox.SendKeys(singInRequest.Email);
             var passBox = _driver.FindElement(_passwordInput);
@@ -61,7 +59,7 @@ namespace AutoTestsSelenium.StepDefinitions
             var groupNumber = _driver.FindElement(_choiceGroupNumber);
             groupNumber.Click();
 
-            CreateHomework createHomework = table.CreateInstance<CreateHomework>();
+            AddNewHomework createHomework = table.CreateInstance<AddNewHomework>();
             var nameHomework = _driver.FindElement(_nameCreateHomework);
             nameHomework.SendKeys(createHomework.Name);
 
@@ -69,7 +67,7 @@ namespace AutoTestsSelenium.StepDefinitions
             textInput.SendKeys(createHomework.Description);
 
             var linkInput = _driver.FindElement(_linkInputCreateHomework);
-            linkInput.SendKeys(createHomework.LinkToRecord);
+            linkInput.SendKeys(createHomework.Link);
         }
 
         [Then(@"methodist click button save as draft")]

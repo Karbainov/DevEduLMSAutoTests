@@ -1,6 +1,4 @@
-﻿using System.Data.SqlClient;
-
-namespace DevEduLMSAutoTests.API.Support
+﻿namespace DevEduLMSAutoTests.API.Support
 {
     public class ClearTables
     {
