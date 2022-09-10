@@ -35,6 +35,14 @@
             }
             private set { }
         }
+        public By XPathGeneralProgressButton
+        {
+            get
+            {
+                return By.XPath($"//*[@href='/general-progress']");
+            }
+            private set { }
+        }
         public By XPathExitButton
         {
             get
@@ -68,5 +76,6 @@
             }
             return By.XPath($"//li[text()='{role}']");
         }
+
     }
 }
