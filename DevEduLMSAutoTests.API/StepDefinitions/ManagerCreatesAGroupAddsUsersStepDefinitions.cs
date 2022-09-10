@@ -33,17 +33,17 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
                 _users.Add(registerUser);
                 switch (registerUser.Role)
                 {
-                    case Options.RoleStudent:
+                    case OptionsSwagger.RoleStudent:
                         {
                             _studentId = id;
                         }
                         break;
-                    case Options.RoleTeacher:
+                    case OptionsSwagger.RoleTeacher:
                         {
                             _teacherId = id;
                         }
                         break;
-                    case Options.RoleTutor:
+                    case OptionsSwagger.RoleTutor:
                         {
                             _tutorId = id;
                         }

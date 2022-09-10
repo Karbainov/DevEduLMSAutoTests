@@ -10,7 +10,7 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Post,
-                RequestUri = new System.Uri(Urls.Lessons),
+                RequestUri = new System.Uri(UrlsSwagger.Lessons),
                 Content = new StringContent(json, Encoding.UTF8, "application/json")
             };
             HttpResponseMessage response = client.Send(message);
@@ -27,7 +27,7 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Put,
-                RequestUri = new System.Uri($"{Urls.Lessons}/{lessonId}"),
+                RequestUri = new System.Uri($"{UrlsSwagger.Lessons}/{lessonId}"),
                 Content = new StringContent(json, Encoding.UTF8, "application/json")
             };
             HttpResponseMessage response = client.Send(message);
@@ -43,7 +43,7 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Get,
-                RequestUri = new System.Uri($"{Urls.Lessons}/by-teacherId/{groupId}")
+                RequestUri = new System.Uri($"{UrlsSwagger.Lessons}/by-teacherId/{groupId}")
             };
             HttpResponseMessage response = client.Send(message);
             List<AddLessonResponse> responseLessons = JsonSerializer.Deserialize<List<AddLessonResponse>>
@@ -58,7 +58,7 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Get,
-                RequestUri = new System.Uri($"{Urls.Lessons}/unpublished/by-groupId/{groupId}")
+                RequestUri = new System.Uri($"{UrlsSwagger.Lessons}/unpublished/by-groupId/{groupId}")
             };
             HttpResponseMessage response = client.Send(message);
             List<AddLessonResponse> responseLessons = JsonSerializer.Deserialize<List<AddLessonResponse>>
