@@ -111,18 +111,6 @@ this.ScenarioInitialize(scenarioInfo);
                             "PhoneNumber",
                             "Role"});
                 table1.AddRow(new string[] {
-                            "Gabriel",
-                            "Wilson",
-                            "string",
-                            "wl@gmail.com",
-                            "Gabi",
-                            "11345678",
-                            "SaintPetersburg",
-                            "15.04.1999",
-                            "string",
-                            "89514781247",
-                            "Student"});
-                table1.AddRow(new string[] {
                             "Isabella",
                             "Abramson",
                             "string",
@@ -135,18 +123,6 @@ this.ScenarioInitialize(scenarioInfo);
                             "89514551247",
                             "Student"});
                 table1.AddRow(new string[] {
-                            "Sophie",
-                            "Anderson",
-                            "string",
-                            "sophie@gmail.com",
-                            "Sophi",
-                            "11344678",
-                            "SaintPetersburg",
-                            "18.01.1998",
-                            "string",
-                            "89511781247",
-                            "Student"});
-                table1.AddRow(new string[] {
                             "Maksim",
                             "Karbainov",
                             "string",
@@ -157,18 +133,6 @@ this.ScenarioInitialize(scenarioInfo);
                             "18.05.1995",
                             "string",
                             "89521496531",
-                            "Teacher"});
-                table1.AddRow(new string[] {
-                            "Anton",
-                            "Efremenkov",
-                            "string",
-                            "anton@gmail.com",
-                            "Anton",
-                            "22345698",
-                            "SaintPetersburg",
-                            "22.08.1988",
-                            "string",
-                            "89521477531",
                             "Teacher"});
                 table1.AddRow(new string[] {
                             "Elisey",
@@ -185,19 +149,13 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
 testRunner.Given("register new users in service", ((string)(null)), table1, "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Email",
-                            "Password"});
-                table2.AddRow(new string[] {
-                            "marina@example.com",
-                            "marinamarina"});
-#line 15
-testRunner.And("authorize manager in service", ((string)(null)), table2, "And ");
+#line 12
+testRunner.And("authorize manager in service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 18
+#line 13
 testRunner.And("manager add roles to users in service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
                             "CourseId",
                             "GroupStatusId",
@@ -206,7 +164,7 @@ testRunner.And("manager add roles to users in service", ((string)(null)), ((Tech
                             "Timetable",
                             "PaymentPerMonth",
                             "PaymentsCount"});
-                table3.AddRow(new string[] {
+                table2.AddRow(new string[] {
                             "BaseSPb",
                             "1370",
                             "Forming",
@@ -215,38 +173,14 @@ testRunner.And("manager add roles to users in service", ((string)(null)), ((Tech
                             "string",
                             "2500",
                             "3"});
-#line 19
-testRunner.When("manager create new group in service", ((string)(null)), table3, "When ");
+#line 14
+testRunner.When("manager create new group in service", ((string)(null)), table2, "When ");
 #line hidden
-#line 22
+#line 17
 testRunner.And("manager add users to group in service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Email",
-                            "Password"});
-                table4.AddRow(new string[] {
-                            "wl@gmail.com",
-                            "11345678"});
-                table4.AddRow(new string[] {
-                            "isi@gmail.com",
-                            "11345578"});
-                table4.AddRow(new string[] {
-                            "sophie@gmail.com",
-                            "11344678"});
-                table4.AddRow(new string[] {
-                            "maks@gmail.com",
-                            "22345678"});
-                table4.AddRow(new string[] {
-                            "anton@gmail.com",
-                            "22345698"});
-                table4.AddRow(new string[] {
-                            "elisey@gmail.com",
-                            "13345678"});
-#line 23
-testRunner.Then("authorize users in service", ((string)(null)), table4, "Then ");
-#line hidden
-#line 31
-testRunner.And("check the user\'s group in service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 18
+testRunner.Then("authorize users in service and check the user\'s group in service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

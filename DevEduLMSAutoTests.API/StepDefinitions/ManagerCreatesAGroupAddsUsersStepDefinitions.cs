@@ -3,23 +3,20 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
     [Binding]
     public class ManagerCreatesAGroupAddsUsersStepDefinitions
     {
-        private List<string> _usersToken;
         private string _managerToken;
-        private List<RegisterResponse> _students;
-        private List<RegisterResponse> _teachers;
-        private List<RegisterResponse> _tutors;
+        private List<RegistationModelWithRole> _users;
+        private int _studentId;
+        private int _teacherId;
+        private int _tutorId;
         private int _groupId;
         private AuthenticationClient _authenticationClient;
         private UsersClient _usersClient;
         private GroupsClient _groupsClient;
         private GroupMappers _groupMappers;
 
-        ManagerCreatesAGroupAddsUsersStepDefinitions()
+        public ManagerCreatesAGroupAddsUsersStepDefinitions()
         {
-            _usersToken = new List<string>();
-            _students = new List<RegisterResponse>();
-            _teachers = new List<RegisterResponse>();
-            _tutors = new List<RegisterResponse>();
+            _users = new List<RegistationModelWithRole>();
             _authenticationClient = new AuthenticationClient();
             _usersClient = new UsersClient();
             _groupsClient = new GroupsClient();
@@ -32,24 +29,23 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             List<RegistationModelWithRole> registerRequests = table.CreateSet<RegistationModelWithRole>().ToList();
             foreach (var registerUser in registerRequests)
             {
+                var id = _authenticationClient.RegisterUser(registerUser.CreateRegisterRequest(registerUser)).Id;
+                _users.Add(registerUser);
                 switch (registerUser.Role)
                 {
                     case Options.RoleStudent:
                         {
-                            var student = _authenticationClient.RegisterUser(registerUser.CreateRegisterRequest(registerUser));
-                            _students.Add(student);
+                            _studentId = id;
                         }
                         break;
                     case Options.RoleTeacher:
                         {
-                            var teacher = _authenticationClient.RegisterUser(registerUser.CreateRegisterRequest(registerUser));
-                            _teachers.Add(teacher);
+                            _teacherId = id;
                         }
                         break;
                     case Options.RoleTutor:
                         {
-                            var tutor = _authenticationClient.RegisterUser(registerUser.CreateRegisterRequest(registerUser));
-                            _tutors.Add(tutor);
+                            _tutorId = id;
                         }
                         break;
                 }
@@ -57,23 +53,16 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         }
 
         [Given(@"authorize manager in service")]
-        public void GivenAuthorizeManagerInService(Table table)
+        public void GivenAuthorizeManagerInService()
         {
-            SignInRequest managerSignInRequest = table.CreateInstance<SignInRequest>();
-            _managerToken = _authenticationClient.AuthorizeUser(managerSignInRequest);
+            _managerToken = _authenticationClient.AuthorizeUser(new SignInRequest { Email = Options.ManagersEmail, Password = Options.ManagersPassword});
         }
 
         [Given(@"manager add roles to users in service")]
         public void GivenManagerAddRolesToUsersInService()
         {
-            foreach(var teacher in _teachers)
-            {
-                _usersClient.AddNewRoleToUser(teacher.Id, Options.RoleTeacher, _managerToken);
-            }
-            foreach (var tutor in _tutors)
-            {
-                _usersClient.AddNewRoleToUser(tutor.Id, Options.RoleTutor, _managerToken);
-            }
+            _usersClient.AddNewRoleToUser(_teacherId, Options.RoleTeacher, _managerToken);
+            _usersClient.AddNewRoleToUser(_tutorId, Options.RoleTutor, _managerToken);
         }
 
         [When(@"manager create new group in service")]
@@ -86,40 +75,21 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         [When(@"manager add users to group in service")]
         public void WhenManagerAddUsersToGroupInService()
         {
-            foreach(var teacher in _teachers)
-            {
-                _groupsClient.AddUserToGroup(_groupId, teacher.Id, Options.RoleTeacher, _managerToken);
-            }
-            foreach (var tutor in _tutors)
-            {
-                _groupsClient.AddUserToGroup(_groupId, tutor.Id, Options.RoleTutor, _managerToken);
-            }
-            foreach (var student in _students)
-            {
-                _groupsClient.AddUserToGroup(_groupId, student.Id, Options.RoleStudent, _managerToken);
-            }
+            _groupsClient.AddUserToGroup(_groupId, _teacherId, Options.RoleTeacher, _managerToken);
+            _groupsClient.AddUserToGroup(_groupId, _tutorId, Options.RoleTutor, _managerToken);
+            _groupsClient.AddUserToGroup(_groupId, _studentId, Options.RoleStudent, _managerToken);
         }
 
-        [Then(@"authorize users in service")]
-        public void ThenAuthorizeUsersInService(Table table)
-        {
-            List<SignInRequest> signInRequests = table.CreateSet<SignInRequest>().ToList();
-            foreach (var signInUser in signInRequests)
-            {
-                var userToken = _authenticationClient.AuthorizeUser(signInUser);
-                _usersToken.Add(userToken);
-            }
-        }
-
-        [Then(@"check the user's group in service")]
-        public void ThenCheckTheUsersGroupInService()
+        [Then(@"authorize users in service and check the user's group in service")]
+        public void ThenAuthorizeUsersInServiceAndCheckTheUsersGroupInService()
         {
             GetGroupByIdResponse actualGroup = _groupsClient.GetGroupById(_groupId, _managerToken);
             GetAllGroupsResponse group = _groupMappers.MappGetGroupByIdResponseToGetAllGroupsResponse(actualGroup);
-            foreach (var userToken in _usersToken)
+            foreach (var user in _users)
             {
-                RegisterResponse user = _usersClient.GetUserInfoByToken(userToken);
-                Assert.AreEqual(group, user.Groups.Find(i => i.Id == group.Id));
+                var userToken = _authenticationClient.AuthorizeUser(new SignInRequest { Email = user.Email, Password = user.Password});
+                RegisterResponse actualUser = _usersClient.GetUserInfoByToken(userToken);
+                Assert.AreEqual(group, actualUser.Groups.Find(i => i.Id == group.Id));
             }
         }
     }

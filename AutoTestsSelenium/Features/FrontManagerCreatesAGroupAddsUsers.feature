@@ -5,14 +5,17 @@ A short summary of the feature
 @manager @teacher @tutor @student
 Scenario: Front manager creates a group adds students and appoints a teacher and tutor
 Given open the brouser and open DevEducation web page
-#And registration users in service
-#| FirstName | LastName   | Patronymic | BirthDate  | Password | RepeatPassword | Email            | PhoneNumber | Role    |
-#| Gabriel   | Wilson     | string     | 15.04.1999 | 11345678 | 11345678       | wl@gmail.com     | 89514781247 | Student |
-#| Isabella  | Abramson   | string     | 22.05.2001 | 11345578 | 11345578       | isi@gmail.com    | 89514551247 | Student |
-#| Sophie    | Anderson   | string     | 18.01.1998 | 11344678 | 11344678       | sophie@gmail.com | 89511781247 | Student |
-#| Maksim    | Karbainov  | string     | 18.05.1995 | 22345678 | 22345678       | maks@gmail.com   | 89521496531 | Teacher |
-#| Anton     | Efremenkov | string     | 22.08.1988 | 22345698 | 22345698       | anton@gmail.com  | 89521477531 | Teacher |
-#| Elisey    | Kakoyto    | string     | 07.10.1996 | 13345678 | 13345678       | elisey@gmail.com | 89518963148 | Tutor   |
-And authorize users in service
-| Email              | Password     |
-| marina@example.com | marinamarina |
+And registration users in service
+| FirstName | LastName   | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
+| Isabella  | Abramson   | string     | isi@gmail.com    | Bella    | 11345578 | SaintPetersburg | 22.05.2001 | string        | 89514551247 | Student |
+| Maksim    | Karbainov  | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
+| Elisey    | Kakoyto    | string     | elisey@gmail.com | Elisey   | 13345678 | SaintPetersburg | 07.10.1996 | string        | 89518963148 | Tutor   |
+And authorize manager in service
+And manager add roles to users in service
+When manager create new group in service
+| Name    | CourseId | GroupStatusId | StartDate  | EndDate    | Timetable | PaymentPerMonth | PaymentsCount |
+| BaseSPb | 1370     | Forming       | 29.09.2022 | 25.01.2023 | string    | 2500            | 3             |
+And manager add users to group in service
+Then authorize student in service and check group
+And authorize teacher in service and check group
+And authorize tutor in service and check group

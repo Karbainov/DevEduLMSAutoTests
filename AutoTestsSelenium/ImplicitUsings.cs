@@ -5,6 +5,7 @@ global using OpenQA.Selenium;
 global using OpenQA.Selenium.Chrome;
 global using AutoTestsSelenium.Support;
 global using AutoTestsSelenium.Support.FindElements;
-global using AutoTestsSelenium.Support.Models.Request;
 global using TechTalk.SpecFlow.Assist;
 global using OpenQA.Selenium.Interactions;
+global using DevEduLMSAutoTests.API.StepDefinitions;
+global using DevEduLMSAutoTests.API.Support.Models.Request;

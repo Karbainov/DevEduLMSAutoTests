@@ -3,23 +3,31 @@ namespace AutoTestsSelenium.StepDefinitions
     [Binding]
     public class FrontManagerCreatesAGroupAddsUsersStepDefinitions
     {
+        private ManagerCreatesAGroupAddsUsersStepDefinitions _managerCreatesAGroupAddsUsersBySwagger;
         private IWebDriver _driver;
-        private RegistrationWindow _registrationWindow;
         private SingInWindow _singInWindow;
+        private CreateGroupWindow _createGroupWindow;
+        private StudentLessons _studentLessons;
+        private TeacherLessons _teacherLessons;
+        private TutorLessons _tutorLessons;
         private Actions _action;
-        private List<RegisterRequest> _students;
-        private List<RegisterRequest> _teachers;
-        private List<RegisterRequest> _tutors;
+        private RegistationModelWithRole _student;
+        private RegistationModelWithRole _teacher;
+        private RegistationModelWithRole _tutor;
 
-        FrontManagerCreatesAGroupAddsUsersStepDefinitions()
+        public FrontManagerCreatesAGroupAddsUsersStepDefinitions()
         {
+            _managerCreatesAGroupAddsUsersBySwagger = new ManagerCreatesAGroupAddsUsersStepDefinitions();
             _driver = new ChromeDriver();
-            _registrationWindow = new RegistrationWindow();
             _singInWindow = new SingInWindow();
+            _createGroupWindow = new CreateGroupWindow();
+            _studentLessons = new StudentLessons();
+            _teacherLessons = new TeacherLessons();
+            _tutorLessons = new TutorLessons();
             _action = new Actions(_driver);
-            _students = new List<RegisterRequest>();
-            _teachers = new List<RegisterRequest>();
-            _tutors = new List<RegisterRequest>();
+            _student = new RegistationModelWithRole();
+            _teacher = new RegistationModelWithRole();
+            _tutor = new RegistationModelWithRole();
         }
 
         [Given(@"open the brouser and open DevEducation web page")]
@@ -32,73 +40,105 @@ namespace AutoTestsSelenium.StepDefinitions
         [Given(@"registration users in service")]
         public void GivenRegistrationUsersInService(Table table)
         {
-            List<RegisterRequest> users = table.CreateSet<RegisterRequest>().ToList();
+            List<RegistationModelWithRole> users = table.CreateSet<RegistationModelWithRole>().ToList();
             foreach (var user in users)
             {
                 switch (user.Role)
                 {
-                    case Options.RoleStudent:
+                    case DevEduLMSAutoTests.API.Support.Options.RoleStudent:
                         {
-                            _students.Add(user);
+                            _student = user;
                         }
                         break;
-                    case Options.RoleTeacher:
+                    case DevEduLMSAutoTests.API.Support.Options.RoleTeacher:
                         {
-                            _teachers.Add(user);
+                            _teacher = user;
                         }
                         break;
-                    case Options.RoleTutor:
+                    case DevEduLMSAutoTests.API.Support.Options.RoleTutor:
                         {
-                            _tutors.Add(user);
+                            _tutor = user;
                         }
                         break;
                 }
-                var registrationButton = _driver.FindElement(_registrationWindow.XPathRegistrationButton);
-                registrationButton.Click();
-                var lastNameBox = _driver.FindElement(_registrationWindow.XPathLastNameBox);
-                lastNameBox.SendKeys(user.LastName);
-                var firstNameBox = _driver.FindElement(_registrationWindow.XPathFirstNameBox);
-                firstNameBox.SendKeys(user.FirstName);
-                var patronymicBox = _driver.FindElement(_registrationWindow.XPathPatronymicBox);
-                patronymicBox.SendKeys(user.Patronymic);
-                var dateBirthBox = _driver.FindElement(_registrationWindow.XPathDateBirthBox);
-                _action.DoubleClick(dateBirthBox).Build().Perform();
-                dateBirthBox.SendKeys(Keys.Backspace);
-                dateBirthBox.SendKeys(user.BirthDate);
-                var passwordBox = _driver.FindElement(_registrationWindow.XPathPasswordBox);
-                passwordBox.SendKeys(user.Password);
-                var repeatPasswordBox = _driver.FindElement(_registrationWindow.XPathRepeatPasswordBox);
-                repeatPasswordBox.SendKeys(user.RepeatPassword);
-                var emailBox = _driver.FindElement(_registrationWindow.XPathEmailBox);
-                emailBox.SendKeys(user.Email);
-                var phoneNamberBox = _driver.FindElement(_registrationWindow.XPathPhoneNumberBox);
-                phoneNamberBox.SendKeys(user.PhoneNumber);
-                var registerButton = _driver.FindElement(_registrationWindow.XPathRegisterButton);
-                registerButton.Click();
-                var cancelRegistrationButton = _driver.FindElement(_registrationWindow.XPathCancelRegistrationButton);
-                cancelRegistrationButton.Click();
+                _managerCreatesAGroupAddsUsersBySwagger.GivenRegisterNewUsersInService(table);
             }
         }
 
-        [Given(@"authorize users in service")]
-        public void GivenAuthorizeUsersInService(Table table)
+        [Given(@"authorize manager in service")]
+        public void GivenAuthorizeManagerInService()
+        {
+            _managerCreatesAGroupAddsUsersBySwagger.GivenAuthorizeManagerInService();
+            //_driver.Navigate().GoToUrl(Urls.Host);
+            //var emailBox = _driver.FindElement(_singInWindow.XPathEmailBox);
+            //emailBox.SendKeys(DevEduLMSAutoTests.API.Support.Options.ManagersEmail);
+            //var passwordBox = _driver.FindElement(_singInWindow.XPathPasswordBox);
+            //_action.DoubleClick(passwordBox).Build().Perform();
+            //passwordBox.SendKeys(Keys.Backspace);
+            //passwordBox.SendKeys(DevEduLMSAutoTests.API.Support.Options.ManagersPassword);
+            //_driver.FindElement(_singInWindow.XPathSingInButton).Click();
+        }
+
+        [Given(@"manager add roles to users in service")]
+        public void GivenManagerAddRolesToUsersInService()
+        {
+            _managerCreatesAGroupAddsUsersBySwagger.GivenManagerAddRolesToUsersInService();
+
+        }
+
+        [When(@"manager create new group in service")]
+        public void WhenManagerCreateNewGroupInService(Table table)
+        {
+            _managerCreatesAGroupAddsUsersBySwagger.WhenManagerCreateNewGroupInService(table);
+            //CreateGroupRequest newGroup = table.CreateInstance<CreateGroupRequest>();
+            //_driver.FindElement(_createGroupWindow.XPathCreateGroupButton).Click();
+            //var nameGroupBox = _driver.FindElement(_createGroupWindow.XPathNameGroupBox);
+            //nameGroupBox.SendKeys(newGroup.Name);
+            //var coursesComboBox = _driver.FindElement(CreateGroupWindow.XPathCoursesComboBox((newGroup.CourseId).ToString()));
+            //coursesComboBox.SendKeys(Keys.ArrowDown);
+            //coursesComboBox.SendKeys(Keys.Enter);
+            //_driver.FindElement(CreateGroupWindow.XPathTeacherCheckBox($"{_teacher.FirstName} {_teacher.LastName}")).Click();
+            //_driver.FindElement(CreateGroupWindow.XPathTutorCheckBox($"{_tutor.FirstName} {_tutor.LastName}")).Click();
+            //_driver.FindElement(_createGroupWindow.XPathSaveButton).Click();
+        }
+
+        [When(@"manager add users to group in service")]
+        public void WhenManagerAddUsersToGroupInService()
+        {
+            _managerCreatesAGroupAddsUsersBySwagger.WhenManagerAddUsersToGroupInService();
+        }
+
+        [Then(@"authorize student in service and check group")]
+        public void ThenAuthorizeStudentInServiceAndCheckGroup()
+        {
+            AuthorizeUser(_student);
+            _driver.FindElement(_studentLessons.XPathLessonsButton).Click();
+        }
+
+        [Then(@"authorize teacher in service and check group")]
+        public void ThenAuthorizeTeacherInServiceAndCheckGroup()
+        {
+            AuthorizeUser(_teacher);
+            _driver.FindElement(_teacherLessons.XPathLessonsButton).Click();
+        }
+
+        [Then(@"authorize tutor in service and check group")]
+        public void ThenAuthorizeTutorInServiceAndCheckGroup()
+        {
+            AuthorizeUser(_tutor);
+            _driver.FindElement(_tutorLessons.XPathLessonsButton).Click();
+        }
+
+        private void AuthorizeUser(RegistationModelWithRole user)
         {
             _driver.Navigate().GoToUrl(Urls.Host);
-            List<SingInRequest> users = table.CreateSet<SingInRequest>().ToList();
-            foreach (var user in users)
-            {
-                var emailBox = _driver.FindElement(_singInWindow.XPathEmailBox);
-                emailBox.SendKeys(user.Email);
-                var passwordBox = _driver.FindElement(_singInWindow.XPathPasswordBox);
-                _action.DoubleClick(passwordBox).Build().Perform();
-                passwordBox.SendKeys(Keys.Backspace);
-                passwordBox.SendKeys(user.Password);
-                var sindInButton = _driver.FindElement(_singInWindow.XPathSingInButton);
-                sindInButton.Click();
-                var cancelSingInButton = _driver.FindElement(_singInWindow.XPathCancelSingInButton);
-                cancelSingInButton.Click();
-            }
+            var emailBox = _driver.FindElement(_singInWindow.XPathEmailBox);
+            emailBox.SendKeys(user.Email);
+            var passwordBox = _driver.FindElement(_singInWindow.XPathPasswordBox);
+            _action.DoubleClick(passwordBox).Build().Perform();
+            passwordBox.SendKeys(Keys.Backspace);
+            passwordBox.SendKeys(user.Password);
+            _driver.FindElement(_singInWindow.XPathSingInButton).Click();
         }
-
     }
 }

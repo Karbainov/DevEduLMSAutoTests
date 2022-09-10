@@ -110,13 +110,88 @@ this.ScenarioInitialize(scenarioInfo);
 testRunner.Given("open the brouser and open DevEducation web page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "Patronymic",
                             "Email",
-                            "Password"});
+                            "Username",
+                            "Password",
+                            "City",
+                            "BirthDate",
+                            "GitHubAccount",
+                            "PhoneNumber",
+                            "Role"});
                 table1.AddRow(new string[] {
-                            "marina@example.com",
-                            "marinamarina"});
-#line 16
-testRunner.And("authorize users in service", ((string)(null)), table1, "And ");
+                            "Isabella",
+                            "Abramson",
+                            "string",
+                            "isi@gmail.com",
+                            "Bella",
+                            "11345578",
+                            "SaintPetersburg",
+                            "22.05.2001",
+                            "string",
+                            "89514551247",
+                            "Student"});
+                table1.AddRow(new string[] {
+                            "Maksim",
+                            "Karbainov",
+                            "string",
+                            "maks@gmail.com",
+                            "Maksim",
+                            "22345678",
+                            "SaintPetersburg",
+                            "18.05.1995",
+                            "string",
+                            "89521496531",
+                            "Teacher"});
+                table1.AddRow(new string[] {
+                            "Elisey",
+                            "Kakoyto",
+                            "string",
+                            "elisey@gmail.com",
+                            "Elisey",
+                            "13345678",
+                            "SaintPetersburg",
+                            "07.10.1996",
+                            "string",
+                            "89518963148",
+                            "Tutor"});
+#line 8
+testRunner.And("registration users in service", ((string)(null)), table1, "And ");
+#line hidden
+#line 13
+testRunner.And("authorize manager in service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 14
+testRunner.And("manager add roles to users in service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Name",
+                            "CourseId",
+                            "GroupStatusId",
+                            "StartDate",
+                            "EndDate",
+                            "Timetable",
+                            "PaymentPerMonth",
+                            "PaymentsCount"});
+                table2.AddRow(new string[] {
+                            "BaseSPb",
+                            "1370",
+                            "Forming",
+                            "29.09.2022",
+                            "25.01.2023",
+                            "string",
+                            "2500",
+                            "3"});
+#line 15
+testRunner.When("manager create new group in service", ((string)(null)), table2, "When ");
+#line hidden
+#line 18
+testRunner.And("manager add users to group in service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 19
+testRunner.Then("authorize users in service and check the user\'s group in service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
