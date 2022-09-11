@@ -1,6 +1,6 @@
 ﻿namespace AutoTestsSelenium.Support.FindElements
 {
-    public class StudentLessonsWindow
+    public class StudentNavigatePanelElements
     {
         public By XPathLessonsButton
         {
@@ -11,5 +11,13 @@
             private set { }
         }
 
+        public By XPathExitButton
+        {
+            get
+            {
+                return By.XPath($"//*[text()='Выйти']/..");
+            }
+            private set { }
+        }
     }
 }

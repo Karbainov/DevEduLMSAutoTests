@@ -1,68 +1,57 @@
 namespace DevEduLMSAutoTests.API.StepDefinitions
 {
     [Binding]
-    public class ManagerCreatesAGroupAddsUsersStepDefinitions
+    public class GroupsAPIStepDefinitions
     {
-        private string _managerToken;
-        private List<RegistationModelWithRole> _users;
+        private List<RegistationModelWithRole> _newUsers;
         private int _studentId;
         private int _teacherId;
         private int _tutorId;
         private int _groupId;
+        private string _managerToken;
         private AuthenticationClient _authenticationClient;
         private UsersClient _usersClient;
         private GroupsClient _groupsClient;
         private GroupMappers _groupMappers;
 
-        public ManagerCreatesAGroupAddsUsersStepDefinitions()
+        public GroupsAPIStepDefinitions()
         {
-            _users = new List<RegistationModelWithRole>();
+            _newUsers = new List<RegistationModelWithRole>();
             _authenticationClient = new AuthenticationClient();
             _usersClient = new UsersClient();
             _groupsClient = new GroupsClient();
             _groupMappers = new GroupMappers();
         }
 
-        [Given(@"register new users in service")]
-        public void GivenRegisterNewUsersInService(Table table)
+        [Given(@"register new users with roles in service")]
+        public void GivenRegisterNewUsersWithRolesInService(Table table)
         {
-            List<RegistationModelWithRole> registerRequests = table.CreateSet<RegistationModelWithRole>().ToList();
-            foreach (var registerUser in registerRequests)
+            _managerToken = _authenticationClient.AuthorizeUser(new SwaggerSignInRequest() { Email = OptionsSwagger.ManagersEmail, Password = OptionsSwagger.ManagersPassword });
+            _newUsers = table.CreateSet<RegistationModelWithRole>().ToList();
+            foreach (var user in _newUsers)
             {
-                var id = _authenticationClient.RegisterUser(registerUser.CreateRegisterRequest(registerUser)).Id;
-                _users.Add(registerUser);
-                switch (registerUser.Role)
+                int id = _authenticationClient.RegisterUser(user.CreateRegisterRequest(user)).Id;
+                switch (user.Role)
                 {
-                    case OptionsSwagger.RoleStudent:
-                        {
-                            _studentId = id;
-                        }
-                        break;
                     case OptionsSwagger.RoleTeacher:
                         {
                             _teacherId = id;
+                            _usersClient.AddNewRoleToUser(id, user.Role, _managerToken);
                         }
                         break;
                     case OptionsSwagger.RoleTutor:
                         {
                             _tutorId = id;
+                            _usersClient.AddNewRoleToUser(id, user.Role, _managerToken);
+                        }
+                        break;
+                    case OptionsSwagger.RoleStudent:
+                        {
+                            _studentId = id;
                         }
                         break;
                 }
             }
-        }
-
-        [Given(@"authorize manager in service")]
-        public void GivenAuthorizeManagerInService()
-        {
-            _managerToken = _authenticationClient.AuthorizeUser(new SwaggerSignInRequest { Email = OptionsSwagger.ManagersEmail, Password = OptionsSwagger.ManagersPassword});
-        }
-
-        [Given(@"manager add roles to users in service")]
-        public void GivenManagerAddRolesToUsersInService()
-        {
-            _usersClient.AddNewRoleToUser(_teacherId, OptionsSwagger.RoleTeacher, _managerToken);
-            _usersClient.AddNewRoleToUser(_tutorId, OptionsSwagger.RoleTutor, _managerToken);
         }
 
         [When(@"manager create new group in service")]
@@ -80,12 +69,12 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             _groupsClient.AddUserToGroup(_groupId, _studentId, OptionsSwagger.RoleStudent, _managerToken);
         }
 
-        [Then(@"authorize users in service and check the user's group in service")]
-        public void ThenAuthorizeUsersInServiceAndCheckTheUsersGroupInService()
+        [Then(@"authorize users in service and check group")]
+        public void ThenAuthorizeUsersInServiceAndCheckGroup()
         {
             GetGroupByIdResponse actualGroup = _groupsClient.GetGroupById(_groupId, _managerToken);
             GetAllGroupsResponse group = _groupMappers.MappGetGroupByIdResponseToGetAllGroupsResponse(actualGroup);
-            foreach (var user in _users)
+            foreach (var user in _newUsers)
             {
                 var userToken = _authenticationClient.AuthorizeUser(new SwaggerSignInRequest { Email = user.Email, Password = user.Password});
                 RegisterResponse actualUser = _usersClient.GetUserInfoByToken(userToken);

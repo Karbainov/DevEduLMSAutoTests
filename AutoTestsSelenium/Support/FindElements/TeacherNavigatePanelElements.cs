@@ -1,6 +1,6 @@
 ﻿namespace AutoTestsSelenium.Support.FindElements
 {
-    public class NavigatePanelElements
+    public class TeacherNavigatePanelElements
     {
         public By XPathNewHomeworkButton
         {
@@ -47,30 +47,13 @@
             private set { }
         }
 
-        public By XPathRoleButton(string role)
+        public By XPathLessonsButton
         {
-            switch (role)
+            get
             {
-                case OptionsSwagger.RoleTeacher:
-                    role = "Преподаватель";
-                    break;
-                case OptionsSwagger.RoleTutor:
-                    role = "Тьютор";
-                    break;
-                case OptionsSwagger.RoleManager:
-                    role = "Менеджер";
-                    break;
-                case OptionsSwagger.RoleAdmin:
-                    role = "Администратор";
-                    break;
-                case OptionsSwagger.RoleStudent:
-                    role = "Студент";
-                    break;
-                case OptionsSwagger.RoleMethodist:
-                    role = "Методист";
-                    break;
+                return By.XPath($"//*[@href='/lessons']");
             }
-            return By.XPath($"//li[text()='{role}']");
+            private set { }
         }
     }
 }

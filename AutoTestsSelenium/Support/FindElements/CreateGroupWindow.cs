@@ -2,14 +2,7 @@
 {
     public class CreateGroupWindow
     {
-        public By XPathCreateGroupButton
-        {
-            get
-            {
-                return By.XPath($"//*[text()='Создать группу']/..");
-            }
-            private set { }
-        }
+        private static string _course;
 
         public By XPathNameGroupBox
         {
@@ -38,19 +31,49 @@
             private set { }
         }
 
-        public static By XPathCoursesComboBox(string id)
+        public By XPathCoursesComboBox
         {
-            return By.Id(id);
+            get
+            {
+                return By.XPath($"//*[@class='drop-down-filter  ']");
+            }
+            private set { }
         }
 
         public static By XPathTeacherCheckBox(string teacherName)
         {
-            return By.XPath($"//*[text()='{teacherName}']/../*");
+            return By.XPath($"//*[text()='{teacherName}']/..");
         }
 
         public static By XPathTutorCheckBox(string tutorName)
         {
-            return By.XPath($"//*[text()='{tutorName}']/../*");
+            return By.XPath($"//*[text()='{tutorName}']/..");
+        }
+
+        public static By XPathCourseButton(string courseId)
+        {
+            switch (courseId)
+            {
+                case Options.CourseBasicSiSharpId:
+                    _course = Options.CourseBasicSiSharp;
+                    break;
+                case Options.CourseFrontendReactId:
+                    _course = Options.CourseFrontendReact;
+                    break;
+                case Options.CourseBackendSiSharpId:
+                    _course = Options.CourseBackendSiSharp;
+                    break;
+                case Options.CourseBasicJavaId:
+                    _course = Options.CourseBasicJava;
+                    break;
+                case Options.CourseBackendJavaId:
+                    _course = Options.CourseBackendJava;
+                    break;
+                case Options.CourseQAAutomationId:
+                    _course = Options.CourseQAAutomation;
+                    break;
+            }
+            return By.XPath($"//li[text()='{_course}']");
         }
     }
 }

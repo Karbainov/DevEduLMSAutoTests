@@ -8,12 +8,12 @@ namespace AutoTestsSelenium.StepDefinitions
         private SwaggerSignInRequest _teacherSingIn;
         private IWebDriver _driver;
         private SingInWindow _singInElements;
-        private NavigatePanelElements _navigateButtons;
+        private TeacherNavigatePanelElements _navigateButtons;
         private string _groupName;
         private TeachersHomeworkWindow _teacersHomeworkWindowElements;
         private StudentsHomeworkWindow _studentsHomeworkWindowElements;
         private ClearTables _clearDB;
-
+        private SwitchRole _switchRole;
 
         public StatisticsStepDefinitions()
         {
@@ -21,10 +21,11 @@ namespace AutoTestsSelenium.StepDefinitions
             _studensSignIn = new List<SwaggerSignInRequest>();
             _driver = new ChromeDriver();
             _singInElements = new SingInWindow();
-            _navigateButtons = new NavigatePanelElements();
+            _navigateButtons = new TeacherNavigatePanelElements();
             _teacersHomeworkWindowElements = new TeachersHomeworkWindow();
             _studentsHomeworkWindowElements = new StudentsHomeworkWindow();
             _clearDB = new ClearTables();
+            _switchRole = new SwitchRole();
         }
 
         [Given(@"register new users with roles")]
@@ -72,7 +73,7 @@ namespace AutoTestsSelenium.StepDefinitions
             _driver.FindElement(_singInElements.XPathSingInButton).Click();
             Thread.Sleep(100);
             _driver.FindElement(_navigateButtons.XPathSwitchRoleButton).Click();
-            _driver.FindElement(_navigateButtons.XPathRoleButton(OptionsSwagger.RoleTeacher)).Click();
+            _driver.FindElement(_switchRole.XPathRoleButton(OptionsSwagger.RoleTeacher)).Click();
             _driver.FindElement(_navigateButtons.XPathNewHomeworkButton).Click();
             _driver.FindElement(_teacersHomeworkWindowElements.XPathGroupRB).Click();
             var dateTB = _driver.FindElement(_teacersHomeworkWindowElements.XPathStartDateTextBox);
@@ -119,7 +120,7 @@ namespace AutoTestsSelenium.StepDefinitions
             _driver.FindElement(_singInElements.XPathSingInButton).Click();
             Thread.Sleep(100);
             _driver.FindElement(_navigateButtons.XPathSwitchRoleButton).Click();
-            _driver.FindElement(_navigateButtons.XPathRoleButton(OptionsSwagger.RoleTeacher)).Click();
+            _driver.FindElement(_switchRole.XPathRoleButton(OptionsSwagger.RoleTeacher)).Click();
             _driver.FindElement(_navigateButtons.XPathCheckHomeworksButton).Click();            
         }
 

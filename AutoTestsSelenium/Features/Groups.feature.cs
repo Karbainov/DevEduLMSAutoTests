@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace DevEduLMSAutoTests.API.Features
+namespace AutoTestsSelenium.Features
 {
     using TechTalk.SpecFlow;
     using System;
@@ -19,7 +19,7 @@ namespace DevEduLMSAutoTests.API.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class ManagerCreatesAGroupAddsUsersFeature : object, Xunit.IClassFixture<ManagerCreatesAGroupAddsUsersFeature.FixtureData>, System.IDisposable
+    public partial class GroupsFeature : object, Xunit.IClassFixture<GroupsFeature.FixtureData>, System.IDisposable
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -28,10 +28,10 @@ namespace DevEduLMSAutoTests.API.Features
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "ManagerCreatesAGroupAddsUsers.feature"
+#line 1 "Groups.feature"
 #line hidden
         
-        public ManagerCreatesAGroupAddsUsersFeature(ManagerCreatesAGroupAddsUsersFeature.FixtureData fixtureData, DevEduLMSAutoTests_API_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public GroupsFeature(GroupsFeature.FixtureData fixtureData, AutoTestsSelenium_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();
@@ -40,7 +40,7 @@ namespace DevEduLMSAutoTests.API.Features
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "ManagerCreatesAGroupAddsUsers", "A short summary of the feature", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Groups", "A short summary of the feature", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -80,14 +80,14 @@ namespace DevEduLMSAutoTests.API.Features
             this.TestTearDown();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Manager creates a group adds students and appoints a teacher and tutor")]
-        [Xunit.TraitAttribute("FeatureTitle", "ManagerCreatesAGroupAddsUsers")]
-        [Xunit.TraitAttribute("Description", "Manager creates a group adds students and appoints a teacher and tutor")]
+        [Xunit.SkippableFactAttribute(DisplayName="Front manager creates a group adds students and appoints a teacher and tutor")]
+        [Xunit.TraitAttribute("FeatureTitle", "Groups")]
+        [Xunit.TraitAttribute("Description", "Front manager creates a group adds students and appoints a teacher and tutor")]
         [Xunit.TraitAttribute("Category", "manager")]
         [Xunit.TraitAttribute("Category", "teacher")]
         [Xunit.TraitAttribute("Category", "tutor")]
         [Xunit.TraitAttribute("Category", "student")]
-        public void ManagerCreatesAGroupAddsStudentsAndAppointsATeacherAndTutor()
+        public void FrontManagerCreatesAGroupAddsStudentsAndAppointsATeacherAndTutor()
         {
             string[] tagsOfScenario = new string[] {
                     "manager",
@@ -95,7 +95,7 @@ namespace DevEduLMSAutoTests.API.Features
                     "tutor",
                     "student"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Manager creates a group adds students and appoints a teacher and tutor", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Front manager creates a group adds students and appoints a teacher and tutor", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -106,7 +106,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -118,7 +118,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "GitHubAccount",
                             "PhoneNumber",
                             "Role"});
-                table1.AddRow(new string[] {
+                table8.AddRow(new string[] {
                             "Isabella",
                             "Abramson",
                             "string",
@@ -130,7 +130,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "string",
                             "89514551247",
                             "Student"});
-                table1.AddRow(new string[] {
+                table8.AddRow(new string[] {
                             "Maksim",
                             "Karbainov",
                             "string",
@@ -142,7 +142,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "string",
                             "89521496531",
                             "Teacher"});
-                table1.AddRow(new string[] {
+                table8.AddRow(new string[] {
                             "Elisey",
                             "Kakoyto",
                             "string",
@@ -155,15 +155,9 @@ this.ScenarioInitialize(scenarioInfo);
                             "89518963148",
                             "Tutor"});
 #line 7
-testRunner.Given("register new users in service", ((string)(null)), table1, "Given ");
+testRunner.Given("register new users with roles in service", ((string)(null)), table8, "Given ");
 #line hidden
-#line 12
-testRunner.And("authorize manager in service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 13
-testRunner.And("manager add roles to users in service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
                             "CourseId",
                             "GroupStatusId",
@@ -172,7 +166,7 @@ testRunner.And("manager add roles to users in service", ((string)(null)), ((Tech
                             "Timetable",
                             "PaymentPerMonth",
                             "PaymentsCount"});
-                table2.AddRow(new string[] {
+                table9.AddRow(new string[] {
                             "BaseSPb",
                             "1370",
                             "Forming",
@@ -181,14 +175,20 @@ testRunner.And("manager add roles to users in service", ((string)(null)), ((Tech
                             "string",
                             "2500",
                             "3"});
-#line 14
-testRunner.When("manager create new group in service", ((string)(null)), table2, "When ");
+#line 12
+testRunner.When("manager create new group in service", ((string)(null)), table9, "When ");
 #line hidden
-#line 17
+#line 15
 testRunner.And("manager add users to group in service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+#line 16
+testRunner.Then("authorize student in service and check group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 17
+testRunner.And("authorize teacher in service and check group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
 #line 18
-testRunner.Then("authorize users in service and check the user\'s group in service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.And("authorize tutor in service and check group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -201,12 +201,12 @@ testRunner.Then("authorize users in service and check the user\'s group in servi
             
             public FixtureData()
             {
-                ManagerCreatesAGroupAddsUsersFeature.FeatureSetup();
+                GroupsFeature.FeatureSetup();
             }
             
             void System.IDisposable.Dispose()
             {
-                ManagerCreatesAGroupAddsUsersFeature.FeatureTearDown();
+                GroupsFeature.FeatureTearDown();
             }
         }
     }

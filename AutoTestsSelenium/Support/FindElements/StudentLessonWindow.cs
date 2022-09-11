@@ -1,6 +1,6 @@
 ﻿namespace AutoTestsSelenium.Support.FindElements
 {
-    public class TeacherLessonsWindow
+    public class StudentLessonWindow
     {
         public By XPathGroups
         {

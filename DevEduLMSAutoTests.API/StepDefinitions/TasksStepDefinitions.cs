@@ -102,48 +102,6 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             _tutorMainToken = _tutorsTokens.FirstOrDefault();
         }
 
-        [Given(@"register new users")]
-        public void GivenRegisterNewUsers(Table table)
-        {
-            List<RegisterRequest> registerRequests = table.CreateSet<RegisterRequest>().ToList();
-            RegisterRequest studentRegisterRequest = registerRequests[0];
-            RegisterRequest methodistRegisterRequest = registerRequests[1];
-            RegisterRequest teacherRegisterRequest = registerRequests[2];
-            _studentMainId = _authenticationClient.RegisterUser(studentRegisterRequest).Id;
-            _methodistMainId = _authenticationClient.RegisterUser(methodistRegisterRequest).Id;
-            _teacherMainId = _authenticationClient.RegisterUser(teacherRegisterRequest).Id;
-        }
-
-        [Given(@"authorize manager")]
-        public void GivenAuthorizeManager()
-        {
-            SwaggerSignInRequest adminSignInRequest = new SwaggerSignInRequest()
-            {
-                Email = OptionsSwagger.AdminsEmail,
-                Password = OptionsSwagger.AdminsPassword,
-            };
-            _managerToken = _authenticationClient.AuthorizeUser(adminSignInRequest);
-        }
-
-        [Given(@"authorize users")]
-        public void GivenAuthorizeUsers(Table table)
-        {
-            List<SwaggerSignInRequest> signInRequests = table.CreateSet<SwaggerSignInRequest>().ToList();
-            SwaggerSignInRequest studentSignInRequest = signInRequests[0];
-            SwaggerSignInRequest methodistSignInRequest = signInRequests[1];
-            SwaggerSignInRequest teacherSignInRequest = signInRequests[2];
-            _studentMainToken = _authenticationClient.AuthorizeUser(studentSignInRequest);
-            _methodistMainToken = _authenticationClient.AuthorizeUser(methodistSignInRequest);
-            _teacherMainToken = _authenticationClient.AuthorizeUser(teacherSignInRequest);
-        }
-
-        [Given(@"manager add roles to users")]
-        public void GivenManagerAddRolesToUsers()
-        {
-            _usersClient.AddNewRoleToUser(_methodistMainId, OptionsSwagger.RoleMethodist, _managerToken);
-            _usersClient.AddNewRoleToUser(_teacherMainId, OptionsSwagger.RoleTeacher, _managerToken);
-        }
-
         [Given(@"manager create new group")]
         public string GivenManagerCreateNewGroup(Table table)
         {

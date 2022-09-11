@@ -2,11 +2,11 @@
 {
     public class TutorLessonsWindow
     {
-        public By XPathLessonsButton
+        public By XPathGroups
         {
             get
             {
-                return By.XPath($"//*[@href='/lessons']");
+                return By.XPath($"//*[@class='tab-container']");
             }
             private set { }
         }
