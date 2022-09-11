@@ -9,8 +9,11 @@ namespace AutoTestsSelenium.StepDefinitions
     public class StatisticsStepDefinitions
     {
         private TasksStepDefinitions _stepsBySwagger;
-        private List<SingInRequest> _studensSignIn;
-        private SingInRequest _teacherSingIn;
+        protected List<SingInRequest> _allStudensSignIn;
+        protected SingInRequest _teacherSignIn;
+        protected List<SingInRequest> _allTeachersSignIn;
+        protected List<SingInRequest> _allTutorsSignIn;
+        protected List<SingInRequest> _allMethodistsSignIn;
         private IWebDriver _driver;
         private SingInWindow _singInElements;
         private NavigatePanelElements _navigateButtons;
@@ -20,14 +23,16 @@ namespace AutoTestsSelenium.StepDefinitions
         private ClearTables clearDB;
         private List<StudentsHomeworkResults> _studentsResults;
         private HomeworkResultsElements _homeworkResultsElements;
-        GeneralProgressWindow _generalProgressElements;
+        private GeneralProgressWindow _generalProgressElements;
 
 
         public StatisticsStepDefinitions()
         {
             _stepsBySwagger = new TasksStepDefinitions();
-            _studensSignIn = new List<SingInRequest>();
-            _driver = new ChromeDriver();
+            _allStudensSignIn = new List<SingInRequest>();
+            _allMethodistsSignIn = new List<SingInRequest>();
+            _allTeachersSignIn = new List<SingInRequest>();
+            _allTutorsSignIn = new List<SingInRequest>();
             _singInElements = new SingInWindow();
             _navigateButtons = new NavigatePanelElements();
             _teacersHomeworkWindowElements = new TeachersHomeworkWindow();
@@ -46,15 +51,23 @@ namespace AutoTestsSelenium.StepDefinitions
             List<RegistationModelWithRole> users = table.CreateSet<RegistationModelWithRole>().ToList();
             foreach(var user in users)
             {
-                if(user.Role == "Student")
+                switch (user.Role)
                 {
-                    _studensSignIn.Add(new SingInRequest() { Email=user.Email, Password = user.Password });
-                }
-                else if(user.Role == "Teacher")
-                {
-                    _teacherSingIn = new SingInRequest() {Email=user.Email, Password=user.Password };
+                    case Options.RoleStudent:
+                        _allStudensSignIn.Add(new SingInRequest() { Email = user.Email, Password = user.Password });
+                        break;
+                    case Options.RoleTeacher:
+                        _allTeachersSignIn.Add(new SingInRequest() { Email = user.Email, Password = user.Password });
+                        break;
+                    case Options.RoleMethodist:
+                        _allMethodistsSignIn.Add(new SingInRequest() { Email = user.Email, Password = user.Password });
+                        break;
+                    case Options.RoleTutor:
+                        _allTutorsSignIn.Add(new SingInRequest() { Email = user.Email, Password = user.Password });
+                        break;
                 }
             }
+            _teacherSignIn = _allTeachersSignIn.FirstOrDefault();
         }
 
         [Given(@"manager create new group")]
@@ -73,13 +86,14 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"teacher create new homework")]
         public void WhenTeacherCreateNewHomework(Table table)
         {
+            _driver = new ChromeDriver();
             AddNewHomework homework = table.CreateInstance<AddNewHomework>();
             _driver.Manage().Window.Maximize();
             _driver.Navigate().GoToUrl(Urls.Host);
             Thread.Sleep(200);
-            _driver.FindElement(_singInElements.XPathEmailBox).SendKeys(_teacherSingIn.Email);
+            _driver.FindElement(_singInElements.XPathEmailBox).SendKeys(_teacherSignIn.Email);
             _driver.FindElement(_singInElements.XPathPasswordBox).Clear();
-            _driver.FindElement(_singInElements.XPathPasswordBox).SendKeys(_teacherSingIn.Password);
+            _driver.FindElement(_singInElements.XPathPasswordBox).SendKeys(_teacherSignIn.Password);
             _driver.FindElement(_singInElements.XPathSingInButton).Click();
             Thread.Sleep(100);
             _driver.FindElement(_navigateButtons.XPathSwitchRoleButton).Click();
@@ -105,7 +119,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"students did their homework")]
         public void WhenStudentsDidTheirHomework()
         {
-            foreach(var student in _studensSignIn)
+            foreach(var student in _allStudensSignIn)
             {
                 _driver.FindElement(_singInElements.XPathEmailBox).SendKeys(student.Email);
                 _driver.FindElement(_singInElements.XPathPasswordBox).Clear();
@@ -128,9 +142,9 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenTeacherRateHomeworks(Table table)
         {
             _studentsResults = table.CreateSet<StudentsHomeworkResults>().ToList();
-            _driver.FindElement(_singInElements.XPathEmailBox).SendKeys(_teacherSingIn.Email);
+            _driver.FindElement(_singInElements.XPathEmailBox).SendKeys(_teacherSignIn.Email);
             _driver.FindElement(_singInElements.XPathPasswordBox).Clear();
-            _driver.FindElement(_singInElements.XPathPasswordBox).SendKeys(_teacherSingIn.Password);
+            _driver.FindElement(_singInElements.XPathPasswordBox).SendKeys(_teacherSignIn.Password);
             _driver.FindElement(_singInElements.XPathSingInButton).Click();
             Thread.Sleep(200);
             _driver.FindElement(_navigateButtons.XPathSwitchRoleButton).Click();
@@ -151,7 +165,8 @@ namespace AutoTestsSelenium.StepDefinitions
             _driver.FindElement(_studentsHomeworkWindowElements.XPathGoToTaskButton).Click();
             foreach (var result in _studentsResults)
             {
-                By desiredElement = _homeworkResultsElements.XPathStudentsResultByNameByResult(result.FullName, result.Result);
+                By desiredElement = _homeworkResultsElements.
+                    XPathStudentsResultByNameByResult(result.FullName, result.Result);
                 var _expectedResult = _driver.FindElements(desiredElement).FirstOrDefault();
                 //Assert.NotNull(_expectedResult);
             }
@@ -185,6 +200,5 @@ namespace AutoTestsSelenium.StepDefinitions
             _driver.Close();
             clearDB.ClearDB();
         }
-
     }
 }
