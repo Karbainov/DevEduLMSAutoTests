@@ -1,4 +1,4 @@
-﻿namespace DevEduLMSAutoTests.API.Support
+﻿namespace DevEduMLSAutoTests.Api.Support
 {
     public class Urls
     {
