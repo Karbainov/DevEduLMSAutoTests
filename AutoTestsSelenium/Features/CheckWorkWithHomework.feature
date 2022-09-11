@@ -4,7 +4,7 @@ A short summary of the feature
 
 @teacher @student @manager
 Scenario: Assigned homework by teacher, turned in by student
-	Given Open the brouser and DevEdu web page
+	Given Open DevEdu web page
 	When register users with and assigned roles
 	| FirstName | LastName | Patronymic | Email               | Username | Password | City            | BirthDate   | GitHubAccount | PhoneNumber | Role      |
 	| Ilya1     | Baikov   | string     | ilya@student.com    | ilya     | password | SaintPetersburg | 02.07.2000  | string        | 89817051890 | Student   |
