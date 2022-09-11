@@ -34,19 +34,19 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             {
                 switch (registerUser.Role)
                 {
-                    case Options.RoleStudent:
+                    case OptionsSwagger.RoleStudent:
                         {
                             var student = _authenticationClient.RegisterUser(registerUser.CreateRegisterRequest(registerUser));
                             _students.Add(student);
                         }
                         break;
-                    case Options.RoleTeacher:
+                    case OptionsSwagger.RoleTeacher:
                         {
                             var teacher = _authenticationClient.RegisterUser(registerUser.CreateRegisterRequest(registerUser));
                             _teachers.Add(teacher);
                         }
                         break;
-                    case Options.RoleTutor:
+                    case OptionsSwagger.RoleTutor:
                         {
                             var tutor = _authenticationClient.RegisterUser(registerUser.CreateRegisterRequest(registerUser));
                             _tutors.Add(tutor);
@@ -59,7 +59,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         [Given(@"authorize manager in service")]
         public void GivenAuthorizeManagerInService(Table table)
         {
-            SignInRequest managerSignInRequest = table.CreateInstance<SignInRequest>();
+            SwaggerSignInRequest managerSignInRequest = table.CreateInstance<SwaggerSignInRequest>();
             _managerToken = _authenticationClient.AuthorizeUser(managerSignInRequest);
         }
 
@@ -68,11 +68,11 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         {
             foreach(var teacher in _teachers)
             {
-                _usersClient.AddNewRoleToUser(teacher.Id, Options.RoleTeacher, _managerToken);
+                _usersClient.AddNewRoleToUser(teacher.Id, OptionsSwagger.RoleTeacher, _managerToken);
             }
             foreach (var tutor in _tutors)
             {
-                _usersClient.AddNewRoleToUser(tutor.Id, Options.RoleTutor, _managerToken);
+                _usersClient.AddNewRoleToUser(tutor.Id, OptionsSwagger.RoleTutor, _managerToken);
             }
         }
 
@@ -88,22 +88,22 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         {
             foreach(var teacher in _teachers)
             {
-                _groupsClient.AddUserToGroup(_groupId, teacher.Id, Options.RoleTeacher, _managerToken);
+                _groupsClient.AddUserToGroup(_groupId, teacher.Id, OptionsSwagger.RoleTeacher, _managerToken);
             }
             foreach (var tutor in _tutors)
             {
-                _groupsClient.AddUserToGroup(_groupId, tutor.Id, Options.RoleTutor, _managerToken);
+                _groupsClient.AddUserToGroup(_groupId, tutor.Id, OptionsSwagger.RoleTutor, _managerToken);
             }
             foreach (var student in _students)
             {
-                _groupsClient.AddUserToGroup(_groupId, student.Id, Options.RoleStudent, _managerToken);
+                _groupsClient.AddUserToGroup(_groupId, student.Id, OptionsSwagger.RoleStudent, _managerToken);
             }
         }
 
         [Then(@"authorize users in service")]
         public void ThenAuthorizeUsersInService(Table table)
         {
-            List<SignInRequest> signInRequests = table.CreateSet<SignInRequest>().ToList();
+            List<SwaggerSignInRequest> signInRequests = table.CreateSet<SwaggerSignInRequest>().ToList();
             foreach (var signInUser in signInRequests)
             {
                 var userToken = _authenticationClient.AuthorizeUser(signInUser);
@@ -119,7 +119,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             foreach (var userToken in _usersToken)
             {
                 RegisterResponse user = _usersClient.GetUserInfoByToken(userToken);
-                Assert.AreEqual(group, user.Groups.Find(i => i.Id == group.Id));
+                Assert.Equal(group, user.Groups.Find(i => i.Id == group.Id));
             }
         }
     }

@@ -10,12 +10,12 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Post,
-                RequestUri = new Uri(Urls.Courses),
+                RequestUri = new Uri(UrlsSwagger.Courses),
                 Content = new StringContent(json, Encoding.UTF8, "application/json")
             };
             HttpResponseMessage response = client.Send(message);
             HttpStatusCode actual = response.StatusCode;
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
             return response.Content;
         }
     }

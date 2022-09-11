@@ -10,12 +10,12 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Post,
-                RequestUri = new Uri($"{Urls.StudentHomeworks}/{model.HomeworkId}"),
+                RequestUri = new Uri($"{UrlsSwagger.StudentHomeworks}/{model.HomeworkId}"),
                 Content = new StringContent(json, Encoding.UTF8, "application/json")
             };
             HttpResponseMessage response = client.Send(message);
             HttpStatusCode actual = response.StatusCode;
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
             AddStudentHomeworkResponse content = JsonSerializer.Deserialize<AddStudentHomeworkResponse>(response.Content.ReadAsStringAsync().Result)!;
             return content;
         }
@@ -27,11 +27,11 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Patch,
-                RequestUri = new Uri($"{Urls.StudentHomeworks}/{id}/decline")
+                RequestUri = new Uri($"{UrlsSwagger.StudentHomeworks}/{id}/decline")
             };
             HttpResponseMessage response = client.Send(message);
             HttpStatusCode actual = response.StatusCode;
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
             AddStudentHomeworkResponse content = JsonSerializer.Deserialize<AddStudentHomeworkResponse>(response.Content.ReadAsStringAsync().Result)!;
             return content;
         }
@@ -42,11 +42,11 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Patch,
-                RequestUri = new Uri($"{Urls.StudentHomeworks}/{id}/decline")
+                RequestUri = new Uri($"{UrlsSwagger.StudentHomeworks}/{id}/decline")
             };
             HttpResponseMessage response = client.Send(message);
             HttpStatusCode actual = response.StatusCode;
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
             AddStudentHomeworkResponse content = JsonSerializer.Deserialize<AddStudentHomeworkResponse>(response.Content.ReadAsStringAsync().Result)!;
             return content;
         }
@@ -59,12 +59,12 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Put,
-                RequestUri = new Uri($"{Urls.StudentHomeworks}/{model.HomeworkId}"),
+                RequestUri = new Uri($"{UrlsSwagger.StudentHomeworks}/{model.HomeworkId}"),
                 Content = new StringContent(json, Encoding.UTF8, "application/json")
             };
             HttpResponseMessage response = client.Send(message);
             HttpStatusCode actual = response.StatusCode;
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
             AddStudentHomeworkResponse content = JsonSerializer.Deserialize<AddStudentHomeworkResponse>(response.Content.ReadAsStringAsync().Result)!;
             return content;
         }
@@ -76,11 +76,11 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri($"{Urls.StudentHomeworks}/{id}"),
+                RequestUri = new Uri($"{UrlsSwagger.StudentHomeworks}/{id}"),
             };
             HttpResponseMessage response = client.Send(message);
             HttpStatusCode actual = response.StatusCode;
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
             AddStudentHomeworkResponse content = JsonSerializer.Deserialize<AddStudentHomeworkResponse>(response.Content.ReadAsStringAsync().Result)!;
             return content;
         }
