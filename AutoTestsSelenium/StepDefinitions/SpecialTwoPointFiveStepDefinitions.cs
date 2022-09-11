@@ -1,6 +1,3 @@
-using AutoTestsSelenium.Support.Models.Request;
-using static System.Net.Mime.MediaTypeNames;
-
 namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
@@ -9,22 +6,15 @@ namespace AutoTestsSelenium.StepDefinitions
         private IWebDriver _driver;
         private RegistrationWindow _registrationWindow;
         private SingInWindow _singInWindow;
-        private HomeworkWindow _homeworkWindow;
+        private MethodistHomeworkWindow _methodistHomeworkWindow;
 
         SpecialTwoPointFiveStepDefinitions()
         {
             _driver = new ChromeDriver();
             _registrationWindow = new RegistrationWindow();
             _singInWindow = new SingInWindow();
-            _homeworkWindow = new HomeworkWindow();
-        }
-        
-        //private readonly By _createHomework = By.XPath("//button[@class='sc-bczRLJ iJvUkY btn btn-fill flex-container']");
-        private readonly By _choiceGroupNumber = By.XPath("//span[text()='QA Automation'] ");
-        private readonly By _nameCreateHomework = By.XPath("//input[@class='form-input']");
-        private readonly By _textInputCreateHomework = By.XPath("//textarea[@class='form-input']");
-        private readonly By _linkInputCreateHomework = By.XPath("//textarea[@class='form-input_link form-input']");
-        private readonly By _buttonSaveDraftHomework = By.XPath("//button[@class='sc-bczRLJ jsAGPN btn btn-white-with-border flex-container']");
+            _methodistHomeworkWindow = new MethodistHomeworkWindow();       
+        }              
 
         [Given(@"Open DevEdu web page")]
         public void GivenOpenDevEduWebPage()
@@ -56,10 +46,10 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"methodist click button add task")]
         public void WhenMethodistClickButtonAddTask()
         {
-            var homework = _driver.FindElement(_homeworkWindow.XPathHomeworkButton);
+            var homework = _driver.FindElement(_methodistHomeworkWindow.XPathHomeworkButton);
             homework.Click();
 
-            var createHomework = _driver.FindElement(_homeworkWindow.XpathCreateHomework);
+            var createHomework = _driver.FindElement(_methodistHomeworkWindow.XpathCreateHomework);
             createHomework.Click();
             Thread.Sleep(1000);
         }
@@ -67,24 +57,24 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"methodist create draft Homework")]
         public void WhenMethodistCreateDraftHomework(Table table)
         {
-            var groupNumber = _driver.FindElement(_choiceGroupNumber);
+            var groupNumber = _driver.FindElement(_methodistHomeworkWindow.XpathChoiceGroupNumber);
             groupNumber.Click();
 
             CreateHomework createHomework = table.CreateInstance<CreateHomework>();
-            var nameHomework = _driver.FindElement(_nameCreateHomework);
+            var nameHomework = _driver.FindElement(_methodistHomeworkWindow.XpathNameCreateHomework);
             nameHomework.SendKeys(createHomework.Name);
 
-            var textInput = _driver.FindElement(_textInputCreateHomework);
+            var textInput = _driver.FindElement(_methodistHomeworkWindow.XpathDescriptionHomework);
             textInput.SendKeys(createHomework.Description);
 
-            var linkInput = _driver.FindElement(_linkInputCreateHomework);
+            var linkInput = _driver.FindElement(_methodistHomeworkWindow.XpathLinkInputHomework);
             linkInput.SendKeys(createHomework.LinkToRecord);
         }
 
         [Then(@"methodist click button save as draft")]
         public void ThenMethodistClickButtonSaveAsDraft()
         {
-            var saveDraftHomework = _driver.FindElement(_buttonSaveDraftHomework);
+            var saveDraftHomework = _driver.FindElement(_methodistHomeworkWindow.XpathButtonSaveDraftHomework);
             saveDraftHomework.Click();
         }
 
