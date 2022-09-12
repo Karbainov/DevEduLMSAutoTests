@@ -3,6 +3,10 @@ using AutoTestsSelenium.Support.Models.SupportModels;
 using DevEduLMSAutoTests.API.StepDefinitions;
 using DevEduLMSAutoTests.API.Support;
 using DevEduLMSAutoTests.API.Support.Models.Request;
+using FluentAssertions.Equivalency.Tracing;
+using OpenQA.Selenium.DevTools.V102.Network;
+using System.Threading.Channels;
+
 
 namespace AutoTestsSelenium.StepDefinitions
 {
@@ -11,13 +15,14 @@ namespace AutoTestsSelenium.StepDefinitions
     {
         private TasksStepDefinitions _stepsBySwagger;
         private List<SingInRequest> _studensSignIn;
+        private ChangeRoleCombobox _changeRoleOfTeacher;
         private SingInRequest _teacherSingIn;
         private SingInRequest _methodist;
         private IWebDriver _driver;
         private SingInWindow _singInWindow;
         private NavigatePanelElements _navigateButtons;
         private string _groupName;
-        private TeachersHomeworkWindow _teacersHomeworkWindowElements;
+        private TeachersHomeworkWindow _teachersHomeworkWindowElements;
         private StudentsHomeworkWindow _studentsHomeworkWindowElements;
         private ClearTables clearDB;
         private List<StudentsHomeworkResults> _studentsResults;
@@ -31,18 +36,18 @@ namespace AutoTestsSelenium.StepDefinitions
             _driver = new ChromeDriver();
             _singInWindow = new SingInWindow();
             _navigateButtons = new NavigatePanelElements();
-            _teacersHomeworkWindowElements = new TeachersHomeworkWindow();
+            _teachersHomeworkWindowElements = new TeachersHomeworkWindow();
             _studentsHomeworkWindowElements = new StudentsHomeworkWindow();
             clearDB = new ClearTables();
             _studentsResults = new List<StudentsHomeworkResults>();
             _homeworkResultsElements = new HomeworkResultsElements();
             _generalProgressElements = new GeneralProgressWindow();
+            _changeRoleOfTeacher = new ChangeRoleCombobox();
         }
 
         [When(@"register users with and assigned roles")]
         public void WhenRegisterUsersWithAndAssignedRoles(Table table)
         {
-            clearDB.ClearDB();
             _stepsBySwagger.GivenRegisterNewUsersWithRoles(table);
             List<RegistationModelWithRole> users = table.CreateSet<RegistationModelWithRole>().ToList();
             foreach (var user in users)
@@ -55,17 +60,40 @@ namespace AutoTestsSelenium.StepDefinitions
                 {
                     _teacherSingIn = new SingInRequest() { Email = user.Email, Password = user.Password };
                 }
-                else 
+                else
                 {
                     _methodist = new SingInRequest() { Email = user.Email, Password = user.Password };
                 }
             }
         }
 
-        [When(@"authorization user as manager")]
-        public void WhenAuthorizationUserAsManager(Table table)
+        [When(@"manager create new group")]
+        public void WhenManagerCreateNewGroup(Table table)
         {
+            _groupName = _stepsBySwagger.GivenManagerCreateNewGroup(table);
+            _teachersHomeworkWindowElements._groupName = _groupName;
+        }
+
+        [When(@"manager add users to group")]
+        public void WhenManagerAddUsersToGroup()
+        {
+            _stepsBySwagger.GivenManagerAddUsersToGroup();
+        }
+
+        [Then(@"methodist create homework")]
+        public void ThenMethodistCreateHomework(Table table)
+        {
+            _stepsBySwagger.GivenMethodistCreateNewTask(table);
+        }
+
+        [Then(@"authorization user as teacher")]
+        public void ThenAuthorizationUserAsTeacher(Table table)
+        {
+
             SingInRequest singInRequest = table.CreateInstance<SingInRequest>();
+            _driver.Manage().Window.Maximize();
+            _driver.Navigate().GoToUrl(Urls.Host);
+            Thread.Sleep(1000);
             var emailBox = _driver.FindElement(_singInWindow.XPathEmailBox);
             emailBox.SendKeys(singInRequest.Email);
             var passBox = _driver.FindElement(_singInWindow.XPathPasswordBox);
@@ -73,85 +101,50 @@ namespace AutoTestsSelenium.StepDefinitions
             passBox.SendKeys(singInRequest.Password);
         }
 
-        [When(@"manager create new groups")]
-        public void WhenManagerCreateNewGroups(Table table)
-        {
-            throw new PendingStepException();
-        }
-
-        [When(@"manager add studant in new group")]
-        public void WhenManagerAddStudantInNewGroup()
-        {
-            throw new PendingStepException();
-        }
-
-        [When(@"manager add teacher in new group")]
-        public void WhenManagerAddTeacherInNewGroup()
-        {
-            throw new PendingStepException();
-        }
-
-        [Then(@"manager click button exit")]
-        public void ThenManagerClickButtonExit()
-        {
-            throw new PendingStepException();
-        }
-
-        [Then(@"authorization user as methodist")]
-        public void ThenAuthorizationUserAsMethodist(Table table)
-        {
-            throw new PendingStepException();
-        }
-
-        [Then(@"methodist click button homework")]
-        public void ThenMethodistClickButtonHomework()
-        {
-            throw new PendingStepException();
-        }
-
-        [When(@"methodist create homework")]
-        public void WhenMethodistCreateHomework(Table table)
-        {
-            throw new PendingStepException();
-        }
-
-        [Then(@"methodist see all created homeworks")]
-        public void ThenMethodistSeeAllCreatedHomeworks()
-        {
-            throw new PendingStepException();
-        }
-
-        [Then(@"methoist click button exit")]
-        public void ThenMethoistClickButtonExit()
-        {
-            throw new PendingStepException();
-        }
-
-        [Then(@"authorization user as teacher")]
-        public void ThenAuthorizationUserAsTeacher(Table table)
-        {
-            throw new PendingStepException();
-        }
-
         [Then(@"teacher click button issuing homework")]
         public void ThenTeacherClickButtonIssuingHomework()
         {
-            throw new PendingStepException();
+            var enter = _driver.FindElement(_singInWindow.XPathSingInButton);
+            enter.Click();
+            Thread.Sleep(500);
+        }
+        [Then(@"teacher changes role")]
+        public void ThenTeacherChangesRole()
+        {
+            var combobox = _driver.FindElement(_changeRoleOfTeacher.XpathCombobox);
+            combobox.Click();
+            Thread.Sleep(500);
+            var chanceRole = _driver.FindElement(_changeRoleOfTeacher.XpathChangeRole);
+            chanceRole.Click();
+
         }
 
         [When(@"teacher create issuing homework")]
-        public void WhenTeacherCreateIssuingHomework()
+        public void WhenTeacherCreateIssuingHomework(Table table)
         {
-            throw new PendingStepException();
+            AddNewHomework homework = table.CreateInstance<AddNewHomework>();
+            _driver.FindElement(_teachersHomeworkWindowElements.XPathIssuingHomework).Click();
+            _driver.FindElement(_teachersHomeworkWindowElements.XPathGroupRB).Click();
+            var dateTB = _driver.FindElement(_teachersHomeworkWindowElements.XPathStartDateTextBox);
+            Actions setDate = new Actions(_driver);
+            setDate.DoubleClick(dateTB).SendKeys(homework.StartDate).Build().Perform();
+            dateTB = _driver.FindElement(_teachersHomeworkWindowElements.XPathEndDateTextBox);
+            setDate.DoubleClick(dateTB).SendKeys(homework.EndDate).Build().Perform();
+            CreateHomework createHomework = table.CreateInstance<CreateHomework>();
+            var nameHomework = _driver.FindElement(_teachersHomeworkWindowElements.XPathNameTB);
+            nameHomework.SendKeys(createHomework.Name);
+            var textInput = _driver.FindElement(_teachersHomeworkWindowElements.XPathDescriptionTB);
+            textInput.SendKeys(createHomework.Description);
+            _driver.FindElement(_teachersHomeworkWindowElements.XPathLinkTB).SendKeys(createHomework.LinkToRecord);          
         }
 
         [Then(@"teacher click button publish")]
         public void ThenTeacherClickButtonPublish()
         {
-            throw new PendingStepException();
+            _driver.FindElement(_teachersHomeworkWindowElements.XPathPublishButton).Click();
         }
 
-        [When(@"see all task")]
+        [When(@"teacher see all task")]
         public void WhenSeeAllTask()
         {
             throw new PendingStepException();

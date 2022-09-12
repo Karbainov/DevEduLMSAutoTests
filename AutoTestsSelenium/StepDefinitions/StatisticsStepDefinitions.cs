@@ -88,10 +88,7 @@ namespace AutoTestsSelenium.StepDefinitions
             _driver.FindElement(_teacersHomeworkWindowElements.XPathGroupRB).Click();
             var dateTB = _driver.FindElement(_teacersHomeworkWindowElements.XPathStartDateTextBox);
             Actions setDate = new Actions(_driver);
-            setDate.DoubleClick(dateTB).
-                SendKeys(homework.StartDate).
-                Build().
-                Perform();
+            setDate.DoubleClick(dateTB).SendKeys(homework.StartDate).Build().Perform();
             dateTB = _driver.FindElement(_teacersHomeworkWindowElements.XPathEndDateTextBox);
             setDate.DoubleClick(dateTB).SendKeys(homework.EndDate).Build().Perform();
             _driver.FindElement(_teacersHomeworkWindowElements.XPathNameTB).SendKeys(homework.Name);

@@ -24,7 +24,7 @@
         {
             get
             {
-                return By.XPath($"//*[@class='sc-bczRLJ iJvUkY btn btn-fill flex-container']");
+                return By.XPath("//button[text()='Войти']");
             }
             private set { }
         }
