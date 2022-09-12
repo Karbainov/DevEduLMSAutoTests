@@ -103,14 +103,14 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
  testRunner.Given("Open DevEdu web page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password"});
-                table12.AddRow(new string[] {
+                table17.AddRow(new string[] {
                             "maksim@example.com",
                             "maksimmaksim"});
 #line 8
- testRunner.When("authorization user as methodist", ((string)(null)), table12, "When ");
+ testRunner.When("authorization user as methodist", ((string)(null)), table17, "When ");
 #line hidden
 #line 11
  testRunner.And("methodist click botton to come in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -118,16 +118,16 @@ this.ScenarioInitialize(scenarioInfo);
 #line 12
  testRunner.And("methodist click button add task", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
                             "Description",
                             "LinkToRecord"});
-                table13.AddRow(new string[] {
+                table18.AddRow(new string[] {
                             "ЗаданиеЗадание",
                             "string",
                             "http://fjfjf.com"});
 #line 13
- testRunner.When("methodist create draft Homework", ((string)(null)), table13, "When ");
+ testRunner.When("methodist create draft Homework", ((string)(null)), table18, "When ");
 #line hidden
 #line 16
  testRunner.Then("methodist click button save as draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

@@ -18,7 +18,7 @@ Scenario: Manager cancel creation of group
 	| FirstName | LastName  | Patronymic | Email              | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber |
 	| Igor      | Artemonov | Ildarovich | igoryok@blabla.com | Igoryok  | password | SaintPetersburg | 01.09.1995 | string        | 89992225544 |
 	Given Open a browser and open a page
-	Given Authorize as manager
+	Given SignIn as manager
 	| Email              | Password     |
 	| marina@example.com | marinamarina |
 	And Start create a group "Orange"

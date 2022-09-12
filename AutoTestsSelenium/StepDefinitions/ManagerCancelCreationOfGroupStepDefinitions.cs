@@ -10,9 +10,10 @@ namespace AutoTestsSelenium.StepDefinitions
     {
         private IWebDriver _driver;
         private AuthenticationClient _authenticationClient;
+        private UsersClient _usersClient;
         private ClearTables _clearDb;
         private List<RegisterResponse> _students;
-        private List<RegisterResponse> _teachers;
+        private RegisterResponse _teacher;
         private RegisterResponse _tutor;
         private string _managerToken;
 
@@ -22,8 +23,9 @@ namespace AutoTestsSelenium.StepDefinitions
             _xPaths = new xPaths();
             _clearDb = new ClearTables();
             _authenticationClient = new AuthenticationClient();
+            _usersClient = new UsersClient();
             _students = new List<RegisterResponse>();
-            _teachers = new List<RegisterResponse>();
+            _teacher = new RegisterResponse();
             _tutor = new RegisterResponse();
         }
 
@@ -43,16 +45,23 @@ namespace AutoTestsSelenium.StepDefinitions
                 RegisterResponse student = _authenticationClient.RegisterUser(user);
                 _students.Add(student);
             };
+
         }
         [Given(@"Registrate a teacher")]
         public void GivenRegistrateATeacher(Table table)
         {
-
+            RegisterRequest teacherRegister = table.CreateInstance<RegisterRequest>();
+            _teacher = _authenticationClient.RegisterUser(teacherRegister);
+            _usersClient.AddNewRoleToUser(_teacher.Id, OptionsSwagger.RoleTeacher,_managerToken);
+            _usersClient.DeleteUsersRole(_teacher.Id, OptionsSwagger.RoleStudent, _managerToken);
         }
         [Given(@"Registrate a tutor")]
         public void GivenRegistrateATutor(Table table)
         {
-
+            RegisterRequest tutorRegister = table.CreateInstance<RegisterRequest>();
+            _tutor = _authenticationClient.RegisterUser(tutorRegister);
+            _usersClient.AddNewRoleToUser(_tutor.Id, OptionsSwagger.RoleTutor, _managerToken);
+            _usersClient.DeleteUsersRole(_tutor.Id, OptionsSwagger.RoleStudent, _managerToken);
         }
 
         [Given(@"Open a browser and open a page")]
@@ -63,8 +72,8 @@ namespace AutoTestsSelenium.StepDefinitions
             _driver.Navigate().GoToUrl(Urls.LogIn);
         }
 
-        [Given(@"Authorize as manager")]
-        public void GivenAuthorizeAsManager(Table table)
+        [Given(@"SignIn as manager")]
+        public void GivenSignInAsManager(Table table)
         {
             AuthModel authModel = table.CreateInstance<AuthModel>();
             var emailBox = _driver.FindElement(_xPaths.EmailInput);

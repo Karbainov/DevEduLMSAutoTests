@@ -234,6 +234,18 @@ this.ScenarioInitialize(scenarioInfo);
                             "string",
                             "89995554433",
                             "Teacher"});
+                table9.AddRow(new string[] {
+                            "Ложкин",
+                            "Андрей",
+                            "string",
+                            "ilya@tutor.com",
+                            "dron",
+                            "password",
+                            "SaintPetersburg",
+                            "03.03.1994",
+                            "string",
+                            "89995554433",
+                            "Tutor"});
 #line 8
  testRunner.Given("register new users with roles", ((string)(null)), table9, "Given ");
 #line hidden
@@ -243,36 +255,36 @@ this.ScenarioInitialize(scenarioInfo);
                             "Teachers",
                             "Tutors"});
                 table10.AddRow(new string[] {
-                            "Solnishki",
-                            "baza",
+                            "TG1",
+                            "Backend C#",
                             "pip sum, pop sam",
                             "van dam"});
-#line 20
+#line 21
  testRunner.When("manager create new group from browser", ((string)(null)), table10, "When ");
 #line hidden
-#line 23
- testRunner.And("manager add students to group \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
 #line 24
- testRunner.Then("users should see their group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("manager add students to group \"TG1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 25
- testRunner.And("manager should see actual group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("users should see their group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 26
+ testRunner.And("manager should see actual group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 27
  testRunner.When("manager edit group \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
                             "Ilya1 Baikov",
                             "Ilya2 Baikov",
                             "Ilya3 Baikov"});
-#line 27
+#line 28
  testRunner.And("manager delete students from group \"\"", ((string)(null)), table11, "And ");
 #line hidden
-#line 29
+#line 30
  testRunner.Then("users should see their group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 30
+#line 31
  testRunner.And("manager should see actual group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }

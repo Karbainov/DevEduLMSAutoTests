@@ -1,6 +1,6 @@
 ﻿namespace AutoTestsSelenium.Support.Models.Request
 {
-    internal class RegisterRequest
+    internal class FrontRegisterRequest
     {
         public string LastName { get; set; }
 
