@@ -10,7 +10,7 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Post,
-                RequestUri = new System.Uri($"{Urls.Tasks}/methodist"),
+                RequestUri = new System.Uri($"{UrlsSwagger.Tasks}/methodist"),
                 Content = new StringContent(json, Encoding.UTF8, "application/json")
             };
             HttpResponseMessage response = client.Send(message);
@@ -27,12 +27,12 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Put,
-                RequestUri = new System.Uri($"{Urls.Tasks}/{taskId}"),
+                RequestUri = new System.Uri($"{UrlsSwagger.Tasks}/{taskId}"),
                 Content = new StringContent(json, Encoding.UTF8, "application/json")
             };
             HttpResponseMessage response = client.Send(message);
             HttpStatusCode actualCode = response.StatusCode;
-            Assert.AreEqual(expectedCode, actualCode);
+            Assert.Equal(expectedCode, actualCode);
             TaskResponse responseTask = JsonSerializer.Deserialize<TaskResponse>
                 (response.Content.ReadAsStringAsync().Result)!;
             return responseTask;
@@ -45,7 +45,7 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Get,
-                RequestUri = new System.Uri($"{Urls.Tasks}/by-group/{groupId}")
+                RequestUri = new System.Uri($"{UrlsSwagger.Tasks}/by-group/{groupId}")
             };
             HttpResponseMessage response = client.Send(message);
             List<TaskResponse> responseTasks = JsonSerializer.Deserialize<List<TaskResponse>>
@@ -59,7 +59,7 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Get,
-                RequestUri = new System.Uri($"{Urls.Tasks}/{taskId}")
+                RequestUri = new System.Uri($"{UrlsSwagger.Tasks}/{taskId}")
             };
             HttpResponseMessage response = client.Send(message);
             TaskResponse responseTask = JsonSerializer.Deserialize<TaskResponse>
@@ -73,13 +73,13 @@
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             HttpRequestMessage message = new HttpRequestMessage()
             {
-                RequestUri = new Uri($"{Urls.Tasks}/teacher"),
+                RequestUri = new Uri($"{UrlsSwagger.Tasks}/teacher"),
                 Method = HttpMethod.Post,
                 Content = new StringContent(json, Encoding.UTF8, "application/json")
             };
             HttpResponseMessage response = client.Send(message);
             HttpStatusCode actual = response.StatusCode;
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
             AddTasksByTeacherResponse content = JsonSerializer.Deserialize<AddTasksByTeacherResponse>(response.Content.ReadAsStringAsync().Result)!;
             return content;
         }

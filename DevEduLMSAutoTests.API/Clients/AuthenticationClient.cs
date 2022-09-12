@@ -9,30 +9,30 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Post,
-                RequestUri = new System.Uri(Urls.Register),
+                RequestUri = new System.Uri(UrlsSwagger.Register),
                 Content = new StringContent(json, Encoding.UTF8, "application/json")
             };
             HttpResponseMessage responseMessage = client.Send(message);
             HttpStatusCode actualCode = responseMessage.StatusCode;
-            Assert.AreEqual(expextedCode, actualCode);
+            Assert.Equal(expextedCode, actualCode);
             RegisterResponse response = JsonSerializer.Deserialize<RegisterResponse>
                 (responseMessage.Content.ReadAsStringAsync().Result)!;
             return response;
         }
 
-        public string AuthorizeUser(SignInRequest request, HttpStatusCode expectedCode = HttpStatusCode.OK)
+        public string AuthorizeUser(SwaggerSignInRequest request, HttpStatusCode expectedCode = HttpStatusCode.OK)
         {
             string json = JsonSerializer.Serialize(request);
             HttpClient client = new HttpClient();
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Post,
-                RequestUri = new System.Uri(Urls.Sign_in),
+                RequestUri = new System.Uri(UrlsSwagger.Sign_in),
                 Content = new StringContent(json, Encoding.UTF8, "application/json")
             };
             HttpResponseMessage responseMessage = client.Send(message);
             HttpStatusCode actualCode = responseMessage.StatusCode;
-            Assert.AreEqual(expectedCode, actualCode);
+            Assert.Equal(expectedCode, actualCode);
             string token = responseMessage.Content.ReadAsStringAsync().Result;
             return token;
         }
