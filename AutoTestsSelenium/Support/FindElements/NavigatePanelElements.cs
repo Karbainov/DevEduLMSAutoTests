@@ -2,6 +2,22 @@
 {
     public class NavigatePanelElements
     {
+        public By XPathGroupsButton
+        {
+            get
+            {
+                return By.XPath("//span[text()='Группы']");
+            }
+            set { }
+        }
+        public By XPathCreateGroupButton
+        {
+            get
+            {
+                return By.XPath("//span[text()='Создать группу']");
+            }
+            private set { }
+        }
         public By XPathNewHomeworkButton
         {
             get

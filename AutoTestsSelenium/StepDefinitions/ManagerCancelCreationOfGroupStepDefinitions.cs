@@ -11,20 +11,28 @@ namespace AutoTestsSelenium.StepDefinitions
         private IWebDriver _driver;
         private AuthenticationClient _authenticationClient;
         private UsersClient _usersClient;
+        private SingInWindow _singInWindow;
+        private GroupsWindow _groupsWindow;
+        private NavigatePanelElements _navigatePanelElements;
+        private CreateGroupWindow _createGroupWindow;
         private ClearTables _clearDb;
         private RegisterResponse _teacher;
         private RegisterResponse _tutor;
         private string _managerToken;
-
-        private xPaths _xPaths;
+        private string _groupName;
+        private List<string> _groups;
         public ManagerCancelCreationOfGroupStepDefinitions()
         {
-            _xPaths = new xPaths();
             _clearDb = new ClearTables();
             _authenticationClient = new AuthenticationClient();
             _usersClient = new UsersClient();
+            _singInWindow = new SingInWindow();
+            _groupsWindow = new GroupsWindow();
+            _createGroupWindow = new CreateGroupWindow();
+            _navigatePanelElements = new NavigatePanelElements();
             _teacher = new RegisterResponse();
             _tutor = new RegisterResponse();
+            _groups = new List<string>();
         }
 
         [Given(@"Authorize as manager")]
@@ -63,42 +71,56 @@ namespace AutoTestsSelenium.StepDefinitions
         public void GivenSignInAsManager(Table table)
         {
             AuthModel authModel = table.CreateInstance<AuthModel>();
-            var emailBox = _driver.FindElement(_xPaths.EmailInput);
+            var emailBox = _driver.FindElement(_singInWindow.XPathEmailBox);
             emailBox.SendKeys(authModel.Email);
-            var passwordBox = _driver.FindElement(_xPaths.PasswordInput);
+            var passwordBox = _driver.FindElement(_singInWindow.XPathPasswordBox);
             passwordBox.Clear();
             passwordBox.SendKeys(authModel.Password);
-            var enterButton = _driver.FindElement(_xPaths.EnterButton);
+            var enterButton = _driver.FindElement(_singInWindow.XPathSingInButton);
             enterButton.Click();
         }
 
         [Given(@"Start create a group ""([^""]*)""")]
         public void GivenStartCreateAGroup(string name)
         {
-            Thread.Sleep(2000);
-            var createGroup = _driver.FindElement(_xPaths.CreateGroupAside);
+            Thread.Sleep(1500);
+            var createGroup = _driver.FindElement(_navigatePanelElements.XPathCreateGroupButton);
             createGroup.Click();
-            var groupName = _driver.FindElement(_xPaths.EnterGroupName);
+            var groupName = _driver.FindElement(_createGroupWindow.XPathNameGroupBox);
             groupName.SendKeys(name);
-            var chooseCourse = _driver.FindElement(_xPaths.ChooseCourse);
+            _groupName = name;
+            var chooseCourse = _driver.FindElement(_createGroupWindow.XPathCoursesComboBox);
             chooseCourse.Click();
-            Thread.Sleep(2000);
-            var backendC = _driver.FindElement(_xPaths.BackendC);
-            backendC.Click();
+            Thread.Sleep(1500);
+            var qa = _driver.FindElement(CreateGroupWindow.XPathCourseButton(Options.CourseQAAutomationId));
+            qa.Click();
             chooseCourse.Click();
-
+            var chooseTeacher = _driver.FindElement(CreateGroupWindow.XPathTeacherCheckBox(_teacher.FirstName));
+            chooseTeacher.Click();
+            var chooseTutor = _driver.FindElement(CreateGroupWindow.XPathTutorCheckBox(_tutor.FirstName));
+            chooseTutor.Click();
         }
 
         [When(@"Cancel creation")]
         public void WhenCancelCreation()
         {
-            throw new PendingStepException();
+            var cancelButton = _driver.FindElement(_createGroupWindow.XPathCancelCreateGroupButton);
+            cancelButton.Click();
         }
 
         [Then(@"Group do not create")]
         public void ThenGroupDoNotCreate()
         {
-            throw new PendingStepException();
+            var actualGroups = _driver.FindElements(_groupsWindow.XPathAllGroupsName);
+            foreach (var group in actualGroups)
+            {
+                _groups.Add(group.Text);
+            }
+            var groupsButton = _driver.FindElement(_navigatePanelElements.XPathGroupsButton);
+            groupsButton.Click();
+            Assert.DoesNotContain(_groupName, _groups);
+            _driver.Close();
+            _clearDb.ClearDB();
         }
     }
 }
