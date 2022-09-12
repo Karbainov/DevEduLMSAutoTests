@@ -135,6 +135,7 @@ namespace AutoTestsSelenium.StepDefinitions
             Assert.Contains(groups, i => i.Text == Options.CourseBasicSiSharp);
             _driver.FindElement(_tutorNavigatePanelElements.XPathExitButton).Click();
             _driver.Close();
+            _clearDB.ClearDB();
         }
 
         private void AuthorizeUser(SwaggerSignInRequest user)
