@@ -23,7 +23,7 @@
         {
             get
             {
-                return By.XPath($"//*[@href='/homeworks']");
+                return By.XPath("//span[text()='Домашние задания']");
             }
             private set { }
         }

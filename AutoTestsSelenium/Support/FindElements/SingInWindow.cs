@@ -33,7 +33,7 @@
         {
             get
             {
-                return By.XPath($"//*[@class='sc-bczRLJ kEeNDb btn btn-text flex-container']");
+                return By.XPath("//span[text()='Выйти']");
             }
             private set { }
         }

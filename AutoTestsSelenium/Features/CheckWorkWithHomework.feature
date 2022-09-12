@@ -5,13 +5,11 @@ A short summary of the feature
 
 @teacher @student @manager
 Scenario: Assigned homework by teacher, turned in by student
-	#Given Open DevEdu web page
 	When register users with and assigned roles
 	| FirstName | LastName | Patronymic | Email               | Username | Password | City            | BirthDate   | GitHubAccount | PhoneNumber | Role      |
-	| Ilya1     | Baikov   | string     | ilya13@student.com    | ilya     | password | SaintPetersburg | 02.07.2000  | string        | 89817051890 | Student   |
-	| Milana    | Maxina   | string     | milana13@student.com  | milana   | password | SaintPetersburg | 31.12.2000  | string        | 89817051891 | Student   |
-	| Lera      | Puzikova | string     | lera13@methodist.com  | lera     | password | SaintPetersburg | 31.01.2000  | string        | 89817051892 | Methodist |
-	| Vitya     | Strashko | string     | vitya13@teacher.com   | vitya    | password | SaintPetersburg | 01.08.1995  | string        | 89817051893 | Teacher   |
+	| Ilya1     | Baikov   | string     | ilya21@student.com    | ilya     | password | SaintPetersburg | 02.07.2000  | string        | 89817051890 | Student   |
+	| Lera      | Puzikova | string     | lera21@methodist.com  | lera     | password | SaintPetersburg | 31.01.2000  | string        | 89817051892 | Methodist |
+	| Vitya     | Strashko | string     | vitya21@teacher.com   | vitya    | password | SaintPetersburg | 01.08.1995  | string        | 89817051893 | Teacher   |
 	And manager create new group
 	| Name          | CourseId | GroupStatusId | StartDate  | EndDate    | Timetable | PaymentPerMonth | PaymentsCount |
 	| GropForTest01 | 1370     | Forming       | 11.09.2022 | 31.12.2022 | string    | 1000            | 10            |
@@ -21,7 +19,7 @@ Scenario: Assigned homework by teacher, turned in by student
 	| ЗаданиеЗадание | string      | http://fjfjf.com |
 	And authorization user as teacher
 	| Email             | Password |
-	| vitya13@teacher.com | password |
+	| vitya21@teacher.com | password |
 	And teacher click button issuing homework
 	Then teacher changes role
 	When teacher create issuing homework
@@ -32,13 +30,12 @@ Scenario: Assigned homework by teacher, turned in by student
 	And teacher click button exit
 	And student authorization 
 	| Email               | Password |
-	| ilya11@student.com   | password |
-	| milana1@student.com | password |
+	| ilya21@student.com   | password |
 	And student click button homework
 	And studen click button to the task
 	When studen attaches a link to the completed task
-	| link                        |
-	| https://hd.kinopoisk.ru/    |
+	| LinkToGitHub              |
+	| https://hd.kinopoisk.ru/  |
 	And studen click airplane icon
 	And studen click button exit
 	And authorization user as teacher

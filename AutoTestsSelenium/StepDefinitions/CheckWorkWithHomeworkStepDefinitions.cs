@@ -18,6 +18,7 @@ namespace AutoTestsSelenium.StepDefinitions
         private ChangeRoleCombobox _changeRoleOfTeacher;
         private SingInRequest _teacherSingIn;
         private SingInRequest _methodist;
+        private StudentAttachesHomework _studentAttachesHomework;
         private IWebDriver _driver;
         private SingInWindow _singInWindow;
         private NavigatePanelElements _navigateButtons;
@@ -43,11 +44,13 @@ namespace AutoTestsSelenium.StepDefinitions
             _homeworkResultsElements = new HomeworkResultsElements();
             _generalProgressElements = new GeneralProgressWindow();
             _changeRoleOfTeacher = new ChangeRoleCombobox();
+            _studentAttachesHomework = new StudentAttachesHomework();
         }
 
         [When(@"register users with and assigned roles")]
         public void WhenRegisterUsersWithAndAssignedRoles(Table table)
         {
+            clearDB.ClearDB();
             _stepsBySwagger.GivenRegisterNewUsersWithRoles(table);
             List<RegistationModelWithRole> users = table.CreateSet<RegistationModelWithRole>().ToList();
             foreach (var user in users)
@@ -69,7 +72,7 @@ namespace AutoTestsSelenium.StepDefinitions
 
         [When(@"manager create new group")]
         public void WhenManagerCreateNewGroup(Table table)
-        {
+        {           
             _groupName = _stepsBySwagger.GivenManagerCreateNewGroup(table);
             _teachersHomeworkWindowElements._groupName = _groupName;
         }
@@ -147,49 +150,62 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"teacher see all task")]
         public void WhenSeeAllTask()
         {
-            throw new PendingStepException();
+            _driver.FindElement(_teachersHomeworkWindowElements.XpathHomework).Click();
+
         }
 
         [When(@"teacher click button exit")]
         public void WhenTeacherClickButtonExit()
         {
-            throw new PendingStepException();
+            _driver.FindElement(_singInWindow.XPathCancelSingInButton).Click();
         }
 
         [When(@"student authorization")]
         public void WhenStudentAuthorization(Table table)
         {
-            throw new PendingStepException();
+            SingInRequest singInRequest = table.CreateInstance<SingInRequest>();
+            _driver.FindElement(_singInWindow.XPathEmailBox).SendKeys(singInRequest.Email);         
+            var passBox = _driver.FindElement(_singInWindow.XPathPasswordBox);
+            passBox.Clear();
+            passBox.SendKeys(singInRequest.Password);
+            _driver.FindElement(_singInWindow.XPathSingInButton).Click();
+            Thread.Sleep(500);
         }
 
         [When(@"student click button homework")]
         public void WhenStudentClickButtonHomework()
         {
-            throw new PendingStepException();
+            _driver.FindElement(_navigateButtons.XPathHomeworksButton).Click();
+            Thread.Sleep(500);
         }
 
         [When(@"studen click button to the task")]
         public void WhenStudenClickButtonToTheTask()
         {
-            throw new PendingStepException();
+            _driver.FindElement(_studentsHomeworkWindowElements.XPathGoToTaskButton).Click();
+            Thread.Sleep(500);
         }
 
         [When(@"studen attaches a link to the completed task")]
         public void WhenStudenAttachesALinkToTheCompletedTask(Table table)
         {
-            throw new PendingStepException();
+            var linkGithub = _driver.FindElement(_studentsHomeworkWindowElements.XPathLinkToAnswerTB);
+            linkGithub.Click();
+            linkGithub.SendKeys(_studentAttachesHomework.LinkToGitHub);
+            Thread.Sleep(500);
         }
 
         [When(@"studen click airplane icon")]
         public void WhenStudenClickAirplaneIcon()
         {
-            throw new PendingStepException();
+            _driver.FindElement(_studentsHomeworkWindowElements.XPathSendAnswerButton).Click();
+            Thread.Sleep(500);
         }
 
         [When(@"studen click button exit")]
         public void WhenStudenClickButtonExit()
         {
-            throw new PendingStepException();
+            _driver.FindElement(_singInWindow.XPathCancelSingInButton).Click();
         }
 
         [When(@"authorization user as teacher")]
