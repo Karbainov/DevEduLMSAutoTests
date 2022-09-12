@@ -1,4 +1,4 @@
-﻿namespace AutoTestsSelenium.Support.Models
+﻿namespace AutoTestsSelenium.Support.Models.Request
 {
     public class AuthModel
     {

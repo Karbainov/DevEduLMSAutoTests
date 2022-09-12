@@ -7,9 +7,9 @@ namespace AutoTestsSelenium.StepDefinitions
         private RegistrationWindow _registrationWindow;
         private SingInWindow _singInWindow;
         private Actions _action;
-        private List<RegisterRequest> _students;
-        private List<RegisterRequest> _teachers;
-        private List<RegisterRequest> _tutors;
+        private List<FrontRegisterRequest> _students;
+        private List<FrontRegisterRequest> _teachers;
+        private List<FrontRegisterRequest> _tutors;
 
         FrontManagerCreatesAGroupAddsUsersStepDefinitions()
         {
@@ -17,9 +17,9 @@ namespace AutoTestsSelenium.StepDefinitions
             _registrationWindow = new RegistrationWindow();
             _singInWindow = new SingInWindow();
             _action = new Actions(_driver);
-            _students = new List<RegisterRequest>();
-            _teachers = new List<RegisterRequest>();
-            _tutors = new List<RegisterRequest>();
+            _students = new List<FrontRegisterRequest>();
+            _teachers = new List<FrontRegisterRequest>();
+            _tutors = new List<FrontRegisterRequest>();
         }
 
         [Given(@"open the brouser and open DevEducation web page")]
@@ -32,7 +32,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [Given(@"registration users in service")]
         public void GivenRegistrationUsersInService(Table table)
         {
-            List<RegisterRequest> users = table.CreateSet<RegisterRequest>().ToList();
+            List<FrontRegisterRequest> users = table.CreateSet<FrontRegisterRequest>().ToList();
             foreach (var user in users)
             {
                 switch (user.Role)
