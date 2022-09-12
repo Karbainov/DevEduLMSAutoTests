@@ -123,29 +123,18 @@ this.ScenarioInitialize(scenarioInfo);
                             "GitHubAccount",
                             "PhoneNumber"});
                 table13.AddRow(new string[] {
-                            "Lidiya",
-                            "Ivanova",
-                            "Victorovna",
-                            "lidyasha@blabla.com",
-                            "Lidya",
+                            "Vasiliy",
+                            "Druzhin",
+                            "Ivanovich",
+                            "vasya@blabla.com",
+                            "Vaselyok",
                             "password",
                             "SaintPetersburg",
-                            "15.12.1990",
+                            "05.06.1999",
                             "string",
-                            "89995556633"});
-                table13.AddRow(new string[] {
-                            "Ivangelina",
-                            "Rusachenko",
-                            "Olgovna",
-                            "iva@blabla.com",
-                            "Ivasha",
-                            "password",
-                            "SaintPetersburg",
-                            "26.02.1999",
-                            "string",
-                            "89996663322"});
+                            "89905552211"});
 #line 10
- testRunner.Given("Registrate few students", ((string)(null)), table13, "Given ");
+ testRunner.And("Registrate a teacher", ((string)(null)), table13, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
@@ -159,31 +148,6 @@ this.ScenarioInitialize(scenarioInfo);
                             "GitHubAccount",
                             "PhoneNumber"});
                 table14.AddRow(new string[] {
-                            "Vasiliy",
-                            "Druzhin",
-                            "Ivanovich",
-                            "vasya@blabla.com",
-                            "Vaselyok",
-                            "password",
-                            "SaintPetersburg",
-                            "05.06.1999",
-                            "string",
-                            "89905552211"});
-#line 14
- testRunner.And("Registrate a teacher", ((string)(null)), table14, "And ");
-#line hidden
-                TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
-                            "FirstName",
-                            "LastName",
-                            "Patronymic",
-                            "Email",
-                            "Username",
-                            "Password",
-                            "City",
-                            "BirthDate",
-                            "GitHubAccount",
-                            "PhoneNumber"});
-                table15.AddRow(new string[] {
                             "Igor",
                             "Artemonov",
                             "Ildarovich",
@@ -194,28 +158,28 @@ this.ScenarioInitialize(scenarioInfo);
                             "01.09.1995",
                             "string",
                             "89992225544"});
-#line 17
- testRunner.And("Registrate a tutor", ((string)(null)), table15, "And ");
+#line 13
+ testRunner.And("Registrate a tutor", ((string)(null)), table14, "And ");
 #line hidden
-#line 20
+#line 16
  testRunner.Given("Open a browser and open a page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password"});
-                table16.AddRow(new string[] {
+                table15.AddRow(new string[] {
                             "marina@example.com",
                             "marinamarina"});
-#line 21
- testRunner.Given("SignIn as manager", ((string)(null)), table16, "Given ");
+#line 17
+ testRunner.Given("SignIn as manager", ((string)(null)), table15, "Given ");
 #line hidden
-#line 24
+#line 20
  testRunner.And("Start create a group \"Orange\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 25
+#line 21
  testRunner.When("Cancel creation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 26
+#line 22
  testRunner.Then("Group do not create", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

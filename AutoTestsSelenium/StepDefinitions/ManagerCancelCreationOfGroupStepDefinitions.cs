@@ -12,7 +12,6 @@ namespace AutoTestsSelenium.StepDefinitions
         private AuthenticationClient _authenticationClient;
         private UsersClient _usersClient;
         private ClearTables _clearDb;
-        private List<RegisterResponse> _students;
         private RegisterResponse _teacher;
         private RegisterResponse _tutor;
         private string _managerToken;
@@ -24,7 +23,6 @@ namespace AutoTestsSelenium.StepDefinitions
             _clearDb = new ClearTables();
             _authenticationClient = new AuthenticationClient();
             _usersClient = new UsersClient();
-            _students = new List<RegisterResponse>();
             _teacher = new RegisterResponse();
             _tutor = new RegisterResponse();
         }
@@ -32,20 +30,9 @@ namespace AutoTestsSelenium.StepDefinitions
         [Given(@"Authorize as manager")]
         public void GivenAuthorizeAsManager(Table table)
         {
+            _clearDb.ClearDB();
             SwaggerSignInRequest authManager = table.CreateInstance<SwaggerSignInRequest>();
             _managerToken = _authenticationClient.AuthorizeUser(authManager);
-        }
-
-        [Given(@"Registrate few students")]
-        public void GivenRegistrateFewStudents(Table table)
-        {
-            List<RegisterRequest> usersRegistartion = table.CreateSet<RegisterRequest>().ToList();
-            foreach (var user in usersRegistartion)
-            {
-                RegisterResponse student = _authenticationClient.RegisterUser(user);
-                _students.Add(student);
-            };
-
         }
         [Given(@"Registrate a teacher")]
         public void GivenRegistrateATeacher(Table table)
@@ -79,6 +66,7 @@ namespace AutoTestsSelenium.StepDefinitions
             var emailBox = _driver.FindElement(_xPaths.EmailInput);
             emailBox.SendKeys(authModel.Email);
             var passwordBox = _driver.FindElement(_xPaths.PasswordInput);
+            passwordBox.Clear();
             passwordBox.SendKeys(authModel.Password);
             var enterButton = _driver.FindElement(_xPaths.EnterButton);
             enterButton.Click();
@@ -87,16 +75,17 @@ namespace AutoTestsSelenium.StepDefinitions
         [Given(@"Start create a group ""([^""]*)""")]
         public void GivenStartCreateAGroup(string name)
         {
+            Thread.Sleep(2000);
             var createGroup = _driver.FindElement(_xPaths.CreateGroupAside);
             createGroup.Click();
             var groupName = _driver.FindElement(_xPaths.EnterGroupName);
             groupName.SendKeys(name);
             var chooseCourse = _driver.FindElement(_xPaths.ChooseCourse);
             chooseCourse.Click();
+            Thread.Sleep(2000);
             var backendC = _driver.FindElement(_xPaths.BackendC);
             backendC.Click();
-
-
+            chooseCourse.Click();
 
         }
 

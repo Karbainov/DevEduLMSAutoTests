@@ -8,6 +8,6 @@
         public readonly By CreateGroupAside = By.XPath("//span[text()='Создать группу']");
         public readonly By EnterGroupName = By.XPath("//input[@placeholder='Введите название']");
         public readonly By ChooseCourse = By.XPath("//div[@class='drop-down-filter  ']");
-        public readonly By BackendC = By.XPath("//li[text()='Backend C#']");
+        public readonly By BackendC = By.XPath("//li[text()='Frontend React']");
     }
 }
