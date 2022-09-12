@@ -2,7 +2,7 @@
 {
     public class GroupsWindow
     {
-        public static By XPathGroupName(string groupName)
+        public By XPathGroupName(string groupName)
         {
             return By.XPath($"//*[contains(text(),'{groupName}')]");
         }

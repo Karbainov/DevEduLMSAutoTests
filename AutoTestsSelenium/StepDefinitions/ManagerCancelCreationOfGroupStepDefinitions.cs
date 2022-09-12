@@ -92,12 +92,12 @@ namespace AutoTestsSelenium.StepDefinitions
             var chooseCourse = _driver.FindElement(_createGroupWindow.XPathCoursesComboBox);
             chooseCourse.Click();
             Thread.Sleep(1500);
-            var qa = _driver.FindElement(CreateGroupWindow.XPathCourseButton(Options.CourseQAAutomationId));
+            var qa = _driver.FindElement(_createGroupWindow.XPathCourseButton(Options.CourseQAAutomationId));
             qa.Click();
             chooseCourse.Click();
-            var chooseTeacher = _driver.FindElement(CreateGroupWindow.XPathTeacherCheckBox(_teacher.FirstName));
+            var chooseTeacher = _driver.FindElement(_createGroupWindow.XPathTeacherCheckBox(_teacher.FirstName));
             chooseTeacher.Click();
-            var chooseTutor = _driver.FindElement(CreateGroupWindow.XPathTutorCheckBox(_tutor.FirstName));
+            var chooseTutor = _driver.FindElement(_createGroupWindow.XPathTutorCheckBox(_tutor.FirstName));
             chooseTutor.Click();
         }
 
