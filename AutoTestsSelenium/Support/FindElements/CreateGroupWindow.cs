@@ -2,7 +2,7 @@
 {
     public class CreateGroupWindow
     {
-        private static string _course;
+        private string _course;
 
         public By XPathNameGroupBox
         {
@@ -40,17 +40,17 @@
             private set { }
         }
 
-        public static By XPathTeacherCheckBox(string teacherName)
+        public By XPathTeacherCheckBox(string teacherName)
         {
             return By.XPath($"//*[text()='{teacherName}']/..");
         }
 
-        public static By XPathTutorCheckBox(string tutorName)
+        public By XPathTutorCheckBox(string tutorName)
         {
             return By.XPath($"//*[text()='{tutorName}']/..");
         }
 
-        public static By XPathCourseButton(string courseId)
+        public By XPathCourseButton(string courseId)
         {
             switch (courseId)
             {

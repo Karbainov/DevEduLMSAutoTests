@@ -81,11 +81,11 @@ namespace AutoTestsSelenium.StepDefinitions
             //_driver.FindElement(_managerNavigatePanelElements.XPathCreateGroupButton).Click();
             //_driver.FindElement(_createGroupWindow.XPathNameGroupBox).SendKeys(newGroup.Name);
             //_driver.FindElement(_createGroupWindow.XPathCoursesComboBox).Click();
-            //var course =  _driver.FindElement(CreateGroupWindow.XPathCourseButton((newGroup.CourseId).ToString()));
+            //var course = _driver.FindElement(_createGroupWindow.XPathCourseButton((newGroup.CourseId).ToString()));
             //course.Click();
             //_nameGroup = course.Text;
-            //_driver.FindElement(CreateGroupWindow.XPathTeacherCheckBox($"{_teacher.FirstName} {_teacher.LastName}")).Click();
-            //_driver.FindElement(CreateGroupWindow.XPathTutorCheckBox($"{_tutor.FirstName} {_tutor.LastName}")).Click();
+            //_driver.FindElement(_createGroupWindow.XPathTeacherCheckBox($"{_teacher.FirstName} {_teacher.LastName}")).Click();
+            //_driver.FindElement(_createGroupWindow.XPathTutorCheckBox($"{_tutor.FirstName} {_tutor.LastName}")).Click();
             //_driver.FindElement(_createGroupWindow.XPathSaveButton).Click();
         }
 
