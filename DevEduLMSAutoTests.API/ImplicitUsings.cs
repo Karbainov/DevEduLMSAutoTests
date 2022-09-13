@@ -1,7 +1,6 @@
 ﻿global using FluentAssertions;
-global using NUnit;
-global using NUnit.Framework;
 global using TechTalk.SpecFlow;
+global using Xunit;
 global using System.Text.Json.Serialization;
 global using System.Collections.Generic;
 global using TechTalk.SpecFlow.Assist;

@@ -15,7 +15,7 @@
             };
             HttpResponseMessage response = client.Send(message);
             HttpStatusCode actual = response.StatusCode;
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
             AddStudentHomeworkResponse content = JsonSerializer.Deserialize<AddStudentHomeworkResponse>(response.Content.ReadAsStringAsync().Result)!;
             return content;
         }
@@ -31,7 +31,7 @@
             };
             HttpResponseMessage response = client.Send(message);
             HttpStatusCode actual = response.StatusCode;
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
             AddStudentHomeworkResponse content = JsonSerializer.Deserialize<AddStudentHomeworkResponse>(response.Content.ReadAsStringAsync().Result)!;
             return content;
         }
@@ -46,7 +46,7 @@
             };
             HttpResponseMessage response = client.Send(message);
             HttpStatusCode actual = response.StatusCode;
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
             AddStudentHomeworkResponse content = JsonSerializer.Deserialize<AddStudentHomeworkResponse>(response.Content.ReadAsStringAsync().Result)!;
             return content;
         }
@@ -64,7 +64,7 @@
             };
             HttpResponseMessage response = client.Send(message);
             HttpStatusCode actual = response.StatusCode;
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
             AddStudentHomeworkResponse content = JsonSerializer.Deserialize<AddStudentHomeworkResponse>(response.Content.ReadAsStringAsync().Result)!;
             return content;
         }
@@ -80,7 +80,7 @@
             };
             HttpResponseMessage response = client.Send(message);
             HttpStatusCode actual = response.StatusCode;
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
             AddStudentHomeworkResponse content = JsonSerializer.Deserialize<AddStudentHomeworkResponse>(response.Content.ReadAsStringAsync().Result)!;
             return content;
         }

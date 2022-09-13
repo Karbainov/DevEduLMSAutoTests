@@ -19,39 +19,41 @@ namespace DevEduLMSAutoTests.API.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("ManagerCreatesAGroupAddsUsers")]
-    public partial class ManagerCreatesAGroupAddsUsersFeature
+    public partial class ManagerCreatesAGroupAddsUsersFeature : object, Xunit.IClassFixture<ManagerCreatesAGroupAddsUsersFeature.FixtureData>, System.IDisposable
     {
         
-        private TechTalk.SpecFlow.ITestRunner testRunner;
+        private static TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
+        
+        private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
 #line 1 "ManagerCreatesAGroupAddsUsers.feature"
 #line hidden
         
-        [NUnit.Framework.OneTimeSetUpAttribute()]
-        public virtual void FeatureSetup()
+        public ManagerCreatesAGroupAddsUsersFeature(ManagerCreatesAGroupAddsUsersFeature.FixtureData fixtureData, DevEduLMSAutoTests_API_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        {
+            this._testOutputHelper = testOutputHelper;
+            this.TestInitialize();
+        }
+        
+        public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "ManagerCreatesAGroupAddsUsers", "A short summary of the feature", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [NUnit.Framework.OneTimeTearDownAttribute()]
-        public virtual void FeatureTearDown()
+        public static void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
         
-        [NUnit.Framework.SetUpAttribute()]
         public void TestInitialize()
         {
         }
         
-        [NUnit.Framework.TearDownAttribute()]
         public void TestTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -60,7 +62,7 @@ namespace DevEduLMSAutoTests.API.Features
         public void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo);
-            testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<NUnit.Framework.TestContext>(NUnit.Framework.TestContext.CurrentContext);
+            testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<Xunit.Abstractions.ITestOutputHelper>(_testOutputHelper);
         }
         
         public void ScenarioStart()
@@ -73,12 +75,18 @@ namespace DevEduLMSAutoTests.API.Features
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Manager creates a group adds students and appoints a teacher and tutor")]
-        [NUnit.Framework.CategoryAttribute("manager")]
-        [NUnit.Framework.CategoryAttribute("teacher")]
-        [NUnit.Framework.CategoryAttribute("tutor")]
-        [NUnit.Framework.CategoryAttribute("student")]
+        void System.IDisposable.Dispose()
+        {
+            this.TestTearDown();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Manager creates a group adds students and appoints a teacher and tutor")]
+        [Xunit.TraitAttribute("FeatureTitle", "ManagerCreatesAGroupAddsUsers")]
+        [Xunit.TraitAttribute("Description", "Manager creates a group adds students and appoints a teacher and tutor")]
+        [Xunit.TraitAttribute("Category", "manager")]
+        [Xunit.TraitAttribute("Category", "teacher")]
+        [Xunit.TraitAttribute("Category", "tutor")]
+        [Xunit.TraitAttribute("Category", "student")]
         public void ManagerCreatesAGroupAddsStudentsAndAppointsATeacherAndTutor()
         {
             string[] tagsOfScenario = new string[] {
@@ -271,6 +279,22 @@ testRunner.And("check the user\'s group in service", ((string)(null)), ((TechTal
 #line hidden
             }
             this.ScenarioCleanup();
+        }
+        
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
+        [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        public class FixtureData : System.IDisposable
+        {
+            
+            public FixtureData()
+            {
+                ManagerCreatesAGroupAddsUsersFeature.FeatureSetup();
+            }
+            
+            void System.IDisposable.Dispose()
+            {
+                ManagerCreatesAGroupAddsUsersFeature.FeatureTearDown();
+            }
         }
     }
 }

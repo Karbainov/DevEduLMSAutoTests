@@ -62,7 +62,7 @@
             };
             HttpResponseMessage httpResponsec = client.Send(message);
             HttpStatusCode actualCode = httpResponsec.StatusCode;
-            Assert.AreEqual(expectedCode, actualCode);
+            Assert.Equal(expectedCode, actualCode);
         }
 
     }

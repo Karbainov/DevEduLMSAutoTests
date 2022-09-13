@@ -122,7 +122,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             foreach (var userToken in _usersToken)
             {
                 RegisterResponse user = _usersClient.GetUserInfoByToken(userToken);
-                Assert.AreEqual(group, user.Groups.Find(i => i.Id == group.Id));
+                Assert.Equal(group, user.Groups.Find(i => i.Id == group.Id));
             }
         }
     }

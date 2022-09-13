@@ -15,7 +15,7 @@
             };
             HttpResponseMessage response = client.Send(message);
             HttpStatusCode actual = response.StatusCode;
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
             return response.Content;
         }
     }
