@@ -179,14 +179,14 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         public void WhenTeacherSeeTask()
         {
             List<TaskResponse> actualTasks = _tasksClient.GetTasksByGroupId(_groupId, _teacherMainToken);
-            CollectionAssert.Contains(actualTasks, _expectedTask);
+            Assert.Contains(_expectedTask, actualTasks);
         }
 
         [When(@"teacher sees task by id")]
         public void WhenTeacherSeesTaskById()
         {
             TaskResponse actualTask = _tasksClient.GetTaskById(_taskId, _teacherMainToken);
-            Assert.AreEqual(_expectedTask, actualTask);
+            Assert.Equal(_expectedTask, actualTask);
         }
 
         [When(@"teacher post task")]
@@ -216,7 +216,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         {
             List<GetHomeworkByGroupIdResponse> actualHomeworks = _homeworksClient.
                 GetAllHomeworksByGroupId(_groupId, _studentMainToken);
-            CollectionAssert.Contains(actualHomeworks, _expectedHomework);
+            Assert.Contains(_expectedHomework, actualHomeworks);
         }
     }
 }

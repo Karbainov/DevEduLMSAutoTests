@@ -14,7 +14,7 @@
             };
             HttpResponseMessage responseMessage = client.Send(message);
             HttpStatusCode actualCode = responseMessage.StatusCode;
-            Assert.AreEqual(expextedCode, actualCode);
+            Assert.Equal(expextedCode, actualCode);
             RegisterResponse response = JsonSerializer.Deserialize<RegisterResponse>
                 (responseMessage.Content.ReadAsStringAsync().Result)!;
             return response;
@@ -32,7 +32,7 @@
             };
             HttpResponseMessage responseMessage = client.Send(message);
             HttpStatusCode actualCode = responseMessage.StatusCode;
-            Assert.AreEqual(expectedCode, actualCode);
+            Assert.Equal(expectedCode, actualCode);
             string token = responseMessage.Content.ReadAsStringAsync().Result;
             return token;
         }

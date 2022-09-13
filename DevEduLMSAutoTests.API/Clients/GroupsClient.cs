@@ -15,7 +15,7 @@
             };
             HttpResponseMessage responseMessage = client.Send(message);
             HttpStatusCode actualCode = responseMessage.StatusCode;
-            Assert.AreEqual(expectedCode, actualCode);
+            Assert.Equal(expectedCode, actualCode);
             GetAllGroupsResponse response = JsonSerializer.Deserialize<GetAllGroupsResponse>
                 (responseMessage.Content.ReadAsStringAsync().Result)!;
             return response;
@@ -32,7 +32,7 @@
             };
             HttpResponseMessage responseMessage = client.Send(message);
             HttpStatusCode actualCode = responseMessage.StatusCode;
-            Assert.AreEqual(expectedCode, actualCode);
+            Assert.Equal(expectedCode, actualCode);
             GetGroupByIdResponse response = JsonSerializer.Deserialize<GetGroupByIdResponse>
                 (responseMessage.Content.ReadAsStringAsync().Result)!;
             return response;
@@ -49,7 +49,7 @@
             };
             HttpResponseMessage responseMessage = client.Send(message);
             HttpStatusCode actualCode = responseMessage.StatusCode;
-            Assert.AreEqual(expectedCode, actualCode);
+            Assert.Equal(expectedCode, actualCode);
         }
     }
 }

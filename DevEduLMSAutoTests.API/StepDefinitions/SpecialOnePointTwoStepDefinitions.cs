@@ -101,7 +101,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         {
             _lessonsClient = new LessonsClient();
             List<AddLessonResponse> actualLesson = _lessonsClient.GetAllLessonsUnpublishedByGroupId(_groupId, _teacherToken);
-            CollectionAssert.Contains(actualLesson, _expectedLesson);
+            Assert.Equal(_expectedLesson, actualLesson);
         }
 
         [When(@"teacher update lesson")]
@@ -119,7 +119,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         {
             _lessonsClient = new LessonsClient();
             List<AddLessonResponse> actualLesson = _lessonsClient.GetAllLessonsGroupId(_groupId, _teacherToken);
-            CollectionAssert.Contains(actualLesson, _expectedLesson);
+            Assert.Equal(_expectedLesson, actualLesson);
         }
     }
 }

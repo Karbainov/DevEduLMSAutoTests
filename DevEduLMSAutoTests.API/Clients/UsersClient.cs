@@ -13,7 +13,7 @@
             };
             HttpResponseMessage response = client.Send(message);
             HttpStatusCode actualCode = response.StatusCode;
-            Assert.AreEqual(expectedCode, actualCode);
+            Assert.Equal(expectedCode, actualCode);
         }
 
         public RegisterResponse GetUserInfoByToken(string token, HttpStatusCode expectedCode = HttpStatusCode.OK)
@@ -27,7 +27,7 @@
             };
             HttpResponseMessage responseMessage = client.Send(message);
             HttpStatusCode actualCode = responseMessage.StatusCode;
-            Assert.AreEqual(expectedCode, actualCode);
+            Assert.Equal(expectedCode, actualCode);
             RegisterResponse response = JsonSerializer.Deserialize<RegisterResponse>
                 (responseMessage.Content.ReadAsStringAsync().Result)!;
             return response;

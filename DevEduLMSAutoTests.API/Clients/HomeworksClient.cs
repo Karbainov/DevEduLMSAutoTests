@@ -15,7 +15,7 @@
             };
             HttpResponseMessage responseMessage = client.Send(message);
             HttpStatusCode actualCode = responseMessage.StatusCode;
-            Assert.AreEqual(expectedCode, actualCode);
+            Assert.Equal(expectedCode, actualCode);
             AddHomeworkResponse response = JsonSerializer.Deserialize<AddHomeworkResponse>
                 (responseMessage.Content.ReadAsStringAsync().Result)!;
             return response;
@@ -32,7 +32,7 @@
             };
             HttpResponseMessage responseMessage = client.Send(message);
             HttpStatusCode actualCode = responseMessage.StatusCode;
-            Assert.AreEqual(expectedCode, actualCode);
+            Assert.Equal(expectedCode, actualCode);
             List<GetHomeworkByGroupIdResponse> response = JsonSerializer.Deserialize<List<GetHomeworkByGroupIdResponse>>
                 (responseMessage.Content.ReadAsStringAsync().Result)!;
             return response;

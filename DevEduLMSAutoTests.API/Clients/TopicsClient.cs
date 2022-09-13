@@ -111,7 +111,7 @@
             };
             HttpResponseMessage responseMessage = client.Send(message);
             HttpStatusCode actualCode = responseMessage.StatusCode;
-            Assert.AreEqual(expectedCode, actualCode);
+            Assert.Equal(expectedCode, actualCode);
             List<AddTopicToCourseResponse> response = JsonSerializer.Deserialize<List<AddTopicToCourseResponse>>
                 (responseMessage.Content.ReadAsStringAsync().Result)!;
             return response;

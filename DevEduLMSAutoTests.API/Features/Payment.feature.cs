@@ -19,39 +19,41 @@ namespace DevEduLMSAutoTests.API.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Payment")]
-    public partial class PaymentFeature
+    public partial class PaymentFeature : object, Xunit.IClassFixture<PaymentFeature.FixtureData>, System.IDisposable
     {
         
-        private TechTalk.SpecFlow.ITestRunner testRunner;
+        private static TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
+        
+        private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
 #line 1 "Payment.feature"
 #line hidden
         
-        [NUnit.Framework.OneTimeSetUpAttribute()]
-        public virtual void FeatureSetup()
+        public PaymentFeature(PaymentFeature.FixtureData fixtureData, DevEduLMSAutoTests_API_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        {
+            this._testOutputHelper = testOutputHelper;
+            this.TestInitialize();
+        }
+        
+        public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Payment", "A short summary of the feature", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [NUnit.Framework.OneTimeTearDownAttribute()]
-        public virtual void FeatureTearDown()
+        public static void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
         
-        [NUnit.Framework.SetUpAttribute()]
         public void TestInitialize()
         {
         }
         
-        [NUnit.Framework.TearDownAttribute()]
         public void TestTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -60,7 +62,7 @@ namespace DevEduLMSAutoTests.API.Features
         public void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo);
-            testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<NUnit.Framework.TestContext>(NUnit.Framework.TestContext.CurrentContext);
+            testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<Xunit.Abstractions.ITestOutputHelper>(_testOutputHelper);
         }
         
         public void ScenarioStart()
@@ -73,9 +75,15 @@ namespace DevEduLMSAutoTests.API.Features
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Add payments by manager")]
-        [NUnit.Framework.CategoryAttribute("manager")]
+        void System.IDisposable.Dispose()
+        {
+            this.TestTearDown();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Add payments by manager")]
+        [Xunit.TraitAttribute("FeatureTitle", "Payment")]
+        [Xunit.TraitAttribute("Description", "Add payments by manager")]
+        [Xunit.TraitAttribute("Category", "manager")]
         public void AddPaymentsByManager()
         {
             string[] tagsOfScenario = new string[] {
@@ -162,6 +170,22 @@ testRunner.Given("register as user", ((string)(null)), table7, "Given ");
 #line hidden
             }
             this.ScenarioCleanup();
+        }
+        
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
+        [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        public class FixtureData : System.IDisposable
+        {
+            
+            public FixtureData()
+            {
+                PaymentFeature.FeatureSetup();
+            }
+            
+            void System.IDisposable.Dispose()
+            {
+                PaymentFeature.FeatureTearDown();
+            }
         }
     }
 }

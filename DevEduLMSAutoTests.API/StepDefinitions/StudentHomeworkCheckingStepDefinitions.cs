@@ -157,7 +157,7 @@
         {
             _homeworkStatus = _studentHomeworksClient.GetStudenthomeworkById(_homeworkId, _studentToken, HttpStatusCode.OK).Status;
             string expectedStstus = "Done";
-            Assert.AreEqual(expectedStstus, _homeworkStatus);
+            Assert.Equal(expectedStstus, _homeworkStatus);
         }
     }
 }

@@ -32,7 +32,7 @@
             };
             HttpResponseMessage response = client.Send(message);
             HttpStatusCode actualCode = response.StatusCode;
-            Assert.AreEqual(expectedCode, actualCode);
+            Assert.Equal(expectedCode, actualCode);
             TaskResponse responseTask = JsonSerializer.Deserialize<TaskResponse>
                 (response.Content.ReadAsStringAsync().Result)!;
             return responseTask;
@@ -79,7 +79,7 @@
             };
             HttpResponseMessage response = client.Send(message);
             HttpStatusCode actual = response.StatusCode;
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
             AddTasksByTeacherResponse content = JsonSerializer.Deserialize<AddTasksByTeacherResponse>(response.Content.ReadAsStringAsync().Result)!;
             return content;
         }

@@ -19,20 +19,25 @@ namespace DevEduLMSAutoTests.API.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("StudentHomeworkChecking")]
-    public partial class StudentHomeworkCheckingFeature
+    public partial class StudentHomeworkCheckingFeature : object, Xunit.IClassFixture<StudentHomeworkCheckingFeature.FixtureData>, System.IDisposable
     {
         
-        private TechTalk.SpecFlow.ITestRunner testRunner;
+        private static TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
+        
+        private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
 #line 1 "StudentHomeworkChecking.feature"
 #line hidden
         
-        [NUnit.Framework.OneTimeSetUpAttribute()]
-        public virtual void FeatureSetup()
+        public StudentHomeworkCheckingFeature(StudentHomeworkCheckingFeature.FixtureData fixtureData, DevEduLMSAutoTests_API_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        {
+            this._testOutputHelper = testOutputHelper;
+            this.TestInitialize();
+        }
+        
+        public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "StudentHomeworkChecking", "Teacher give a homework\r\nStudent pass the homework\r\nTeacher decline it\r\nStudent f" +
@@ -40,19 +45,16 @@ namespace DevEduLMSAutoTests.API.Features
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [NUnit.Framework.OneTimeTearDownAttribute()]
-        public virtual void FeatureTearDown()
+        public static void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
         
-        [NUnit.Framework.SetUpAttribute()]
         public void TestInitialize()
         {
         }
         
-        [NUnit.Framework.TearDownAttribute()]
         public void TestTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -61,7 +63,7 @@ namespace DevEduLMSAutoTests.API.Features
         public void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo);
-            testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<NUnit.Framework.TestContext>(NUnit.Framework.TestContext.CurrentContext);
+            testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<Xunit.Abstractions.ITestOutputHelper>(_testOutputHelper);
         }
         
         public void ScenarioStart()
@@ -74,9 +76,15 @@ namespace DevEduLMSAutoTests.API.Features
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Student pass the homework from the second time")]
-        [NUnit.Framework.CategoryAttribute("studentHomework")]
+        void System.IDisposable.Dispose()
+        {
+            this.TestTearDown();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Student pass the homework from the second time")]
+        [Xunit.TraitAttribute("FeatureTitle", "StudentHomeworkChecking")]
+        [Xunit.TraitAttribute("Description", "Student pass the homework from the second time")]
+        [Xunit.TraitAttribute("Category", "studentHomework")]
         public void StudentPassTheHomeworkFromTheSecondTime()
         {
             string[] tagsOfScenario = new string[] {
@@ -236,6 +244,22 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
             }
             this.ScenarioCleanup();
+        }
+        
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
+        [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        public class FixtureData : System.IDisposable
+        {
+            
+            public FixtureData()
+            {
+                StudentHomeworkCheckingFeature.FeatureSetup();
+            }
+            
+            void System.IDisposable.Dispose()
+            {
+                StudentHomeworkCheckingFeature.FeatureTearDown();
+            }
         }
     }
 }
