@@ -41,5 +41,6 @@ namespace AutoTestsSelenium.PageObjects
         {
             ButtonRegisterSideBar.Click();
         }
+        
     }
 }

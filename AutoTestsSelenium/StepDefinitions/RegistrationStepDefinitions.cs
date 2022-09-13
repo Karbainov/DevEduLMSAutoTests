@@ -10,6 +10,7 @@ namespace AutoTestsSelenium.StepDefinitions
         IWebDriver driver;
         RegistrationPage registrationPage;
         AuthorizationPage authorizationPage;
+        SingInRequest singInModel;
 
         [Given(@"Open registration page")]
         public void GivenOpenRegistrationPage()
@@ -40,19 +41,52 @@ namespace AutoTestsSelenium.StepDefinitions
             registrationPage.EnterRepeatPassword(user.RepeatPassword);
             registrationPage.EnterEmail(user.Email);
             registrationPage.EnterPhone(user.PhoneNumber);
+            singInModel = new SingInRequest()
+            {
+                Email = user.Email,
+                Password = user.Password
+            };
 
         }
 
         [Given(@"Click on private policy checkbox")]
         public void GivenClickOnPrivatePolicyCheckbox()
         {
-            throw new PendingStepException();
+            registrationPage.ClickOnConfirmRulesCheckBox();
         }
 
         [When(@"Click on register button")]
         public void WhenClickOnRegisterButton()
         {
+            registrationPage.ClickOnButtonRegistrate();
+        }
+
+        [When(@"Click on athorization sidebar button")]
+        public void WhenClickOnAthorizationSidebarButton()
+        {
+            registrationPage.ClickOnAuthSideBarButton();
+        }
+
+        [When(@"Authorize user in service")]
+        public void WhenAuthorizeUserInService()
+        {
+           authorizationPage = new AuthorizationPage(driver);
+            authorizationPage.EnterEmail(singInModel.Email);
+            authorizationPage.EnterPassword(singInModel.Password);
+            authorizationPage.ClickEnterButton();
+        }
+
+        [When(@"click on user's profile")]
+        public void WhenClickOnUsersProfile()
+        {
             throw new PendingStepException();
         }
+
+        [Then(@"user should see his actual information")]
+        public void ThenUserShouldSeeHisActualInformation()
+        {
+            throw new PendingStepException();
+        }
+
     }
 }

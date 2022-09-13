@@ -109,5 +109,14 @@
             }
             private set { }
         }
+
+        public By XPathAuthSideBarButton
+        {
+            get
+            {
+                return By.XPath($"//*[text()='Вход']");
+            }
+            private set { }
+        }
     }
 }

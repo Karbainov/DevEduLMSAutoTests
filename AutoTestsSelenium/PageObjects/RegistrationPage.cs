@@ -20,6 +20,7 @@ namespace AutoTestsSelenium.PageObjects
         public IWebElement CheckBoxConfirmRules { get; set; }
         public IWebElement ButtonRegistrate { get; set; }
         public IWebElement ButtonCancelRegistration { get; set; }
+        public IWebElement ButtonAuth { get; set; }
 
         public RegistrationPage(IWebDriver driver) : base(driver)
         {
@@ -34,7 +35,7 @@ namespace AutoTestsSelenium.PageObjects
             ButtonRegistrate = _driver.FindElement(_registrationWindow.XPathRegisterButton);
             ButtonCancelRegistration = _driver.FindElement(_registrationWindow.XPathCancelRegistrationButton);
             TextBoxPhone = _driver.FindElement(_registrationWindow.XPathPhoneNumberBox);
-
+            ButtonAuth = _driver.FindElement(_registrationWindow.XPathAuthSideBarButton);
         }
 
         public void EnterLastName(string lastName)
@@ -84,6 +85,11 @@ namespace AutoTestsSelenium.PageObjects
         public void ClickOnButtonCancelRegistration()
         {
             ButtonCancelRegistration.Click();
+        }
+
+        public void ClickOnAuthSideBarButton()
+        {
+            ButtonAuth.Click();
         }
     }
 }
