@@ -20,9 +20,11 @@ namespace AutoTestsSelenium.PageObjects
         public IWebElement ButtonRegistrate { get; set; }
         public IWebElement ButtonCancelRegistration { get; set; }
 
+        public By TextBoxLastNamePath = By.XPath($"");
+
         public RegistrationPage(IWebDriver driver) : base(driver)
         {
-            
+            TextBoxEmail = _driver.FindElement(TextBoxLastNamePath);
         }
     }
 }
