@@ -8,16 +8,23 @@ namespace AutoTestsSelenium.StepDefinitions
     public class RegistrationStepDefinitions
     {
         IWebDriver driver;
-        LoginPage loginPage;
+        RegistrationPage registartionPage;
 
         [Given(@"Open registration page")]
         public void GivenOpenRegistrationPage()
         {
             driver = new ChromeDriver();
             driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl();
-            loginPage = new LoginPage(driver);
+            driver.Navigate().GoToUrl(Urls.Host);
+            registartionPage = new RegistrationPage(driver);
         }
+
+        [Given(@"Click on registration on sidebar")]
+        public void GivenClickOnRegistrationOnSidebar()
+        {
+            registartionPage.ClickRegistrationSideBarButton();
+        }
+
 
         [Given(@"Fill all requared fields")]
         public void GivenFillAllRequaredFields(Table table)

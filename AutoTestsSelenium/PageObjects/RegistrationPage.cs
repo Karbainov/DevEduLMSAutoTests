@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AutoTestsSelenium.PageObjects
 {
-    internal class RegistrationPage : AbstractPage
+    public class RegistrationPage : AbstractPage
     {
         public IWebElement TextBoxLastName { get; set; }
         public IWebElement TextBoxName { get; set; }
@@ -19,12 +19,21 @@ namespace AutoTestsSelenium.PageObjects
         public IWebElement ButtonEnter { get; set; }
         public IWebElement ButtonRegistrate { get; set; }
         public IWebElement ButtonCancelRegistration { get; set; }
+        public IWebElement ButtonRegistrationSideBar { get; set; }
+
+        public By ButtonRegistrationSideBarXPath = By.XPath($"//@class='auth-link active-auth-link'");
 
         public By TextBoxLastNamePath = By.XPath($"");
 
+
         public RegistrationPage(IWebDriver driver) : base(driver)
         {
-            TextBoxEmail = _driver.FindElement(TextBoxLastNamePath);
+            ButtonRegistrationSideBar = _driver.FindElement(ButtonRegistrationSideBarXPath);
+        }
+
+        public void ClickRegistrationSideBarButton()
+        {
+            ButtonRegistrationSideBar.Click();
         }
     }
 }
