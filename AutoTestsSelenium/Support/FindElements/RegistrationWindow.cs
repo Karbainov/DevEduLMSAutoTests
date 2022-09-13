@@ -105,7 +105,7 @@
         {
             get
             {
-                return By.XPath($"//span[@class='custom-checkbox-text']");
+                return By.XPath($"//*[@class='custom-checkbox']");
             }
             private set { }
         }
