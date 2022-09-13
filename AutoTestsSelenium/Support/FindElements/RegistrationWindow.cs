@@ -100,5 +100,14 @@
             }
             private set { }
         }
+
+        public By XPathPrivatePolicityCheckBox
+        {
+            get
+            {
+                return By.XPath($"//span[@class='custom-checkbox-text']");
+            }
+            private set { }
+        }
     }
 }

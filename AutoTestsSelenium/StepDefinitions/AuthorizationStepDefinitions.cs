@@ -5,10 +5,10 @@ using TechTalk.SpecFlow;
 namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
-    public class LoginExampleStepDefinitions
+    public class AuthorizationStepDefinitions
     {
         IWebDriver driver;
-        LoginPage loginPage;
+        AuthorizationPage loginPage;
 
         [Given(@"Open login page")]
         public void GivenOpenLoginPage()
@@ -16,7 +16,7 @@ namespace AutoTestsSelenium.StepDefinitions
             driver = new ChromeDriver();
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl($"https://piter-education.ru:7074/login");
-            loginPage=new LoginPage(driver);
+            loginPage=new AuthorizationPage(driver);
         }
 
         [When(@"Enter ""([^""]*)"" and ""([^""]*)""")]
@@ -31,9 +31,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [Then(@"Incerrect email text should apier")]
         public void ThenIncerrectEmailTextShouldApier()
         {
-            string expected = "¬веден некорректный email";
-            string actual = loginPage.TextIncorrectEmailFormat.Text;
-            Assert.Equal(expected, actual);
+
         }
 
         [Then(@"Incerrect email or password text should apier")]

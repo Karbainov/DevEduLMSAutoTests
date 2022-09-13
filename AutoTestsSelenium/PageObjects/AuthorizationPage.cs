@@ -6,27 +6,21 @@ using System.Threading.Tasks;
 
 namespace AutoTestsSelenium.PageObjects
 {
-    public class LoginPage:AbstractPage
+    public class AuthorizationPage:AbstractPage
     {
         public IWebElement TextBoxEmail {get; set;}
         public IWebElement TextBoxPassword {get; set;}
         public IWebElement ButtonEnter {get; set;}
-        public IWebElement TextIncorrectEmailFormat {
-            get
-            {
-                return _driver.FindElement(By.XPath($"/html/body/div/div/main/div[1]/form/div[2]"));
-            } 
-            private set
-            {
+        public IWebElement ButtonRegisterSideBar { get; set; }
 
-            }
-        }
+        SingInWindow _singInWindow = new SingInWindow();
 
-        public LoginPage(IWebDriver driver):base(driver)
+        public AuthorizationPage(IWebDriver driver):base(driver)
         {
-            TextBoxEmail = _driver.FindElement(By.XPath($"//*[@id='root']/div/main/div[1]/form/div[1]/input"));
-            TextBoxPassword = _driver.FindElement(By.XPath($"/html/body/div/div/main/div[1]/form/div[2]/input"));
-            ButtonEnter = _driver.FindElement(By.XPath($"//button[text()='Войти']"));
+            TextBoxEmail = _driver.FindElement(_singInWindow.XPathEmailBox);
+            TextBoxPassword = _driver.FindElement(_singInWindow.XPathPasswordBox);
+            ButtonEnter = _driver.FindElement(_singInWindow.XPathSingInButton);
+            ButtonRegisterSideBar = _driver.FindElement(_singInWindow.XPathRegistrationButton);
         }
 
         public void EnterEmail(string email)
@@ -39,10 +33,13 @@ namespace AutoTestsSelenium.PageObjects
             TextBoxPassword.Clear();
             TextBoxPassword.SendKeys(password);
         }
-
         public void ClickEnterButton()
         {
             ButtonEnter.Click();
+        }
+        public void ClickRegisterButton()
+        {
+            ButtonRegisterSideBar.Click();
         }
     }
 }

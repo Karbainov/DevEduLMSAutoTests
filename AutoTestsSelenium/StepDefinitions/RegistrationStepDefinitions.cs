@@ -8,7 +8,8 @@ namespace AutoTestsSelenium.StepDefinitions
     public class RegistrationStepDefinitions
     {
         IWebDriver driver;
-        RegistrationPage registartionPage;
+        RegistrationPage registrationPage;
+        AuthorizationPage authorizationPage;
 
         [Given(@"Open registration page")]
         public void GivenOpenRegistrationPage()
@@ -16,19 +17,22 @@ namespace AutoTestsSelenium.StepDefinitions
             driver = new ChromeDriver();
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl(Urls.Host);
-            registartionPage = new RegistrationPage(driver);
+            authorizationPage = new AuthorizationPage(driver);
         }
 
         [Given(@"Click on registration on sidebar")]
         public void GivenClickOnRegistrationOnSidebar()
         {
-            registartionPage.ClickRegistrationSideBarButton();
+            authorizationPage.ClickRegisterButton();
+            registrationPage = new RegistrationPage(driver);
         }
 
 
         [Given(@"Fill all requared fields")]
         public void GivenFillAllRequaredFields(Table table)
         {
+            RegisterRequest users = table.CreateInstance<RegisterRequest>();
+
             throw new PendingStepException();
         }
 
