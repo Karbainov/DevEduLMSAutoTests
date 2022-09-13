@@ -19,6 +19,7 @@
         private int _taskId;
         private int _homeworkId;
         private int _studentHomeworkId;
+
         public StudentHomeworkCheckingStepDefinitions()
         {
             _authenticationClient = new AuthenticationClient();
@@ -56,7 +57,7 @@
         [Given(@"Authorize as manager")]
         public void GivenAuthorizeAsManager(Table table)
         {
-            SignInRequest authManager = table.CreateInstance<SignInRequest>();
+            SwaggerSignInRequest authManager = table.CreateInstance<SwaggerSignInRequest>();
             _managerToken = _authenticationClient.AuthorizeUser(authManager);
         }
 
@@ -65,7 +66,7 @@
         {      
             foreach (var teacher in _teachers)
             {
-                _usersClient.AddNewRoleToUser(teacher.Id, Options.RoleTeacher, _managerToken);
+                _usersClient.AddNewRoleToUser(teacher.Id, OptionsSwagger.RoleTeacher, _managerToken);
             }
         }
 
@@ -81,18 +82,18 @@
         {
             foreach (var student in _students)
             {
-                _groupsClient.AddUserToGroup(_groupId, student.Id, Options.RoleStudent, _managerToken);
+                _groupsClient.AddUserToGroup(_groupId, student.Id, OptionsSwagger.RoleStudent, _managerToken);
             }
             foreach (var teacher in _teachers)
             {
-                _groupsClient.AddUserToGroup(_groupId, teacher.Id, Options.RoleTeacher, _managerToken);
+                _groupsClient.AddUserToGroup(_groupId, teacher.Id, OptionsSwagger.RoleTeacher, _managerToken);
             }
         }
 
         [Given(@"Authorize as teacher")]
         public void GivenAuthorizeAsTeacher(Table table)
         {
-            SignInRequest authManager = table.CreateInstance<SignInRequest>();
+            SwaggerSignInRequest authManager = table.CreateInstance<SwaggerSignInRequest>();
             _teacherToken = _authenticationClient.AuthorizeUser(authManager);
         }
 
@@ -114,7 +115,7 @@
         [Given(@"Authorize as student")]
         public void GivenAuthorizeAsStudent(Table table)
         {
-            SignInRequest authStudent = table.CreateInstance<SignInRequest>();
+            SwaggerSignInRequest authStudent = table.CreateInstance<SwaggerSignInRequest>();
             _studentToken = _authenticationClient.AuthorizeUser(authStudent);
         }
 
@@ -157,7 +158,7 @@
         {
             _homeworkStatus = _studentHomeworksClient.GetStudenthomeworkById(_homeworkId, _studentToken, HttpStatusCode.OK).Status;
             string expectedStstus = "Done";
-            Assert.AreEqual(expectedStstus, _homeworkStatus);
+            Assert.Equal(expectedStstus, _homeworkStatus);
         }
     }
 }
