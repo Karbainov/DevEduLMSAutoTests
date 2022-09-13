@@ -38,11 +38,9 @@ Scenario: Assigned homework by teacher, turned in by student
 	| https://hd.kinopoisk.ru/  |
 	And studen click airplane icon
 	And studen click button exit
-	And authorization user as teacher
+	And teacher checks homework 
 	| Email                 | Password   |
-	| vitya@teacher.com     | password   |
-	And teacher click botton to come in
-	And teacher click button checking assignments 
+	| vitya21@teacher.com   | password   |
 	#дальше никак потому что проверять нечего, ничего не получает препод
 
 

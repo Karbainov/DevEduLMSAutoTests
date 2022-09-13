@@ -2,6 +2,14 @@
 {
     public class NavigatePanelElements
     {
+        public By XPathIssuingHomework
+        {
+            get
+            {
+                return By.XPath("//*[text()='Выдача заданий']");
+            }
+        }
+
         public By XPathNewHomeworkButton
         {
             get

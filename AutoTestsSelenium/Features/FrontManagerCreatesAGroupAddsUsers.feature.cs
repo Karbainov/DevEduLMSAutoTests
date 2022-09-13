@@ -109,14 +109,14 @@ this.ScenarioInitialize(scenarioInfo);
 #line 7
 testRunner.Given("open the brouser and open DevEducation web page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password"});
-                table9.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "marina@example.com",
                             "marinamarina"});
 #line 16
-testRunner.And("authorize users in service", ((string)(null)), table9, "And ");
+testRunner.And("authorize users in service", ((string)(null)), table11, "And ");
 #line hidden
             }
             this.ScenarioCleanup();

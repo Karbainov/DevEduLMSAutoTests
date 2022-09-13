@@ -261,16 +261,10 @@ this.ScenarioInitialize(scenarioInfo);
                             "Email",
                             "Password"});
                 table8.AddRow(new string[] {
-                            "vitya@teacher.com",
+                            "vitya21@teacher.com",
                             "password"});
 #line 41
- testRunner.And("authorization user as teacher", ((string)(null)), table8, "And ");
-#line hidden
-#line 44
- testRunner.And("teacher click botton to come in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 45
- testRunner.And("teacher click button checking assignments", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("teacher checks homework", ((string)(null)), table8, "And ");
 #line hidden
             }
             this.ScenarioCleanup();

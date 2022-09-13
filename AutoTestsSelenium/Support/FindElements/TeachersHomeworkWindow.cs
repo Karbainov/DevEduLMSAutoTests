@@ -2,23 +2,7 @@
 {
     public class TeachersHomeworkWindow
     {
-        public string _groupName;
-
-        public By XpathHomework
-        {
-            get
-            {
-                return By.XPath("//span[text()='Домашние задания']");
-            }
-        }
-
-        public By XPathIssuingHomework
-        {
-            get
-            {
-                return By.XPath("//*[text()='Выдача заданий']");
-            }
-        }
+        public string _groupName;              
 
         public By XPathPublishButton
         {

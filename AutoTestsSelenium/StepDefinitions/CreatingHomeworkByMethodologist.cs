@@ -1,14 +1,14 @@
 namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
-    public class SpecialTwoPointFiveStepDefinitions
+    public class CreatingHomeworkByMethodologist
     {
         private IWebDriver _driver;
         private RegistrationWindow _registrationWindow;
         private SingInWindow _singInWindow;
         private MethodistHomeworkWindow _methodistHomeworkWindow;
 
-        SpecialTwoPointFiveStepDefinitions()
+        CreatingHomeworkByMethodologist()
         {
             _driver = new ChromeDriver();
             _registrationWindow = new RegistrationWindow();
