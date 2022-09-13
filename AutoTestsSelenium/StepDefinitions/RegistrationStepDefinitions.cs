@@ -24,16 +24,23 @@ namespace AutoTestsSelenium.StepDefinitions
         public void GivenClickOnRegistrationOnSidebar()
         {
             authorizationPage.ClickRegisterButton();
-            registrationPage = new RegistrationPage(driver);
         }
 
 
         [Given(@"Fill all requared fields")]
         public void GivenFillAllRequaredFields(Table table)
         {
-            RegisterRequest users = table.CreateInstance<RegisterRequest>();
+            registrationPage = new RegistrationPage(driver);
+            RegistrationRequest user = table.CreateInstance<RegistrationRequest>();
+            registrationPage.EnterFirstName(user.FirstName);
+            registrationPage.EnterLastName(user.LastName);
+            registrationPage.EnterPatronymic(user.Patronymic);
+            registrationPage.EnterBirthDate(user.BirthDate);
+            registrationPage.EnterPassword(user.Password);
+            registrationPage.EnterRepeatPassword(user.RepeatPassword);
+            registrationPage.EnterEmail(user.Email);
+            registrationPage.EnterPhone(user.PhoneNumber);
 
-            throw new PendingStepException();
         }
 
         [Given(@"Click on private policy checkbox")]

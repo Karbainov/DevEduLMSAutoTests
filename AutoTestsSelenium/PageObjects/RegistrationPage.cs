@@ -16,6 +16,7 @@ namespace AutoTestsSelenium.PageObjects
         public IWebElement TextBoxPassword { get; set; }
         public IWebElement TextBoxRepeatPassword { get; set; }
         public IWebElement TextBoxEmail { get; set; }
+        public IWebElement TextBoxPhone { get; set; }
         public IWebElement CheckBoxConfirmRules { get; set; }
         public IWebElement ButtonRegistrate { get; set; }
         public IWebElement ButtonCancelRegistration { get; set; }
@@ -32,6 +33,8 @@ namespace AutoTestsSelenium.PageObjects
             CheckBoxConfirmRules = _driver.FindElement(_registrationWindow.XPathPrivatePolicityCheckBox);
             ButtonRegistrate = _driver.FindElement(_registrationWindow.XPathRegisterButton);
             ButtonCancelRegistration = _driver.FindElement(_registrationWindow.XPathCancelRegistrationButton);
+            TextBoxPhone = _driver.FindElement(_registrationWindow.XPathPhoneNumberBox);
+
         }
 
         public void EnterLastName(string lastName)
@@ -60,11 +63,15 @@ namespace AutoTestsSelenium.PageObjects
         }
         public void EnterRepeatPassword(string repeatPassword)
         {
-            TextBoxPassword.SendKeys(repeatPassword);
+            TextBoxRepeatPassword.SendKeys(repeatPassword);
         }
-        public void EnterRepeatEmail(string email)
+        public void EnterEmail(string email)
         {
             TextBoxEmail.SendKeys(email);
+        }
+        public void EnterPhone(string phone)
+        {
+            TextBoxPhone.SendKeys(phone);
         }
         public void ClickOnConfirmRulesCheckBox()
         {

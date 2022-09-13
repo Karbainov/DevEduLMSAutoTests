@@ -105,14 +105,14 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Click on registration on sidebar", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Surname",
-                            "Name",
+                            "FirstName",
+                            "LastName",
                             "Patronymic",
                             "BirthDate",
                             "Password",
                             "RepeatPassword",
                             "Email",
-                            "Phone"});
+                            "PhoneNumber"});
                 table13.AddRow(new string[] {
                             "Мистер",
                             "Проппер",
