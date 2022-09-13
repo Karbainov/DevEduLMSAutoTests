@@ -28,7 +28,7 @@ namespace AutoTestsSelenium.Features
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "SpecialTwoPointFive.feature"
+#line 1 "CreatingHomeworkByMethodologist.feature"
 #line hidden
         
         public SpecialTwoPointFiveFeature(SpecialTwoPointFiveFeature.FixtureData fixtureData, AutoTestsSelenium_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)

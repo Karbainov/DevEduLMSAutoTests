@@ -1,14 +1,14 @@
 namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
-    public class SpecialTwoPointFiveStepDefinitions
+    public class CreatingHomeworkByMethodologist
     {
         private IWebDriver _driver;
         private RegistrationWindow _registrationWindow;
         private SingInWindow _singInWindow;
         private MethodistHomeworkWindow _methodistHomeworkWindow;
 
-        SpecialTwoPointFiveStepDefinitions()
+        CreatingHomeworkByMethodologist()
         {
             _driver = new ChromeDriver();
             _registrationWindow = new RegistrationWindow();
@@ -19,7 +19,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [Given(@"Open DevEdu web page")]
         public void GivenOpenDevEduWebPage()
         {
-            _driver = new ChromeDriver();
+            
             _driver.Manage().Window.Maximize();
             _driver.Navigate().GoToUrl($"https://piter-education.ru:7074/login");
         }
@@ -59,14 +59,11 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             var groupNumber = _driver.FindElement(_methodistHomeworkWindow.XpathChoiceGroupNumber);
             groupNumber.Click();
-
             CreateHomework createHomework = table.CreateInstance<CreateHomework>();
             var nameHomework = _driver.FindElement(_methodistHomeworkWindow.XpathNameCreateHomework);
             nameHomework.SendKeys(createHomework.Name);
-
             var textInput = _driver.FindElement(_methodistHomeworkWindow.XpathDescriptionHomework);
             textInput.SendKeys(createHomework.Description);
-
             var linkInput = _driver.FindElement(_methodistHomeworkWindow.XpathLinkInputHomework);
             linkInput.SendKeys(createHomework.LinkToRecord);
         }

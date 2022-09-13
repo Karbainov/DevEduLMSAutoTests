@@ -24,7 +24,7 @@
         {
             get
             {
-                return By.XPath($"//*[@class='sc-bczRLJ iJvUkY btn btn-fill flex-container']");
+                return By.XPath("//button[text()='Войти']");
             }
             private set { }
         }
@@ -33,7 +33,7 @@
         {
             get
             {
-                return By.XPath($"//*[@class='sc-bczRLJ kEeNDb btn btn-text flex-container']");
+                return By.XPath("//span[text()='Выйти']");
             }
             private set { }
         }

@@ -6,7 +6,7 @@ namespace DevEduLMSAutoTests.API.Support
     {
         public void ClearDB()
         {
-            string connectionString = Options.ConnectionString;
+            string connectionString = OptionsSwagger.ConnectionString;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();

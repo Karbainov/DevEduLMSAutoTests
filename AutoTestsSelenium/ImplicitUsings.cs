@@ -8,4 +8,3 @@ global using AutoTestsSelenium.Support.FindElements;
 global using AutoTestsSelenium.Support.Models.Request;
 global using TechTalk.SpecFlow.Assist;
 global using OpenQA.Selenium.Interactions;
-global using static System.Net.Mime.MediaTypeNames;
