@@ -14,5 +14,7 @@ namespace AutoTestsSelenium.PageObjects
         {
             _driver = driver;
         }
+
+        public abstract void OpenThisPage();
     }
 }

@@ -8,7 +8,7 @@ namespace AutoTestsSelenium.StepDefinitions
     public class AuthorizationStepDefinitions
     {
         IWebDriver driver;
-        AuthorizationPage loginPage;
+        AuthorizationUnauthorizedPage loginPage;
 
         [Given(@"Open login page")]
         public void GivenOpenLoginPage()
@@ -16,7 +16,7 @@ namespace AutoTestsSelenium.StepDefinitions
             driver = new ChromeDriver();
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl($"https://piter-education.ru:7074/login");
-            loginPage=new AuthorizationPage(driver);
+            loginPage=new AuthorizationUnauthorizedPage(driver);
         }
 
         [When(@"Enter ""([^""]*)"" and ""([^""]*)""")]

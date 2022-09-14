@@ -9,7 +9,7 @@ namespace AutoTestsSelenium.StepDefinitions
     {
         IWebDriver driver;
         RegistrationPage registrationPage;
-        AuthorizationPage authorizationPage;
+        AuthorizationUnauthorizedPage authorizationPage;
         SingInRequest singInModel;
 
         [Given(@"Open registration page")]
@@ -18,7 +18,7 @@ namespace AutoTestsSelenium.StepDefinitions
             driver = new ChromeDriver();
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl(Urls.Host);
-            authorizationPage = new AuthorizationPage(driver);
+            authorizationPage = new AuthorizationUnauthorizedPage(driver);
         }
 
         [Given(@"Click on registration on sidebar")]
@@ -70,7 +70,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Authorize user in service")]
         public void WhenAuthorizeUserInService()
         {
-           authorizationPage = new AuthorizationPage(driver);
+           authorizationPage = new AuthorizationUnauthorizedPage(driver);
             authorizationPage.EnterEmail(singInModel.Email);
             authorizationPage.EnterPassword(singInModel.Password);
             authorizationPage.ClickEnterButton();
