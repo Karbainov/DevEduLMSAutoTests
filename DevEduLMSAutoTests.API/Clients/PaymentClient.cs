@@ -10,7 +10,7 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Post,
-                RequestUri = new System.Uri(Urls.Payments),
+                RequestUri = new System.Uri(UrlsSwagger.Payments),
                 Content = new StringContent(json, Encoding.UTF8, "application/json")
             };
             HttpResponseMessage response = client.Send(message);
@@ -26,7 +26,7 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Get,
-                RequestUri = new System.Uri($"{Urls.Payments}/user/{userId}")
+                RequestUri = new System.Uri($"{UrlsSwagger.Payments}/user/{userId}")
             };
             HttpResponseMessage response = client.Send(message);
             List<AddPaymentToUserResponse> responsePayment = JsonSerializer.Deserialize<List<AddPaymentToUserResponse>>
@@ -42,7 +42,7 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Put,
-                RequestUri = new System.Uri($"{Urls.Payments}/{paymentId}"),
+                RequestUri = new System.Uri($"{UrlsSwagger.Payments}/{paymentId}"),
                 Content = new StringContent(json, Encoding.UTF8, "application/json")
             };
             HttpResponseMessage response = client.Send(message);
@@ -58,7 +58,7 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Delete,
-                RequestUri = new System.Uri($"{Urls.Payments}/{id}"),
+                RequestUri = new System.Uri($"{UrlsSwagger.Payments}/{id}"),
             };
             HttpResponseMessage httpResponsec = client.Send(message);
             HttpStatusCode actualCode = httpResponsec.StatusCode;

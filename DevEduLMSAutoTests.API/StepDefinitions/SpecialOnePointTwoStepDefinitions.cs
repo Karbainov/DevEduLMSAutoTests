@@ -34,10 +34,10 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         [Given(@"authorize admina")]
         public void GivenAuthorizeAdmin()
         {
-            SignInRequest adminSignInRequest = new SignInRequest()
+            SwaggerSignInRequest adminSignInRequest = new SwaggerSignInRequest()
             {
-                Email = Options.AdminsEmail,
-                Password = Options.AdminsPassword,
+                Email = OptionsSwagger.AdminsEmail,
+                Password = OptionsSwagger.AdminsPassword,
             };
             _adminToken = _authenticationClient.AuthorizeUser(adminSignInRequest);
         }
@@ -45,10 +45,10 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         [Given(@"authorize user")]
         public void GivenAuthorizeUser(Table table)
         {
-            List<SignInRequest> signInRequests = table.CreateSet<SignInRequest>().ToList();
-            SignInRequest methodistSignInRequest = signInRequests[0];
-            SignInRequest teacherSignInRequest = signInRequests[1];
-            SignInRequest managerSignInRequest = signInRequests[2];
+            List<SwaggerSignInRequest> signInRequests = table.CreateSet<SwaggerSignInRequest>().ToList();
+            SwaggerSignInRequest methodistSignInRequest = signInRequests[0];
+            SwaggerSignInRequest teacherSignInRequest = signInRequests[1];
+            SwaggerSignInRequest managerSignInRequest = signInRequests[2];
             _methodistToken = _authenticationClient.AuthorizeUser(methodistSignInRequest);
             _teacherToken = _authenticationClient.AuthorizeUser(teacherSignInRequest);
             _managerToken = _authenticationClient.AuthorizeUser(managerSignInRequest);
@@ -58,8 +58,8 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         public void GivenManagerAddRolesToUser()
         {
             _usersClient = new UsersClient();
-            _usersClient.AddNewRoleToUser(_methodistId, Options.RoleMethodist, _adminToken, HttpStatusCode.NoContent);
-            _usersClient.AddNewRoleToUser(_teacherId, Options.RoleTeacher, _adminToken, HttpStatusCode.NoContent);
+            _usersClient.AddNewRoleToUser(_methodistId, OptionsSwagger.RoleMethodist, _adminToken, HttpStatusCode.NoContent);
+            _usersClient.AddNewRoleToUser(_teacherId, OptionsSwagger.RoleTeacher, _adminToken, HttpStatusCode.NoContent);
         }
 
         [Given(@"manager create new groups")]
@@ -92,7 +92,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         public void GivenAdminAddTeacherGroup()
         {
             _groupsClient = new GroupsClient();
-            _groupsClient.AddUserToGroup(_groupId, _teacherId, Options.RoleTeacher, _adminToken);
+            _groupsClient.AddUserToGroup(_groupId, _teacherId, OptionsSwagger.RoleTeacher, _adminToken);
         }
 
 

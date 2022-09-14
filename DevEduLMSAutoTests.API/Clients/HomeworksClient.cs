@@ -10,7 +10,7 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Post,
-                RequestUri = new System.Uri($"{Urls.Homeworks}/group/{groupId}/task/{taskId}"),
+                RequestUri = new System.Uri($"{UrlsSwagger.Homeworks}/group/{groupId}/task/{taskId}"),
                 Content = new StringContent(json, Encoding.UTF8, "application/json")
             };
             HttpResponseMessage responseMessage = client.Send(message);
@@ -28,7 +28,7 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Get,
-                RequestUri = new System.Uri($"{Urls.Homeworks}/by-group/{groupId}")
+                RequestUri = new System.Uri($"{UrlsSwagger.Homeworks}/by-group/{groupId}")
             };
             HttpResponseMessage responseMessage = client.Send(message);
             HttpStatusCode actualCode = responseMessage.StatusCode;

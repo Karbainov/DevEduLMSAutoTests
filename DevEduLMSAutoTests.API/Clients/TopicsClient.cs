@@ -10,7 +10,7 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Post,
-                RequestUri = new System.Uri(Urls.Topics),
+                RequestUri = new System.Uri(UrlsSwagger.Topics),
                 Content = new StringContent(json, Encoding.UTF8, "application/json")
             };
             HttpResponseMessage response = client.Send(message);
@@ -27,7 +27,7 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Post,
-                RequestUri = new System.Uri($"{Urls.Courses}/{courseId}/topic/{topicId}"),
+                RequestUri = new System.Uri($"{UrlsSwagger.Courses}/{courseId}/topic/{topicId}"),
                 Content = new StringContent(json, Encoding.UTF8, "application/json")
             };
             HttpResponseMessage response = client.Send(message);
@@ -43,7 +43,7 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Get,
-                RequestUri = new System.Uri($"{Urls.Courses}/{courseId}/simple")
+                RequestUri = new System.Uri($"{UrlsSwagger.Courses}/{courseId}/simple")
             };
             HttpResponseMessage response = client.Send(message);
             AddCourseResponse responseCourse = JsonSerializer.Deserialize<AddCourseResponse>
@@ -59,7 +59,7 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Put,
-                RequestUri = new System.Uri($"{Urls.Topics}/{topicId}"),
+                RequestUri = new System.Uri($"{UrlsSwagger.Topics}/{topicId}"),
                 Content = new StringContent(json, Encoding.UTF8, "application/json")
             };
             HttpResponseMessage response = client.Send(message);
@@ -76,7 +76,7 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Put,
-                RequestUri = new System.Uri($"{Urls.Courses}/{courseId}/program"),
+                RequestUri = new System.Uri($"{UrlsSwagger.Courses}/{courseId}/program"),
                 Content = new StringContent(json, Encoding.UTF8, "application/json")
             };
             HttpResponseMessage response = client.Send(message);
@@ -92,7 +92,7 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Get,
-                RequestUri = new System.Uri($"{Urls.Topics}/{topicId}")
+                RequestUri = new System.Uri($"{UrlsSwagger.Topics}/{topicId}")
             };
             HttpResponseMessage response = client.Send(message);
             UpdateTopicResponse responseTopic = JsonSerializer.Deserialize<UpdateTopicResponse>
@@ -107,7 +107,7 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Get,
-                RequestUri = new System.Uri($"{Urls.Courses}/{courseId}/topics")
+                RequestUri = new System.Uri($"{UrlsSwagger.Courses}/{courseId}/topics")
             };
             HttpResponseMessage responseMessage = client.Send(message);
             HttpStatusCode actualCode = responseMessage.StatusCode;

@@ -106,7 +106,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -117,7 +117,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "BirthDate",
                             "GitHubAccount",
                             "PhoneNumber"});
-                table11.AddRow(new string[] {
+                table9.AddRow(new string[] {
                             "Valeria",
                             "Puzikova",
                             "string",
@@ -128,7 +128,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "01.02.1996",
                             "string",
                             "89071961416"});
-                table11.AddRow(new string[] {
+                table9.AddRow(new string[] {
                             "Milana",
                             "Maxina",
                             "string",
@@ -140,7 +140,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "string",
                             "89817051818"});
 #line 7
- testRunner.Given("register new user", ((string)(null)), table11, "Given ");
+ testRunner.Given("register new user", ((string)(null)), table9, "Given ");
 #line hidden
 #line 11
  testRunner.And("authorize admina", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -148,22 +148,22 @@ this.ScenarioInitialize(scenarioInfo);
 #line 12
  testRunner.And("manager add roles to user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password"});
-                table12.AddRow(new string[] {
+                table10.AddRow(new string[] {
                             "lera013@methodist.com",
                             "password"});
-                table12.AddRow(new string[] {
+                table10.AddRow(new string[] {
                             "maxina013@teacher.com",
                             "password"});
-                table12.AddRow(new string[] {
+                table10.AddRow(new string[] {
                             "marina@example.com",
                             "marinamarina"});
 #line 13
- testRunner.And("authorize user", ((string)(null)), table12, "And ");
+ testRunner.And("authorize user", ((string)(null)), table10, "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
                             "CourseId",
                             "GroupStatusId",
@@ -172,7 +172,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Timetable",
                             "PaymentPerMonth",
                             "PaymentsCount"});
-                table13.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "GropForTest01",
                             "1370",
                             "Forming",
@@ -182,18 +182,18 @@ this.ScenarioInitialize(scenarioInfo);
                             "1000",
                             "10"});
 #line 18
- testRunner.And("manager create new groups", ((string)(null)), table13, "And ");
+ testRunner.And("manager create new groups", ((string)(null)), table11, "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
                             "Duration"});
-                table14.AddRow(new string[] {
+                table12.AddRow(new string[] {
                             "creating a calculator",
                             "3"});
 #line 21
- testRunner.And("methodist create topic", ((string)(null)), table14, "And ");
+ testRunner.And("methodist create topic", ((string)(null)), table12, "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
                             "Date",
                             "AdditionalMaterials",
                             "GroupId",
@@ -201,7 +201,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "LinkToRecord",
                             "TopicIds",
                             "IsPublished"});
-                table15.AddRow(new string[] {
+                table13.AddRow(new string[] {
                             "11.09.2022",
                             "string",
                             "1654",
@@ -210,7 +210,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "703",
                             "true"});
 #line 24
- testRunner.And("teacher create a lesson a draft", ((string)(null)), table15, "And ");
+ testRunner.And("teacher create a lesson a draft", ((string)(null)), table13, "And ");
 #line hidden
 #line 28
  testRunner.And("admin add teacher group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -218,18 +218,18 @@ this.ScenarioInitialize(scenarioInfo);
 #line 29
  testRunner.And("teacher sees a draft lesson", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
                             "AdditionalMaterials",
                             "LinkToRecord",
                             "Date",
                             "TopicIds"});
-                table16.AddRow(new string[] {
+                table14.AddRow(new string[] {
                             "string",
                             "http://fjfjf.com",
                             "01.09.2022",
                             "703"});
 #line 30
- testRunner.When("teacher update lesson", ((string)(null)), table16, "When ");
+ testRunner.When("teacher update lesson", ((string)(null)), table14, "When ");
 #line hidden
 #line 33
     testRunner.Then("teacher can see published a lesson", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

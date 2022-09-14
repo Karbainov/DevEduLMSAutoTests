@@ -9,7 +9,7 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Post,
-                RequestUri = new System.Uri($"{Urls.Users}/{userId}/role/{role}")
+                RequestUri = new System.Uri($"{UrlsSwagger.Users}/{userId}/role/{role}")
             };
             HttpResponseMessage response = client.Send(message);
             HttpStatusCode actualCode = response.StatusCode;
@@ -23,7 +23,7 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Get,
-                RequestUri = new System.Uri($"{Urls.Users}/self")
+                RequestUri = new System.Uri($"{UrlsSwagger.Users}/self")
             };
             HttpResponseMessage responseMessage = client.Send(message);
             HttpStatusCode actualCode = responseMessage.StatusCode;

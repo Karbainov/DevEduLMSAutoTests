@@ -26,43 +26,40 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             _groupMappers = new GroupMappers();
         }
 
-        [Given(@"register new students in service")]
-        public void GivenRegisterNewStudentsInService(Table table)
+        [Given(@"register new users in service")]
+        public void GivenRegisterNewUsersInService(Table table)
         {
-            List<RegisterRequest> registerRequests = table.CreateSet<RegisterRequest>().ToList();
+            List<RegistationModelWithRole> registerRequests = table.CreateSet<RegistationModelWithRole>().ToList();
             foreach (var registerUser in registerRequests)
             {
-                var student = _authenticationClient.RegisterUser(registerUser);
-                _students.Add(student);
+                switch (registerUser.Role)
+                {
+                    case OptionsSwagger.RoleStudent:
+                        {
+                            var student = _authenticationClient.RegisterUser(registerUser.CreateRegisterRequest(registerUser));
+                            _students.Add(student);
+                        }
+                        break;
+                    case OptionsSwagger.RoleTeacher:
+                        {
+                            var teacher = _authenticationClient.RegisterUser(registerUser.CreateRegisterRequest(registerUser));
+                            _teachers.Add(teacher);
+                        }
+                        break;
+                    case OptionsSwagger.RoleTutor:
+                        {
+                            var tutor = _authenticationClient.RegisterUser(registerUser.CreateRegisterRequest(registerUser));
+                            _tutors.Add(tutor);
+                        }
+                        break;
+                }
             }
         }
 
-        [Given(@"register new teachers in service")]
-        public void GivenRegisterNewTeachersInService(Table table)
+        [Given(@"authorize manager in service")]
+        public void GivenAuthorizeManagerInService(Table table)
         {
-            List<RegisterRequest> registerRequests = table.CreateSet<RegisterRequest>().ToList();
-            foreach (var registerUser in registerRequests)
-            {
-                var teacher = _authenticationClient.RegisterUser(registerUser);
-                _teachers.Add(teacher);
-            }
-        }
-
-        [Given(@"register new tutors in service")]
-        public void GivenRegisterNewTutorsInService(Table table)
-        {
-            List<RegisterRequest> registerRequests = table.CreateSet<RegisterRequest>().ToList();
-            foreach (var registerUser in registerRequests)
-            {
-                var tutor = _authenticationClient.RegisterUser(registerUser);
-                _tutors.Add(tutor);
-            }
-        }
-
-        [Given(@"authorize manager in servise")]
-        public void GivenAuthorizeManagerInServise(Table table)
-        {
-            SignInRequest managerSignInRequest = table.CreateInstance<SignInRequest>();
+            SwaggerSignInRequest managerSignInRequest = table.CreateInstance<SwaggerSignInRequest>();
             _managerToken = _authenticationClient.AuthorizeUser(managerSignInRequest);
         }
 
@@ -71,11 +68,11 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         {
             foreach(var teacher in _teachers)
             {
-                _usersClient.AddNewRoleToUser(teacher.Id, Options.RoleTeacher, _managerToken);
+                _usersClient.AddNewRoleToUser(teacher.Id, OptionsSwagger.RoleTeacher, _managerToken);
             }
             foreach (var tutor in _tutors)
             {
-                _usersClient.AddNewRoleToUser(tutor.Id, Options.RoleTutor, _managerToken);
+                _usersClient.AddNewRoleToUser(tutor.Id, OptionsSwagger.RoleTutor, _managerToken);
             }
         }
 
@@ -91,22 +88,22 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         {
             foreach(var teacher in _teachers)
             {
-                _groupsClient.AddUserToGroup(_groupId, teacher.Id, Options.RoleTeacher, _managerToken);
+                _groupsClient.AddUserToGroup(_groupId, teacher.Id, OptionsSwagger.RoleTeacher, _managerToken);
             }
             foreach (var tutor in _tutors)
             {
-                _groupsClient.AddUserToGroup(_groupId, tutor.Id, Options.RoleTutor, _managerToken);
+                _groupsClient.AddUserToGroup(_groupId, tutor.Id, OptionsSwagger.RoleTutor, _managerToken);
             }
             foreach (var student in _students)
             {
-                _groupsClient.AddUserToGroup(_groupId, student.Id, Options.RoleStudent, _managerToken);
+                _groupsClient.AddUserToGroup(_groupId, student.Id, OptionsSwagger.RoleStudent, _managerToken);
             }
         }
 
         [Then(@"authorize users in service")]
         public void ThenAuthorizeUsersInService(Table table)
         {
-            List<SignInRequest> signInRequests = table.CreateSet<SignInRequest>().ToList();
+            List<SwaggerSignInRequest> signInRequests = table.CreateSet<SwaggerSignInRequest>().ToList();
             foreach (var signInUser in signInRequests)
             {
                 var userToken = _authenticationClient.AuthorizeUser(signInUser);

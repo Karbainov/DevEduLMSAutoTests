@@ -10,7 +10,7 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Post,
-                RequestUri = new System.Uri(Urls.Groups),
+                RequestUri = new System.Uri(UrlsSwagger.Groups),
                 Content = new StringContent(json, Encoding.UTF8, "application/json")
             };
             HttpResponseMessage responseMessage = client.Send(message);
@@ -28,7 +28,7 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Get,
-                RequestUri = new System.Uri($"{Urls.Groups}/{id}"),
+                RequestUri = new System.Uri($"{UrlsSwagger.Groups}/{id}"),
             };
             HttpResponseMessage responseMessage = client.Send(message);
             HttpStatusCode actualCode = responseMessage.StatusCode;
@@ -45,7 +45,7 @@
             HttpRequestMessage message = new HttpRequestMessage()
             {
                 Method = HttpMethod.Post,
-                RequestUri = new System.Uri($"{Urls.Groups}/{groupId}/user/{userId}/role/{role}"),
+                RequestUri = new System.Uri($"{UrlsSwagger.Groups}/{groupId}/user/{userId}/role/{role}"),
             };
             HttpResponseMessage responseMessage = client.Send(message);
             HttpStatusCode actualCode = responseMessage.StatusCode;
