@@ -33,29 +33,16 @@
         public void ChageRole(string role)
         {
             _driver.FindElement(By.XPath($"//*[@class='user-roles-wrapper']")).Click();
-            switch (role)
+            role = role switch
             {
-                case Options.RoleTeacher:
-                    role = "Преподаватель";
-                    break;
-                case Options.RoleTutor:
-                    role = "Тьютор";
-                    break;
-                case Options.RoleManager:
-                    role = "Менеджер";
-                    break;
-                case Options.RoleAdmin:
-                    role = "Администратор";
-                    break;
-                case Options.RoleStudent:
-                    role = "Студент";
-                    break;
-                case Options.RoleMethodist:
-                    role = "Методист";
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(role));
-            }
+                Options.RoleTeacher => "Преподаватель",
+                Options.RoleTutor => "Тьютор",
+                Options.RoleManager => "Менеджер",
+                Options.RoleAdmin => "Администратор",
+                Options.RoleStudent => "Студент",
+                Options.RoleMethodist => "Методист",
+                _ => throw new ArgumentOutOfRangeException(nameof(role)),
+            };
             string xpathRequiredRole = $"//li[text()='{role}']";
             _driver.FindElement(By.XPath(xpathRequiredRole)).Click();
         }
