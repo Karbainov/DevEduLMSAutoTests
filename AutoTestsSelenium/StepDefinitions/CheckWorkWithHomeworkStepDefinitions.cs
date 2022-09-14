@@ -1,5 +1,5 @@
 using AutoTestsSelenium.Support.FindElements;
-using AutoTestsSelenium.Support.Models.SupportModels;
+using AutoTestsSelenium.Support.Models;
 using DevEduLMSAutoTests.API.StepDefinitions;
 using DevEduLMSAutoTests.API.Support;
 using DevEduLMSAutoTests.API.Support.Models.Request;

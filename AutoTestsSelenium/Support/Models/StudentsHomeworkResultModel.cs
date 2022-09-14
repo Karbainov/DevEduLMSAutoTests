@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AutoTestsSelenium.Support.Models.SupportModels
+namespace AutoTestsSelenium.Support.Models
 {
-    public class StudentsHomeworkResults
+    public class StudentsHomeworkResultModel
     {
         public string FullName { get; set; }
         public string Result { get; set; }
