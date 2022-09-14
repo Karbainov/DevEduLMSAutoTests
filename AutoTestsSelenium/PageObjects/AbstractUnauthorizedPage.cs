@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AutoTestsSelenium.PageObjects
+﻿namespace AutoTestsSelenium.PageObjects
 {
     public abstract class AbstractUnauthorizedPage:AbstractPage
     {
         public IWebElement ButtonRegisterSideBar => _driver.FindElement(By.XPath($"//*[@href='/register']"));
+        public IWebElement ButtonEnterSideBar => _driver.FindElement(By.XPath($"//*[text()='Вход']"));
 
         public AbstractUnauthorizedPage(IWebDriver driver) : base(driver)
         {
@@ -17,6 +12,11 @@ namespace AutoTestsSelenium.PageObjects
         public void ClickRegisterButton()
         {
             ButtonRegisterSideBar.Click();
+        }
+
+        public void ClickEnterSideBarButton()
+        {
+            ButtonEnterSideBar.Click();
         }
     }
 }
