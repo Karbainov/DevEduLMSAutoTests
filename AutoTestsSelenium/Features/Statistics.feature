@@ -1,7 +1,4 @@
 ﻿Feature: Statistics
-
-A short summary of the feature
-
 @tag1
 #TODO: Сделать нормальные теги
 Scenario: Teacher chek students homeworks results

@@ -8,6 +8,8 @@ namespace AutoTestsSelenium.PageObjects
 {
     public class RegistrationPage : AbstractPage
     {
+        private const string PageUrl = $"{Urls.Host}/";
+
         RegistrationWindow _registrationWindow = new RegistrationWindow();
         public IWebElement TextBoxLastName { get; set; }
         public IWebElement TextBoxName { get; set; }
@@ -90,6 +92,11 @@ namespace AutoTestsSelenium.PageObjects
         public void ClickOnAuthSideBarButton()
         {
             ButtonAuth.Click();
+        }
+
+        public override void OpenThisPage()
+        {
+            throw new NotImplementedException();
         }
     }
 }
