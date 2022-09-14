@@ -1,3 +1,8 @@
+using DevEduLMSAutoTests.API.StepDefinitions;
+using DevEduLMSAutoTests.API.Support.Models.Request;
+using DevEduLMSAutoTests.API.Support;
+using AutoTestsSelenium.Support.Models;
+
 namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
@@ -12,8 +17,10 @@ namespace AutoTestsSelenium.StepDefinitions
         private string _groupName;
         private TeachersHomeworkWindow _teacersHomeworkWindowElements;
         private StudentsHomeworkWindow _studentsHomeworkWindowElements;
-        private ClearTables _clearDB;
-        private SwitchRole _switchRole;
+        private ClearTables clearDB;
+        private List<StudentsHomeworkResultModel> _studentsResults;
+        private HomeworkResultsElements _homeworkResultsElements;
+        GeneralProgressWindow _generalProgressElements;
 
         public StatisticsStepDefinitions()
         {
@@ -24,8 +31,10 @@ namespace AutoTestsSelenium.StepDefinitions
             _navigateButtons = new TeacherNavigatePanelElements();
             _teacersHomeworkWindowElements = new TeachersHomeworkWindow();
             _studentsHomeworkWindowElements = new StudentsHomeworkWindow();
-            _clearDB = new ClearTables();
-            _switchRole = new SwitchRole();
+            clearDB = new ClearTables();
+            _studentsResults = new List<StudentsHomeworkResultModel>();
+            _homeworkResultsElements = new HomeworkResultsElements();
+            _generalProgressElements = new GeneralProgressWindow();
         }
 
         [Given(@"register new users with roles")]
@@ -98,7 +107,7 @@ namespace AutoTestsSelenium.StepDefinitions
                 _driver.FindElement(_singInElements.XPathPasswordBox).Clear();
                 _driver.FindElement(_singInElements.XPathPasswordBox).SendKeys(student.Password);
                 _driver.FindElement(_singInElements.XPathSingInButton).Click();
-                Thread.Sleep(100);
+                Thread.Sleep(200);
                 _driver.FindElement(_navigateButtons.XPathHomeworksButton).Click();
                 Thread.Sleep(200);
                 _driver.FindElement(_studentsHomeworkWindowElements.XPathGoToTaskButton).Click();
@@ -111,23 +120,67 @@ namespace AutoTestsSelenium.StepDefinitions
             }
         }
 
-        [When(@"teacher accept or decline them")]
-        public void WhenTeacherAcceptOrDeclineThem()
+        [When(@"teacher rate homeworks")]
+        public void WhenTeacherRateHomeworks(Table table)
         {
+            _studentsResults = table.CreateSet<StudentsHomeworkResultModel>().ToList();
             _driver.FindElement(_singInElements.XPathEmailBox).SendKeys(_teacherSingIn.Email);
             _driver.FindElement(_singInElements.XPathPasswordBox).Clear();
             _driver.FindElement(_singInElements.XPathPasswordBox).SendKeys(_teacherSingIn.Password);
             _driver.FindElement(_singInElements.XPathSingInButton).Click();
-            Thread.Sleep(100);
+            Thread.Sleep(200);
             _driver.FindElement(_navigateButtons.XPathSwitchRoleButton).Click();
-            _driver.FindElement(_switchRole.XPathRoleButton(OptionsSwagger.RoleTeacher)).Click();
-            _driver.FindElement(_navigateButtons.XPathCheckHomeworksButton).Click();            
+            _driver.FindElement(_navigateButtons.XPathRoleButton(Options.RoleTeacher)).Click();
+            _driver.FindElement(_navigateButtons.XPathCheckHomeworksButton).Click();
+            foreach(var result in _studentsResults)
+            {
+
+            }
+            //check homework page is empty
         }
 
-        [Then(@"methodist should see statistics of students results")]
-        public void ThenMethodistShouldSeeStatisticsOfStudentsResults()
+        [Then(@"teacher should see students results in homewok tab")]
+        public void ThenTeacherShouldSeeStudentsResultsInHomewokTab()
         {
-            throw new PendingStepException();
+            _driver.FindElement(_navigateButtons.XPathHomeworksButton).Click();
+            Thread.Sleep(300);
+            _driver.FindElement(_studentsHomeworkWindowElements.XPathGoToTaskButton).Click();
+            foreach (var result in _studentsResults)
+            {
+                By desiredElement = _homeworkResultsElements.XPathStudentsResultByNameByResult(result.FullName, result.Result);
+                var _expectedResult = _driver.FindElements(desiredElement).FirstOrDefault();
+                //Assert.NotNull(_expectedResult);
+            }
+            Thread.Sleep(1000);
         }
+
+        [Then(@"teacher should see students results in tab General Progress")]
+        public void ThenTeacherShouldSeeStudentsResultsInTabGeneralProgress()
+        {
+            _driver.FindElement(_navigateButtons.XPathGeneralProgressButton).Click();
+            Thread.Sleep(300);
+            int expectedPassedHomework = 0;
+            int expectedDeclinedHomework = 0;
+            int actualPassedHomework;
+            int actualDeclinedHomework;
+            foreach(var result in _studentsResults)
+            {
+                if (result.Result == "�����")
+                {
+                    expectedPassedHomework++;
+                }
+                else if (result.Result == "�� �����")
+                {
+                    expectedDeclinedHomework++;
+                }
+            }
+            actualPassedHomework =_driver.FindElements(_generalProgressElements.ByXpathAccept).Count;
+            actualDeclinedHomework =_driver.FindElements(_generalProgressElements.ByXpathDecline).Count;
+            //Assert.Equal(expectedPassedHomework, actualPassedHomework);
+            //Assert.Equal(expectedDeclinedHomework, actualDeclinedHomework);
+            _driver.Close();
+            clearDB.ClearDB();
+        }
+
     }
 }
