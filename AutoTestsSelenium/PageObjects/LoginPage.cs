@@ -1,13 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AutoTestsSelenium.PageObjects
+﻿namespace AutoTestsSelenium.PageObjects
 {
-    public class LoginPage:AbstractPage
+    public class LoginPage:BasePage
     {
+
+
+
+
+
+
+
+
+
+
         public IWebElement TextBoxEmail {get; set;}
         public IWebElement TextBoxPassword {get; set;}
         public IWebElement ButtonEnter {get; set;}

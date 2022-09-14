@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace AutoTestsSelenium.PageObjects
 {
-    public abstract class AbstractPage
+    public abstract class BasePage
     {
         protected IWebDriver _driver;
         
-        public AbstractPage(IWebDriver driver)
+        public BasePage(IWebDriver driver)
         {
             _driver = driver;
         }
+
+
     }
 }
