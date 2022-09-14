@@ -80,167 +80,6 @@ namespace AutoTestsSelenium.Features
             this.TestTearDown();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Create and edit new group")]
-        [Xunit.TraitAttribute("FeatureTitle", "Groups")]
-        [Xunit.TraitAttribute("Description", "Create and edit new group")]
-        [Xunit.TraitAttribute("Category", "group")]
-        public void CreateAndEditNewGroup()
-        {
-            string[] tagsOfScenario = new string[] {
-                    "group"};
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create and edit new group", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 7
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
-                            "FirstName",
-                            "LastName",
-                            "Patronymic",
-                            "Email",
-                            "Username",
-                            "Password",
-                            "City",
-                            "BirthDate",
-                            "GitHubAccount",
-                            "PhoneNumber",
-                            "Role"});
-                table12.AddRow(new string[] {
-                            "Ilya1",
-                            "Baikov",
-                            "string",
-                            "ilya1@student.com",
-                            "ilya1",
-                            "password",
-                            "SaintPetersburg",
-                            "23.07.1993",
-                            "string",
-                            "89998887766",
-                            "Student"});
-                table12.AddRow(new string[] {
-                            "Ilya2",
-                            "Baikov",
-                            "string",
-                            "ilya2@student.com",
-                            "ilya2",
-                            "password",
-                            "SaintPetersburg",
-                            "23.07.1993",
-                            "string",
-                            "89998887766",
-                            "Student"});
-                table12.AddRow(new string[] {
-                            "Ilya3",
-                            "Baikov",
-                            "string",
-                            "ilya3@student.com",
-                            "ilya3",
-                            "password",
-                            "SaintPetersburg",
-                            "23.07.1993",
-                            "string",
-                            "89998887766",
-                            "Student"});
-                table12.AddRow(new string[] {
-                            "Ilya4",
-                            "Baikov",
-                            "string",
-                            "ilya4@student.com",
-                            "ilya4",
-                            "password",
-                            "SaintPetersburg",
-                            "23.07.1993",
-                            "string",
-                            "89998887766",
-                            "Student"});
-                table12.AddRow(new string[] {
-                            "Ilya5",
-                            "Baikov",
-                            "string",
-                            "ilya5@student.com",
-                            "ilya5",
-                            "password",
-                            "SaintPetersburg",
-                            "23.07.1993",
-                            "string",
-                            "89998887766",
-                            "Student"});
-                table12.AddRow(new string[] {
-                            "Ilya6",
-                            "Baikov",
-                            "string",
-                            "ilya6@student.com",
-                            "ilya6",
-                            "password",
-                            "SaintPetersburg",
-                            "23.07.1993",
-                            "string",
-                            "89998887766",
-                            "Student"});
-                table12.AddRow(new string[] {
-                            "Ilya7",
-                            "Baikov",
-                            "string",
-                            "ilya7@student.com",
-                            "ilya6",
-                            "password",
-                            "SaintPetersburg",
-                            "23.07.1993",
-                            "string",
-                            "89998887766",
-                            "Student"});
-                table12.AddRow(new string[] {
-                            "Ilya8",
-                            "Baikov",
-                            "string",
-                            "ilya8@student.com",
-                            "ilya6",
-                            "password",
-                            "SaintPetersburg",
-                            "23.07.1993",
-                            "string",
-                            "89998887766",
-                            "Student"});
-                table12.AddRow(new string[] {
-                            "Ilya9",
-                            "Baikov",
-                            "string",
-                            "ilya9@student.com",
-                            "ilya6",
-                            "password",
-                            "SaintPetersburg",
-                            "23.07.1993",
-                            "string",
-                            "89998887766",
-                            "Student"});
-                table12.AddRow(new string[] {
-                            "Anton",
-                            "Efremenkov",
-                            "string",
-                            "ilya@teacher.com",
-                            "anton1",
-                            "password",
-                            "SaintPetersburg",
-                            "03.03.1994",
-                            "string",
-                            "89995554433",
-                            "Teacher"});
-#line 8
- testRunner.Given("register new users with roles", ((string)(null)), table12, "Given ");
-#line hidden
-#line 20
- testRunner.When("manager create new group from browser", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 22
- testRunner.Then("[outcome]", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-        
         [Xunit.SkippableFactAttribute(DisplayName="Front manager creates a group adds students and appoints a teacher and tutor")]
         [Xunit.TraitAttribute("FeatureTitle", "Groups")]
         [Xunit.TraitAttribute("Description", "Front manager creates a group adds students and appoints a teacher and tutor")]
@@ -267,7 +106,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -279,7 +118,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "GitHubAccount",
                             "PhoneNumber",
                             "Role"});
-                table8.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Isabella",
                             "Abramson",
                             "string",
@@ -291,7 +130,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "string",
                             "89514551247",
                             "Student"});
-                table8.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Maksim",
                             "Karbainov",
                             "string",
@@ -303,7 +142,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "string",
                             "89521496531",
                             "Teacher"});
-                table8.AddRow(new string[] {
+                table11.AddRow(new string[] {
                             "Elisey",
                             "Kakoyto",
                             "string",
@@ -316,9 +155,9 @@ this.ScenarioInitialize(scenarioInfo);
                             "89518963148",
                             "Tutor"});
 #line 7
-testRunner.Given("register new users with roles in service", ((string)(null)), table8, "Given ");
+testRunner.Given("register new users with roles in service", ((string)(null)), table11, "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
                             "CourseId",
                             "GroupStatusId",
@@ -327,7 +166,7 @@ testRunner.Given("register new users with roles in service", ((string)(null)), t
                             "Timetable",
                             "PaymentPerMonth",
                             "PaymentsCount"});
-                table9.AddRow(new string[] {
+                table12.AddRow(new string[] {
                             "BaseSPb",
                             "1370",
                             "Forming",
@@ -337,7 +176,7 @@ testRunner.Given("register new users with roles in service", ((string)(null)), t
                             "2500",
                             "3"});
 #line 12
-testRunner.When("manager create new group in service", ((string)(null)), table9, "When ");
+testRunner.When("manager create new group in service", ((string)(null)), table12, "When ");
 #line hidden
 #line 15
 testRunner.And("manager add users to group in service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

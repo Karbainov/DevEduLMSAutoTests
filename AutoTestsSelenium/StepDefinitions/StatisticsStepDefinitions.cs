@@ -1,8 +1,3 @@
-using DevEduLMSAutoTests.API.StepDefinitions;
-using DevEduLMSAutoTests.API.Support.Models.Request;
-using DevEduLMSAutoTests.API.Support;
-using AutoTestsSelenium.Support.Models;
-
 namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
@@ -17,10 +12,11 @@ namespace AutoTestsSelenium.StepDefinitions
         private string _groupName;
         private TeachersHomeworkWindow _teacersHomeworkWindowElements;
         private StudentsHomeworkWindow _studentsHomeworkWindowElements;
-        private ClearTables clearDB;
+        private ClearTables _clearDB;
         private List<StudentsHomeworkResultModel> _studentsResults;
         private HomeworkResultsElements _homeworkResultsElements;
         GeneralProgressWindow _generalProgressElements;
+        private SwitchRole _switchRole;
 
         public StatisticsStepDefinitions()
         {
@@ -31,10 +27,11 @@ namespace AutoTestsSelenium.StepDefinitions
             _navigateButtons = new TeacherNavigatePanelElements();
             _teacersHomeworkWindowElements = new TeachersHomeworkWindow();
             _studentsHomeworkWindowElements = new StudentsHomeworkWindow();
-            clearDB = new ClearTables();
+            _clearDB = new ClearTables();
             _studentsResults = new List<StudentsHomeworkResultModel>();
             _homeworkResultsElements = new HomeworkResultsElements();
             _generalProgressElements = new GeneralProgressWindow();
+            _switchRole = new SwitchRole();
         }
 
         [Given(@"register new users with roles")]
@@ -130,7 +127,7 @@ namespace AutoTestsSelenium.StepDefinitions
             _driver.FindElement(_singInElements.XPathSingInButton).Click();
             Thread.Sleep(200);
             _driver.FindElement(_navigateButtons.XPathSwitchRoleButton).Click();
-            _driver.FindElement(_navigateButtons.XPathRoleButton(Options.RoleTeacher)).Click();
+            _driver.FindElement(_switchRole.XPathRoleButton(Options.Teacher)).Click();
             _driver.FindElement(_navigateButtons.XPathCheckHomeworksButton).Click();
             foreach(var result in _studentsResults)
             {
@@ -179,8 +176,7 @@ namespace AutoTestsSelenium.StepDefinitions
             //Assert.Equal(expectedPassedHomework, actualPassedHomework);
             //Assert.Equal(expectedDeclinedHomework, actualDeclinedHomework);
             _driver.Close();
-            clearDB.ClearDB();
+            _clearDB.ClearDB();
         }
-
     }
 }

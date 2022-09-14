@@ -55,5 +55,22 @@
             }
             private set { }
         }
+
+        public By XPathIssuingHomework
+        {
+            get
+            {
+                return By.XPath("//*[text()='Выдача заданий']");
+            }
+        }
+
+        public By XPathGeneralProgressButton
+        {
+            get
+            {
+                return By.XPath($"//*[@href='/general-progress']");
+            }
+            private set { }
+        }
     }
 }
