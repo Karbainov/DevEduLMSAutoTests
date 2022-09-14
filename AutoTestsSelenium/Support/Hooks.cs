@@ -3,7 +3,7 @@
 namespace AutoTestsSelenium.Support
 {
     [Binding]
-    public sealed class Hooks1
+    public sealed class Hooks
     {
         [AfterScenario]
         public void AfterScenario()
