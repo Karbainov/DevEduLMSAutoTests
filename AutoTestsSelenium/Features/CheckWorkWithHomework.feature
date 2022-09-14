@@ -42,6 +42,9 @@ Scenario: Assigned homework by teacher, turned in by student
 	| Email                 | Password   |
 	| vitya21@teacher.com   | password   |
 	#дальше никак потому что проверять нечего, ничего не получает препод
+	Then teacher returned homework
+	And student attached link of corrected homework
+	Then teacher accepted homework
 
 
 
