@@ -3,8 +3,8 @@
     public abstract class AbstractTutorAuthorizedPage : AbstractAuthorizedPage
     {
         public IWebElement ButtonLessonsSideBar => _driver.FindElement(By.XPath($"//*[text()='Занятия']/.."));
+        public IWebElement ButtonAddLessonSideBar => _driver.FindElement(By.XPath($"//*[text()='Добавить занятие']/.."));
         public IWebElement ButtonHomeworksSideBar => _driver.FindElement(By.XPath($"//*[text()='Домашние задания']/.."));
-        public IWebElement ButtonAddHomewrksSideBar => _driver.FindElement(By.XPath($"//*[text()='Выдача заданий']/.."));
         public IWebElement ButtonCheckHomeworksSideBar => _driver.FindElement(By.XPath($"//*[text()='Проверка заданий']/.."));
         public IWebElement ButtonGeneralProgressSideBar => _driver.FindElement(By.XPath($"//*[text()='Общая успеваемость']/.."));
         public IWebElement ButtonJournalSideBar => _driver.FindElement(By.XPath($"//*[text()='Журнал']/.."));
@@ -18,14 +18,14 @@
             ButtonLessonsSideBar.Click();
         }
 
+        public void ClickAddLrssonButton()
+        {
+            ButtonAddLessonSideBar.Click();
+        }
+
         public void ClickHomeworksButton()
         {
             ButtonHomeworksSideBar.Click();
-        }
-
-        public void ClickAddHomeworksButton()
-        {
-            ButtonAddHomewrksSideBar.Click();
         }
 
         public void ClickCheckHomeworksButton()
