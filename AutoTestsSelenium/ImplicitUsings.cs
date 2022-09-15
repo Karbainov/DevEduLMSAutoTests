@@ -10,6 +10,7 @@ global using AutoTestsSelenium.Support.Models.Request;
 global using AutoTestsSelenium.Support.Models;
 global using AutoTestsSelenium.Support.Mappers;
 global using AutoTestsSelenium.PageObjects;
+global using System.Collections.ObjectModel;
 global using DevEduLMSAutoTests.API.StepDefinitions;
 global using DevEduLMSAutoTests.API.Support.Models.Request;
 global using DevEduLMSAutoTests.API.Support;

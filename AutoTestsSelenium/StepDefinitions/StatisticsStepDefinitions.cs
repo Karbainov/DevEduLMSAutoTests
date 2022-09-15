@@ -16,7 +16,6 @@ namespace AutoTestsSelenium.StepDefinitions
         private List<StudentsHomeworkResultModel> _studentsResults;
         private HomeworkResultsElements _homeworkResultsElements;
         GeneralProgressWindow _generalProgressElements;
-        private SwitchRole _switchRole;
 
         public StatisticsStepDefinitions()
         {
@@ -31,7 +30,6 @@ namespace AutoTestsSelenium.StepDefinitions
             _studentsResults = new List<StudentsHomeworkResultModel>();
             _homeworkResultsElements = new HomeworkResultsElements();
             _generalProgressElements = new GeneralProgressWindow();
-            _switchRole = new SwitchRole();
         }
 
         [Given(@"register new users with roles")]
@@ -79,7 +77,7 @@ namespace AutoTestsSelenium.StepDefinitions
             _driver.FindElement(_singInElements.XPathSingInButton).Click();
             Thread.Sleep(100);
             _driver.FindElement(_navigateButtons.XPathSwitchRoleButton).Click();
-            _driver.FindElement(_switchRole.XPathRoleButton(OptionsSwagger.RoleTeacher)).Click();
+            _driver.FindElement(_navigateButtons.XPathRoleButton(OptionsSwagger.RoleTeacher)).Click();
             _driver.FindElement(_navigateButtons.XPathNewHomeworkButton).Click();
             _driver.FindElement(_teacersHomeworkWindowElements.XPathGroupRB).Click();
             var dateTB = _driver.FindElement(_teacersHomeworkWindowElements.XPathStartDateTextBox);
@@ -127,7 +125,7 @@ namespace AutoTestsSelenium.StepDefinitions
             _driver.FindElement(_singInElements.XPathSingInButton).Click();
             Thread.Sleep(200);
             _driver.FindElement(_navigateButtons.XPathSwitchRoleButton).Click();
-            _driver.FindElement(_switchRole.XPathRoleButton(Options.Teacher)).Click();
+            _driver.FindElement(_navigateButtons.XPathRoleButton(OptionsSwagger.RoleTeacher)).Click();
             _driver.FindElement(_navigateButtons.XPathCheckHomeworksButton).Click();
             foreach(var result in _studentsResults)
             {

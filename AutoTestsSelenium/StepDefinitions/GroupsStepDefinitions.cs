@@ -5,41 +5,31 @@ namespace AutoTestsSelenium.StepDefinitions
     {
         private GroupsAPIStepDefinitions _managerCreatesAGroupAddsUsersBySwagger;
         private IWebDriver _driver;
-        private SingInWindow _singInWindow;
-        private ManagerNavigatePanelElements _managerNavigatePanelElements;
-        private StudentNavigatePanelElements _studentNavigatePanelElements;
-        private TeacherNavigatePanelElements _teacherNavigatePanelElements;
-        private TutorNavigatePanelElements _tutorNavigatePanelElements;
-        private CreateGroupWindow _createGroupWindow;
-        private StudentLessonWindow _studentLessonWindow;
-        private TeacherLessonsWindow _teacherLessonsWindow;
-        private TutorLessonsWindow _tutorLessonsWindow;
+        private AuthorizationUnauthorizedPage _authorizationUnauthorizedPage;
+        private CreateGroupPage _createGroupPage;
+        private StudentLessonsPage _studentLessonsPage;
+        private TeacherLessonsPage _teacherLessonsPage;
+        private TutorLessonsPage _tutorLessonsPage;
         private RegistationModelWithRole _student;
         private RegistationModelWithRole _teacher;
         private RegistationModelWithRole _tutor;
         private SwaggerSignInRequest _manager;
         private ClearTables _clearDB;
         private UserMappers _userMappers;
-        private SwitchRole _switchRole;
-        private string _nameGroup;
+        private string _nameCourse;
 
         public GroupsStepDefinitions()
         {
             _managerCreatesAGroupAddsUsersBySwagger = new GroupsAPIStepDefinitions();
             _driver = new ChromeDriver();
-            _singInWindow = new SingInWindow();
-            _managerNavigatePanelElements = new ManagerNavigatePanelElements();
-            _studentNavigatePanelElements = new StudentNavigatePanelElements();
-            _teacherNavigatePanelElements = new TeacherNavigatePanelElements();
-            _tutorNavigatePanelElements = new TutorNavigatePanelElements();
-            _createGroupWindow = new CreateGroupWindow();
-            _studentLessonWindow = new StudentLessonWindow();
-            _teacherLessonsWindow = new TeacherLessonsWindow();
-            _tutorLessonsWindow = new TutorLessonsWindow();
+            _authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage(_driver);
+            _createGroupPage = new CreateGroupPage(_driver);
+            _studentLessonsPage = new StudentLessonsPage(_driver);
+            _teacherLessonsPage = new TeacherLessonsPage(_driver);
+            _tutorLessonsPage = new TutorLessonsPage(_driver);
             _manager = new SwaggerSignInRequest() { Email = OptionsSwagger.ManagersEmail, Password = OptionsSwagger.ManagersPassword };
             _clearDB = new ClearTables();
             _userMappers = new UserMappers();
-            _switchRole = new SwitchRole();
         }
 
         [Given(@"register new users with roles in service")]
@@ -78,15 +68,12 @@ namespace AutoTestsSelenium.StepDefinitions
             //CreateGroupRequest newGroup = table.CreateInstance<CreateGroupRequest>();
             //AuthorizeUser(_manager);
             //Thread.Sleep(500);
-            //_driver.FindElement(_managerNavigatePanelElements.XPathCreateGroupButton).Click();
-            //_driver.FindElement(_createGroupWindow.XPathNameGroupBox).SendKeys(newGroup.Name);
-            //_driver.FindElement(_createGroupWindow.XPathCoursesComboBox).Click();
-            //var course = _driver.FindElement(_createGroupWindow.XPathCourseButton((newGroup.CourseId).ToString()));
-            //course.Click();
-            //_nameGroup = course.Text;
-            //_driver.FindElement(_createGroupWindow.XPathTeacherCheckBox($"{_teacher.FirstName} {_teacher.LastName}")).Click();
-            //_driver.FindElement(_createGroupWindow.XPathTutorCheckBox($"{_tutor.FirstName} {_tutor.LastName}")).Click();
-            //_driver.FindElement(_createGroupWindow.XPathSaveButton).Click();
+            //_createGroupPage.ClickAddGroupButton();
+            //_createGroupPage.EnterNameGroup(newGroup.Name);
+            //_nameCourse = _createGroupPage.ChageCourse((newGroup.CourseId).ToString());
+            //_createGroupPage.ClickTeacherCheckBox(_teacher.FirstName, _teacher.LastName);
+            //_createGroupPage.ClickTutorCheckBox(_tutor.FirstName, _tutor.LastName);
+            //_createGroupPage.ClickSaveButton();
         }
 
         [When(@"manager add users to group in service")]
@@ -101,11 +88,11 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             AuthorizeUser(_userMappers.MappRegistationModelWithRoleToSwaggerSignInRequest(_student));
             Thread.Sleep(500);
-            _driver.FindElement(_studentNavigatePanelElements.XPathLessonsButton).Click();
-            var groups = _driver.FindElements(_studentLessonWindow.XPathGroups);
+            _studentLessonsPage.ClickLessonsButton();
+            var groups = _studentLessonsPage.FindStudentGroups();
             Assert.Equal(Options.ExpectedLessonsUrl, _driver.Url);
             Assert.Contains(groups, i => i.Text == Options.CourseBasicSiSharp);
-            _driver.FindElement(_studentNavigatePanelElements.XPathExitButton).Click();
+            _studentLessonsPage.ClickExitButton();
         }
 
         [Then(@"authorize teacher in service and check group")]
@@ -113,13 +100,12 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             AuthorizeUser(_userMappers.MappRegistationModelWithRoleToSwaggerSignInRequest(_teacher));
             Thread.Sleep(500);
-            _driver.FindElement(_teacherNavigatePanelElements.XPathSwitchRoleButton).Click();
-            _driver.FindElement(_switchRole.XPathRoleButton(_teacher.Role)).Click();
-            _driver.FindElement(_teacherNavigatePanelElements.XPathLessonsButton).Click();
-            var groups = _driver.FindElements(_teacherLessonsWindow.XPathGroups);
+            _teacherLessonsPage.ClickLessonsButton();
+            _teacherLessonsPage.ChageRole(_teacher.Role);
+            var groups = _teacherLessonsPage.FindTeacherGroups();
             Assert.Equal(Options.ExpectedLessonsUrl, _driver.Url);
             Assert.Contains(groups, i => i.Text == Options.CourseBasicSiSharp);
-            _driver.FindElement(_teacherNavigatePanelElements.XPathExitButton).Click();
+            _teacherLessonsPage.ClickExitButton();
         }
 
         [Then(@"authorize tutor in service and check group")]
@@ -127,13 +113,12 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             AuthorizeUser(_userMappers.MappRegistationModelWithRoleToSwaggerSignInRequest(_tutor));
             Thread.Sleep(500);
-            _driver.FindElement(_tutorNavigatePanelElements.XPathSwitchRoleButton).Click();
-            _driver.FindElement(_switchRole.XPathRoleButton(_tutor.Role)).Click();
-            _driver.FindElement(_tutorNavigatePanelElements.XPathLessonsButton).Click();
-            var groups = _driver.FindElements(_tutorLessonsWindow.XPathGroups);
+            _tutorLessonsPage.ClickLessonsButton();
+            _tutorLessonsPage.ChageRole(_tutor.Role);
+            var groups = _tutorLessonsPage.FindTutorGroups();
             Assert.Equal(Options.ExpectedLessonsUrl, _driver.Url);
             Assert.Contains(groups, i => i.Text == Options.CourseBasicSiSharp);
-            _driver.FindElement(_tutorNavigatePanelElements.XPathExitButton).Click();
+            _tutorLessonsPage.ClickExitButton();
             _driver.Close();
             _clearDB.ClearDB();
         }
@@ -141,11 +126,10 @@ namespace AutoTestsSelenium.StepDefinitions
         private void AuthorizeUser(SwaggerSignInRequest user)
         {
             _driver.Manage().Window.Maximize();
-            _driver.Navigate().GoToUrl(Urls.Host);
-            _driver.FindElement(_singInWindow.XPathEmailBox).SendKeys(user.Email);
-            _driver.FindElement(_singInWindow.XPathPasswordBox).Clear();
-            _driver.FindElement(_singInWindow.XPathPasswordBox).SendKeys(user.Password);
-            _driver.FindElement(_singInWindow.XPathSingInButton).Click();
+            _authorizationUnauthorizedPage.OpenThisPage();
+            _authorizationUnauthorizedPage.EnterEmail(user.Email);
+            _authorizationUnauthorizedPage.EnterPassword(user.Password);
+            _authorizationUnauthorizedPage.ClickEnterButton();
         }
     }
 }

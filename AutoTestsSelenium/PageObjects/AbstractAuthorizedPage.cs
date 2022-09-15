@@ -35,12 +35,12 @@
             _driver.FindElement(By.XPath($"//*[@class='user-roles-wrapper']")).Click();
             role = role switch
             {
-                Options.RoleTeacher => "Преподаватель",
-                Options.RoleTutor => "Тьютор",
-                Options.RoleManager => "Менеджер",
-                Options.RoleAdmin => "Администратор",
-                Options.RoleStudent => "Студент",
-                Options.RoleMethodist => "Методист",
+                OptionsSwagger.RoleTeacher => "Преподаватель",
+                OptionsSwagger.RoleTutor => "Тьютор",
+                OptionsSwagger.RoleManager => "Менеджер",
+                OptionsSwagger.RoleAdmin => "Администратор",
+                OptionsSwagger.RoleStudent => "Студент",
+                OptionsSwagger.RoleMethodist => "Методист",
                 _ => throw new ArgumentOutOfRangeException(nameof(role)),
             };
             string xpathRequiredRole = $"//li[text()='{role}']";

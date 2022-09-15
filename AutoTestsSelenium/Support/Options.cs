@@ -14,12 +14,6 @@
         public const string CourseBasicJavaId = "2374";
         public const string CourseBackendJavaId = "2375";
         public const string CourseQAAutomationId = "2376";
-        public const string Admin = "Администратор";
-        public const string Manager = "Менеджер";
-        public const string Methodist = "Методист";
-        public const string Teacher = "Преподаватель";
-        public const string Tutor = "Тьютор";
-        public const string Student = "Студент";
         public const string ExpectedLessonsUrl = $"https://piter-education.ru:7074/lessons";
     }
 }

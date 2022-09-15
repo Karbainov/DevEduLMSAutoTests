@@ -72,5 +72,32 @@
             }
             private set { }
         }
+
+        public By XPathRoleButton(string role)
+        {
+            switch (role)
+            {
+                case OptionsSwagger.RoleTeacher:
+                    role = "Преподаватель";
+                    break;
+                case OptionsSwagger.RoleTutor:
+                    role = "Тьютор";
+                    break;
+                case OptionsSwagger.RoleManager:
+                    role = "Менеджер";
+                    break;
+                case OptionsSwagger.RoleAdmin:
+                    role = "Администратор";
+                    break;
+                case OptionsSwagger.RoleStudent:
+                    role = "Студент";
+                    break;
+                case OptionsSwagger.RoleMethodist:
+                    role = "Методист";
+                    break;
+            }
+            return By.XPath($"//li[text()='{role}']");
+        }
+
     }
 }
