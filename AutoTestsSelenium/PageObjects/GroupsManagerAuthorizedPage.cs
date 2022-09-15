@@ -2,7 +2,7 @@
 {
     public class GroupsManagerAuthorizedPage : AbstractManagerAuthorizedPage
     {
-        public const string PageUrl = $"{Urls.Host}/groups";
+        private const string PageUrl = $"{Urls.Host}/groups";
         public IWebElement ButtonEdit => _driver.FindElement(By.XPath($"//a[text()='Редактировать']"));
         public IWebElement ButtonEditStudentsList => _driver.FindElement(By.XPath($"//a[text()='Редактировать список группы']"));
         public List<IWebElement> ListTeachersInGroup => _driver.FindElements(By

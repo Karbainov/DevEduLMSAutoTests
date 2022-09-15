@@ -8,7 +8,6 @@
         public IWebElement ButtonSave => _driver.FindElement(By.XPath($"//button[text()='Сохранить']"));
         public IWebElement ButtonCancelCreateGroup => _driver.FindElement(By.XPath($"//*[text()='Отмена']"));
 
-
         public GroupCreateManagerAuthorizaedPage(IWebDriver driver) : base(driver)
         {
         }
