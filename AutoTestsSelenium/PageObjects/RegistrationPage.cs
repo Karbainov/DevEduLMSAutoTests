@@ -1,37 +1,24 @@
 ﻿namespace AutoTestsSelenium.PageObjects
 {
-    public class RegistrationPage : AbstractPage
+    public class RegistrationPage : AbstractUnauthorizedPage
     {
-        private const string PageUrl = $"{Urls.Host}/";
-
-        RegistrationWindow _registrationWindow = new RegistrationWindow();
-        public IWebElement TextBoxLastName { get; set; }
-        public IWebElement TextBoxName { get; set; }
-        public IWebElement TextBoxPatronymic { get; set; }
-        public IWebElement TextBoxBirthDate { get; set; }
-        public IWebElement TextBoxPassword { get; set; }
-        public IWebElement TextBoxRepeatPassword { get; set; }
-        public IWebElement TextBoxEmail { get; set; }
-        public IWebElement TextBoxPhone { get; set; }
-        public IWebElement CheckBoxConfirmRules { get; set; }
-        public IWebElement ButtonRegistrate { get; set; }
-        public IWebElement ButtonCancelRegistration { get; set; }
-        public IWebElement ButtonAuth { get; set; }
+        public IWebElement ButtonRegisterSideBar => _driver.FindElement(By.XPath($"//*[@href='/register']"));
+        public IWebElement TextBoxLastName => _driver.FindElement(By.XPath($""));
+        public IWebElement TextBoxName => _driver.FindElement(By.XPath($""));
+        public IWebElement TextBoxPatronymic => _driver.FindElement(By.XPath($""));
+        public IWebElement TextBoxBirthDate => _driver.FindElement(By.XPath($""));
+        public IWebElement TextBoxPassword => _driver.FindElement(By.XPath($""));
+        public IWebElement TextBoxRepeatPassword => _driver.FindElement(By.XPath($""));
+        public IWebElement TextBoxEmail => _driver.FindElement(By.XPath($""));
+        public IWebElement TextBoxPhone => _driver.FindElement(By.XPath($""));
+        public IWebElement CheckBoxConfirmRules => _driver.FindElement(By.XPath($""));
+        public IWebElement ButtonRegistrate => _driver.FindElement(By.XPath($""));
+        public IWebElement ButtonCancelRegistration => _driver.FindElement(By.XPath($""));
+        public IWebElement ButtonAuth => _driver.FindElement(By.XPath($""));
 
         public RegistrationPage(IWebDriver driver) : base(driver)
         {
-            TextBoxLastName = _driver.FindElement(_registrationWindow.XPathLastNameBox);
-            TextBoxName = _driver.FindElement(_registrationWindow.XPathFirstNameBox);
-            TextBoxPatronymic = _driver.FindElement(_registrationWindow.XPathPatronymicBox);
-            TextBoxBirthDate = _driver.FindElement(_registrationWindow.XPathDateBirthBox);
-            TextBoxPassword = _driver.FindElement(_registrationWindow.XPathPasswordBox);
-            TextBoxRepeatPassword = _driver.FindElement(_registrationWindow.XPathRepeatPasswordBox);
-            TextBoxEmail = _driver.FindElement(_registrationWindow.XPathEmailBox);
-            CheckBoxConfirmRules = _driver.FindElement(_registrationWindow.XPathPrivatePolicityCheckBox);
-            ButtonRegistrate = _driver.FindElement(_registrationWindow.XPathRegisterButton);
-            ButtonCancelRegistration = _driver.FindElement(_registrationWindow.XPathCancelRegistrationButton);
-            TextBoxPhone = _driver.FindElement(_registrationWindow.XPathPhoneNumberBox);
-            ButtonAuth = _driver.FindElement(_registrationWindow.XPathAuthSideBarButton);
+           
         }
 
         public void EnterLastName(string lastName)
