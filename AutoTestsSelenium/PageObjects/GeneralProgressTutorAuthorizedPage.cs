@@ -4,7 +4,6 @@
     {
         public const string PageUrl = $"{Urls.Host}/general-progress";
 
-
         public GeneralProgressTutorAuthorizedPage(IWebDriver driver) : base(driver)
         {
         }
@@ -14,7 +13,7 @@
             _driver.Navigate().GoToUrl(PageUrl);
         }
 
-        public IWebElement DesiredGroup(string groupName)
+        public IWebElement GetDesiredGroupByName(string groupName)
         {
             string xpath = $"//*[text()='{groupName}']/..";
             return _driver.FindElement(By.XPath(xpath));

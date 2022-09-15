@@ -7,6 +7,7 @@
         public IWebElement TextBoxGroupName => _driver.FindElement(By.XPath($"//*[text()='Название']/input"));
         public IWebElement ComboBoxCourses => _driver.FindElement(By.XPath($"//div[@class='drop-down-filter  ']"));
         public IWebElement ButtonSave => _driver.FindElement(By.XPath($"//button[text()='Сохранить']"));
+        
         public EditGroupManagerAuthorizedPage(IWebDriver driver) : base(driver)
         {
         }
@@ -38,7 +39,7 @@
             DesiredCourse(courseName).Click();
         }
 
-        public IWebElement DesiredTeacher(string firstNameOfTeacher, string lastNameOfTeacher)
+        public IWebElement GetDesiredTeacherByName(string firstNameOfTeacher, string lastNameOfTeacher)
         {
             string xpath = $"//div[@class='teachers-list']/descendant::*[text()='{firstNameOfTeacher} {lastNameOfTeacher}']/..";
             return _driver.FindElement(By.XPath(xpath));
@@ -46,10 +47,10 @@
 
         public void ChooseTeacher(string firstNameOfTeacher, string lastNameOfTeacher)
         {
-            DesiredTeacher(firstNameOfTeacher, lastNameOfTeacher).Click();
+            GetDesiredTeacherByName(firstNameOfTeacher, lastNameOfTeacher).Click();
         }
 
-        public IWebElement DesiredTutor(string firstNameOfTutor, string lastNameOfTutor)
+        public IWebElement GetDesiredTutorByName(string firstNameOfTutor, string lastNameOfTutor)
         {
             string xpath = $"//div[@class='tutors-list']/descendant::*[text()='{firstNameOfTutor} {lastNameOfTutor}']/..";
             return _driver.FindElement(By.XPath(xpath));
@@ -57,7 +58,7 @@
 
         public void ChooseTutor(string firstNameOfTutor, string lastNameOfTutor)
         {
-            DesiredTutor(firstNameOfTutor, lastNameOfTutor).Click();
+            GetDesiredTutorByName(firstNameOfTutor, lastNameOfTutor).Click();
         }
 
         public void ClickButtonSave()

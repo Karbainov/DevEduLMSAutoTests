@@ -13,7 +13,7 @@
             _driver.Navigate().GoToUrl(PageUrl);
         }
 
-        public IWebElement DesiredGroup(string groupName)
+        public IWebElement GetDesiredGroupByName(string groupName)
         {
             string xpath = $"//*[text()='{groupName}']/..";
             return _driver.FindElement(By.XPath(xpath));

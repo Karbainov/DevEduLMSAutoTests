@@ -3,6 +3,7 @@
     public class GroupsManagerAuthorizedPage : AbstractManagerAuthorizedPage
     {
         public const string PageUrl = $"{Urls.Host}/groups";
+
         public GroupsManagerAuthorizedPage(IWebDriver driver) : base(driver)
         {
         }
@@ -12,7 +13,7 @@
             _driver.Navigate().GoToUrl(PageUrl);
         }
 
-        public IWebElement DesiredGroup(string groupName)
+        public IWebElement GetDesiredGroupByName(string groupName)
         {
             string xpath = $"//*[text()='{groupName}']/..";
             return _driver.FindElement(By.XPath(xpath));
@@ -20,7 +21,7 @@
 
         public void ChooseGroup(string groupName)
         {
-            DesiredGroup(groupName).Click();
+            GetDesiredGroupByName(groupName).Click();
         }
 
         public void ClickButtonEdit()

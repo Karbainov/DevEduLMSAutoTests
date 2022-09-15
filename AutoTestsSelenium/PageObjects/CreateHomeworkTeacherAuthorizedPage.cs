@@ -13,7 +13,7 @@
             _driver.Navigate().GoToUrl(PageUrl);
         }
 
-        public IWebElement RadioButtonGroupName(string groupName)
+        public IWebElement GetRadioButtonByGroupName(string groupName)
         {
             string xpath = $"//*[text()='{groupName}']/ancestor::*[@class='radio-button']";
             return _driver.FindElement(By.XPath(xpath));
