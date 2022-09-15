@@ -1,3 +1,5 @@
+using DevEduLMSAutoTests.API.Clients;
+
 namespace DevEduLMSAutoTests.API.StepDefinitions
 {
     [Binding]
@@ -50,7 +52,11 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
                             _studentId = id;
                         }
                         break;
-                }
+                    default:
+                        {
+                            throw new ArgumentOutOfRangeException(nameof(user.Role));
+                        }
+                };
             }
         }
 
