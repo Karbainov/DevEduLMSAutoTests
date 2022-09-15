@@ -2,14 +2,8 @@
 {
     public class GeneralProgressWindow
     {
-        public By ByXpathAccept
-        {
-            get 
-            { 
-                return By.XPath($"//*[text()='Сдано']");
-            }
-            private set { }
-        }
+        public By ByXpathAccept => By.XPath($"//*[text()='Сдано']");
+        
         public By ByXpathDecline
         {
             get 

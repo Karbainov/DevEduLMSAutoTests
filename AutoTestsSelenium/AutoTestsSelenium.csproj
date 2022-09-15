@@ -31,10 +31,10 @@
 
   <ItemGroup>
     <Folder Include="Drivers\" />
+    <Folder Include="PageObjects\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DevEduLMSAutoTests.API\DevEduLMSAutoTests.API.csproj" />
   </ItemGroup>
-
 </Project>

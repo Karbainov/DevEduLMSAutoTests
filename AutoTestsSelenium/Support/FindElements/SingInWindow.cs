@@ -2,6 +2,15 @@
 {
     public class SingInWindow
     {
+        public By XPathRegistrationButton
+        {
+            get
+            {
+                return By.XPath($"//*[@href='/register']");
+            }
+            private set { }
+        }
+
         public By XPathEmailBox
         {
             get
