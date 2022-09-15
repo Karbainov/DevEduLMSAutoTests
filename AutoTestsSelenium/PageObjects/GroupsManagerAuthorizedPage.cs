@@ -32,5 +32,16 @@
         {
             _driver.FindElement(By.XPath($"//a[text()='Редактировать список группы']")).Click();
         }
+
+        public List<IWebElement> GetTeachersInGroup()
+        {
+            return _driver.FindElements(By.XPath($"//*[text()='Преподаватель:']/parent::div[@class='groups-list']//span")).ToList();
+        }
+        
+        public List<IWebElement> GetTutorsInGroup()
+        {
+            return _driver.FindElements(By
+                .XPath($"//*[text()='Тьютор:']/parent::div[@class='groups-list']//span[contains(text(),'')]")).ToList();
+        }
     }
 }
