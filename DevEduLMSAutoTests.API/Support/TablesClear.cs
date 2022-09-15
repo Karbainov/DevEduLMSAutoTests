@@ -1,6 +1,6 @@
 ﻿namespace DevEduLMSAutoTests.API.Support
 {
-    public class ClearTables
+    public class TablesClear
     {
         public void ClearDB()
         {

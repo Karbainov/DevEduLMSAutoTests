@@ -3,22 +3,22 @@
     [Binding]
     public sealed class Hooks
     {
-        private ClearTables _clearTables;
+        private TablesClear _tablesClear;
         public Hooks()
         {
-            _clearTables = new ClearTables();
+            _tablesClear = new TablesClear();
         }
 
         [BeforeScenario(new string[] {"@sudent", "@teacher", "@methodist"})]
         public void BeforeScenarioWithTag()
         {
-            _clearTables.ClearDB();
+            _tablesClear.ClearDB();
         }
 
         [AfterScenario]
         public void AfterScenario()
         {
-            _clearTables.ClearDB();
+            _tablesClear.ClearDB();
         }
     }
 }

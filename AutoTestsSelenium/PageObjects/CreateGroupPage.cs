@@ -41,14 +41,14 @@
         {
             string courseName;
             ComboBoxCourses.Click();
-            courseId = courseId switch
+            var result = courseId switch
             {
-                Options.CourseBasicSiSharpId => courseName = Options.CourseBasicSiSharp,
-                Options.CourseFrontendReactId => courseName = Options.CourseFrontendReact,
-                Options.CourseBackendSiSharpId => courseName = Options.CourseBackendSiSharp,
-                Options.CourseBasicJavaId => courseName = Options.CourseBasicJava,
-                Options.CourseBackendJavaId => courseName = Options.CourseBackendJava,
-                Options.CourseQAAutomationId => courseName = Options.CourseQAAutomation,
+                "1370" => courseName = "Базовый C#",
+                "1371" => courseName = "Frontend React",
+                "2371" => courseName = "Backend C#",
+                "2374" => courseName = "Базовый Java",
+                "2375" => courseName = "Backend Java",
+                "2376" => courseName = "QA Automation",
                 _ => throw new ArgumentOutOfRangeException(nameof(courseId)),
             };
             _driver.FindElement(By.XPath($"//li[text()='{courseName}']")).Click();
