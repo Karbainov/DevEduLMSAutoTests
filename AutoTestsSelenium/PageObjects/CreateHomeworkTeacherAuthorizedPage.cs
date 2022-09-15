@@ -21,14 +21,41 @@
         public CreateHomeworkTeacherAuthorizedPage(IWebDriver driver) : base(driver)
         {
         }
-        public override void OpenThisPage()=> _driver.Navigate().GoToUrl(PageUrl);      
-        public void InputStarDate(string startDate)=> textBoxStartDate.SendKeys(startDate);
-        public void InputEndDate(string endDate)=> textBoxStartDate.SendKeys(endDate);
-        public void InputNameHomework(string nameHomework)=> textBoxNameHomework.SendKeys(nameHomework);     
-        public void InputDescriptionHomework(string descriptionHomework)=> textBoxDescriptionHomework.SendKeys(descriptionHomework);
-        public void InputUsefulLinks(string usefulLinks) => textBoxLink.SendKeys(usefulLinks);
-        public void ClickAddLink() => buttonAddLink.Click();
-        public void ClickSaveDraft() => buttonSaveDraft.Click();
-        public void ClickCancel() => buttonCancel.Click();
+        public override void OpenThisPage()
+        {
+           _driver.Navigate().GoToUrl(PageUrl);      
+        }
+        public void InputStarDate(string startDate)
+        {
+            textBoxStartDate.SendKeys(startDate);
+        }
+        public void InputEndDate(string endDate)
+        {
+            textBoxStartDate.SendKeys(endDate);
+        }
+        public void InputNameHomework(string nameHomework)
+        {
+            textBoxNameHomework.SendKeys(nameHomework);
+        }
+        public void InputDescriptionHomework(string descriptionHomework)
+        {
+            textBoxDescriptionHomework.SendKeys(descriptionHomework);
+        }
+        public void InputUsefulLinks(string usefulLinks)
+        {
+            textBoxLink.SendKeys(usefulLinks);
+        }
+        public void ClickAddLink()
+        {
+            buttonAddLink.Click();
+        }
+        public void ClickSaveDraft()
+        {
+            buttonSaveDraft.Click();
+        }
+        public void ClickCancel()
+        {
+            buttonCancel.Click();
+        }
     }
 }
