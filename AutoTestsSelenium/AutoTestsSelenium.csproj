@@ -31,6 +31,7 @@
 
   <ItemGroup>
     <Folder Include="Drivers\" />
+    <Folder Include="Support\Models\Request\" />
   </ItemGroup>
 
   <ItemGroup>

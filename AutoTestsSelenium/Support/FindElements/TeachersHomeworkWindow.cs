@@ -12,6 +12,7 @@
             }
             private set { }
         }
+
         public By XPathStartDateTextBox
         {
             get
@@ -20,6 +21,7 @@
             }
             private set { }
         }
+
         public By XPathEndDateTextBox
         {
             get
@@ -28,6 +30,7 @@
             }
             private set { }
         }
+
         public By XPathGroupRB
         {
             get
@@ -37,6 +40,7 @@
             }
             private set { }
         }
+
         public By XPathNameTB
         {
             get
@@ -45,6 +49,7 @@
             }
             private set { }
         }
+
         public By XPathDescriptionTB
         {
             get
@@ -53,6 +58,7 @@
             }
             private set { }
         }
+
         public By XPathLinkTB
         {
             get
@@ -61,6 +67,7 @@
             }
             private set { }
         }
+
         public By XPathAddLinkButton
         {
             get
