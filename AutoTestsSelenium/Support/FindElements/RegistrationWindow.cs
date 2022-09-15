@@ -100,5 +100,23 @@
             }
             private set { }
         }
+
+        public By XPathPrivatePolicityCheckBox
+        {
+            get
+            {
+                return By.XPath($"//*[@class='custom-checkbox']");
+            }
+            private set { }
+        }
+
+        public By XPathAuthSideBarButton
+        {
+            get
+            {
+                return By.XPath($"//*[text()='Вход']");
+            }
+            private set { }
+        }
     }
 }

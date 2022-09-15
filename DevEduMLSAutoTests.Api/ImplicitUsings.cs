@@ -1,0 +1,16 @@
+﻿global using FluentAssertions;
+global using TechTalk.SpecFlow;
+global using Xunit;
+global using System.Text.Json.Serialization;
+global using System.Collections.Generic;
+global using TechTalk.SpecFlow.Assist;
+global using System.Net;
+global using System.Net.Http;
+global using System.Net.Http.Headers;
+global using System.Text;
+global using System.Text.Json;
+global using DevEduMLSAutoTests.Api.Support;
+global using DevEduMLSAutoTests.Api.Support.Models.Response;
+global using DevEduMLSAutoTests.Api.Support.Models.Request;
+global using DevEduMLSAutoTests.Api.Clients;
+global using DevEduMLSAutoTests.Api.Support.Mappers;

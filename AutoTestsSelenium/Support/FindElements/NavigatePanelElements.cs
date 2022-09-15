@@ -2,22 +2,14 @@
 {
     public class NavigatePanelElements
     {
-        public By XPathGroupsButton
+        public By XPathIssuingHomework
         {
             get
             {
-                return By.XPath("//span[text()='Группы']");
+                return By.XPath("//*[text()='Выдача заданий']");
             }
-            set { }
         }
-        public By XPathCreateGroupButton
-        {
-            get
-            {
-                return By.XPath("//span[text()='Создать группу']");
-            }
-            private set { }
-        }
+
         public By XPathNewHomeworkButton
         {
             get
@@ -39,7 +31,7 @@
         {
             get
             {
-                return By.XPath($"//*[@href='/homeworks']");
+                return By.XPath("//span[text()='Домашние задания']");
             }
             private set { }
         }

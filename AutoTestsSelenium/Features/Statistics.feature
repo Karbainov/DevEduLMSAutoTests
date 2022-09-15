@@ -1,8 +1,6 @@
 ﻿Feature: Statistics
-
-A short summary of the feature
-
 @tag1
+#TODO: Сделать нормальные теги
 Scenario: Teacher chek students homeworks results
 	Given register new users with roles
 	| FirstName | LastName   | Patronymic | Email              | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role      |
@@ -22,8 +20,9 @@ Scenario: Teacher chek students homeworks results
 	And manager add users to group
 	When teacher create new homework
 	| Name  | Description         | Link               | StartDate  | EndDate    |
-	| Lists | Make your own lists | https://google.com | 11.09.2022 | 09.10.2022 |
-	And students did their homework
+	| Lists | Make your own lists | https://google.com | 10.09.2022 | 09.10.2022 |
+	#TODO: подумать как красиво прокидывать инфу о юзерах
+	And students did their homework 
 	And teacher rate homeworks
 	| FullName     | Result |
 	| Ilya1 Baikov | Сдано  |

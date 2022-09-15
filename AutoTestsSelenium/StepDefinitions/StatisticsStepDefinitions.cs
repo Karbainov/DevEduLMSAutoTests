@@ -1,7 +1,7 @@
 using DevEduLMSAutoTests.API.StepDefinitions;
 using DevEduLMSAutoTests.API.Support.Models.Request;
 using DevEduLMSAutoTests.API.Support;
-using AutoTestsSelenium.Support.Models.SupportModels;
+using AutoTestsSelenium.Support.Models;
 
 namespace AutoTestsSelenium.StepDefinitions
 {
@@ -21,7 +21,7 @@ namespace AutoTestsSelenium.StepDefinitions
         private TeachersHomeworkWindow _teacersHomeworkWindowElements;
         private StudentsHomeworkWindow _studentsHomeworkWindowElements;
         private ClearTables clearDB;
-        private List<StudentsHomeworkResults> _studentsResults;
+        private List<StudentsHomeworkResultModel> _studentsResults;
         private HomeworkResultsElements _homeworkResultsElements;
         private GeneralProgressWindow _generalProgressElements;
 
@@ -38,7 +38,7 @@ namespace AutoTestsSelenium.StepDefinitions
             _teacersHomeworkWindowElements = new TeachersHomeworkWindow();
             _studentsHomeworkWindowElements = new StudentsHomeworkWindow();
             clearDB = new ClearTables();
-            _studentsResults = new List<StudentsHomeworkResults>();
+            _studentsResults = new List<StudentsHomeworkResultModel>();
             _homeworkResultsElements = new HomeworkResultsElements();
             _generalProgressElements = new GeneralProgressWindow();
         }
@@ -102,10 +102,7 @@ namespace AutoTestsSelenium.StepDefinitions
             _driver.FindElement(_teacersHomeworkWindowElements.XPathGroupRB).Click();
             var dateTB = _driver.FindElement(_teacersHomeworkWindowElements.XPathStartDateTextBox);
             Actions setDate = new Actions(_driver);
-            setDate.DoubleClick(dateTB).
-                SendKeys(homework.StartDate).
-                Build().
-                Perform();
+            setDate.DoubleClick(dateTB).SendKeys(homework.StartDate).Build().Perform();
             dateTB = _driver.FindElement(_teacersHomeworkWindowElements.XPathEndDateTextBox);
             setDate.DoubleClick(dateTB).SendKeys(homework.EndDate).Build().Perform();
             _driver.FindElement(_teacersHomeworkWindowElements.XPathNameTB).SendKeys(homework.Name);
@@ -141,8 +138,8 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"teacher rate homeworks")]
         public void WhenTeacherRateHomeworks(Table table)
         {
-            _studentsResults = table.CreateSet<StudentsHomeworkResults>().ToList();
-            _driver.FindElement(_singInElements.XPathEmailBox).SendKeys(_teacherSignIn.Email);
+            _studentsResults = table.CreateSet<StudentsHomeworkResultModel>().ToList();
+            _driver.FindElement(_singInElements.XPathEmailBox).SendKeys(_teacherSingIn.Email);
             _driver.FindElement(_singInElements.XPathPasswordBox).Clear();
             _driver.FindElement(_singInElements.XPathPasswordBox).SendKeys(_teacherSignIn.Password);
             _driver.FindElement(_singInElements.XPathSingInButton).Click();
@@ -184,11 +181,11 @@ namespace AutoTestsSelenium.StepDefinitions
             int actualDeclinedHomework;
             foreach(var result in _studentsResults)
             {
-                if (result.Result == "Сдано")
+                if (result.Result == "пїЅпїЅпїЅпїЅпїЅ")
                 {
                     expectedPassedHomework++;
                 }
-                else if (result.Result == "Не сдано")
+                else if (result.Result == "пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ")
                 {
                     expectedDeclinedHomework++;
                 }

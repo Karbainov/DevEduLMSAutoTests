@@ -2,12 +2,13 @@
 {
     public class TeachersHomeworkWindow
     {
-        public string _groupName;
+        public string _groupName;              
+
         public By XPathPublishButton
         {
             get
             {
-                return By.XPath($"//button[text()='Опубликовать']");
+                return By.XPath("//button[text()='Опубликовать']");
             }
             private set { }
         }

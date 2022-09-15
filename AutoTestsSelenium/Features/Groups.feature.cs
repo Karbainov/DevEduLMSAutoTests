@@ -102,7 +102,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -114,7 +114,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "GitHubAccount",
                             "PhoneNumber",
                             "Role"});
-                table9.AddRow(new string[] {
+                table12.AddRow(new string[] {
                             "Ilya1",
                             "Baikov",
                             "string",
@@ -126,7 +126,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "string",
                             "89998887766",
                             "Student"});
-                table9.AddRow(new string[] {
+                table12.AddRow(new string[] {
                             "Ilya2",
                             "Baikov",
                             "string",
@@ -138,7 +138,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "string",
                             "89998887766",
                             "Student"});
-                table9.AddRow(new string[] {
+                table12.AddRow(new string[] {
                             "Ilya3",
                             "Baikov",
                             "string",
@@ -150,7 +150,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "string",
                             "89998887766",
                             "Student"});
-                table9.AddRow(new string[] {
+                table12.AddRow(new string[] {
                             "Ilya4",
                             "Baikov",
                             "string",
@@ -162,7 +162,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "string",
                             "89998887766",
                             "Student"});
-                table9.AddRow(new string[] {
+                table12.AddRow(new string[] {
                             "Ilya5",
                             "Baikov",
                             "string",
@@ -174,7 +174,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "string",
                             "89998887766",
                             "Student"});
-                table9.AddRow(new string[] {
+                table12.AddRow(new string[] {
                             "Ilya6",
                             "Baikov",
                             "string",
@@ -186,7 +186,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "string",
                             "89998887766",
                             "Student"});
-                table9.AddRow(new string[] {
+                table12.AddRow(new string[] {
                             "Ilya7",
                             "Baikov",
                             "string",
@@ -198,7 +198,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "string",
                             "89998887766",
                             "Student"});
-                table9.AddRow(new string[] {
+                table12.AddRow(new string[] {
                             "Ilya8",
                             "Baikov",
                             "string",
@@ -210,7 +210,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "string",
                             "89998887766",
                             "Student"});
-                table9.AddRow(new string[] {
+                table12.AddRow(new string[] {
                             "Ilya9",
                             "Baikov",
                             "string",
@@ -222,7 +222,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "string",
                             "89998887766",
                             "Student"});
-                table9.AddRow(new string[] {
+                table12.AddRow(new string[] {
                             "Anton",
                             "Efremenkov",
                             "string",
@@ -234,58 +234,14 @@ this.ScenarioInitialize(scenarioInfo);
                             "string",
                             "89995554433",
                             "Teacher"});
-                table9.AddRow(new string[] {
-                            "Ложкин",
-                            "Андрей",
-                            "string",
-                            "ilya@tutor.com",
-                            "dron",
-                            "password",
-                            "SaintPetersburg",
-                            "03.03.1994",
-                            "string",
-                            "89995554433",
-                            "Tutor"});
 #line 8
- testRunner.Given("register new users with roles", ((string)(null)), table9, "Given ");
+ testRunner.Given("register new users with roles", ((string)(null)), table12, "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Name",
-                            "Course",
-                            "Teachers",
-                            "Tutors"});
-                table10.AddRow(new string[] {
-                            "TG1",
-                            "Backend C#",
-                            "pip sum, pop sam",
-                            "van dam"});
-#line 21
- testRunner.When("manager create new group from browser", ((string)(null)), table10, "When ");
+#line 20
+ testRunner.When("manager create new group from browser", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 24
- testRunner.And("manager add students to group \"TG1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 25
- testRunner.Then("users should see their group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 26
- testRunner.And("manager should see actual group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 27
- testRunner.When("manager edit group \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-                TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Ilya1 Baikov",
-                            "Ilya2 Baikov",
-                            "Ilya3 Baikov"});
-#line 28
- testRunner.And("manager delete students from group \"\"", ((string)(null)), table11, "And ");
-#line hidden
-#line 30
- testRunner.Then("users should see their group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 31
- testRunner.And("manager should see actual group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 22
+ testRunner.Then("[outcome]", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
