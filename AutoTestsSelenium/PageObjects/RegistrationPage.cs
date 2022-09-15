@@ -1,21 +1,23 @@
-﻿namespace AutoTestsSelenium.PageObjects
+﻿using Docker.DotNet.Models;
+using OpenQA.Selenium.Support.UI;
+
+namespace AutoTestsSelenium.PageObjects
 {
     public class RegistrationPage : AbstractUnauthorizedPage
     {
-        public IWebElement ButtonRegisterSideBar => _driver.FindElement(By.XPath($"//*[@href='/register']"));
-        public IWebElement TextBoxLastName => _driver.FindElement(By.XPath($""));
-        public IWebElement TextBoxName => _driver.FindElement(By.XPath($""));
-        public IWebElement TextBoxPatronymic => _driver.FindElement(By.XPath($""));
-        public IWebElement TextBoxBirthDate => _driver.FindElement(By.XPath($""));
-        public IWebElement TextBoxPassword => _driver.FindElement(By.XPath($""));
-        public IWebElement TextBoxRepeatPassword => _driver.FindElement(By.XPath($""));
-        public IWebElement TextBoxEmail => _driver.FindElement(By.XPath($""));
-        public IWebElement TextBoxPhone => _driver.FindElement(By.XPath($""));
-        public IWebElement CheckBoxConfirmRules => _driver.FindElement(By.XPath($""));
-        public IWebElement ButtonRegistrate => _driver.FindElement(By.XPath($""));
-        public IWebElement ButtonCancelRegistration => _driver.FindElement(By.XPath($""));
-        public IWebElement ButtonAuth => _driver.FindElement(By.XPath($""));
-
+        private const string PageUrl = $"{Urls.Host}/register";
+        public IWebElement TextBoxLastName => _driver.FindElement(By.XPath($"//*[@name='lastName']"));
+        public IWebElement TextBoxName => _driver.FindElement(By.XPath($"//*[@name='firstName']"));
+        public IWebElement TextBoxPatronymic => _driver.FindElement(By.XPath($"//*[@name='patronymic']"));
+        public IWebElement TextBoxBirthDate => _driver.FindElement(By.XPath($"//*[@class='form-control']"));
+        public IWebElement TextBoxPassword => _driver.FindElement(By.XPath($"//*[@name='password']"));
+        public IWebElement TextBoxRepeatPassword => _driver.FindElement(By.XPath($"//*[@name='confirmPassword']"));
+        public IWebElement TextBoxEmail => _driver.FindElement(By.XPath($"//*[@name='email']"));
+        public IWebElement TextBoxPhone => _driver.FindElement(By.XPath($"//*[@name='phoneNumber']"));
+        public IWebElement CheckBoxConfirmRules => _driver.FindElement(By.XPath($"//*[@class='custom-checkbox']"));
+        public IWebElement ButtonRegistrate => _driver.FindElement(By.XPath($"//*[@type='submit']"));
+        public IWebElement ButtonCancelRegistration => _driver.FindElement(By.XPath($"//*[@type='reset']"));
+        
         public RegistrationPage(IWebDriver driver) : base(driver)
         {
            
@@ -69,15 +71,16 @@
         {
             ButtonCancelRegistration.Click();
         }
-
-        public void ClickOnAuthSideBarButton()
+        public bool CheckIfModalWindowWelcomeAppeared()
         {
-            ButtonAuth.Click();
-        }
+            WebElement modalWindowWelcome = _driver.finElement(ElementLocator);
+            JavascriptExecutor executor = (JavascriptExecutor)Driver;
+            executor.executeScript("arguments[0].click();", tmpElement);
 
+        }
         public override void OpenThisPage()
         {
-            throw new NotImplementedException();
+            _driver.Navigate().GoToUrl(PageUrl);
         }
     }
 }

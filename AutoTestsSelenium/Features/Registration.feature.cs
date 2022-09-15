@@ -101,9 +101,6 @@ this.ScenarioInitialize(scenarioInfo);
 #line 4
  testRunner.Given("Open registration page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 5
- testRunner.And("Click on registration on sidebar", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
                 TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
@@ -120,16 +117,19 @@ this.ScenarioInitialize(scenarioInfo);
                             "31.07.1998",
                             "Azino777",
                             "Azino777",
-                            "propper@mail.ru",
+                            "propper7@mail.ru",
                             "+79992314545"});
-#line 6
+#line 5
  testRunner.And("Fill all requared fields", ((string)(null)), table13, "And ");
 #line hidden
-#line 9
+#line 8
  testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 10
+#line 9
  testRunner.When("Click on register button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 10
+ testRunner.Then("user should see the welcome modal window", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 11
  testRunner.And("Click on athorization sidebar button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
