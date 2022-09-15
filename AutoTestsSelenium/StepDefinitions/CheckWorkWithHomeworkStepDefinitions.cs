@@ -224,19 +224,19 @@ namespace AutoTestsSelenium.StepDefinitions
         [Then(@"teacher returned homework")]
         public void ThenTeacherReturnedHomework()
         {
-           
+            throw new PendingStepException();
         }
 
         [When(@"student attached link of corrected homework")]
         public void WhenStudentAttachedLinkOfCorrectedHomework()
         {
-            
+            throw new PendingStepException();
         }
 
         [Then(@"teacher accepted homework")]
         public void ThenTeacherAcceptedHomework()
         {
-           
+            throw new PendingStepException();
         }
     }
 }
