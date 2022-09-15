@@ -2,7 +2,8 @@
 {
     public class LessonsTutorAuthorizedPage : AbstractTutorAuthorizedPage
     {
-        public const string PageUrl = $"{Urls.Host}/lessons";
+        private const string PageUrl = $"{Urls.Host}/lessons";
+        public List<IWebElement> ListTutorGroups => _driver.FindElements(By.XPath($"//*[@class='tab-container']")).ToList();
 
         public LessonsTutorAuthorizedPage(IWebDriver driver) : base(driver)
         {

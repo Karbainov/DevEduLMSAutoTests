@@ -2,7 +2,7 @@
 {
     public class HomeworksStudentAuthorizedPage : AbstractStudentAuthorizedPage
     {
-        public const string PageUrl = $"{Urls.Host}/homeworks";
+        private const string PageUrl = $"{Urls.Host}/homeworks";
 
         public HomeworksStudentAuthorizedPage(IWebDriver driver) : base(driver)
         {

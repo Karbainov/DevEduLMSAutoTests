@@ -2,7 +2,7 @@
 {
     public class GeneralProgressTeacherAuthorizedPage:AbstractTeacherAuthorizedPage
     {
-        public const string PageUrl = $"{Urls.Host}/general-progress";
+        private const string PageUrl = $"{Urls.Host}/general-progress";
 
         public GeneralProgressTeacherAuthorizedPage(IWebDriver driver) : base(driver)
         {

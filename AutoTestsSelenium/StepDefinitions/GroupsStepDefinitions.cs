@@ -6,10 +6,10 @@ namespace AutoTestsSelenium.StepDefinitions
         private GroupsAPIStepDefinitions _managerCreatesAGroupAddsUsersBySwagger;
         private IWebDriver _driver;
         private AuthorizationUnauthorizedPage _authorizationUnauthorizedPage;
-        private CreateGroupPage _createGroupPage;
-        private LessonsStudentPage _lessonsStudentPage;
-        private LessonsTeacherPage _lessonsTeacherPage;
-        private LessonsTutorPage _lessonsTutorPage;
+        private GroupCreateManagerAuthorizaedPage _createGroupPage;
+        private LessonsStudentAuthorizedPage _lessonsStudentPage;
+        private LessonsTeacherAuthorizedPage _lessonsTeacherPage;
+        private LessonsTutorAuthorizedPage _lessonsTutorPage;
         private RegistationModelWithRole _student;
         private RegistationModelWithRole _teacher;
         private RegistationModelWithRole _tutor;
@@ -22,10 +22,10 @@ namespace AutoTestsSelenium.StepDefinitions
             _managerCreatesAGroupAddsUsersBySwagger = new GroupsAPIStepDefinitions();
             _driver = new ChromeDriver();
             _authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage(_driver);
-            _createGroupPage = new CreateGroupPage(_driver);
-            _lessonsStudentPage = new LessonsStudentPage(_driver);
-            _lessonsTeacherPage = new LessonsTeacherPage(_driver);
-            _lessonsTutorPage = new LessonsTutorPage(_driver);
+            _createGroupPage = new GroupCreateManagerAuthorizaedPage(_driver);
+            _lessonsStudentPage = new LessonsStudentAuthorizedPage(_driver);
+            _lessonsTeacherPage = new LessonsTeacherAuthorizedPage(_driver);
+            _lessonsTutorPage = new LessonsTutorAuthorizedPage(_driver);
             _manager = new SwaggerSignInRequest() { Email = OptionsSwagger.ManagersEmail, Password = OptionsSwagger.ManagersPassword };
             _userMappers = new UserMappers();
         }

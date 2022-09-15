@@ -2,7 +2,7 @@
 {
     public class JournalTeacherAuthorizedPage : AbstractTeacherAuthorizedPage
     {
-        public const string PageUrl = $"{Urls.Host}/journal";
+        private const string PageUrl = $"{Urls.Host}/journal";
 
         public JournalTeacherAuthorizedPage(IWebDriver driver) : base(driver)
         {

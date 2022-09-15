@@ -3,6 +3,12 @@
     public class GroupsManagerAuthorizedPage : AbstractManagerAuthorizedPage
     {
         public const string PageUrl = $"{Urls.Host}/groups";
+        public IWebElement ButtonEdit => _driver.FindElement(By.XPath($"//a[text()='Редактировать']"));
+        public IWebElement ButtonEditStudentsList => _driver.FindElement(By.XPath($"//a[text()='Редактировать список группы']"));
+        public List<IWebElement> ListTeachersInGroup => _driver.FindElements(By
+            .XPath($"//*[text()='Преподаватель:']/parent::div[@class='groups-list']//span")).ToList();
+        public List<IWebElement> ListTutorsInGroup => _driver.FindElements(By
+                .XPath($"//*[text()='Тьютор:']/parent::div[@class='groups-list']//span[contains(text(),'')]")).ToList();
 
         public GroupsManagerAuthorizedPage(IWebDriver driver) : base(driver)
         {
@@ -24,25 +30,14 @@
             GetDesiredGroupByName(groupName).Click();
         }
 
-        public void ClickButtonEdit()
+        public void ClickEditButton()
         {
-            _driver.FindElement(By.XPath($"//a[text()='Редактировать']")).Click();
+            ButtonEdit.Click();
         }
 
-        public void ClickButtonEditStudentsList()
+        public void ClickEditStudentsListButton()
         {
-            _driver.FindElement(By.XPath($"//a[text()='Редактировать список группы']")).Click();
-        }
-
-        public List<IWebElement> GetTeachersInGroup()
-        {
-            return _driver.FindElements(By.XPath($"//*[text()='Преподаватель:']/parent::div[@class='groups-list']//span")).ToList();
-        }
-        
-        public List<IWebElement> GetTutorsInGroup()
-        {
-            return _driver.FindElements(By
-                .XPath($"//*[text()='Тьютор:']/parent::div[@class='groups-list']//span[contains(text(),'')]")).ToList();
+            ButtonEditStudentsList.Click();
         }
     }
 }

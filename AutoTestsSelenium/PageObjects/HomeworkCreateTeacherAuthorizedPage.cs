@@ -1,10 +1,10 @@
 ﻿namespace AutoTestsSelenium.PageObjects
 {
-    public class CreateHomeworkTeacherAuthorizedPage : AbstractTeacherAuthorizedPage
+    public class HomeworkCreateTeacherAuthorizedPage : AbstractTeacherAuthorizedPage
     {
-        public const string PageUrl = $"{Urls.Host}/new-homework";
+        private const string PageUrl = $"{Urls.Host}/new-homework";
 
-        public CreateHomeworkTeacherAuthorizedPage(IWebDriver driver) : base(driver)
+        public HomeworkCreateTeacherAuthorizedPage(IWebDriver driver) : base(driver)
         {
         }
 
