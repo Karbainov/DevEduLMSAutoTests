@@ -1,4 +1,4 @@
-﻿namespace AutoTestsSelenium.Support.FindElements
+namespace AutoTestsSelenium.Support.FindElements
 {
     public class NavigatePanelElements
     {
