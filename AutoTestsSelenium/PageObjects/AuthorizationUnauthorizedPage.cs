@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AutoTestsSelenium.PageObjects
+﻿namespace AutoTestsSelenium.PageObjects
 {
     public class AuthorizationUnauthorizedPage:AbstractUnauthorizedPage
     {
