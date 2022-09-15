@@ -117,7 +117,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "31.07.1998",
                             "Azino777",
                             "Azino777",
-                            "propper7@mail.ru",
+                            "propper8@mail.ru",
                             "+79992314545"});
 #line 5
  testRunner.And("Fill all requared fields", ((string)(null)), table13, "And ");

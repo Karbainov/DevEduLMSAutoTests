@@ -52,8 +52,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [Then(@"user should see the welcome modal window")]
         public void ThenUserShouldSeeTheWelcomeModalWindow()
         {
-            bool IsDisplayed = _registrationPage.CheckIfModalWindowWelcomeAppeared();
-            Assert.True(IsDisplayed);
+            _registrationPage.CheckIfModalWindowDisplay();
         }
 
 

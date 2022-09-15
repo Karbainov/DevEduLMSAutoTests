@@ -1,4 +1,5 @@
 ﻿using Docker.DotNet.Models;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
 namespace AutoTestsSelenium.PageObjects
@@ -17,7 +18,9 @@ namespace AutoTestsSelenium.PageObjects
         public IWebElement CheckBoxConfirmRules => _driver.FindElement(By.XPath($"//*[@class='custom-checkbox']"));
         public IWebElement ButtonRegistrate => _driver.FindElement(By.XPath($"//*[@type='submit']"));
         public IWebElement ButtonCancelRegistration => _driver.FindElement(By.XPath($"//*[@type='reset']"));
-        
+        public IWebElement ModalWindowWelcome => _driver.FindElements(By.XPath($"//*[text()='Добро пожаловать!!']")).FirstOrDefault();
+
+
         public RegistrationPage(IWebDriver driver) : base(driver)
         {
            
@@ -71,12 +74,10 @@ namespace AutoTestsSelenium.PageObjects
         {
             ButtonCancelRegistration.Click();
         }
-        public bool CheckIfModalWindowWelcomeAppeared()
+        public void CheckIfModalWindowDisplay()
         {
-            WebElement modalWindowWelcome = _driver.finElement(ElementLocator);
-            JavascriptExecutor executor = (JavascriptExecutor)Driver;
-            executor.executeScript("arguments[0].click();", tmpElement);
-
+            Thread.Sleep(1000);
+            Assert.NotNull(ModalWindowWelcome);
         }
         public override void OpenThisPage()
         {
