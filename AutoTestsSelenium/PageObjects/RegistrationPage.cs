@@ -2,7 +2,7 @@
 {
     public class RegistrationPage : AbstractPage
     {
-        private const string PageUrl = $"{Urls.Host}/";
+        private const string PageUrl = $"{Urls.Host}/register";
 
         RegistrationWindow _registrationWindow = new RegistrationWindow();
         public IWebElement TextBoxLastName { get; set; }
@@ -90,7 +90,7 @@
 
         public override void OpenThisPage()
         {
-            throw new NotImplementedException();
+            _driver.Navigate().GoToUrl(PageUrl);
         }
     }
 }
