@@ -1,6 +1,6 @@
 ﻿namespace AutoTestsSelenium.PageObjects
 {
-    public class HomeworkCreationTeacherAuthorizedPage : AbstractTeacherAuthorizedPage
+    public class HomeworkCreationTeacherPage : AbstractTeacherAuthorizedPage
     {
         private string _groupName;
         public const string PageUrl = $"{Urls.Host}/new-homework";
@@ -15,7 +15,7 @@
         public IWebElement ButtonSaveDraft => _driver.FindElement(By.XPath($"//button[@class='sc-bczRLJ jsAGPN btn btn-white-with-border flex-container']"));
         public IWebElement ButtonCancel => _driver.FindElement(By.XPath($"//button[@class='sc-bczRLJ kEeNDb btn btn-text flex-container']"));
 
-        public HomeworkCreationTeacherAuthorizedPage(IWebDriver driver) : base(driver)
+        public HomeworkCreationTeacherPage(IWebDriver driver) : base(driver)
         {
         }
 
