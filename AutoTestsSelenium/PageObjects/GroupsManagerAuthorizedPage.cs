@@ -18,6 +18,10 @@
             string xpath = $"//*[text()='{groupName}']/..";
             return _driver.FindElement(By.XPath(xpath));
         }
+        public List<IWebElement> GetAllGroups()
+        {
+            return _driver.FindElements(By.XPath($"//div[@class='tab-container']/div[contains(@class, 'tab-item')]")).ToList();
+        }
 
         public void ChooseGroup(string groupName)
         {

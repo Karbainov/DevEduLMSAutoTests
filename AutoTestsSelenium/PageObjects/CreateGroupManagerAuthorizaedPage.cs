@@ -6,6 +6,7 @@
         public IWebElement TextBoxGroupName => _driver.FindElement(By.XPath($"//*[text()='Название']/input"));
         public IWebElement ComboBoxCourses => _driver.FindElement(By.XPath($"//div[@class='drop-down-filter  ']"));
         public IWebElement ButtonSave => _driver.FindElement(By.XPath($"//button[text()='Сохранить']"));
+        public IWebElement ButtonCancel => _driver.FindElement(By.XPath($"//button[text()='Отмена']"));
         
         public CreateGroupManagerAuthorizaedPage(IWebDriver driver) : base(driver)
         {
@@ -64,5 +65,11 @@
         {
             ButtonSave.Click();
         }
+
+        public void ClickButtonCancel()
+        {
+            ButtonCancel.Click();
+        }
+
     }
 }
