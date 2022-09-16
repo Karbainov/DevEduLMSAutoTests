@@ -1,5 +1,3 @@
-using DevEduLMSAutoTests.API.Clients;
-
 namespace DevEduLMSAutoTests.API.StepDefinitions
 {
     [Binding]

@@ -12,7 +12,7 @@ namespace AutoTestsSelenium.StepDefinitions
         private string _groupName;
         private TeachersHomeworkWindow _teacersHomeworkWindowElements;
         private StudentsHomeworkWindow _studentsHomeworkWindowElements;
-        private TablesClear _tablesClear;
+        private DBCleaner _tablesClear;
         private List<StudentsHomeworkResultModel> _studentsResults;
         private HomeworkResultsElements _homeworkResultsElements;
         GeneralProgressWindow _generalProgressElements;
@@ -26,7 +26,7 @@ namespace AutoTestsSelenium.StepDefinitions
             _navigateButtons = new TeacherNavigatePanelElements();
             _teacersHomeworkWindowElements = new TeachersHomeworkWindow();
             _studentsHomeworkWindowElements = new StudentsHomeworkWindow();
-            _tablesClear = new TablesClear();
+            _tablesClear = new DBCleaner();
             _studentsResults = new List<StudentsHomeworkResultModel>();
             _homeworkResultsElements = new HomeworkResultsElements();
             _generalProgressElements = new GeneralProgressWindow();

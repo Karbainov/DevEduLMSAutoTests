@@ -14,7 +14,7 @@ namespace AutoTestsSelenium.StepDefinitions
         private string _groupName;
         private TeachersHomeworkWindow _teachersHomeworkWindowElements;
         private StudentsHomeworkWindow _studentsHomeworkWindowElements;
-        private TablesClear _tablesClear;
+        private DBCleaner _tablesClear;
        
         
         public CheckWorkWithHomeworkStepDefinitions()
@@ -26,7 +26,7 @@ namespace AutoTestsSelenium.StepDefinitions
             _navigateButtons = new TeacherNavigatePanelElements();
             _teachersHomeworkWindowElements = new TeachersHomeworkWindow();
             _studentsHomeworkWindowElements = new StudentsHomeworkWindow();
-            _tablesClear = new TablesClear();           
+            _tablesClear = new DBCleaner();           
             _changeRoleOfTeacher = new ChangeRoleCombobox();
         }
 

@@ -1,10 +1,10 @@
 ﻿namespace AutoTestsSelenium.PageObjects
 {
-    public class JournalTeacherAuthorizedPage : AbstractTeacherAuthorizedPage
+    public class JournalTutorPage:AbstractTutorAuthorizedPage
     {
         private const string PageUrl = $"{Urls.Host}/journal";
 
-        public JournalTeacherAuthorizedPage(IWebDriver driver) : base(driver)
+        public JournalTutorPage(IWebDriver driver) : base(driver)
         {
         }
 
@@ -15,8 +15,7 @@
 
         public IWebElement GetDesiredGroupByName(string groupName)
         {
-            string xpath = $"//*[text()='{groupName}']/..";
-            return _driver.FindElement(By.XPath(xpath));
+            return _driver.FindElement(By.XPath($"//*[text()='{groupName}']/.."));
         }
     }
 }

@@ -1,10 +1,10 @@
 ﻿namespace AutoTestsSelenium.PageObjects
 {
-    public class HomeworkCreateTeacherAuthorizedPage : AbstractTeacherAuthorizedPage
+    public class HomeworkCreationTeacherPage : AbstractTeacherAuthorizedPage
     {
         private const string PageUrl = $"{Urls.Host}/new-homework";
 
-        public HomeworkCreateTeacherAuthorizedPage(IWebDriver driver) : base(driver)
+        public HomeworkCreationTeacherPage(IWebDriver driver) : base(driver)
         {
         }
 
@@ -15,8 +15,7 @@
 
         public IWebElement GetRadioButtonByGroupName(string groupName)
         {
-            string xpath = $"//*[text()='{groupName}']/ancestor::*[@class='radio-button']";
-            return _driver.FindElement(By.XPath(xpath));
+            return _driver.FindElement(By.XPath($"//*[text()='{groupName}']/ancestor::*[@class='radio-button']"));
         }
     }
 }

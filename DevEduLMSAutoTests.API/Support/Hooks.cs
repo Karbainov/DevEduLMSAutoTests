@@ -3,10 +3,10 @@
     [Binding]
     public sealed class Hooks
     {
-        private TablesClear _tablesClear;
+        private DBCleaner _tablesClear;
         public Hooks()
         {
-            _tablesClear = new TablesClear();
+            _tablesClear = new DBCleaner();
         }
 
         [BeforeScenario(new string[] {"@sudent", "@teacher", "@methodist"})]
