@@ -14,7 +14,7 @@ namespace AutoTestsSelenium.StepDefinitions
         private string _groupName;
         private TeachersHomeworkWindow _teachersHomeworkWindowElements;
         private StudentsHomeworkWindow _studentsHomeworkWindowElements;
-        private ClearTables clearDB;
+        private DBCleaner _tablesClear;
        
         
         public CheckWorkWithHomeworkStepDefinitions()
@@ -26,14 +26,14 @@ namespace AutoTestsSelenium.StepDefinitions
             _navigateButtons = new TeacherNavigatePanelElements();
             _teachersHomeworkWindowElements = new TeachersHomeworkWindow();
             _studentsHomeworkWindowElements = new StudentsHomeworkWindow();
-            clearDB = new ClearTables();           
+            _tablesClear = new DBCleaner();           
             _changeRoleOfTeacher = new ChangeRoleCombobox();
         }
 
         [When(@"register users with and assigned roles")]
         public void WhenRegisterUsersWithAndAssignedRoles(Table table)
         {
-            clearDB.ClearDB();
+            _tablesClear.ClearDB();
             _stepsBySwagger.GivenRegisterNewUsersWithRoles(table);
             List<RegistationModelWithRole> users = table.CreateSet<RegistationModelWithRole>().ToList();
             foreach (var user in users)
