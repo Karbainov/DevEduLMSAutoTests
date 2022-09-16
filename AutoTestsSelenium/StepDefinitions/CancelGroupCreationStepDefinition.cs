@@ -1,9 +1,3 @@
-using AutoTestsSelenium.PageObjects;
-using DevEduLMSAutoTests.API.Clients;
-using DevEduLMSAutoTests.API.Support;
-using DevEduLMSAutoTests.API.Support.Models.Request;
-using DevEduLMSAutoTests.API.Support.Models.Response;
-
 namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
