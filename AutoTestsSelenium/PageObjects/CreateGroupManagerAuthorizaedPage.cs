@@ -29,9 +29,7 @@
 
         public IWebElement GetDesiredCourseByName(string courseName)
         {
-            ClickComboBoxCourses();
-            string xpath = $"//li[text()='{courseName}']";
-            return _driver.FindElement(By.XPath(xpath));
+            return _driver.FindElement(By.XPath($"//li[text()='{courseName}']"));
         }
 
         public void ChooseCourse(string courseName)

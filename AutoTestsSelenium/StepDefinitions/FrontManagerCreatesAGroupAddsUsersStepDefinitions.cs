@@ -1,4 +1,4 @@
-/*namespace AutoTestsSelenium.StepDefinitions
+namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
     public class FrontManagerCreatesAGroupAddsUsersStepDefinitions
@@ -101,4 +101,4 @@
         }
 
     }
-}*/
+}

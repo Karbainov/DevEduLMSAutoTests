@@ -13,7 +13,6 @@ namespace AutoTestsSelenium.StepDefinitions
         private GroupsAPIStepDefinitions _swaggerGroupSteps;
         private AuthorizationUnauthorizedPage _authorizationUnauthorizedPage;
         private CreateGroupManagerAuthorizaedPage _createGroupManagerAuthorizaedPage;
-        private AbstractManagerAuthorizedPage _abstractManagerAuthorizedPage;
         private GroupsManagerAuthorizedPage _groupsManagerAuthorizedPage;
         private ClearTables _clearDb;
         private RegistrationRequest _teacher;
@@ -24,15 +23,13 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             _clearDb = new ClearTables();
             _swaggerGroupSteps = new GroupsAPIStepDefinitions();
-            _createGroupManagerAuthorizaedPage = new CreateGroupManagerAuthorizaedPage(_driver);
-            _groupsManagerAuthorizedPage = new GroupsManagerAuthorizedPage(_driver);
             _groups = new List<string>();
         }
 
         [Given(@"Registrate users with roles")]
         public void GivenRegistrateUsersWithRoles(Table table)
         {
-            //_clearDb.ClearDB();
+            _clearDb.ClearDB();
             _swaggerGroupSteps.GivenRegisterNewUsersWithRolesInService(table);
             List<RegistationModelWithRole> users = table.CreateSet<RegistationModelWithRole>().ToList();
             foreach(var user in users)
@@ -69,13 +66,14 @@ namespace AutoTestsSelenium.StepDefinitions
         [Given(@"Start create a group ""([^""]*)""")]
         public void GivenStartCreateAGroup(string name)
         {
+            _createGroupManagerAuthorizaedPage = new CreateGroupManagerAuthorizaedPage(_driver);
             _groupName = name;
             Thread.Sleep(1500);
-            _abstractManagerAuthorizedPage.ClickAddGroupButton();
+            _createGroupManagerAuthorizaedPage.ClickAddGroupButton();
             _createGroupManagerAuthorizaedPage.EnterGroupName(name);
             _createGroupManagerAuthorizaedPage.ClickComboBoxCourses();
-            _createGroupManagerAuthorizaedPage.ChooseCourse(Options.CourseQAAutomation);
             Thread.Sleep(1500);
+            _createGroupManagerAuthorizaedPage.ChooseCourse(Options.CourseBackendJava);
             _createGroupManagerAuthorizaedPage.ChooseTeacher(_teacher.FirstName, _teacher.LastName);
             _createGroupManagerAuthorizaedPage.ChooseTutor(_tutor.FirstName, _tutor.LastName);
         }
@@ -89,15 +87,16 @@ namespace AutoTestsSelenium.StepDefinitions
         [Then(@"Group do not create")]
         public void ThenGroupDoNotCreate()
         {
-            _abstractManagerAuthorizedPage.ClickGroupsButton();
+            _groupsManagerAuthorizedPage = new GroupsManagerAuthorizedPage(_driver);
+            _groupsManagerAuthorizedPage.ClickGroupsButton();
             List<IWebElement> actualGroups = _groupsManagerAuthorizedPage.GetAllGroups();
             foreach (var group in actualGroups)
             {
                 _groups.Add(group.Text);
             }
             Assert.DoesNotContain(_groupName, _groups);
-            //_driver.Close();
-            //_clearDb.ClearDB();
+            _driver.Close();
+            _clearDb.ClearDB();
         }
     }
 }
