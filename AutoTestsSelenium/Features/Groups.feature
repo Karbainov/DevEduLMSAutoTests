@@ -14,11 +14,11 @@ When Manager create new group in service
 | BaseSPb   | Базовый C# | Maksim Karbainov  | Elisey Kakoyto  |
 And Manager add student "Isabella Abramson" to group "BaseSPb" in service 
 Then Authorize student in service and check group
-| Email         | Password | CourseName |
-| isi@gmail.com | 11345578 | Базовый C# |
+| Email         | Password | CourseName | Role    |
+| isi@gmail.com | 11345578 | Базовый C# | Student |
 And Authorize teacher in service and check group
-| Email          | Password | CourseName |
-| maks@gmail.com | 22345678 | Базовый C# |
+| Email          | Password | CourseName | Role    |
+| maks@gmail.com | 22345678 | Базовый C# | Teacher |
 And Authorize tutor in service and check group
-| Email            | Password | CourseName |
-| elisey@gmail.com | 13345678 | Базовый C# |
+| Email            | Password | CourseName | Role  |
+| elisey@gmail.com | 13345678 | Базовый C# | Tutor |

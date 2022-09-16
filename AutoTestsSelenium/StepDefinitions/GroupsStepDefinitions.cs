@@ -45,7 +45,7 @@ namespace AutoTestsSelenium.StepDefinitions
             _createGroupPage.ChooseTeacher(newGroup.FullNameOfTeacher);
             _createGroupPage.ChooseTutor(newGroup.FullNameOfTutor);
             _createGroupPage.ClickSaveButton();
-            //TODO Сохраняет только в случае, когда больше двух преподавателей и тьюторов (Таска 2.6).
+            //TODO Saves only when there are more than two teachers and tutors (Task 2.6).
         }
 
         [When(@"Manager add student ""([^""]*)"" to group ""([^""]*)"" in service")]
@@ -55,7 +55,7 @@ namespace AutoTestsSelenium.StepDefinitions
             _studentsListPage.ClickGroupsComboBoxByFullNameOfStudent(fullNameOfStudent);
             _studentsListPage.ClickDesiredGroupByName(groupName);
             _studentsListPage.ClickExitButton();
-            //TODO Страница реализована в виде мока (Таска 2.6).
+            //TODO The page is implemented as a mock (Task 2.6).
         }
 
         [Then(@"Authorize student in service and check group")]
@@ -75,6 +75,7 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
             AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });
+            _lessonsTeacherPage.ChageRole(checkingModel.Role);
             Thread.Sleep(500);
             _lessonsTeacherPage.ClickLessonsButton();
             var groups = _lessonsTeacherPage.TeacherCourses;
@@ -87,6 +88,7 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
             AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });
+            _lessonsTutorPage.ChageRole(checkingModel.Role);
             Thread.Sleep(500);
             _lessonsTutorPage.ClickLessonsButton();
             var groups = _lessonsTutorPage.TutorCourses;

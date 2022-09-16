@@ -45,8 +45,7 @@
                 OptionsSwagger.RoleMethodist => "Методист",
                 _ => throw new ArgumentOutOfRangeException(nameof(role)),
             };
-            string xpathRequiredRole = $"//li[text()='{role}']";
-            _driver.FindElement(By.XPath(xpathRequiredRole)).Click();
+            _driver.FindElement(By.XPath($"//li[text()='{role}']")).Click();
         }
     }
 }
