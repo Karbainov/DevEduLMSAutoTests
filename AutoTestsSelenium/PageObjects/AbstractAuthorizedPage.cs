@@ -6,6 +6,7 @@
         public IWebElement ButtonNotificationsSideBar => _driver.FindElement(By.XPath($"//*[text()='Уведомления']/.."));
         public IWebElement ButtonSettingsSideBar => _driver.FindElement(By.XPath($"//*[text()='Настройки']/.."));
         public IWebElement ButtonExitSideBar => _driver.FindElement(By.XPath($"//*[text()='Выйти']/ancestor::button"));
+        
         protected AbstractAuthorizedPage(IWebDriver driver) : base(driver)
         {
         }
@@ -35,12 +36,12 @@
             _driver.FindElement(By.XPath($"//*[@class='user-roles-wrapper']")).Click();
             role = role switch
             {
-                Options.RoleTeacher => "Преподаватель",
-                Options.RoleTutor => "Тьютор",
-                Options.RoleManager => "Менеджер",
-                Options.RoleAdmin => "Администратор",
-                Options.RoleStudent => "Студент",
-                Options.RoleMethodist => "Методист",
+                OptionsSwagger.RoleTeacher => "Преподаватель",
+                OptionsSwagger.RoleTutor => "Тьютор",
+                OptionsSwagger.RoleManager => "Менеджер",
+                OptionsSwagger.RoleAdmin => "Администратор",
+                OptionsSwagger.RoleStudent => "Студент",
+                OptionsSwagger.RoleMethodist => "Методист",
                 _ => throw new ArgumentOutOfRangeException(nameof(role)),
             };
             string xpathRequiredRole = $"//li[text()='{role}']";

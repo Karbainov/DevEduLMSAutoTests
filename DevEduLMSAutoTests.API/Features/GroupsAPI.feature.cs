@@ -19,7 +19,7 @@ namespace DevEduLMSAutoTests.API.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class ManagerCreatesAGroupAddsUsersFeature : object, Xunit.IClassFixture<ManagerCreatesAGroupAddsUsersFeature.FixtureData>, System.IDisposable
+    public partial class GroupsAPIFeature : object, Xunit.IClassFixture<GroupsAPIFeature.FixtureData>, System.IDisposable
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -28,10 +28,10 @@ namespace DevEduLMSAutoTests.API.Features
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "ManagerCreatesAGroupAddsUsers.feature"
+#line 1 "GroupsAPI.feature"
 #line hidden
         
-        public ManagerCreatesAGroupAddsUsersFeature(ManagerCreatesAGroupAddsUsersFeature.FixtureData fixtureData, DevEduLMSAutoTests_API_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public GroupsAPIFeature(GroupsAPIFeature.FixtureData fixtureData, DevEduLMSAutoTests_API_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();
@@ -40,7 +40,7 @@ namespace DevEduLMSAutoTests.API.Features
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "ManagerCreatesAGroupAddsUsers", "A short summary of the feature", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "GroupsAPI", "A short summary of the feature", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -81,7 +81,7 @@ namespace DevEduLMSAutoTests.API.Features
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="Manager creates a group adds students and appoints a teacher and tutor")]
-        [Xunit.TraitAttribute("FeatureTitle", "ManagerCreatesAGroupAddsUsers")]
+        [Xunit.TraitAttribute("FeatureTitle", "GroupsAPI")]
         [Xunit.TraitAttribute("Description", "Manager creates a group adds students and appoints a teacher and tutor")]
         [Xunit.TraitAttribute("Category", "manager")]
         [Xunit.TraitAttribute("Category", "teacher")]
@@ -119,18 +119,6 @@ this.ScenarioInitialize(scenarioInfo);
                             "PhoneNumber",
                             "Role"});
                 table1.AddRow(new string[] {
-                            "Gabriel",
-                            "Wilson",
-                            "string",
-                            "wl@gmail.com",
-                            "Gabi",
-                            "11345678",
-                            "SaintPetersburg",
-                            "15.04.1999",
-                            "string",
-                            "89514781247",
-                            "Student"});
-                table1.AddRow(new string[] {
                             "Isabella",
                             "Abramson",
                             "string",
@@ -141,18 +129,6 @@ this.ScenarioInitialize(scenarioInfo);
                             "22.05.2001",
                             "string",
                             "89514551247",
-                            "Student"});
-                table1.AddRow(new string[] {
-                            "Sophie",
-                            "Anderson",
-                            "string",
-                            "sophie@gmail.com",
-                            "Sophi",
-                            "11344678",
-                            "SaintPetersburg",
-                            "18.01.1998",
-                            "string",
-                            "89511781247",
                             "Student"});
                 table1.AddRow(new string[] {
                             "Maksim",
@@ -167,18 +143,6 @@ this.ScenarioInitialize(scenarioInfo);
                             "89521496531",
                             "Teacher"});
                 table1.AddRow(new string[] {
-                            "Anton",
-                            "Efremenkov",
-                            "string",
-                            "anton@gmail.com",
-                            "Anton",
-                            "22345698",
-                            "SaintPetersburg",
-                            "22.08.1988",
-                            "string",
-                            "89521477531",
-                            "Teacher"});
-                table1.AddRow(new string[] {
                             "Elisey",
                             "Kakoyto",
                             "string",
@@ -191,21 +155,9 @@ this.ScenarioInitialize(scenarioInfo);
                             "89518963148",
                             "Tutor"});
 #line 7
-testRunner.Given("register new users in service", ((string)(null)), table1, "Given ");
+testRunner.Given("register new users with roles in service", ((string)(null)), table1, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Email",
-                            "Password"});
-                table2.AddRow(new string[] {
-                            "marina@example.com",
-                            "marinamarina"});
-#line 15
-testRunner.And("authorize manager in service", ((string)(null)), table2, "And ");
-#line hidden
-#line 18
-testRunner.And("manager add roles to users in service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
                             "CourseId",
                             "GroupStatusId",
@@ -214,7 +166,7 @@ testRunner.And("manager add roles to users in service", ((string)(null)), ((Tech
                             "Timetable",
                             "PaymentPerMonth",
                             "PaymentsCount"});
-                table3.AddRow(new string[] {
+                table2.AddRow(new string[] {
                             "BaseSPb",
                             "1370",
                             "Forming",
@@ -223,38 +175,14 @@ testRunner.And("manager add roles to users in service", ((string)(null)), ((Tech
                             "string",
                             "2500",
                             "3"});
-#line 19
-testRunner.When("manager create new group in service", ((string)(null)), table3, "When ");
+#line 12
+testRunner.When("manager create new group in service", ((string)(null)), table2, "When ");
 #line hidden
-#line 22
+#line 15
 testRunner.And("manager add users to group in service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Email",
-                            "Password"});
-                table4.AddRow(new string[] {
-                            "wl@gmail.com",
-                            "11345678"});
-                table4.AddRow(new string[] {
-                            "isi@gmail.com",
-                            "11345578"});
-                table4.AddRow(new string[] {
-                            "sophie@gmail.com",
-                            "11344678"});
-                table4.AddRow(new string[] {
-                            "maks@gmail.com",
-                            "22345678"});
-                table4.AddRow(new string[] {
-                            "anton@gmail.com",
-                            "22345698"});
-                table4.AddRow(new string[] {
-                            "elisey@gmail.com",
-                            "13345678"});
-#line 23
-testRunner.Then("authorize users in service", ((string)(null)), table4, "Then ");
-#line hidden
-#line 31
-testRunner.And("check the user\'s group in service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 16
+testRunner.Then("authorize users in service and check group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -267,12 +195,12 @@ testRunner.And("check the user\'s group in service", ((string)(null)), ((TechTal
             
             public FixtureData()
             {
-                ManagerCreatesAGroupAddsUsersFeature.FeatureSetup();
+                GroupsAPIFeature.FeatureSetup();
             }
             
             void System.IDisposable.Dispose()
             {
-                ManagerCreatesAGroupAddsUsersFeature.FeatureTearDown();
+                GroupsAPIFeature.FeatureTearDown();
             }
         }
     }

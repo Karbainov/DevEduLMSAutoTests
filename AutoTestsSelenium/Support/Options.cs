@@ -14,11 +14,6 @@
         public const string CourseBasicJavaId = "2374";
         public const string CourseBackendJavaId = "2375";
         public const string CourseQAAutomationId = "2376";
-        public const string RoleAdmin = "Admin";
-        public const string RoleManager = "Manager";
-        public const string RoleMethodist = "Methodist";
-        public const string RoleTeacher = "Teacher";
-        public const string RoleTutor = "Tutor";
-        public const string RoleStudent = "Student";
+        public const string ExpectedLessonsUrl = $"https://piter-education.ru:7074/lessons";
     }
 }
