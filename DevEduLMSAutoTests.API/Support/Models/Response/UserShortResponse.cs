@@ -1,5 +1,4 @@
-﻿
-namespace DevEduLMSAutoTests.API.Support.Models.Response
+﻿namespace DevEduLMSAutoTests.API.Support.Models.Response
 {
     public class UserShortResponse
     {

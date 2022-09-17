@@ -40,6 +40,7 @@
 
   <ItemGroup>
     <Folder Include="Drivers\" />
+    <Folder Include="Support\Models\Request\" />
     <Folder Include="PageObjects\" />
   </ItemGroup>
 
