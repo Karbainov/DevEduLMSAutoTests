@@ -18,12 +18,11 @@ Scenario: Assigned homework by teacher, turned in by student
 	| Name           | Description | LinkToRecord     | 
 	| ЗаданиеЗадание | string      | http://fjfjf.com |
 	And Authorization user as teacher
-	| Email             | Password |
-	| vitya21@teacher.com | password |
-	Then Teacher changes role
+	| Email               | Password | Role    |
+	| vitya21@teacher.com | password | Teacher |
 	And Teacher click button issuing homework
 	When Teacher create issuing homework
-	|Name            | Description      | LinkToRecord     |StartDate  | EndDate   |
+	|Name            | Description      | Link             |StartDate  | EndDate   |
 	| ЗаданиеЗадание | сделай то то     |http://fjfjf.com  |20.09.2022 | 31.12.2022|
 	Then Teacher click button publish 
 	When Teacher see all task
@@ -39,8 +38,8 @@ Scenario: Assigned homework by teacher, turned in by student
 	And Studen click airplane icon
 	And Studen click button exit
 	And Teacher checks homework 
-	| Email                 | Password   |
-	| vitya21@teacher.com   | password   |
+	| Email                 | Password   |Role     |
+	| vitya21@teacher.com   | password   | Teacher |
 	#дальше никак потому что проверять нечего, ничего не получает препод
 	Then Teacher returned homework
 	And Student attached link of corrected homework

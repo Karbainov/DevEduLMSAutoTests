@@ -176,33 +176,39 @@ testRunner.And("Manager add student \"Isabella Abramson\" to group \"BaseSPb\" i
                 TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password",
-                            "CourseName"});
+                            "CourseName",
+                            "Role"});
                 table13.AddRow(new string[] {
                             "isi@gmail.com",
                             "11345578",
-                            "Базовый C#"});
+                            "Базовый C#",
+                            "Student"});
 #line 16
 testRunner.Then("Authorize student in service and check group", ((string)(null)), table13, "Then ");
 #line hidden
                 TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password",
-                            "CourseName"});
+                            "CourseName",
+                            "Role"});
                 table14.AddRow(new string[] {
                             "maks@gmail.com",
                             "22345678",
-                            "Базовый C#"});
+                            "Базовый C#",
+                            "Teacher"});
 #line 19
 testRunner.And("Authorize teacher in service and check group", ((string)(null)), table14, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password",
-                            "CourseName"});
+                            "CourseName",
+                            "Role"});
                 table15.AddRow(new string[] {
                             "elisey@gmail.com",
                             "13345678",
-                            "Базовый C#"});
+                            "Базовый C#",
+                            "Tutor"});
 #line 22
 testRunner.And("Authorize tutor in service and check group", ((string)(null)), table15, "And ");
 #line hidden
