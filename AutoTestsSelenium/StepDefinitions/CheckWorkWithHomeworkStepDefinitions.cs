@@ -209,6 +209,24 @@ namespace AutoTestsSelenium.StepDefinitions
             var chanceRole = _driver.FindElement(_changeRoleOfTeacher.XpathChangeRole);
             chanceRole.Click();
             _driver.FindElement(_navigateButtons.XPathCheckHomeworksButton).Click();
-        }     
+        }
+
+        [Then(@"teacher returned homework")]
+        public void ThenTeacherReturnedHomework()
+        {
+            throw new PendingStepException();
+        }
+
+        [When(@"student attached link of corrected homework")]
+        public void WhenStudentAttachedLinkOfCorrectedHomework()
+        {
+            throw new PendingStepException();
+        }
+
+        [Then(@"teacher accepted homework")]
+        public void ThenTeacherAcceptedHomework()
+        {
+            throw new PendingStepException();
+        }
     }
 }
