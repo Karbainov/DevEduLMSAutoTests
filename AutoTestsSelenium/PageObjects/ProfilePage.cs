@@ -2,10 +2,11 @@
 {
     public class ProfilePage : AbstractAuthorizedPage
     {
-        public IWebElement TextBoxEmail => _driver.FindElement(By.XPath($"//input[@class='form-input']"));
+        private const string PageUrl = $"{Urls.Host}/settings";
+        public IWebElement TextBoxEmail => _driver.FindElement(By.XPath($"//*[text()='Email']/input[@class='form-input']"));
         public IWebElement TextBoxPassword => _driver.FindElement(By.XPath($"//input[@class='form-input custom-password']"));
         public IWebElement ButtonEnter => _driver.FindElement(By.XPath($"//button[@class='sc-bczRLJ iJvUkY btn btn-fill flex-container']"));
-        public IWebElement TextBoxEnterLastName => _driver.FindElement(By.XPath($"//input[@name='lastName']"));
+        public IWebElement TextBoxEnterLastName => _driver.FindElement(By.XPath($"//*[text()='Фамилия']/input[@class='form-input']"));
         public IWebElement TextBoxEnterFirstName => _driver.FindElement(By.XPath($"//input[@name='firstName']"));
         public IWebElement TextBoxEnterPatronymic => _driver.FindElement(By.XPath($"//input[@name='patronymic']"));
         public IWebElement TextBoxEnterGitHub => _driver.FindElement(By.XPath($"//input[@name='gitHubAccount']"));
@@ -19,7 +20,7 @@
 
         public override void OpenThisPage()
         {
-            throw new NotImplementedException();
+            _driver.Navigate().GoToUrl(PageUrl);
         }
     }
 }
