@@ -52,7 +52,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenMethodistCreateDraftHomework(Table table)
         {
             _driver.FindElement(_methodistHomeworkWindow.XpathChoiceGroupNumber).Click();
-            CreateHomework createHomework = table.CreateInstance<CreateHomework>();
+            AddNewHomework createHomework = table.CreateInstance<AddNewHomework>();
             var nameHomework = _driver.FindElement(_methodistHomeworkWindow.XpathNameCreateHomework);
             nameHomework.SendKeys(createHomework.Name);
             var textInput = _driver.FindElement(_methodistHomeworkWindow.XpathDescriptionHomework);
