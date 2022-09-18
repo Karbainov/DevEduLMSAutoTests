@@ -159,18 +159,35 @@ namespace AutoTestsSelenium.StepDefinitions
         public void ThenTeacherReturnedHomework()
         {
             throw new PendingStepException();
+            //TODO Blank sheet task 2.5
         }
 
         [When(@"Student attached link of corrected homework")]
-        public void WhenStudentAttachedLinkOfCorrectedHomework()
+        public void WhenStudentAttachedLinkOfCorrectedHomework(Table table)
         {
-            throw new PendingStepException();
+            CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
+            AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });
+            Thread.Sleep(500);
+            _lessonsTeacherPage.ClickHomeworksButton();
+            Thread.Sleep(500);
+            _homeworksStudent.GoToTaskButton();
+            Thread.Sleep(500);
+            StudentAttachesHomework studentAttachesHomework = table.CreateInstance<StudentAttachesHomework>();
+            _homeworksStudent.InputLinkAnswer(studentAttachesHomework.LinkToGitHub);
+            _homeworksStudent.SendAnswerButton();
+            _lessonsTeacherPage.ClickExitButton();
         }
 
         [Then(@"Teacher accepted homework")]
-        public void ThenTeacherAcceptedHomework()
+        public void ThenTeacherAcceptedHomework(Table table)
         {
-            throw new PendingStepException();
+            CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
+            AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });
+            Thread.Sleep(500);
+            _lessonsTeacherPage.ChageRole(checkingModel.Role);
+            Thread.Sleep(500);
+            _lessonsTeacherPage.ClickCheckHomeworksButton();
+            //TODO do not continue step due to missing step:Teacher returned homework
         }
 
         private void AuthorizeUser(SwaggerSignInRequest user)
