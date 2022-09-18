@@ -38,4 +38,4 @@
     <ProjectReference Include="..\DevEduLMSAutoTests.API\DevEduLMSAutoTests.API.csproj" />
   </ItemGroup>
 </Project>
-</Project>
+
