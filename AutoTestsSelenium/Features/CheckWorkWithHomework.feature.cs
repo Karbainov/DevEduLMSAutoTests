@@ -270,11 +270,27 @@ this.ScenarioInitialize(scenarioInfo);
 #line 44
  testRunner.Then("Teacher returned homework", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Email",
+                            "Password",
+                            "LinkToGitHub"});
+                table9.AddRow(new string[] {
+                            "ilya21@student.com",
+                            "password",
+                            "https://hd.kinopoisk.ru/"});
 #line 45
- testRunner.And("Student attached link of corrected homework", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Student attached link of corrected homework", ((string)(null)), table9, "And ");
 #line hidden
-#line 46
- testRunner.Then("Teacher accepted homework", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Email",
+                            "Password",
+                            "Role"});
+                table10.AddRow(new string[] {
+                            "vitya21@teacher.com",
+                            "password",
+                            "Teacher"});
+#line 48
+ testRunner.Then("Teacher accepted homework", ((string)(null)), table10, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

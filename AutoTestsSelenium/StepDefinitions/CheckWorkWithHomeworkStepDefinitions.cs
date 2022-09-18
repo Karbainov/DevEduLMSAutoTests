@@ -1,6 +1,3 @@
-using AutoTestsSelenium.PageObjects;
-using TechTalk.SpecFlow;
-
 namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
@@ -94,11 +91,6 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenSeeAllTask()
         {
             _lessonsTeacherPage.ClickAddHomeworksButton();           
-        }
-
-        [When(@"Teacher click button exit")]
-        public void WhenTeacherClickButtonExit()
-        {
             _lessonsTeacherPage.ClickExitButton();
         }
 
@@ -135,14 +127,8 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenStudenClickAirplaneIcon()
         {
             _homeworksStudent.SendAnswerButton();
-        }
-
-        [When(@"Studen click button exit")]
-        public void WhenStudenClickButtonExit()
-        {
-
             _lessonsTeacherPage.ClickExitButton();
-        }
+        }      
 
         [When(@"Teacher checks homework")]
         public void WhenTeacherChecksHomework(Table table)
