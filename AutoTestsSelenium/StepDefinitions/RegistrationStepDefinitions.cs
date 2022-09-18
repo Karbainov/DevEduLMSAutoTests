@@ -5,6 +5,7 @@ namespace AutoTestsSelenium.StepDefinitions
     {
         private IWebDriver _driver;
         private RegistrationPage _registrationPage;
+        private AuthorizationUnauthorizedPage _authorizationUnauthorizedPage;
         private SwaggerSignInRequest _SignInRequest;
 
         [Given(@"Open registration page")]
@@ -52,23 +53,26 @@ namespace AutoTestsSelenium.StepDefinitions
         [Then(@"User should see the welcome modal window")]
         public void ThenUserShouldSeeTheWelcomeModalWindow()
         {
+            Thread.Sleep(1000);
             Assert.NotNull(_registrationPage.ModalWindowWelcome);
         }
 
-
-        [When(@"Click on athorization sidebar button")]
+        [Then(@"Click on athorization sidebar button")]
         public void WhenClickOnAthorizationSidebarButton()
         {
-            throw new PendingStepException();
+            _authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage(_driver);
+            _authorizationUnauthorizedPage.ClickEnterSideBarButton();
         }
 
-        [When(@"Authorize user in service")]
+        [Then(@"Authorize user in service")]
         public void WhenAuthorizeUserInService()
         {
-            throw new PendingStepException();
+            _authorizationUnauthorizedPage.EnterEmail(_SignInRequest.Email);
+            _authorizationUnauthorizedPage.EnterPassword(_SignInRequest.Password);
+            _authorizationUnauthorizedPage.ClickEnterButton();
         }
 
-        [When(@"Click on user's profile")]
+        [Then(@"Click on user's profile")]
         public void WhenClickOnUsersProfile()
         {
             throw new PendingStepException();
