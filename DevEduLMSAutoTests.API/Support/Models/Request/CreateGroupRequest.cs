@@ -25,5 +25,6 @@
 
         [JsonPropertyName("paymentsCount")]
         public int PaymentsCount { get; set; }
+        public string CourseName { get; set; }
     }
 }

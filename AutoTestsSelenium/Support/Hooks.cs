@@ -3,17 +3,23 @@
     [Binding]
     public sealed class Hooks
     {
-        private DBCleaner _tablesClear;
+        private DBCleaner _cleaner;
 
         public Hooks()
         {
-            _tablesClear = new DBCleaner();
+            _cleaner = new DBCleaner();
+        }
+
+        [BeforeScenario(new string[] { "@sudent", "@teacher", "@methodist" })]
+        public void BeforeScenarioWithTag()
+        {
+            _cleaner.ClearDB();
         }
 
         [AfterScenario]
         public void AfterScenario()
         {
-            _tablesClear.ClearDB();
+            _cleaner.ClearDB();
         }
     }
 }

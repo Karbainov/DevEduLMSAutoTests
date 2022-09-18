@@ -3,81 +3,50 @@ namespace AutoTestsSelenium.StepDefinitions
     [Binding]
     public class StatisticsStepDefinitions
     {
-        private TasksStepDefinitions _stepsBySwagger;
         private List<SwaggerSignInRequest> _studensSignIn;
         private SwaggerSignInRequest _teacherSingIn;
         private IWebDriver _driver;
         private SingInWindow _singInElements;
         private TeacherNavigatePanelElements _navigateButtons;
-        private string _groupName;
         private TeachersHomeworkWindow _teacersHomeworkWindowElements;
         private StudentsHomeworkWindow _studentsHomeworkWindowElements;
-        private DBCleaner _tablesClear;
         private List<StudentsHomeworkResultModel> _studentsResults;
         private HomeworkResultsElements _homeworkResultsElements;
         GeneralProgressWindow _generalProgressElements;
+        private AuthorizationUnauthorizedPage _authorizationPage;
 
         public StatisticsStepDefinitions()
         {
-            _stepsBySwagger = new TasksStepDefinitions();
             _studensSignIn = new List<SwaggerSignInRequest>();
             _driver = SingleWebDriver.GetInstance();
+            _driver.Manage().Window.Maximize();
+            _driver.Navigate().GoToUrl(Urls.Host);
             _singInElements = new SingInWindow();
             _navigateButtons = new TeacherNavigatePanelElements();
             _teacersHomeworkWindowElements = new TeachersHomeworkWindow();
             _studentsHomeworkWindowElements = new StudentsHomeworkWindow();
-            _tablesClear = new DBCleaner();
             _studentsResults = new List<StudentsHomeworkResultModel>();
             _homeworkResultsElements = new HomeworkResultsElements();
             _generalProgressElements = new GeneralProgressWindow();
+            _authorizationPage = new AuthorizationUnauthorizedPage(_driver);
         }
 
-        [Given(@"register new users with roles")]
-        public void GivenRegisterNewUsersWithRoles(Table table)
+        [When(@"Authorize as a teacher")]
+        public void WhenAuthorizeAsATeacher(Table table)
         {
-            _tablesClear.ClearDB();
-            _stepsBySwagger.GivenRegisterNewUsersWithRoles(table);
-            List<RegistationModelWithRole> users = table.CreateSet<RegistationModelWithRole>().ToList();
-            foreach(var user in users)
-            {
-                if(user.Role == "Student")
-                {
-                    _studensSignIn.Add(new SwaggerSignInRequest() { Email=user.Email, Password = user.Password });
-                }
-                else if(user.Role == "Teacher")
-                {
-                    _teacherSingIn = new SwaggerSignInRequest() {Email=user.Email, Password=user.Password };
-                }
-            }
+            SwaggerSignInRequest signIn = table.CreateInstance<SwaggerSignInRequest>();
+            _authorizationPage.OpenThisPage();
+            _authorizationPage.EnterEmail(signIn.Email);
+            _authorizationPage.EnterPassword(signIn.Password);
+            _authorizationPage.ClickEnterButton();
         }
 
-        [Given(@"manager create new group")]
-        public void GivenManagerCreateNewGroup(Table table)
-        {
-            _groupName = _stepsBySwagger.GivenManagerCreateNewGroup(table);
-            _teacersHomeworkWindowElements._groupName = _groupName;
-        }
-
-        [Given(@"manager add users to group")]
-        public void GivenManagerAddUsersToGroup()
-        {
-            _stepsBySwagger.GivenManagerAddUsersToGroup();
-        }
 
         [When(@"teacher create new homework")]
         public void WhenTeacherCreateNewHomework(Table table)
         {
             AddNewHomework homework = table.CreateInstance<AddNewHomework>();
-            _driver.Manage().Window.Maximize();
-            _driver.Navigate().GoToUrl(Urls.Host);
-            Thread.Sleep(200);
-            _driver.FindElement(_singInElements.XPathEmailBox).SendKeys(_teacherSingIn.Email);
-            _driver.FindElement(_singInElements.XPathPasswordBox).Clear();
-            _driver.FindElement(_singInElements.XPathPasswordBox).SendKeys(_teacherSingIn.Password);
-            _driver.FindElement(_singInElements.XPathSingInButton).Click();
             Thread.Sleep(100);
-            _driver.FindElement(_navigateButtons.XPathSwitchRoleButton).Click();
-            _driver.FindElement(_navigateButtons.XPathRoleButton(OptionsSwagger.RoleTeacher)).Click();
             _driver.FindElement(_navigateButtons.XPathNewHomeworkButton).Click();
             _driver.FindElement(_teacersHomeworkWindowElements.XPathGroupRB).Click();
             var dateTB = _driver.FindElement(_teacersHomeworkWindowElements.XPathStartDateTextBox);
@@ -174,7 +143,6 @@ namespace AutoTestsSelenium.StepDefinitions
             //Assert.Equal(expectedPassedHomework, actualPassedHomework);
             //Assert.Equal(expectedDeclinedHomework, actualDeclinedHomework);
             _driver.Close();
-            _tablesClear.ClearDB();
         }
     }
 }
