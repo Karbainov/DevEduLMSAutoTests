@@ -110,7 +110,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "PhoneNumber"});
-                table13.AddRow(new string[] {
+                table16.AddRow(new string[] {
                             "Мистер",
                             "Проппер",
                             "Иванов",
