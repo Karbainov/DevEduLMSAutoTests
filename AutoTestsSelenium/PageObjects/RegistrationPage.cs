@@ -30,14 +30,17 @@ namespace AutoTestsSelenium.PageObjects
         {
             TextBoxLastName.SendKeys(lastName);
         }
+
         public void EnterFirstName(string name)
         {
             TextBoxName.SendKeys(name);
         }
+
         public void EnterPatronymic(string patronymic)
         {
             TextBoxPatronymic.SendKeys(patronymic);
         }
+
         public void EnterBirthDate(string birthDate)
         {
             Actions setDate = new Actions(_driver);
@@ -46,39 +49,42 @@ namespace AutoTestsSelenium.PageObjects
                 Build().
                 Perform();
         }
+
         public void EnterPassword(string password)
         {
             TextBoxPassword.SendKeys(password);
         }
+
         public void EnterRepeatPassword(string repeatPassword)
         {
             TextBoxRepeatPassword.SendKeys(repeatPassword);
         }
+
         public void EnterEmail(string email)
         {
             TextBoxEmail.SendKeys(email);
         }
+
         public void EnterPhone(string phone)
         {
             TextBoxPhone.SendKeys(phone);
         }
+
         public void ClickOnConfirmRulesCheckBox()
         {
             CheckBoxConfirmRules.Click();
         }
+
         public void ClickOnButtonRegistrate()
         {
             ButtonRegistrate.Click();
         }
+
         public void ClickOnButtonCancelRegistration()
         {
             ButtonCancelRegistration.Click();
         }
-        public void CheckIfModalWindowDisplay()
-        {
-            Thread.Sleep(1000);
-            Assert.NotNull(ModalWindowWelcome);
-        }
+
         public override void OpenThisPage()
         {
             _driver.Navigate().GoToUrl(PageUrl);

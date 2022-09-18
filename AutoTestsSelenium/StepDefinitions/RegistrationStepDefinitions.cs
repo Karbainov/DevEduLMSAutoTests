@@ -5,7 +5,7 @@ namespace AutoTestsSelenium.StepDefinitions
     {
         private IWebDriver _driver;
         private RegistrationPage _registrationPage;
-        private SwaggerSignInRequest _swaggerSignInRequest;
+        private SwaggerSignInRequest _SignInRequest;
 
         [Given(@"Open registration page")]
         public void GivenOpenRegistrationPage()
@@ -29,7 +29,7 @@ namespace AutoTestsSelenium.StepDefinitions
             _registrationPage.EnterRepeatPassword(user.RepeatPassword);
             _registrationPage.EnterEmail(user.Email);
             _registrationPage.EnterPhone(user.PhoneNumber);
-            _swaggerSignInRequest = new SwaggerSignInRequest()
+            _SignInRequest = new SwaggerSignInRequest()
             {
                 Email = user.Email,
                 Password = user.Password
@@ -49,10 +49,10 @@ namespace AutoTestsSelenium.StepDefinitions
             _registrationPage.ClickOnButtonRegistrate();
         }
 
-        [Then(@"user should see the welcome modal window")]
+        [Then(@"User should see the welcome modal window")]
         public void ThenUserShouldSeeTheWelcomeModalWindow()
         {
-            _registrationPage.CheckIfModalWindowDisplay();
+            Assert.NotNull(_registrationPage.ModalWindowWelcome);
         }
 
 
@@ -68,13 +68,13 @@ namespace AutoTestsSelenium.StepDefinitions
             throw new PendingStepException();
         }
 
-        [When(@"click on user's profile")]
+        [When(@"Click on user's profile")]
         public void WhenClickOnUsersProfile()
         {
             throw new PendingStepException();
         }
 
-        [Then(@"user should see his actual information")]
+        [Then(@"User should see his actual information")]
         public void ThenUserShouldSeeHisActualInformation()
         {
             throw new PendingStepException();

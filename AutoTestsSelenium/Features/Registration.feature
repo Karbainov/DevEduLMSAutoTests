@@ -7,9 +7,9 @@ Scenario: User registration
 	| Мистер    | Проппер  | Иванов     | 31.07.1998 | Azino777 | Azino777       | propper8@mail.ru | +79992314545 |
 	And Click on private policy checkbox 
 	When Click on register button
-	Then user should see the welcome modal window
+	Then User should see the welcome modal window
 	And Click on athorization sidebar button 
 	And Authorize user in service  
-	And click on user's profile 
-	Then user should see his actual information 
+	And Click on user's profile 
+	Then User should see his actual information 
 
