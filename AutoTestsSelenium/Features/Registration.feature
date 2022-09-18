@@ -9,7 +9,7 @@ Scenario: User registration
 	And Click on private policy checkbox 
 	When Click on register button
 	Then User should see the welcome modal window
-	And Click on athorization sidebar button
+	When Click on athorization sidebar button
 	And Authorize user in service  
 	And Click on user's profile 
 	Then User should see his actual information 

@@ -64,6 +64,7 @@ namespace AutoTestsSelenium.StepDefinitions
             Assert.NotNull(_registrationPage.ModalWindowWelcome);
         }
 
+        [When(@"Click on athorization sidebar button")]
         [Then(@"Click on athorization sidebar button")]
         public void WhenClickOnAthorizationSidebarButton()
         {
@@ -71,6 +72,7 @@ namespace AutoTestsSelenium.StepDefinitions
         }
 
         [Then(@"Authorize user in service")]
+        [When(@"Authorize user in service")]
         public void WhenAuthorizeUserInService()
         {
             Thread.Sleep(200);
@@ -79,6 +81,7 @@ namespace AutoTestsSelenium.StepDefinitions
             _authorizationUnauthorizedPage.ClickEnterButton();
         }
 
+        [When(@"Click on user's profile")]
         [Then(@"Click on user's profile")]
         public void WhenClickOnUsersProfile()
         {

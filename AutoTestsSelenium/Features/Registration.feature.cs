@@ -136,7 +136,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("User should see the welcome modal window", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 12
- testRunner.And("Click on athorization sidebar button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("Click on athorization sidebar button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 13
  testRunner.And("Authorize user in service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
