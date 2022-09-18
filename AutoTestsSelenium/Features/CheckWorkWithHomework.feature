@@ -43,7 +43,11 @@ Scenario: Assigned homework by teacher, turned in by student
 	#дальше никак потому что проверять нечего, ничего не получает препод
 	Then Teacher returned homework
 	And Student attached link of corrected homework
+	| Email              | Password | LinkToGitHub             |
+	| ilya21@student.com | password | https://hd.kinopoisk.ru/ |
 	Then Teacher accepted homework
+	| Email                 | Password   |Role     |
+	| vitya21@teacher.com   | password   | Teacher |
 
 
 
