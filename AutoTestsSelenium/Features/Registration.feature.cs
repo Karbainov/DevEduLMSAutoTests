@@ -129,7 +129,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("Click on register button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
- testRunner.Then("user should see the welcome modal window", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("User should see the welcome modal window", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 11
  testRunner.And("Click on athorization sidebar button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -138,10 +138,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Authorize user in service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 13
- testRunner.And("click on user\'s profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Click on user\'s profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 14
- testRunner.Then("user should see his actual information", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("User should see his actual information", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
