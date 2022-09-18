@@ -11,6 +11,11 @@
         {
         }
 
+        public override void OpenThisPage()
+        {
+            _driver.Navigate().GoToUrl(PageUrl);
+        }
+
         public void EnterEmail(string email)
         {
             TextBoxEmail.SendKeys(email);
@@ -24,11 +29,6 @@
         public void ClickEnterButton()
         {
             ButtonEnter.Click();
-        }
-
-        public override void OpenThisPage()
-        {
-            _driver.Navigate().GoToUrl(PageUrl);
         }
     }
 }

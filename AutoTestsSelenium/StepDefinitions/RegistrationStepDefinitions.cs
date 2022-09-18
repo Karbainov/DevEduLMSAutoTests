@@ -1,7 +1,3 @@
-using AutoTestsSelenium.PageObjects;
-using System;
-using TechTalk.SpecFlow;
-
 namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
@@ -10,7 +6,7 @@ namespace AutoTestsSelenium.StepDefinitions
         IWebDriver driver;
         RegistrationPage registrationPage;
         AuthorizationUnauthorizedPage authorizationPage;
-        SingInRequest singInModel;
+        SwaggerSignInRequest singInModel;
 
         [Given(@"Open registration page")]
         public void GivenOpenRegistrationPage()
@@ -41,7 +37,7 @@ namespace AutoTestsSelenium.StepDefinitions
             registrationPage.EnterRepeatPassword(user.RepeatPassword);
             registrationPage.EnterEmail(user.Email);
             registrationPage.EnterPhone(user.PhoneNumber);
-            singInModel = new SingInRequest()
+            singInModel = new SwaggerSignInRequest()
             {
                 Email = user.Email,
                 Password = user.Password

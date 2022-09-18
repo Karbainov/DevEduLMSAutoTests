@@ -100,7 +100,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -111,7 +111,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "BirthDate",
                             "GitHubAccount",
                             "PhoneNumber"});
-                table5.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "Alex",
                             "Smith",
                             "string",
@@ -123,41 +123,41 @@ this.ScenarioInitialize(scenarioInfo);
                             "string",
                             "89998887766"});
 #line 7
-testRunner.Given("register as user", ((string)(null)), table5, "Given ");
+testRunner.Given("register as user", ((string)(null)), table3, "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password"});
-                table6.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "marina@example.com",
                             "marinamarina"});
 #line 10
-    testRunner.And("authorize as manager", ((string)(null)), table6, "And ");
+    testRunner.And("authorize as manager", ((string)(null)), table4, "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                             "Date",
                             "Sum",
                             "IsPaid"});
-                table7.AddRow(new string[] {
+                table5.AddRow(new string[] {
                             "01.02.2001",
                             "2000",
                             "true"});
 #line 13
- testRunner.And("manager add payment to student user", ((string)(null)), table7, "And ");
+ testRunner.And("manager add payment to student user", ((string)(null)), table5, "And ");
 #line hidden
 #line 16
  testRunner.And("manager can see this payment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                             "Date",
                             "Sum",
                             "IsPaid"});
-                table8.AddRow(new string[] {
+                table6.AddRow(new string[] {
                             "03.02.2021",
                             "3000",
                             "true"});
 #line 17
- testRunner.And("manager updates this payment", ((string)(null)), table8, "And ");
+ testRunner.And("manager updates this payment", ((string)(null)), table6, "And ");
 #line hidden
 #line 20
  testRunner.And("manager can see the updated payment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

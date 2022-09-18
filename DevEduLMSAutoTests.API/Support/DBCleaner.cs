@@ -1,8 +1,6 @@
-﻿using System.Data.SqlClient;
-
-namespace DevEduLMSAutoTests.API.Support
+﻿namespace DevEduLMSAutoTests.API.Support
 {
-    public class ClearTables
+    public class DBCleaner
     {
         public void ClearDB()
         {
