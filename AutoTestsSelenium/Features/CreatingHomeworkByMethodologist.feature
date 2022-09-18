@@ -4,25 +4,28 @@ A short summary of the feature
 
 @tag1
 Scenario:  Creating an assignment by a methodologist for students
-	Given Open DevEdu web page
-	When authorization user as methodist
-	| Email                 | Password     |
-	| maksim@example.com    | maksimmaksim |
-	And methodist click botton to come in
-	And methodist click button add task
-	When methodist create draft Homework
-	|Name            | Description | LinkToRecord     |
+	When Register users with roles
+	| FirstName | LastName | Patronymic | Email               | Username | Password | City            | BirthDate   | GitHubAccount | PhoneNumber | Role      |
+	| Milana    | Maxina   | string     | milana@student.com    | mila     | password | SaintPetersburg | 02.07.2000  | string        | 89817051890 | Student   |
+	| Lera      | Puzikova | string     | lera21@methodist.com  | lera     | password | SaintPetersburg | 31.01.2000  | string        | 89817051892 | Methodist |
+	| Vitya     | Strashko | string     | vitya21@teacher.com   | vitya    | password | SaintPetersburg | 01.08.1995  | string        | 89817051893 | Teacher   |
+	And Authorization user as methodist
+	| Email                | Password     | Role        |
+	| lera21@methodist.com | password     | Methodist   |
+	And Methodist click button add task
+	When Methodist create draft Homework
+	|Name            | Description | Link             |
 	| ЗаданиеЗадание | string      |http://fjfjf.com  |
-	Then methodist click button save as draft
-	When methodist see all created homeworks
-	And methodist click link edit
-	When methodist edits homework
-	Then methodist click button save draft
-	And teacher authorization
-	And teacher click button homework assignment
-	When teacher fill out a new assignment form
-	And teacher click button publish
-	Then student should sees homework
+	Then Methodist click button save as draft
+	When Methodist see all created homeworks
+	And Methodist click link edit
+	When Methodist edits homework
+	Then Methodist click button save draft
+	And Teacher authorization
+	And Teacher click button homework assignment
+	When Teacher fill out a new assignment form
+	And Teacher click button publish
+	Then Student should sees homework
 
 
 

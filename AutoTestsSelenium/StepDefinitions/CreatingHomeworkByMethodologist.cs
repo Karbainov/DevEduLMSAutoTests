@@ -1,124 +1,131 @@
+using AutoTestsSelenium.PageObjects;
+
 namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
     public class CreatingHomeworkByMethodologist
     {
-        private IWebDriver _driver;
-        private SingInWindow _singInWindow;
         private MethodistHomeworkWindow _methodistHomeworkWindow;
+        private HomeworkCreationMethodistPage _homeworkMethodist;
+        private AuthorizationUnauthorizedPage _authorizationUnauthorizedPage;
+        private IWebDriver _driver;
+        private DBCleaner _tablesClear;
+        private TasksStepDefinitions _stepsBySwagger;
 
         CreatingHomeworkByMethodologist()
         {
+            _methodistHomeworkWindow = new MethodistHomeworkWindow();
             _driver = new ChromeDriver();
-            _singInWindow = new SingInWindow();
-            _methodistHomeworkWindow = new MethodistHomeworkWindow();       
-        }              
-
-        [Given(@"Open DevEdu web page")]
-        public void GivenOpenDevEduWebPage()
-        {
-            
-            _driver.Manage().Window.Maximize();
-            _driver.Navigate().GoToUrl($"https://piter-education.ru:7074/login");
+            _authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage(_driver);
+            _homeworkMethodist = new HomeworkCreationMethodistPage(_driver);
+            _tablesClear = new DBCleaner();
+            _stepsBySwagger = new TasksStepDefinitions();
         }
 
-        [When(@"authorization user as methodist")]
+        [When(@"Register users with roles")]
+        public void WhenRegisterUsersWithRoles(Table table)
+        {
+            _tablesClear.ClearDB();
+            _stepsBySwagger.GivenRegisterNewUsersWithRoles(table);
+        }
+
+        [When(@"Authorization user as methodist")]
         public void WhenAuthorizationUserAsMethodist(Table table)
         {
-            SwaggerSignInRequest singInRequest = table.CreateInstance<SwaggerSignInRequest>();
-            var emailBox = _driver.FindElement(_singInWindow.XPathEmailBox);
-            emailBox.SendKeys(singInRequest.Email);
-            var passBox = _driver.FindElement(_singInWindow.XPathPasswordBox);
-            passBox.Clear();
-            passBox.SendKeys(singInRequest.Password);
-        }
+            CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
+            AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });
+            Thread.Sleep(500);
+            _homeworkMethodist.ChageRole(checkingModel.Role);
+            Thread.Sleep(500);
+        }      
 
-        [When(@"methodist click botton to come in")]
-        public void WhenMethodistClickBottonToComeIn()
-        {
-            _driver.FindElement(_singInWindow.XPathSingInButton).Click();
-            Thread.Sleep(1000);
-        }
-
-        [When(@"methodist click button add task")]
+        [When(@"Methodist click button add task")]
         public void WhenMethodistClickButtonAddTask()
         {
-            _driver.FindElement(_methodistHomeworkWindow.XPathHomeworkButton).Click();
-            _driver.FindElement(_methodistHomeworkWindow.XpathCreateHomework).Click();
+            _homeworkMethodist.ClickHomeworksButton();
+            _homeworkMethodist.ClickCreateHomework();
             Thread.Sleep(1000);
         }
 
-        [When(@"methodist create draft Homework")]
+        [When(@"Methodist create draft Homework")]
         public void WhenMethodistCreateDraftHomework(Table table)
         {
-            _driver.FindElement(_methodistHomeworkWindow.XpathChoiceGroupNumber).Click();
+            _homeworkMethodist.ClickChoiceGroupNumber();
             AddNewHomework createHomework = table.CreateInstance<AddNewHomework>();
-            var nameHomework = _driver.FindElement(_methodistHomeworkWindow.XpathNameCreateHomework);
-            nameHomework.SendKeys(createHomework.Name);
-            var textInput = _driver.FindElement(_methodistHomeworkWindow.XpathDescriptionHomework);
-            textInput.SendKeys(createHomework.Description);
-            var linkInput = _driver.FindElement(_methodistHomeworkWindow.XpathLinkInputHomework);
-            linkInput.SendKeys(createHomework.Link);
+            _homeworkMethodist.InputNameGroup(createHomework.Name);
+            _homeworkMethodist.InputDescriptionHomework(createHomework.Description);
+            _homeworkMethodist.InputLinkHomework(createHomework.Link);
+            _homeworkMethodist.ClickButtonAttachLink();
         }
 
-        [Then(@"methodist click button save as draft")]
+        [Then(@"Methodist click button save as draft")]
         public void ThenMethodistClickButtonSaveAsDraft()
         {
-            _driver.FindElement(_methodistHomeworkWindow.XpathButtonSaveDraftHomework).Click();
+            _homeworkMethodist.ClickButtonSaveDraft();
         }
 
-        [When(@"methodist see all created homeworks")]
+        [When(@"Methodist see all created homeworks")]
         public void WhenMethodistSeeAllCreatedHomeworks()
         {
             throw new PendingStepException();
+            //TODO The methodologist does not see his drafts. emptiness(Task 2.3)
         }
 
-        [When(@"methodist click link edit")]
+        [When(@"Methodist click link edit")]
         public void WhenMethodistClickLinkEdit()
         {
             throw new PendingStepException();
         }
 
-        [When(@"methodist edits homework")]
+        [When(@"Methodist edits homework")]
         public void WhenMethodistEditsHomework()
         {
             throw new PendingStepException();
         }
 
-        [Then(@"methodist click button save draft")]
+        [Then(@"Methodist click button save draft")]
         public void ThenMethodistClickButtonSaveDraft()
         {
             throw new PendingStepException();
         }
 
-        [Then(@"teacher authorization")]
+        [Then(@"Teacher authorization")]
         public void ThenTeacherAuthorization()
         {
             throw new PendingStepException();
         }
 
-        [Then(@"teacher click button homework assignment")]
+        [Then(@"Teacher click button homework assignment")]
         public void ThenTeacherClickButtonHomeworkAssignment()
         {
             throw new PendingStepException();
         }
 
-        [When(@"teacher fill out a new assignment form")]
+        [When(@"Teacher fill out a new assignment form")]
         public void WhenTeacherFillOutANewAssignmentForm()
         {
             throw new PendingStepException();
         }
 
-        [When(@"teacher click button publish")]
+        [When(@"Teacher click button publish")]
         public void WhenTeacherClickButtonPublish()
         {
             throw new PendingStepException();
         }
 
-        [Then(@"student should sees homework")]
+        [Then(@"Student should sees homework")]
         public void ThenStudentShouldSeesHomework()
         {
             throw new PendingStepException();
+        }
+
+        private void AuthorizeUser(SwaggerSignInRequest user)
+        {
+            _driver.Manage().Window.Maximize();
+            _authorizationUnauthorizedPage.OpenThisPage();
+            _authorizationUnauthorizedPage.EnterEmail(user.Email);
+            _authorizationUnauthorizedPage.EnterPassword(user.Password);
+            _authorizationUnauthorizedPage.ClickEnterButton();
         }
     }
 }
