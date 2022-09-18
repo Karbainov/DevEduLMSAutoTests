@@ -21,7 +21,7 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             _stepsBySwagger = new TasksStepDefinitions();
             _studensSignIn = new List<SwaggerSignInRequest>();
-            _driver = new ChromeDriver();
+            _driver = SingleWebDriver.GetInstance();
             _singInWindow = new SingInWindow();
             _navigateButtons = new TeacherNavigatePanelElements();
             _teachersHomeworkWindowElements = new TeachersHomeworkWindow();

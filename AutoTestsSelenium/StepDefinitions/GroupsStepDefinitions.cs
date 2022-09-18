@@ -16,7 +16,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public GroupsStepDefinitions()
         {
             _managerCreatesAGroupAddsUsersBySwagger = new GroupsAPIStepDefinitions();
-            _driver = new ChromeDriver();
+            _driver = SingleWebDriver.GetInstance();
             _authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage(_driver);
             _createGroupPage = new GroupCreationManagerPage(_driver);
             _studentsListPage = new StudentsListPage(_driver);
