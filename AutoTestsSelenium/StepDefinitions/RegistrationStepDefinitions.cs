@@ -11,7 +11,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [Given(@"Open registration page")]
         public void GivenOpenRegistrationPage()
         {
-            driver = new ChromeDriver();
+            driver = SingleWebDriver.GetInstance();
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl(Urls.Host);
             authorizationPage = new AuthorizationUnauthorizedPage(driver);

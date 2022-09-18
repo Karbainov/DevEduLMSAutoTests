@@ -6,121 +6,95 @@ namespace AutoTestsSelenium.StepDefinitions
         private GroupsAPIStepDefinitions _managerCreatesAGroupAddsUsersBySwagger;
         private IWebDriver _driver;
         private AuthorizationUnauthorizedPage _authorizationUnauthorizedPage;
-        private CreateGroupPage _createGroupPage;
-        private StudentLessonsPage _studentLessonsPage;
-        private TeacherLessonsPage _teacherLessonsPage;
-        private TutorLessonsPage _tutorLessonsPage;
-        private RegistationModelWithRole _student;
-        private RegistationModelWithRole _teacher;
-        private RegistationModelWithRole _tutor;
+        private GroupCreationManagerPage _createGroupPage;
+        private StudentsListPage _studentsListPage;
+        private LessonsStudentPage _lessonsStudentPage;
+        private LessonsTeacherPage _lessonsTeacherPage;
+        private LessonsTutorPage _lessonsTutorPage;
         private SwaggerSignInRequest _manager;
-        private ClearTables _clearDB;
-        private UserMappers _userMappers;
-        private string _nameCourse;
 
         public GroupsStepDefinitions()
         {
             _managerCreatesAGroupAddsUsersBySwagger = new GroupsAPIStepDefinitions();
-            _driver = new ChromeDriver();
+            _driver = SingleWebDriver.GetInstance();
             _authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage(_driver);
-            _createGroupPage = new CreateGroupPage(_driver);
-            _studentLessonsPage = new StudentLessonsPage(_driver);
-            _teacherLessonsPage = new TeacherLessonsPage(_driver);
-            _tutorLessonsPage = new TutorLessonsPage(_driver);
+            _createGroupPage = new GroupCreationManagerPage(_driver);
+            _studentsListPage = new StudentsListPage(_driver);
+            _lessonsStudentPage = new LessonsStudentPage(_driver);
+            _lessonsTeacherPage = new LessonsTeacherPage(_driver);
+            _lessonsTutorPage = new LessonsTutorPage(_driver);
             _manager = new SwaggerSignInRequest() { Email = OptionsSwagger.ManagersEmail, Password = OptionsSwagger.ManagersPassword };
-            _clearDB = new ClearTables();
-            _userMappers = new UserMappers();
         }
 
-        [Given(@"register new users with roles in service")]
+        [Given(@"Register new users with roles in service")]
         public void GivenRegisterNewUsersWithRolesInService(Table table)
         {
-            _clearDB.ClearDB();
             _managerCreatesAGroupAddsUsersBySwagger.GivenRegisterNewUsersWithRolesInService(table);
-            List<RegistationModelWithRole> users = table.CreateSet<RegistationModelWithRole>().ToList();
-            foreach (var user in users)
-            {
-                switch (user.Role)
-                {
-                    case OptionsSwagger.RoleStudent:
-                        {
-                            _student = user;
-                        }
-                        break;
-                    case OptionsSwagger.RoleTeacher:
-                        {
-                            _teacher = user;
-                        }
-                        break;
-                    case OptionsSwagger.RoleTutor:
-                        {
-                            _tutor = user;
-                        }
-                        break;
-                }
-            }
         }
 
-        [When(@"manager create new group in service")]
+        [When(@"Manager create new group in service")]
         public void WhenManagerCreateNewGroupInService(Table table)
         {
-            _managerCreatesAGroupAddsUsersBySwagger.WhenManagerCreateNewGroupInService(table);
-            //CreateGroupRequest newGroup = table.CreateInstance<CreateGroupRequest>();
-            //AuthorizeUser(_manager);
-            //Thread.Sleep(500);
-            //_createGroupPage.ClickAddGroupButton();
-            //_createGroupPage.EnterNameGroup(newGroup.Name);
-            //_nameCourse = _createGroupPage.ChageCourse((newGroup.CourseId).ToString());
-            //_createGroupPage.ClickTeacherCheckBox(_teacher.FirstName, _teacher.LastName);
-            //_createGroupPage.ClickTutorCheckBox(_tutor.FirstName, _tutor.LastName);
-            //_createGroupPage.ClickSaveButton();
-        }
-
-        [When(@"manager add users to group in service")]
-        public void WhenManagerAddUsersToGroupInService()
-        {
-            _managerCreatesAGroupAddsUsersBySwagger.WhenManagerAddUsersToGroupInService();
-            //_driver.FindElement(_managerNavigatePanelElements.XPathExitButton).Click();
-        }
-
-        [Then(@"authorize student in service and check group")]
-        public void ThenAuthorizeStudentInServiceAndCheckGroup()
-        {
-            AuthorizeUser(_userMappers.MappRegistationModelWithRoleToSwaggerSignInRequest(_student));
+            GroupCreationModel newGroup = table.CreateInstance<GroupCreationModel>();
+            AuthorizeUser(_manager);
             Thread.Sleep(500);
-            _studentLessonsPage.ClickLessonsButton();
-            var groups = _studentLessonsPage.FindStudentGroups();
-            Assert.Equal(Options.ExpectedLessonsUrl, _driver.Url);
-            Assert.Contains(groups, i => i.Text == Options.CourseBasicSiSharp);
-            _studentLessonsPage.ClickExitButton();
+            _createGroupPage.ClickAddGroupButton();
+            _createGroupPage.EnterGroupName(newGroup.GroupName);
+            _createGroupPage.ClickCoursesComboBox();
+            _createGroupPage.ClickDesiredCourseByName(newGroup.CourseName);
+            _createGroupPage.ChooseTeacher(newGroup.FullNameOfTeacher);
+            _createGroupPage.ChooseTutor(newGroup.FullNameOfTutor);
+            _createGroupPage.ClickSaveButton();
+            //TODO Saves only when there are more than two teachers and tutors (Task 2.6).
         }
 
-        [Then(@"authorize teacher in service and check group")]
-        public void ThenAuthorizeTeacherInServiceAndCheckGroup()
+        [When(@"Manager add student ""([^""]*)"" to group ""([^""]*)"" in service")]
+        public void WhenManagerAddStudentToGroupInService(string fullNameOfStudent, string groupName)
         {
-            AuthorizeUser(_userMappers.MappRegistationModelWithRoleToSwaggerSignInRequest(_teacher));
-            Thread.Sleep(500);
-            _teacherLessonsPage.ClickLessonsButton();
-            _teacherLessonsPage.ChageRole(_teacher.Role);
-            var groups = _teacherLessonsPage.FindTeacherGroups();
-            Assert.Equal(Options.ExpectedLessonsUrl, _driver.Url);
-            Assert.Contains(groups, i => i.Text == Options.CourseBasicSiSharp);
-            _teacherLessonsPage.ClickExitButton();
+            _studentsListPage.ClickStudentsListButton();
+            _studentsListPage.ClickGroupsComboBoxByFullNameOfStudent(fullNameOfStudent);
+            _studentsListPage.ClickDesiredGroupByName(groupName);
+            _studentsListPage.ClickExitButton();
+            //TODO The page is implemented as a mock (Task 2.6).
         }
 
-        [Then(@"authorize tutor in service and check group")]
-        public void ThenAuthorizeTutorInServiceAndCheckGroup()
+        [Then(@"Authorize student in service and check group")]
+        public void ThenAuthorizeStudentInServiceAndCheckGroup(Table table)
         {
-            AuthorizeUser(_userMappers.MappRegistationModelWithRoleToSwaggerSignInRequest(_tutor));
+            CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
+            AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });
             Thread.Sleep(500);
-            _tutorLessonsPage.ClickLessonsButton();
-            _tutorLessonsPage.ChageRole(_tutor.Role);
-            var groups = _tutorLessonsPage.FindTutorGroups();
-            Assert.Equal(Options.ExpectedLessonsUrl, _driver.Url);
-            Assert.Contains(groups, i => i.Text == Options.CourseBasicSiSharp);
-            _tutorLessonsPage.ClickExitButton();
+            _lessonsStudentPage.ClickLessonsButton();
+            var groups = _lessonsStudentPage.StudentCourses;
+            Assert.Contains(groups, i => i.Text == checkingModel.CourseName);
+            _lessonsStudentPage.ClickExitButton();
+        }
+
+        [Then(@"Authorize teacher in service and check group")]
+        public void ThenAuthorizeTeacherInServiceAndCheckGroup(Table table)
+        {
+            CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
+            AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });
+            _lessonsTeacherPage.ChageRole(checkingModel.Role);
+            Thread.Sleep(500);
+            _lessonsTeacherPage.ClickLessonsButton();
+            var groups = _lessonsTeacherPage.TeacherCourses;
+            Assert.Contains(groups, i => i.Text == checkingModel.CourseName);
+            _lessonsTeacherPage.ClickExitButton();
+        }
+
+        [Then(@"Authorize tutor in service and check group")]
+        public void ThenAuthorizeTutorInServiceAndCheckGroup(Table table)
+        {
+            CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
+            AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });
+            _lessonsTutorPage.ChageRole(checkingModel.Role);
+            Thread.Sleep(500);
+            _lessonsTutorPage.ClickLessonsButton();
+            var groups = _lessonsTutorPage.TutorCourses;
+            Assert.Contains(groups, i => i.Text == checkingModel.CourseName);
+            _lessonsTutorPage.ClickExitButton();
             _driver.Close();
-            _clearDB.ClearDB();
         }
 
         private void AuthorizeUser(SwaggerSignInRequest user)

@@ -12,7 +12,7 @@ namespace AutoTestsSelenium.StepDefinitions
         private string _groupName;
         private TeachersHomeworkWindow _teacersHomeworkWindowElements;
         private StudentsHomeworkWindow _studentsHomeworkWindowElements;
-        private ClearTables _clearDB;
+        private DBCleaner _tablesClear;
         private List<StudentsHomeworkResultModel> _studentsResults;
         private HomeworkResultsElements _homeworkResultsElements;
         GeneralProgressWindow _generalProgressElements;
@@ -21,12 +21,12 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             _stepsBySwagger = new TasksStepDefinitions();
             _studensSignIn = new List<SwaggerSignInRequest>();
-            _driver = new ChromeDriver();
+            _driver = SingleWebDriver.GetInstance();
             _singInElements = new SingInWindow();
             _navigateButtons = new TeacherNavigatePanelElements();
             _teacersHomeworkWindowElements = new TeachersHomeworkWindow();
             _studentsHomeworkWindowElements = new StudentsHomeworkWindow();
-            _clearDB = new ClearTables();
+            _tablesClear = new DBCleaner();
             _studentsResults = new List<StudentsHomeworkResultModel>();
             _homeworkResultsElements = new HomeworkResultsElements();
             _generalProgressElements = new GeneralProgressWindow();
@@ -35,7 +35,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [Given(@"register new users with roles")]
         public void GivenRegisterNewUsersWithRoles(Table table)
         {
-            _clearDB.ClearDB();
+            _tablesClear.ClearDB();
             _stepsBySwagger.GivenRegisterNewUsersWithRoles(table);
             List<RegistationModelWithRole> users = table.CreateSet<RegistationModelWithRole>().ToList();
             foreach(var user in users)
@@ -174,7 +174,7 @@ namespace AutoTestsSelenium.StepDefinitions
             //Assert.Equal(expectedPassedHomework, actualPassedHomework);
             //Assert.Equal(expectedDeclinedHomework, actualDeclinedHomework);
             _driver.Close();
-            _clearDB.ClearDB();
+            _tablesClear.ClearDB();
         }
     }
 }
