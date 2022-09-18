@@ -22,8 +22,12 @@ Scenario:  Creating an assignment by a methodologist for students
 	When Methodist edits homework
 	Then Methodist click button save draft
 	And Teacher authorization
+	| Email                |  Password | Role    |
+	|  vitya21@teacher.com |  password | Teacher |
 	And Teacher click button homework assignment
 	When Teacher fill out a new assignment form
+	|Name            | Description      | Link             |StartDate  | EndDate   |
+	| ЗаданиеЗадание | сделай то то     |http://fjfjf.com  |20.09.2022 | 31.12.2022|
 	And Teacher click button publish
 	Then Student should sees homework
 

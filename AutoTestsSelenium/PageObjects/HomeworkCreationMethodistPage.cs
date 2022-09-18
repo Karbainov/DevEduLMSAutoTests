@@ -5,7 +5,7 @@ namespace AutoTestsSelenium.PageObjects
     public class HomeworkCreationMethodistPage : AbstractMethodistAuthorizedPage
     {
         public const string PageUrl = $"{Urls.Host}/new-homework";
-        public IWebElement ButtonCreateHomework => _driver.FindElement(By.XPath("//button[text()='Добавить задание'] "));
+
         public IWebElement GroupNumberQA => _driver.FindElement(By.XPath("//span[text()='QA Automation']"));
         public IWebElement NameHomework => _driver.FindElement(By.XPath("//input[@class='form-input']"));
         public IWebElement DescriptionHomework => _driver.FindElement(By.XPath("//textarea[@class='form-input']"));
@@ -22,10 +22,7 @@ namespace AutoTestsSelenium.PageObjects
             _driver.Navigate().GoToUrl(PageUrl);
         }
 
-        public void ClickCreateHomework()
-        {
-            ButtonCreateHomework.Click();
-        }
+
 
         public void ClickChoiceGroupNumber()
         {

@@ -191,19 +191,39 @@ this.ScenarioInitialize(scenarioInfo);
 #line 23
  testRunner.Then("Methodist click button save draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+                TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Email",
+                            "Password",
+                            "Role"});
+                table12.AddRow(new string[] {
+                            "vitya21@teacher.com",
+                            "password",
+                            "Teacher"});
 #line 24
- testRunner.And("Teacher authorization", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 25
- testRunner.And("Teacher click button homework assignment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 26
- testRunner.When("Teacher fill out a new assignment form", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("Teacher authorization", ((string)(null)), table12, "And ");
 #line hidden
 #line 27
+ testRunner.And("Teacher click button homework assignment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Name",
+                            "Description",
+                            "Link",
+                            "StartDate",
+                            "EndDate"});
+                table13.AddRow(new string[] {
+                            "ЗаданиеЗадание",
+                            "сделай то то",
+                            "http://fjfjf.com",
+                            "20.09.2022",
+                            "31.12.2022"});
+#line 28
+ testRunner.When("Teacher fill out a new assignment form", ((string)(null)), table13, "When ");
+#line hidden
+#line 31
  testRunner.And("Teacher click button publish", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 28
+#line 32
  testRunner.Then("Student should sees homework", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

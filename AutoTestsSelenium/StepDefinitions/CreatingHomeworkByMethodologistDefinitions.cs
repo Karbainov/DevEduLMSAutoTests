@@ -1,25 +1,29 @@
 using AutoTestsSelenium.PageObjects;
+using TechTalk.SpecFlow;
 
 namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
-    public class CreatingHomeworkByMethodologist
+    public class CreatingHomeworkByMethodologistDefinitions
     {
-        private MethodistHomeworkWindow _methodistHomeworkWindow;
+        private string _groupName;
         private HomeworkCreationMethodistPage _homeworkMethodist;
         private AuthorizationUnauthorizedPage _authorizationUnauthorizedPage;
         private IWebDriver _driver;
         private DBCleaner _tablesClear;
         private TasksStepDefinitions _stepsBySwagger;
+        private HomeworkButton _homeworkButton;
+        private HomeworkExtraditionTeacherPage _homeworkExtraditionTeacherPage;
 
-        CreatingHomeworkByMethodologist()
+        CreatingHomeworkByMethodologistDefinitions()
         {
-            _methodistHomeworkWindow = new MethodistHomeworkWindow();
             _driver = new ChromeDriver();
             _authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage(_driver);
             _homeworkMethodist = new HomeworkCreationMethodistPage(_driver);
             _tablesClear = new DBCleaner();
             _stepsBySwagger = new TasksStepDefinitions();
+            _homeworkButton = new HomeworkButton(_driver);
+            _homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage(_driver);
         }
 
         [When(@"Register users with roles")]
@@ -43,7 +47,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenMethodistClickButtonAddTask()
         {
             _homeworkMethodist.ClickHomeworksButton();
-            _homeworkMethodist.ClickCreateHomework();
+            _homeworkButton.ClickCreateHomework();
             Thread.Sleep(1000);
         }
 
@@ -75,48 +79,68 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenMethodistClickLinkEdit()
         {
             throw new PendingStepException();
+            //TODO (Task 2.3)
         }
 
         [When(@"Methodist edits homework")]
         public void WhenMethodistEditsHomework()
         {
             throw new PendingStepException();
+            //TODO (Task 2.3)
         }
 
         [Then(@"Methodist click button save draft")]
         public void ThenMethodistClickButtonSaveDraft()
         {
             throw new PendingStepException();
+            //TODO(Task 2.3)
         }
 
         [Then(@"Teacher authorization")]
-        public void ThenTeacherAuthorization()
+        public void ThenTeacherAuthorization(Table table)
         {
-            throw new PendingStepException();
+            CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
+            AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });
+            Thread.Sleep(500);
+            _homeworkMethodist.ChageRole(checkingModel.Role);
+            Thread.Sleep(500);
         }
 
         [Then(@"Teacher click button homework assignment")]
         public void ThenTeacherClickButtonHomeworkAssignment()
         {
-            throw new PendingStepException();
+            _homeworkMethodist.ClickHomeworksButton();
+            _homeworkMethodist.ClickAddHomeworksButton();
         }
 
         [When(@"Teacher fill out a new assignment form")]
-        public void WhenTeacherFillOutANewAssignmentForm()
+        public void WhenTeacherFillOutANewAssignmentForm(Table table)
         {
-            throw new PendingStepException();
+            AddNewHomework homework = table.CreateInstance<AddNewHomework>();
+            _homeworkExtraditionTeacherPage.GetNumberGroup(_groupName).Click();
+            _homeworkExtraditionTeacherPage.InputStarDate(homework.StartDate);
+            _homeworkExtraditionTeacherPage.InputEndDate(homework.EndDate);
+            _homeworkExtraditionTeacherPage.InputNameHomework(homework.Name);
+            _homeworkExtraditionTeacherPage.InputDescriptionHomework(homework.Description);
+            _homeworkExtraditionTeacherPage.InputUsefulLinks(homework.Link);
+            _homeworkExtraditionTeacherPage.ClickAddLink();
+            //TODO No choice of job number. combobox not implemented (Task 2.3)
         }
 
         [When(@"Teacher click button publish")]
         public void WhenTeacherClickButtonPublish()
         {
-            throw new PendingStepException();
+            _homeworkExtraditionTeacherPage.ClickPublish();
         }
 
         [Then(@"Student should sees homework")]
-        public void ThenStudentShouldSeesHomework()
+        public void ThenStudentShouldSeesHomework(Table table)
         {
-            throw new PendingStepException();
+            CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
+            AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });
+            Thread.Sleep(500);
+            _homeworkExtraditionTeacherPage.ClickHomeworksButton();
+            //TODO Homework does not appear. emptiness (Tasl 2.3)
         }
 
         private void AuthorizeUser(SwaggerSignInRequest user)
