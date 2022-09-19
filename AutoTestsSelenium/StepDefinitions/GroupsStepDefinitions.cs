@@ -35,11 +35,6 @@ namespace AutoTestsSelenium.StepDefinitions
         }
 
         [Given(@"SignIn as manager in service")]
-        public void GivenSignInAsManagerInService()
-        {
-            AuthorizeUser(_manager);
-        }
-
         [When(@"SignIn as manager in service")]
         public void WhenSignInAsManagerInService()
         {
