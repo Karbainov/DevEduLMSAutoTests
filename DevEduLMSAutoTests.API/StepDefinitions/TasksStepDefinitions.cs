@@ -62,7 +62,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
                     case OptionsSwagger.RoleTeacher:
                         {
                             _teachersIds.Add(id);
-                            _usersClient.AddNewRoleToUser(id, user.Role, _managerToken);
+                            _usersClient.AddNewRoleToUser(id, user.Role, _managerToken, HttpStatusCode.NoContent);
                             _usersClient.DeleteUsersRole(id, OptionsSwagger.RoleStudent, _managerToken);
                             _teachersTokens.Add(_authenticationClient.AuthorizeUser(new SwaggerSignInRequest()
                             { Email = user.Email, Password = user.Password }));
@@ -71,7 +71,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
                     case OptionsSwagger.RoleTutor:
                         {
                             _tutorsIds.Add(id);
-                            _usersClient.AddNewRoleToUser(id, user.Role, _managerToken);
+                            _usersClient.AddNewRoleToUser(id, user.Role, _managerToken, HttpStatusCode.NoContent);
                             _usersClient.DeleteUsersRole(id, OptionsSwagger.RoleStudent, _managerToken);
                             _tutorsTokens.Add(_authenticationClient.AuthorizeUser(new SwaggerSignInRequest()
                             { Email = user.Email, Password = user.Password }));
@@ -80,7 +80,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
                     case OptionsSwagger.RoleMethodist:
                         {
                             _methodistsIds.Add(id);
-                            _usersClient.AddNewRoleToUser(id, user.Role, _managerToken);
+                            _usersClient.AddNewRoleToUser(id, user.Role, _managerToken, HttpStatusCode.NoContent);
                             _usersClient.DeleteUsersRole(id, OptionsSwagger.RoleStudent, _managerToken);
                             _methodistsTokens.Add(_authenticationClient.AuthorizeUser(new SwaggerSignInRequest()
                             { Email = user.Email, Password = user.Password }));

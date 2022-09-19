@@ -1,6 +1,5 @@
 ﻿using DevEduLMSAutoTests.API.Clients;
 using DevEduLMSAutoTests.API.Support.Models.Response;
-using TechTalk.SpecFlow.CommonModels;
 
 namespace AutoTestsSelenium.StepDefinitions
 {
@@ -54,6 +53,12 @@ namespace AutoTestsSelenium.StepDefinitions
                             _usersClient.DeleteUsersRole(userId, OptionsSwagger.RoleStudent, _adminsToken);
                         }
                         break;
+                    case OptionsSwagger.RoleAdmin:
+                        {
+                            _usersClient.AddNewRoleToUser(userId, user.Role, _adminsToken);
+                            _usersClient.DeleteUsersRole(userId, OptionsSwagger.RoleStudent, _adminsToken);
+                        }
+                        break;
                     case OptionsSwagger.RoleStudent:
                         {
                         }
@@ -74,8 +79,10 @@ namespace AutoTestsSelenium.StepDefinitions
             List<CreateGroupRequest> groups = table.CreateSet<CreateGroupRequest>().ToList();
             foreach (var group in groups)
             {
-                if (group.CourseId == 0)
+                if (group.CourseName != null)
+                {
                     group.CourseId = OptionsSwagger.Courses[group.CourseName];
+                }
                 _groupsClient.CreateNewGroup(group, _adminsToken);
             }
         }
@@ -85,7 +92,7 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             int groupId = GetGroupIdByName(groupName);
             List<RegistationModelWithRole> users = table.CreateSet<RegistationModelWithRole>().ToList();
-            foreach(var user in users)
+            foreach (var user in users)
             {
                 int userId = GetUsersIdByFullName(user.FirstName, user.LastName);
                 _groupsClient.AddUserToGroup(groupId, userId, user.Role, _adminsToken);
@@ -96,7 +103,7 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             int groupId = 0;
             List<GetAllGroupsResponse> allGroups = _groupsClient.GetAllGroups(_adminsToken);
-            foreach(var group in allGroups)
+            foreach (var group in allGroups)
             {
                 if (group.Name == groupName)
                 {
@@ -104,7 +111,7 @@ namespace AutoTestsSelenium.StepDefinitions
                     break;
                 }
             }
-            if(groupId == 0)
+            if (groupId == 0)
             {
                 throw new ArgumentOutOfRangeException("There is no group with this name");
             }
@@ -118,14 +125,14 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             int userId = 0;
             List<GetAllUsersResponse> users = _usersClient.GetAllUsers(_adminsToken);
-            foreach(var user in users)
+            foreach (var user in users)
             {
-                if(user.FirstName == usersFirstName && user.LastName == usersLastName)
+                if (user.FirstName == usersFirstName && user.LastName == usersLastName)
                 {
                     userId = user.Id;
                 }
             }
-            if(userId == 0)
+            if (userId == 0)
             {
                 throw new ArgumentOutOfRangeException("No such user");
             }

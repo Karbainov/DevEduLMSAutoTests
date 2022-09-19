@@ -99,7 +99,8 @@ namespace AutoTestsSelenium.StepDefinitions
             _driver.FindElement(_studentsHomeworkWindowElements.XPathGoToTaskButton).Click();
             foreach (var result in _studentsResults)
             {
-                By desiredElement = _homeworkResultsElements.XPathStudentsResultByNameByResult(result.FullName, result.Result);
+                By desiredElement = _homeworkResultsElements.
+                    XPathStudentsResultByNameByResult(result.FullName, result.Result);
                 var _expectedResult = _driver.FindElements(desiredElement).FirstOrDefault();
                 //Assert.NotNull(_expectedResult);
             }
