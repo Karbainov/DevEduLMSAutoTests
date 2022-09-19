@@ -19,6 +19,7 @@ namespace AutoTestsSelenium.StepDefinitions
 
         public StatisticsStepDefinitions()
         {
+            _driver = new ChromeDriver();
             _stepsBySwagger = new TasksStepDefinitions();
             _studensSignIn = new List<SwaggerSignInRequest>();
             _driver = new ChromeDriver();
@@ -67,7 +68,6 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"teacher create new homework")]
         public void WhenTeacherCreateNewHomework(Table table)
         {
-            _driver = new ChromeDriver();
             AddNewHomework homework = table.CreateInstance<AddNewHomework>();
             _driver.Manage().Window.Maximize();
             _driver.Navigate().GoToUrl(Urls.Host);
