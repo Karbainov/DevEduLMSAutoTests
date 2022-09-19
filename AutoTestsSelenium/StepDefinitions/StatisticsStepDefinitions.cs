@@ -15,10 +15,11 @@ namespace AutoTestsSelenium.StepDefinitions
         private DBCleaner _tablesClear;
         private List<StudentsHomeworkResultModel> _studentsResults;
         private HomeworkResultsElements _homeworkResultsElements;
-        GeneralProgressWindow _generalProgressElements;
+        private GeneralProgressWindow _generalProgressElements;
 
         public StatisticsStepDefinitions()
         {
+            _driver = new ChromeDriver();
             _stepsBySwagger = new TasksStepDefinitions();
             _studensSignIn = new List<SwaggerSignInRequest>();
             _driver = new ChromeDriver();
@@ -40,7 +41,7 @@ namespace AutoTestsSelenium.StepDefinitions
             List<RegistationModelWithRole> users = table.CreateSet<RegistationModelWithRole>().ToList();
             foreach(var user in users)
             {
-                if(user.Role == "Student")
+                if (user.Role == "Student")
                 {
                     _studensSignIn.Add(new SwaggerSignInRequest() { Email=user.Email, Password = user.Password });
                 }
@@ -142,7 +143,8 @@ namespace AutoTestsSelenium.StepDefinitions
             _driver.FindElement(_studentsHomeworkWindowElements.XPathGoToTaskButton).Click();
             foreach (var result in _studentsResults)
             {
-                By desiredElement = _homeworkResultsElements.XPathStudentsResultByNameByResult(result.FullName, result.Result);
+                By desiredElement = _homeworkResultsElements.
+                    XPathStudentsResultByNameByResult(result.FullName, result.Result);
                 var _expectedResult = _driver.FindElements(desiredElement).FirstOrDefault();
                 //Assert.NotNull(_expectedResult);
             }
