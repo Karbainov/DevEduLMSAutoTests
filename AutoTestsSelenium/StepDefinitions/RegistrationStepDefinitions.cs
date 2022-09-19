@@ -10,7 +10,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [Given(@"Open registration page")]
         public void GivenOpenRegistrationPage()
         {
-            driver = SingleWebDriver.GetInstance();
+            _driver = SingleWebDriver.GetInstance();
             _driver.Manage().Window.Maximize();
             _registrationPage = new RegistrationPage(_driver);
             _registrationPage.OpenThisPage();
