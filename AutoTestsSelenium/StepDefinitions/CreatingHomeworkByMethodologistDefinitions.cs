@@ -12,7 +12,7 @@ namespace AutoTestsSelenium.StepDefinitions
         private IWebDriver _driver;
         private DBCleaner _tablesClear;
         private TasksStepDefinitions _stepsBySwagger;
-        private HomeworkButton _homeworkButton;
+        private HomeworkCreationTeacherPage _homeworkButton;
         private HomeworkExtraditionTeacherPage _homeworkExtraditionTeacherPage;
 
         CreatingHomeworkByMethodologistDefinitions()
@@ -22,7 +22,7 @@ namespace AutoTestsSelenium.StepDefinitions
             _homeworkMethodist = new HomeworkCreationMethodistPage(_driver);
             _tablesClear = new DBCleaner();
             _stepsBySwagger = new TasksStepDefinitions();
-            _homeworkButton = new HomeworkButton(_driver);
+            _homeworkButton = new HomeworkCreationTeacherPage(_driver);
             _homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage(_driver);
         }
 
