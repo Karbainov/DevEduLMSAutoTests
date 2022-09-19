@@ -22,7 +22,7 @@ namespace AutoTestsSelenium.StepDefinitions
             _driver = new ChromeDriver();
             _stepsBySwagger = new TasksStepDefinitions();
             _studensSignIn = new List<SwaggerSignInRequest>();
-            _driver = new ChromeDriver();
+            _driver = SingleWebDriver.GetInstance();
             _singInElements = new SingInWindow();
             _navigateButtons = new TeacherNavigatePanelElements();
             _teacersHomeworkWindowElements = new TeachersHomeworkWindow();

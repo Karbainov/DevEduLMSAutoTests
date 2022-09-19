@@ -14,6 +14,7 @@
         public void AfterScenario()
         {
             _tablesClear.ClearDB();
+            SingleWebDriver.CloseDriver();
         }
     }
 }
