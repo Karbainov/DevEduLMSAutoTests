@@ -266,6 +266,15 @@ this.ScenarioInitialize(scenarioInfo);
 #line 41
  testRunner.And("teacher checks homework", ((string)(null)), table10, "And ");
 #line hidden
+#line 45
+ testRunner.Then("teacher returned homework", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 46
+ testRunner.And("student attached link of corrected homework", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 47
+ testRunner.Then("teacher accepted homework", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
             }
             this.ScenarioCleanup();
         }

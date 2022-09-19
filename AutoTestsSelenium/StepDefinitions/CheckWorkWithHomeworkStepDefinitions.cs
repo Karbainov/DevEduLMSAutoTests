@@ -14,7 +14,7 @@ namespace AutoTestsSelenium.StepDefinitions
         private string _groupName;
         private TeachersHomeworkWindow _teachersHomeworkWindowElements;
         private StudentsHomeworkWindow _studentsHomeworkWindowElements;
-        private ClearTables clearDB;
+        private DBCleaner _tablesClear;
        
         
         public CheckWorkWithHomeworkStepDefinitions()
@@ -26,14 +26,14 @@ namespace AutoTestsSelenium.StepDefinitions
             _navigateButtons = new TeacherNavigatePanelElements();
             _teachersHomeworkWindowElements = new TeachersHomeworkWindow();
             _studentsHomeworkWindowElements = new StudentsHomeworkWindow();
-            clearDB = new ClearTables();           
+            _tablesClear = new DBCleaner();           
             _changeRoleOfTeacher = new ChangeRoleCombobox();
         }
 
         [When(@"register users with and assigned roles")]
         public void WhenRegisterUsersWithAndAssignedRoles(Table table)
         {
-            clearDB.ClearDB();
+            _tablesClear.ClearDB();
             _stepsBySwagger.GivenRegisterNewUsersWithRoles(table);
             List<RegistationModelWithRole> users = table.CreateSet<RegistationModelWithRole>().ToList();
             foreach (var user in users)
@@ -209,6 +209,24 @@ namespace AutoTestsSelenium.StepDefinitions
             var chanceRole = _driver.FindElement(_changeRoleOfTeacher.XpathChangeRole);
             chanceRole.Click();
             _driver.FindElement(_navigateButtons.XPathCheckHomeworksButton).Click();
-        }     
+        }
+
+        [Then(@"teacher returned homework")]
+        public void ThenTeacherReturnedHomework()
+        {
+            throw new PendingStepException();
+        }
+
+        [When(@"student attached link of corrected homework")]
+        public void WhenStudentAttachedLinkOfCorrectedHomework()
+        {
+            throw new PendingStepException();
+        }
+
+        [Then(@"teacher accepted homework")]
+        public void ThenTeacherAcceptedHomework()
+        {
+            throw new PendingStepException();
+        }
     }
 }

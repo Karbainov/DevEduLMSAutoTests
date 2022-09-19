@@ -50,7 +50,11 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
                             _studentId = id;
                         }
                         break;
-                }
+                    default:
+                        {
+                            throw new ArgumentOutOfRangeException(nameof(user.Role));
+                        }
+                };
             }
         }
 
