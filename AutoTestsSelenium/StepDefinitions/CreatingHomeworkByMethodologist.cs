@@ -9,7 +9,7 @@ namespace AutoTestsSelenium.StepDefinitions
 
         CreatingHomeworkByMethodologist()
         {
-            _driver = new ChromeDriver();
+            _driver = SingleWebDriver.GetInstance();
             _singInWindow = new SingInWindow();
             _methodistHomeworkWindow = new MethodistHomeworkWindow();       
         }              

@@ -12,7 +12,7 @@ namespace AutoTestsSelenium.StepDefinitions
 
         public RegistrationStepDefinitions()
         {
-            _driver = new ChromeDriver();
+            _driver = SingleWebDriver.GetInstance();
             _registrationPage = new RegistrationPage(_driver);
             _authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage(_driver);
             _profilePage = new ProfilePage(_driver);
