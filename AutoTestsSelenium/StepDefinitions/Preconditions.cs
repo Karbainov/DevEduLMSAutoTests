@@ -79,7 +79,7 @@ namespace AutoTestsSelenium.StepDefinitions
             List<CreateGroupRequest> groups = table.CreateSet<CreateGroupRequest>().ToList();
             foreach (var group in groups)
             {
-                if (group.CourseId == 0)
+                if (group.CourseName != null)
                 {
                     group.CourseId = OptionsSwagger.Courses[group.CourseName];
                 }
