@@ -12,7 +12,7 @@ namespace AutoTestsSelenium.StepDefinitions
         private IWebDriver _driver;
         private DBCleaner _tablesClear;
         private TasksStepDefinitions _stepsBySwagger;
-        private HomeworkCreationTeacherPage _homeworkButton;
+ 
         private HomeworkExtraditionTeacherPage _homeworkExtraditionTeacherPage;
 
         CreatingHomeworkByMethodologistDefinitions()
@@ -22,7 +22,6 @@ namespace AutoTestsSelenium.StepDefinitions
             _homeworkMethodist = new HomeworkCreationMethodistPage(_driver);
             _tablesClear = new DBCleaner();
             _stepsBySwagger = new TasksStepDefinitions();
-            _homeworkButton = new HomeworkCreationTeacherPage(_driver);
             _homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage(_driver);
         }
 
@@ -46,9 +45,9 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Methodist click button add task")]
         public void WhenMethodistClickButtonAddTask()
         {
-            _homeworkMethodist.ClickHomeworksButton();
-            _homeworkButton.ClickCreateHomework();
-            Thread.Sleep(1000);
+            //_homeworkMethodist.ClickHomeworksButton();
+            //_homeworkExtraditionTeacherPage.ButtonHomeworksSideBar();
+            //Thread.Sleep(1000);
         }
 
         [When(@"Methodist create draft Homework")]

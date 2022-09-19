@@ -20,7 +20,7 @@ Scenario: Assigned homework by teacher, turned in by student
 	And Authorization user as teacher
 	| Email               | Password | Role    |
 	| vitya21@teacher.com | password | Teacher |
-	And Teacher click button issuing homework
+	Then Teacher lays out the task created by the methodologist
 	When Teacher create issuing homework
 	|Name            | Description      | Link             |StartDate  | EndDate   |
 	| ЗаданиеЗадание | сделай то то     |http://fjfjf.com  |20.09.2022 | 31.12.2022|
@@ -38,7 +38,6 @@ Scenario: Assigned homework by teacher, turned in by student
 	And Teacher checks homework 
 	| Email                 | Password   |Role     |
 	| vitya21@teacher.com   | password   | Teacher |
-	#дальше никак потому что проверять нечего, ничего не получает препод
 	Then Teacher returned homework
 	When Student attached link of corrected homework
 	| Email              | Password | LinkToGitHub             |
