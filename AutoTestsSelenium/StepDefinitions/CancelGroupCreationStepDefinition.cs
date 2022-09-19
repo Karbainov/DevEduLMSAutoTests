@@ -7,15 +7,11 @@ namespace AutoTestsSelenium.StepDefinitions
         private GroupsAPIStepDefinitions _swaggerGroupSteps;
         private AuthorizationUnauthorizedPage _authorizationUnauthorizedPage;
         private CreateGroupManagerAuthorizaedPage _createGroupManagerAuthorizaedPage;
-        private GroupsManagerAuthorizedPage _groupsManagerAuthorizedPage;
-        private ClearTables _clearDb;
-        private RegistrationRequest _teacher;
-        private RegistrationRequest _tutor;
+        private GroupsManagerPage _groupsManagerPage;
         private string _groupName;
         private List<string> _groups;
         public CancelGroupCreationStepDefinition()
         {
-            _clearDb = new ClearTables();
             _swaggerGroupSteps = new GroupsAPIStepDefinitions();
             _groups = new List<string>();
         }
@@ -23,20 +19,8 @@ namespace AutoTestsSelenium.StepDefinitions
         [Given(@"Registrate users with roles")]
         public void GivenRegistrateUsersWithRoles(Table table)
         {
-            _clearDb.ClearDB();
             _swaggerGroupSteps.GivenRegisterNewUsersWithRolesInService(table);
             List<RegistationModelWithRole> users = table.CreateSet<RegistationModelWithRole>().ToList();
-            foreach(var user in users)
-            {
-                if(user.Role == "Teacher")
-                {
-                    _teacher = new RegistrationRequest() { LastName = user.LastName, FirstName = user.FirstName};
-                }
-                if(user.Role == "Tutor")
-                {
-                    _tutor = new RegistrationRequest() { LastName = user.LastName, FirstName = user.FirstName };
-                }
-            }
         }
 
         [Given(@"Open a browser and open login page")]
@@ -82,16 +66,11 @@ namespace AutoTestsSelenium.StepDefinitions
         [Then(@"Group ""([^""]*)"" do not create")]
         public void ThenGroupDoNotCreate(string groupName)
         {
-            _groupsManagerAuthorizedPage = new GroupsManagerAuthorizedPage(_driver);
-            _groupsManagerAuthorizedPage.ClickGroupsButton();
-            List<IWebElement> actualGroups = _groupsManagerAuthorizedPage.GetAllGroups();
-            foreach (var group in actualGroups)
-            {
-                _groups.Add(group.Text);
-            }
-            Assert.DoesNotContain(_groupName, _groups);
+            _groupsManagerPage = new GroupsManagerPage(_driver);
+            _groupsManagerPage.ClickGroupsButton();
+            List<IWebElement> actualGroups = _groupsManagerPage.GetAllGroups();
+            Assert.DoesNotContain(actualGroups, i => i.Text == groupName);
             _driver.Close();
-            _clearDb.ClearDB();
         }
     }
 }

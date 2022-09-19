@@ -1,4 +1,4 @@
-﻿namespace AutoTestsSelenium.Support.FindElements
+﻿/*namespace AutoTestsSelenium.Support.FindElements
 {
     public class CreateGroupWindow
     {
@@ -76,4 +76,4 @@
             return By.XPath($"//li[text()='{_course}']");
         }
     }
-}
+}*/

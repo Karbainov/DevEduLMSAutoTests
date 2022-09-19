@@ -1,4 +1,4 @@
-namespace AutoTestsSelenium.StepDefinitions
+/*namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
     public class StatisticsStepDefinitions
@@ -180,4 +180,4 @@ namespace AutoTestsSelenium.StepDefinitions
             _tablesClear.ClearDB();
         }
     }
-}
+}*/

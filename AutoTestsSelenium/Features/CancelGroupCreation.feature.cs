@@ -142,7 +142,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("Registrate users with roles", ((string)(null)), table1, "Given ");
 #line hidden
 #line 11
- testRunner.Given("Open a browser and open a page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("Open a browser and open login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
@@ -153,14 +153,24 @@ this.ScenarioInitialize(scenarioInfo);
 #line 12
  testRunner.Given("SignIn as manager", ((string)(null)), table2, "Given ");
 #line hidden
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Name",
+                            "CourseName",
+                            "Teacher",
+                            "Tutor"});
+                table3.AddRow(new string[] {
+                            "Some group",
+                            "Backend Java",
+                            "Maksim Karbainov",
+                            "Elisey Kakoyto"});
 #line 15
- testRunner.And("Start create a group \"Orange\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Start create a group", ((string)(null)), table3, "And ");
 #line hidden
-#line 16
+#line 18
  testRunner.When("Cancel creation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 17
- testRunner.Then("Group do not create", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 19
+ testRunner.Then("Group \"Some group\" do not create", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
