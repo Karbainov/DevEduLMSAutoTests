@@ -12,7 +12,7 @@ namespace AutoTestsSelenium.StepDefinitions
         private StudentsHomeworkWindow _studentsHomeworkWindowElements;
         private List<StudentsHomeworkResultModel> _studentsResults;
         private HomeworkResultsElements _homeworkResultsElements;
-        GeneralProgressWindow _generalProgressElements;
+        private GeneralProgressWindow _generalProgressElements;
         private AuthorizationUnauthorizedPage _authorizationPage;
 
         public StatisticsStepDefinitions()
@@ -46,8 +46,9 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenTeacherCreateNewHomework(Table table)
         {
             AddNewHomework homework = table.CreateInstance<AddNewHomework>();
-            Thread.Sleep(100);
+            Thread.Sleep(200);
             _driver.FindElement(_navigateButtons.XPathNewHomeworkButton).Click();
+            _teacersHomeworkWindowElements._groupName = "Group 1";
             _driver.FindElement(_teacersHomeworkWindowElements.XPathGroupRB).Click();
             var dateTB = _driver.FindElement(_teacersHomeworkWindowElements.XPathStartDateTextBox);
             Actions setDate = new Actions(_driver);
@@ -63,15 +64,17 @@ namespace AutoTestsSelenium.StepDefinitions
         }
 
         [When(@"students did their homework")]
-        public void WhenStudentsDidTheirHomework()
+        public void WhenStudentsDidTheirHomework(Table table)
         {
+            Thread.Sleep(1000);
+            _studensSignIn = table.CreateSet<SwaggerSignInRequest>().ToList();
             foreach(var student in _studensSignIn)
             {
                 _driver.FindElement(_singInElements.XPathEmailBox).SendKeys(student.Email);
                 _driver.FindElement(_singInElements.XPathPasswordBox).Clear();
                 _driver.FindElement(_singInElements.XPathPasswordBox).SendKeys(student.Password);
                 _driver.FindElement(_singInElements.XPathSingInButton).Click();
-                Thread.Sleep(200);
+                Thread.Sleep(500);
                 _driver.FindElement(_navigateButtons.XPathHomeworksButton).Click();
                 Thread.Sleep(200);
                 _driver.FindElement(_studentsHomeworkWindowElements.XPathGoToTaskButton).Click();
@@ -88,13 +91,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenTeacherRateHomeworks(Table table)
         {
             _studentsResults = table.CreateSet<StudentsHomeworkResultModel>().ToList();
-            _driver.FindElement(_singInElements.XPathEmailBox).SendKeys(_teacherSingIn.Email);
-            _driver.FindElement(_singInElements.XPathPasswordBox).Clear();
-            _driver.FindElement(_singInElements.XPathPasswordBox).SendKeys(_teacherSingIn.Password);
-            _driver.FindElement(_singInElements.XPathSingInButton).Click();
             Thread.Sleep(200);
-            _driver.FindElement(_navigateButtons.XPathSwitchRoleButton).Click();
-            _driver.FindElement(_navigateButtons.XPathRoleButton(OptionsSwagger.RoleTeacher)).Click();
             _driver.FindElement(_navigateButtons.XPathCheckHomeworksButton).Click();
             foreach(var result in _studentsResults)
             {
