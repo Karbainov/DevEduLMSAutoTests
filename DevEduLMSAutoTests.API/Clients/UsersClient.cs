@@ -46,22 +46,5 @@
             HttpStatusCode actualCode = response.StatusCode;
             Assert.Equal(expectedCode, actualCode);
         }
-
-        public List<GetAllUsersResponse> GetAllUsers(string token, HttpStatusCode expectedCode = HttpStatusCode.OK)
-        {
-            HttpClient client = new HttpClient();
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            HttpRequestMessage message = new HttpRequestMessage()
-            {
-                Method = HttpMethod.Get,
-                RequestUri = new System.Uri($"{UrlsSwagger.Users}")
-            };
-            HttpResponseMessage response = client.Send(message);
-            HttpStatusCode actualCode = response.StatusCode;
-            Assert.Equal(expectedCode, actualCode);
-            List<GetAllUsersResponse> users = JsonSerializer.Deserialize<List<GetAllUsersResponse>>
-                (response.Content.ReadAsStringAsync().Result)!;
-            return users;
-        }
     }
 }
