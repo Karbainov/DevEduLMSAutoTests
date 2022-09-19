@@ -4,28 +4,28 @@ namespace AutoTestsSelenium.StepDefinitions
     public class StatisticsStepDefinitions
     {
         private IWebDriver _driver;
-        private SingInWindow _singInElements;
-        private TeacherNavigatePanelElements _navigateButtons;
-        private StudentsHomeworkWindow _studentsHomeworkWindowElements;
         private List<StudentsHomeworkResultModel> _studentsResults;
-        private HomeworkResultsElements _homeworkResultsElements;
-        private GeneralProgressWindow _generalProgressElements;
         private AuthorizationUnauthorizedPage _authorizationPage;
         private HomeworkCreationTeacherPage _homeworkCreationPage;
+        private HomeworksStudentPage _homeworksStudentPage;
+        private HomeworkAnswerStudentsPage _answerHomework;
+        private HomeworksCheckingTeacherPage _homeworksCheckingPage;
+        private HomeworksTeacherPage _homeworksTeacherPage;
+        private GeneralStudentsProgressTeacherPage _generalProgressTeacher;
 
         public StatisticsStepDefinitions()
         {
             _driver = SingleWebDriver.GetInstance();
             _driver.Manage().Window.Maximize();
             _driver.Navigate().GoToUrl(Urls.Host);
-            _singInElements = new SingInWindow();
-            _navigateButtons = new TeacherNavigatePanelElements();
-            _studentsHomeworkWindowElements = new StudentsHomeworkWindow();
             _studentsResults = new List<StudentsHomeworkResultModel>();
-            _homeworkResultsElements = new HomeworkResultsElements();
-            _generalProgressElements = new GeneralProgressWindow();
             _authorizationPage = new AuthorizationUnauthorizedPage(_driver);
             _homeworkCreationPage = new HomeworkCreationTeacherPage(_driver);
+            _homeworksStudentPage = new HomeworksStudentPage(_driver);
+            _answerHomework = new HomeworkAnswerStudentsPage(_driver);
+            _homeworksCheckingPage = new HomeworksCheckingTeacherPage(_driver);
+            _homeworksTeacherPage = new HomeworksTeacherPage(_driver);
+            _generalProgressTeacher = new GeneralStudentsProgressTeacherPage(_driver);
         }
 
         [When(@"Authorize as a teacher")]
@@ -42,7 +42,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenTeacherCreateNewHomeworkForGroup(string groupName, Table table)
         {
             AddNewHomework homework = table.CreateInstance<AddNewHomework>();
-            _homeworkCreationPage.OpenThisPage();
+            _homeworkCreationPage.ClickAddHomeworksButton();
             _homeworkCreationPage.ClickRadioButtonGroupName(groupName);
             _homeworkCreationPage.InputStarDate(homework.StartDate);
             _homeworkCreationPage.InputEndDate(homework.EndDate);
@@ -54,84 +54,56 @@ namespace AutoTestsSelenium.StepDefinitions
             _homeworkCreationPage.ClickExitButton();
         }
 
-        [When(@"students did their homework")]
-        public void WhenStudentsDidTheirHomework(Table table)
+        [When(@"Students did their homework ""([^""]*)""")]
+        public void WhenStudentsDidTheirHomework(string homeworkName, Table table)
         {
-            Thread.Sleep(1000);
+            string studentsAnswer = "https://github.com";
             List<SwaggerSignInRequest> _studensSignIn = table.CreateSet<SwaggerSignInRequest>().ToList();
-            foreach(var student in _studensSignIn)
+            foreach (var student in _studensSignIn)
             {
-                _driver.FindElement(_singInElements.XPathEmailBox).SendKeys(student.Email);
-                _driver.FindElement(_singInElements.XPathPasswordBox).Clear();
-                _driver.FindElement(_singInElements.XPathPasswordBox).SendKeys(student.Password);
-                _driver.FindElement(_singInElements.XPathSingInButton).Click();
-                Thread.Sleep(500);
-                _driver.FindElement(_navigateButtons.XPathHomeworksButton).Click();
-                Thread.Sleep(200);
-                _driver.FindElement(_studentsHomeworkWindowElements.XPathGoToTaskButton).Click();
+                _authorizationPage.EnterEmail(student.Email);
+                _authorizationPage.EnterPassword(student.Password);
+                _authorizationPage.ClickEnterButton();
+                _homeworksStudentPage.OpenThisPage();
+                _homeworksStudentPage.ClickGoToTaskButton(homeworkName);
                 _driver.Navigate().Refresh();
-                Thread.Sleep(100);
-                _driver.FindElement(_studentsHomeworkWindowElements.XPathLinkToAnswerTB).
-                    SendKeys($"https://github.com");
-                _driver.FindElement(_studentsHomeworkWindowElements.XPathSendAnswerButton).Click();
-                _driver.FindElement(_navigateButtons.XPathExitButton).Click();
+                _answerHomework.EnterAnswer(studentsAnswer);
+                _answerHomework.ClickSendAnswerButton();
+                _answerHomework.ClickExitButton();
             }
         }
 
-        [When(@"teacher rate homeworks")]
+        [When(@"Teacher rate homeworks")]
         public void WhenTeacherRateHomeworks(Table table)
         {
             _studentsResults = table.CreateSet<StudentsHomeworkResultModel>().ToList();
-            Thread.Sleep(200);
-            _driver.FindElement(_navigateButtons.XPathCheckHomeworksButton).Click();
+            _homeworksCheckingPage.OpenThisPage();
             foreach(var result in _studentsResults)
             {
 
             }
-            //check homework page is empty
+            //TODO: check homework page is empty now
         }
 
-        [Then(@"teacher should see students results in homewok tab")]
-        public void ThenTeacherShouldSeeStudentsResultsInHomewokTab()
+        [Then(@"Teacher should see students results in homework ""([^""]*)"" page")]
+        public void ThenTeacherShouldSeeStudentsResultsInHomeworkPage(string homeworkName)
         {
-            _driver.FindElement(_navigateButtons.XPathHomeworksButton).Click();
-            Thread.Sleep(300);
-            _driver.FindElement(_studentsHomeworkWindowElements.XPathGoToTaskButton).Click();
-            foreach (var result in _studentsResults)
+            _homeworksTeacherPage.OpenThisPage();
+            _homeworksTeacherPage.ClickGoToTaskButton(homeworkName);
+            var actualResults = _homeworksTeacherPage.StudentsResults;
+            foreach(var result in actualResults)
             {
-                By desiredElement = _homeworkResultsElements.
-                    XPathStudentsResultByNameByResult(result.FullName, result.Result);
-                var _expectedResult = _driver.FindElements(desiredElement).FirstOrDefault();
-                //Assert.NotNull(_expectedResult);
+                string resultText = result.Text;
+                Assert.Contains("ss", resultText);
+                //как написать проверку????
             }
-            Thread.Sleep(1000);
         }
 
         [Then(@"teacher should see students results in tab General Progress")]
         public void ThenTeacherShouldSeeStudentsResultsInTabGeneralProgress()
         {
-            _driver.FindElement(_navigateButtons.XPathGeneralProgressButton).Click();
-            Thread.Sleep(300);
-            int expectedPassedHomework = 0;
-            int expectedDeclinedHomework = 0;
-            int actualPassedHomework;
-            int actualDeclinedHomework;
-            foreach(var result in _studentsResults)
-            {
-                if (result.Result == "�����")
-                {
-                    expectedPassedHomework++;
-                }
-                else if (result.Result == "�� �����")
-                {
-                    expectedDeclinedHomework++;
-                }
-            }
-            actualPassedHomework =_driver.FindElements(_generalProgressElements.ByXpathAccept).Count;
-            actualDeclinedHomework =_driver.FindElements(_generalProgressElements.ByXpathDecline).Count;
-            //Assert.Equal(expectedPassedHomework, actualPassedHomework);
-            //Assert.Equal(expectedDeclinedHomework, actualDeclinedHomework);
-            _driver.Close();
+            _generalProgressTeacher.OpenThisPage();
+            //как написать проверку???
         }
     }
 }

@@ -12,3 +12,5 @@ global using AutoTestsSelenium.PageObjects;
 global using DevEduLMSAutoTests.API.StepDefinitions;
 global using DevEduLMSAutoTests.API.Support.Models.Request;
 global using DevEduLMSAutoTests.API.Support;
+global using OpenQA.Selenium.Support.UI;
+global using SeleniumExtras.WaitHelpers;

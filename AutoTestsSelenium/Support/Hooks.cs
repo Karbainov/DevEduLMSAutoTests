@@ -19,7 +19,7 @@
         [AfterScenario]
         public void AfterScenario()
         {
-            _tablesClear.ClearDB();
+            _cleaner.ClearDB();
             SingleWebDriver.CloseDriver();
         }
     }
