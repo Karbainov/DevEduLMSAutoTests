@@ -39,8 +39,8 @@ namespace AutoTestsSelenium.StepDefinitions
             }
         }
 
-        [Given(@"Open a browser and open a page")]
-        public void GivenOpenABrowserAndOpenAPage()
+        [Given(@"Open a browser and open login page")]
+        public void GivenOpenABrowserAndOpenLoginPage()
         {
             _driver = new ChromeDriver();
             _driver.Manage().Window.Maximize();
@@ -57,8 +57,8 @@ namespace AutoTestsSelenium.StepDefinitions
             _authorizationUnauthorizedPage.ClickEnterButton();
         }
 
-        [Given(@"Start create a group ""([^""]*)""")]
-        public void GivenStartCreateAGroup(string name)
+        [Given(@"Start create a group")]
+        public void GivenStartCreateAGroup(Table table)
         {
             _createGroupManagerAuthorizaedPage = new CreateGroupManagerAuthorizaedPage(_driver);
             _groupName = name;

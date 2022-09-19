@@ -8,10 +8,12 @@ Scenario: Manager cancel creation of group
 	| FirstName | LastName  | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 	| Maksim    | Karbainov | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
 	| Elisey    | Kakoyto   | string     | elisey@gmail.com | Elisey   | 13345678 | SaintPetersburg | 07.10.1996 | string        | 89518963148 | Tutor   |
-	Given Open a browser and open a page
+	Given Open a browser and open login page
 	Given SignIn as manager
 	| Email              | Password     |
 	| marina@example.com | marinamarina |
-	And Start create a group "Orange"
+	And Start create a group
+	| Name       | CourseName   | TeacherFirstName | TeacherLastName | TutorFirstName | TutorLastName |
+	| Some group | Backend Java | Maksim           | Karbainov       | Elisey         | Kakoyto       |
 	When Cancel creation
 	Then Group do not create
