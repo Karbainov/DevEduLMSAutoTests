@@ -6,13 +6,16 @@ namespace AutoTestsSelenium.StepDefinitions
         private IWebDriver _driver;
         private GroupsAPIStepDefinitions _swaggerGroupSteps;
         private AuthorizationUnauthorizedPage _authorizationUnauthorizedPage;
-        private CreateGroupManagerAuthorizaedPage _createGroupManagerAuthorizaedPage;
+        private GroupCreationManagerPage _groupCreationManagerPage;
         private GroupsManagerPage _groupsManagerPage;
 
         public CancelGroupCreationStepDefinition()
         {
-            _swaggerGroupSteps = new GroupsAPIStepDefinitions();
             _driver = new ChromeDriver();
+            _swaggerGroupSteps = new GroupsAPIStepDefinitions();
+            _authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage(_driver);
+            _groupCreationManagerPage = new GroupCreationManagerPage(_driver);
+            _groupsManagerPage = new GroupsManagerPage(_driver);
         }
 
         [Given(@"Registrate users with roles")]
@@ -24,9 +27,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [Given(@"Open a browser and open login page")]
         public void GivenOpenABrowserAndOpenLoginPage()
         {
-            
             _driver.Manage().Window.Maximize();
-            _authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage(_driver);
             _authorizationUnauthorizedPage.OpenThisPage();
         }
 
@@ -42,28 +43,26 @@ namespace AutoTestsSelenium.StepDefinitions
         [Given(@"Start create a group")]
         public void GivenStartCreateAGroup(Table table)
         {
-            _createGroupManagerAuthorizaedPage = new CreateGroupManagerAuthorizaedPage(_driver);
             GroupCreationModel groupModel = table.CreateInstance<GroupCreationModel>();
             Thread.Sleep(500);
-            _createGroupManagerAuthorizaedPage.ClickAddGroupButton();
-            _createGroupManagerAuthorizaedPage.EnterGroupName(groupModel.GroupName);
-            _createGroupManagerAuthorizaedPage.ClickComboBoxCourses();
+            _groupCreationManagerPage.ClickAddGroupButton();
+            _groupCreationManagerPage.EnterGroupName(groupModel.GroupName);
+            _groupCreationManagerPage.ClickCoursesComboBox();
             Thread.Sleep(500);
-            _createGroupManagerAuthorizaedPage.ChooseCourse(groupModel.CourseName);
-            _createGroupManagerAuthorizaedPage.ChooseTeacher(groupModel.FullNameOfTeacher);
-            _createGroupManagerAuthorizaedPage.ChooseTutor(groupModel.FullNameOfTutor);
+            _groupCreationManagerPage.ClickDesiredCourseByName(groupModel.CourseName);
+            _groupCreationManagerPage.ChooseTeacher(groupModel.FullNameOfTeacher);
+            _groupCreationManagerPage.ChooseTutor(groupModel.FullNameOfTutor);
         }
 
         [When(@"Cancel creation")]
         public void WhenCancelCreation()
         {
-            _createGroupManagerAuthorizaedPage.ClickButtonCancel();
+            _groupCreationManagerPage.ClickCancelCreateGroupButton();
         }
 
         [Then(@"Group ""([^""]*)"" do not create")]
         public void ThenGroupDoNotCreate(string groupName)
         {
-            _groupsManagerPage = new GroupsManagerPage(_driver);
             _groupsManagerPage.ClickGroupsButton();
             List<IWebElement> actualGroups = _groupsManagerPage.GetAllGroups();
             Assert.DoesNotContain(actualGroups, i => i.Text == groupName);
