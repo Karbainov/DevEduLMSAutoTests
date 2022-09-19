@@ -61,15 +61,16 @@ namespace AutoTestsSelenium.StepDefinitions
         public void GivenStartCreateAGroup(Table table)
         {
             _createGroupManagerAuthorizaedPage = new CreateGroupManagerAuthorizaedPage(_driver);
-            _groupName = name;
+            GroupCreationRequest groupModel = table.CreateInstance<GroupCreationRequest>();
+            _groupName = groupModel.Name;
             Thread.Sleep(1500);
             _createGroupManagerAuthorizaedPage.ClickAddGroupButton();
-            _createGroupManagerAuthorizaedPage.EnterGroupName(name);
+            _createGroupManagerAuthorizaedPage.EnterGroupName(groupModel.Name);
             _createGroupManagerAuthorizaedPage.ClickComboBoxCourses();
             Thread.Sleep(1500);
-            _createGroupManagerAuthorizaedPage.ChooseCourse(Options.CourseBackendJava);
-            _createGroupManagerAuthorizaedPage.ChooseTeacher(_teacher.FirstName, _teacher.LastName);
-            _createGroupManagerAuthorizaedPage.ChooseTutor(_tutor.FirstName, _tutor.LastName);
+            _createGroupManagerAuthorizaedPage.ChooseCourse(groupModel.CourseName);
+            _createGroupManagerAuthorizaedPage.ChooseTeacher(groupModel.Teacher);
+            _createGroupManagerAuthorizaedPage.ChooseTutor(groupModel.Tutor);
         }
 
         [When(@"Cancel creation")]
@@ -78,8 +79,8 @@ namespace AutoTestsSelenium.StepDefinitions
             _createGroupManagerAuthorizaedPage.ClickButtonCancel();
         }
 
-        [Then(@"Group do not create")]
-        public void ThenGroupDoNotCreate()
+        [Then(@"Group ""([^""]*)"" do not create")]
+        public void ThenGroupDoNotCreate(string groupName)
         {
             _groupsManagerAuthorizedPage = new GroupsManagerAuthorizedPage(_driver);
             _groupsManagerAuthorizedPage.ClickGroupsButton();

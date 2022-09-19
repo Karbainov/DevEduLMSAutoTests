@@ -4,9 +4,7 @@
     {
         public string Name { get; set; }
         public string CourseName { get; set; }
-        public string TeacherFirstName { get; set; }
-        public string TeacherLastName { get; set; }
-        public string TutorFirstName { get; set; }
-        public string TutorLastName { get; set; }
+        public string Teacher { get; set; }
+        public string Tutor { get; set; }
     }
 }

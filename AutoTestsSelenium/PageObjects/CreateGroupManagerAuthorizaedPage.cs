@@ -37,26 +37,26 @@
             GetDesiredCourseByName(courseName).Click();
         }
 
-        public IWebElement GetDesiredTeacherByName(string firstNameOfTeacher, string lastNameOfTeacher)
+        public IWebElement GetDesiredTeacherByName(string teacherName)
         {
-            string xpath = $"//div[@class='teachers-list']/descendant::*[text()='{firstNameOfTeacher} {lastNameOfTeacher}']/..";
+            string xpath = $"//div[@class='teachers-list']/descendant::*[text()='{teacherName}']/..";
             return _driver.FindElement(By.XPath(xpath));
         }
 
-        public void ChooseTeacher(string firstNameOfTeacher, string lastNameOfTeacher)
+        public void ChooseTeacher(string teacherName)
         {
-            GetDesiredTeacherByName(firstNameOfTeacher, lastNameOfTeacher).Click();
+            GetDesiredTeacherByName(teacherName).Click();
         }
         
-        public IWebElement GetDesiredTutorByName(string firstNameOfTutor, string lastNameOfTutor)
+        public IWebElement GetDesiredTutorByName(string tutorName)
         {
-            string xpath = $"//div[@class='tutors-list']/descendant::*[text()='{firstNameOfTutor} {lastNameOfTutor}']/..";
+            string xpath = $"//div[@class='tutors-list']/descendant::*[text()='{tutorName}']/..";
             return _driver.FindElement(By.XPath(xpath));
         }
 
-        public void ChooseTutor(string firstNameOfTutor, string lastNameOfTutor)
+        public void ChooseTutor(string tutorName)
         {
-            GetDesiredTutorByName(firstNameOfTutor, lastNameOfTutor).Click();
+            GetDesiredTutorByName(tutorName).Click();
         }
 
         public void ClickButtonSave()
