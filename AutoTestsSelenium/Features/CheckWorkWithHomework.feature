@@ -26,7 +26,6 @@ Scenario: Assigned homework by teacher, turned in by student
 	| ЗаданиеЗадание | сделай то то     |http://fjfjf.com  |20.09.2022 | 31.12.2022|
 	Then Teacher click button publish 
 	When Teacher see all task
-	And Teacher click button exit
 	And Student authorization 
 	| Email               | Password |
 	| ilya21@student.com   | password |
@@ -36,13 +35,12 @@ Scenario: Assigned homework by teacher, turned in by student
 	| LinkToGitHub              |
 	| https://hd.kinopoisk.ru/  |
 	And Studen click airplane icon
-	And Studen click button exit
 	And Teacher checks homework 
 	| Email                 | Password   |Role     |
 	| vitya21@teacher.com   | password   | Teacher |
 	#дальше никак потому что проверять нечего, ничего не получает препод
 	Then Teacher returned homework
-	And Student attached link of corrected homework
+	When Student attached link of corrected homework
 	| Email              | Password | LinkToGitHub             |
 	| ilya21@student.com | password | https://hd.kinopoisk.ru/ |
 	Then Teacher accepted homework
