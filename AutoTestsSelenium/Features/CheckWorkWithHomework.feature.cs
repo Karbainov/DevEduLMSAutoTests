@@ -202,7 +202,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Authorization user as teacher", ((string)(null)), table4, "And ");
 #line hidden
 #line 23
- testRunner.Then("Teacher lays out the task created by the methodologist", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Teacher lays out the task \"ЗаданиеЗадание\" created by the methodologist", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
                 TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
@@ -240,51 +240,45 @@ this.ScenarioInitialize(scenarioInfo);
 #line 33
  testRunner.And("Studen click button to the task", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
-                            "LinkToGitHub"});
-                table7.AddRow(new string[] {
-                            "https://hd.kinopoisk.ru/"});
 #line 34
- testRunner.When("Studen attaches a link to the completed task", ((string)(null)), table7, "When ");
+ testRunner.When("Studen attaches a link \"https://hd.kinopoisk.ru/\" to the completed task", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 37
+#line 35
  testRunner.And("Studen click airplane icon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password",
                             "Role"});
-                table8.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "vitya21@teacher.com",
                             "password",
                             "Teacher"});
-#line 38
- testRunner.And("Teacher checks homework", ((string)(null)), table8, "And ");
+#line 36
+ testRunner.And("Teacher checks homework", ((string)(null)), table7, "And ");
 #line hidden
-#line 41
+#line 39
  testRunner.Then("Teacher returned homework", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Email",
+                            "Password"});
+                table8.AddRow(new string[] {
+                            "ilya21@student.com",
+                            "password"});
+#line 40
+ testRunner.When("Student attached link \"https://hd.kinopoisk.ru/\" of corrected homework", ((string)(null)), table8, "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password",
-                            "LinkToGitHub"});
-                table9.AddRow(new string[] {
-                            "ilya21@student.com",
-                            "password",
-                            "https://hd.kinopoisk.ru/"});
-#line 42
- testRunner.When("Student attached link of corrected homework", ((string)(null)), table9, "When ");
-#line hidden
-                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Email",
-                            "Password",
                             "Role"});
-                table10.AddRow(new string[] {
+                table9.AddRow(new string[] {
                             "vitya21@teacher.com",
                             "password",
                             "Teacher"});
-#line 45
- testRunner.Then("Teacher accepted homework", ((string)(null)), table10, "Then ");
+#line 43
+ testRunner.Then("Teacher accepted homework", ((string)(null)), table9, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
