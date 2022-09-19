@@ -80,7 +80,9 @@ namespace AutoTestsSelenium.StepDefinitions
             foreach (var group in groups)
             {
                 if (group.CourseId == 0)
+                {
                     group.CourseId = OptionsSwagger.Courses[group.CourseName];
+                }
                 _groupsClient.CreateNewGroup(group, _adminsToken);
             }
         }
