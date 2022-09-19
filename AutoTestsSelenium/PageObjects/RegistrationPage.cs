@@ -1,51 +1,46 @@
-﻿namespace AutoTestsSelenium.PageObjects
+﻿using Docker.DotNet.Models;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+
+namespace AutoTestsSelenium.PageObjects
 {
-    public class RegistrationPage : AbstractPage
+    public class RegistrationPage : AbstractUnauthorizedPage
     {
         private const string PageUrl = $"{Urls.Host}/register";
+        public IWebElement TextBoxLastName => _driver.FindElement(By.XPath($"//*[@name='lastName']"));
+        public IWebElement TextBoxName => _driver.FindElement(By.XPath($"//*[@name='firstName']"));
+        public IWebElement TextBoxPatronymic => _driver.FindElement(By.XPath($"//*[@name='patronymic']"));
+        public IWebElement TextBoxBirthDate => _driver.FindElement(By.XPath($"//*[@class='form-control']"));
+        public IWebElement TextBoxPassword => _driver.FindElement(By.XPath($"//*[@name='password']"));
+        public IWebElement TextBoxRepeatPassword => _driver.FindElement(By.XPath($"//*[@name='confirmPassword']"));
+        public IWebElement TextBoxEmail => _driver.FindElement(By.XPath($"//*[@name='email']"));
+        public IWebElement TextBoxPhone => _driver.FindElement(By.XPath($"//*[@name='phoneNumber']"));
+        public IWebElement CheckBoxConfirmRules => _driver.FindElement(By.XPath($"//*[@class='custom-checkbox']"));
+        public IWebElement ButtonRegistrate => _driver.FindElement(By.XPath($"//*[@type='submit']"));
+        public IWebElement ButtonCancelRegistration => _driver.FindElement(By.XPath($"//*[@type='reset']"));
+        public IWebElement ModalWindowWelcome => _driver.FindElements(By.XPath($"//*[text()='Добро пожаловать!!']")).FirstOrDefault();
 
-        RegistrationWindow _registrationWindow = new RegistrationWindow();
-        public IWebElement TextBoxLastName { get; set; }
-        public IWebElement TextBoxName { get; set; }
-        public IWebElement TextBoxPatronymic { get; set; }
-        public IWebElement TextBoxBirthDate { get; set; }
-        public IWebElement TextBoxPassword { get; set; }
-        public IWebElement TextBoxRepeatPassword { get; set; }
-        public IWebElement TextBoxEmail { get; set; }
-        public IWebElement TextBoxPhone { get; set; }
-        public IWebElement CheckBoxConfirmRules { get; set; }
-        public IWebElement ButtonRegistrate { get; set; }
-        public IWebElement ButtonCancelRegistration { get; set; }
-        public IWebElement ButtonAuth { get; set; }
 
         public RegistrationPage(IWebDriver driver) : base(driver)
         {
-            TextBoxLastName = _driver.FindElement(_registrationWindow.XPathLastNameBox);
-            TextBoxName = _driver.FindElement(_registrationWindow.XPathFirstNameBox);
-            TextBoxPatronymic = _driver.FindElement(_registrationWindow.XPathPatronymicBox);
-            TextBoxBirthDate = _driver.FindElement(_registrationWindow.XPathDateBirthBox);
-            TextBoxPassword = _driver.FindElement(_registrationWindow.XPathPasswordBox);
-            TextBoxRepeatPassword = _driver.FindElement(_registrationWindow.XPathRepeatPasswordBox);
-            TextBoxEmail = _driver.FindElement(_registrationWindow.XPathEmailBox);
-            CheckBoxConfirmRules = _driver.FindElement(_registrationWindow.XPathPrivatePolicityCheckBox);
-            ButtonRegistrate = _driver.FindElement(_registrationWindow.XPathRegisterButton);
-            ButtonCancelRegistration = _driver.FindElement(_registrationWindow.XPathCancelRegistrationButton);
-            TextBoxPhone = _driver.FindElement(_registrationWindow.XPathPhoneNumberBox);
-            ButtonAuth = _driver.FindElement(_registrationWindow.XPathAuthSideBarButton);
+           
         }
 
         public void EnterLastName(string lastName)
         {
             TextBoxLastName.SendKeys(lastName);
         }
+
         public void EnterFirstName(string name)
         {
             TextBoxName.SendKeys(name);
         }
+
         public void EnterPatronymic(string patronymic)
         {
             TextBoxPatronymic.SendKeys(patronymic);
         }
+
         public void EnterBirthDate(string birthDate)
         {
             Actions setDate = new Actions(_driver);
@@ -54,38 +49,40 @@
                 Build().
                 Perform();
         }
+
         public void EnterPassword(string password)
         {
             TextBoxPassword.SendKeys(password);
         }
+
         public void EnterRepeatPassword(string repeatPassword)
         {
             TextBoxRepeatPassword.SendKeys(repeatPassword);
         }
+
         public void EnterEmail(string email)
         {
             TextBoxEmail.SendKeys(email);
         }
+
         public void EnterPhone(string phone)
         {
             TextBoxPhone.SendKeys(phone);
         }
+
         public void ClickOnConfirmRulesCheckBox()
         {
             CheckBoxConfirmRules.Click();
         }
+
         public void ClickOnButtonRegistrate()
         {
             ButtonRegistrate.Click();
         }
+
         public void ClickOnButtonCancelRegistration()
         {
             ButtonCancelRegistration.Click();
-        }
-
-        public void ClickOnAuthSideBarButton()
-        {
-            ButtonAuth.Click();
         }
 
         public override void OpenThisPage()

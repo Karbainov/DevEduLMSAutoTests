@@ -3,41 +3,33 @@ namespace AutoTestsSelenium.StepDefinitions
     [Binding]
     public class RegistrationStepDefinitions
     {
-        IWebDriver driver;
-        RegistrationPage registrationPage;
-        AuthorizationUnauthorizedPage authorizationPage;
-        SwaggerSignInRequest singInModel;
+        private IWebDriver _driver;
+        private RegistrationPage _registrationPage;
+        private SwaggerSignInRequest _SignInRequest;
 
         [Given(@"Open registration page")]
         public void GivenOpenRegistrationPage()
         {
             driver = SingleWebDriver.GetInstance();
-            driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl(Urls.Host);
-            authorizationPage = new AuthorizationUnauthorizedPage(driver);
+            _driver.Manage().Window.Maximize();
+            _registrationPage = new RegistrationPage(_driver);
+            _registrationPage.OpenThisPage();
+            _registrationPage.ClickRegisterButton();
         }
-
-        [Given(@"Click on registration on sidebar")]
-        public void GivenClickOnRegistrationOnSidebar()
-        {
-            authorizationPage.ClickRegisterButton();
-        }
-
 
         [Given(@"Fill all requared fields")]
         public void GivenFillAllRequaredFields(Table table)
         {
-            registrationPage = new RegistrationPage(driver);
             RegistrationRequest user = table.CreateInstance<RegistrationRequest>();
-            registrationPage.EnterFirstName(user.FirstName);
-            registrationPage.EnterLastName(user.LastName);
-            registrationPage.EnterPatronymic(user.Patronymic);
-            registrationPage.EnterBirthDate(user.BirthDate);
-            registrationPage.EnterPassword(user.Password);
-            registrationPage.EnterRepeatPassword(user.RepeatPassword);
-            registrationPage.EnterEmail(user.Email);
-            registrationPage.EnterPhone(user.PhoneNumber);
-            singInModel = new SwaggerSignInRequest()
+            _registrationPage.EnterFirstName(user.FirstName);
+            _registrationPage.EnterLastName(user.LastName);
+            _registrationPage.EnterPatronymic(user.Patronymic);
+            _registrationPage.EnterBirthDate(user.BirthDate);
+            _registrationPage.EnterPassword(user.Password);
+            _registrationPage.EnterRepeatPassword(user.RepeatPassword);
+            _registrationPage.EnterEmail(user.Email);
+            _registrationPage.EnterPhone(user.PhoneNumber);
+            _SignInRequest = new SwaggerSignInRequest()
             {
                 Email = user.Email,
                 Password = user.Password
@@ -48,37 +40,41 @@ namespace AutoTestsSelenium.StepDefinitions
         [Given(@"Click on private policy checkbox")]
         public void GivenClickOnPrivatePolicyCheckbox()
         {
-            registrationPage.ClickOnConfirmRulesCheckBox();
+            _registrationPage.ClickOnConfirmRulesCheckBox();
         }
 
         [When(@"Click on register button")]
         public void WhenClickOnRegisterButton()
         {
-            registrationPage.ClickOnButtonRegistrate();
+            _registrationPage.ClickOnButtonRegistrate();
         }
+
+        [Then(@"User should see the welcome modal window")]
+        public void ThenUserShouldSeeTheWelcomeModalWindow()
+        {
+            Assert.NotNull(_registrationPage.ModalWindowWelcome);
+        }
+
 
         [When(@"Click on athorization sidebar button")]
         public void WhenClickOnAthorizationSidebarButton()
         {
-            registrationPage.ClickOnAuthSideBarButton();
+            throw new PendingStepException();
         }
 
         [When(@"Authorize user in service")]
         public void WhenAuthorizeUserInService()
         {
-           authorizationPage = new AuthorizationUnauthorizedPage(driver);
-            authorizationPage.EnterEmail(singInModel.Email);
-            authorizationPage.EnterPassword(singInModel.Password);
-            authorizationPage.ClickEnterButton();
+            throw new PendingStepException();
         }
 
-        [When(@"click on user's profile")]
+        [When(@"Click on user's profile")]
         public void WhenClickOnUsersProfile()
         {
             throw new PendingStepException();
         }
 
-        [Then(@"user should see his actual information")]
+        [Then(@"User should see his actual information")]
         public void ThenUserShouldSeeHisActualInformation()
         {
             throw new PendingStepException();
