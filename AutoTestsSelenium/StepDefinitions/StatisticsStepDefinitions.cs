@@ -1,4 +1,4 @@
-/*namespace AutoTestsSelenium.StepDefinitions
+namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
     public class StatisticsStepDefinitions
@@ -40,7 +40,7 @@
             List<RegistationModelWithRole> users = table.CreateSet<RegistationModelWithRole>().ToList();
             foreach(var user in users)
             {
-                switch (user.Role)
+                if (user.Role == "Student")
                 {
                     _studensSignIn.Add(new SwaggerSignInRequest() { Email=user.Email, Password = user.Password });
                 }
@@ -49,7 +49,6 @@
                     _teacherSingIn = new SwaggerSignInRequest() {Email=user.Email, Password=user.Password };
                 }
             }
-            _teacherSignIn = _allTeachersSignIn.FirstOrDefault();
         }
 
         [Given(@"manager create new group")]
@@ -73,9 +72,9 @@
             _driver.Manage().Window.Maximize();
             _driver.Navigate().GoToUrl(Urls.Host);
             Thread.Sleep(200);
-            _driver.FindElement(_singInElements.XPathEmailBox).SendKeys(_teacherSignIn.Email);
+            _driver.FindElement(_singInElements.XPathEmailBox).SendKeys(_teacherSingIn.Email);
             _driver.FindElement(_singInElements.XPathPasswordBox).Clear();
-            _driver.FindElement(_singInElements.XPathPasswordBox).SendKeys(_teacherSignIn.Password);
+            _driver.FindElement(_singInElements.XPathPasswordBox).SendKeys(_teacherSingIn.Password);
             _driver.FindElement(_singInElements.XPathSingInButton).Click();
             Thread.Sleep(100);
             _driver.FindElement(_navigateButtons.XPathSwitchRoleButton).Click();
@@ -98,7 +97,7 @@
         [When(@"students did their homework")]
         public void WhenStudentsDidTheirHomework()
         {
-            foreach(var student in _allStudensSignIn)
+            foreach(var student in _studensSignIn)
             {
                 _driver.FindElement(_singInElements.XPathEmailBox).SendKeys(student.Email);
                 _driver.FindElement(_singInElements.XPathPasswordBox).Clear();
@@ -123,7 +122,7 @@
             _studentsResults = table.CreateSet<StudentsHomeworkResultModel>().ToList();
             _driver.FindElement(_singInElements.XPathEmailBox).SendKeys(_teacherSingIn.Email);
             _driver.FindElement(_singInElements.XPathPasswordBox).Clear();
-            _driver.FindElement(_singInElements.XPathPasswordBox).SendKeys(_teacherSignIn.Password);
+            _driver.FindElement(_singInElements.XPathPasswordBox).SendKeys(_teacherSingIn.Password);
             _driver.FindElement(_singInElements.XPathSingInButton).Click();
             Thread.Sleep(200);
             _driver.FindElement(_navigateButtons.XPathSwitchRoleButton).Click();
@@ -180,4 +179,4 @@
             _tablesClear.ClearDB();
         }
     }
-}*/
+}
