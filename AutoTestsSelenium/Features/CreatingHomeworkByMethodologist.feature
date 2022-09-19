@@ -30,6 +30,8 @@ Scenario:  Creating an assignment by a methodologist for students
 	| ЗаданиеЗадание | сделай то то     |http://fjfjf.com  |20.09.2022 | 31.12.2022|
 	And Teacher click button publish
 	Then Student should sees homework
+	| Email              | Password |
+	| milana@student.com | password |
 
 
 

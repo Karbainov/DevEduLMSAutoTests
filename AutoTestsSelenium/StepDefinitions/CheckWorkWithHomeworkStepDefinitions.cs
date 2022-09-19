@@ -16,6 +16,7 @@ namespace AutoTestsSelenium.StepDefinitions
         private HomeworksStudentPage _homeworksStudent;
         private HomeworksTeacherPage _homeworksTeacherPage;
         private HomeworksDraftTeacherPage _homeworksDraftTeacherPage;
+        private HomeworkCreationMethodistPage _homeworkMethodist;
 
         public CheckWorkWithHomeworkStepDefinitions()
         {
@@ -29,6 +30,7 @@ namespace AutoTestsSelenium.StepDefinitions
             _homeworksStudent = new HomeworksStudentPage(_driver);
             _homeworksTeacherPage = new HomeworksTeacherPage(_driver);
             _homeworksDraftTeacherPage = new HomeworksDraftTeacherPage(_driver);
+            _homeworkMethodist = new HomeworkCreationMethodistPage(_driver);
         }
    
         [When(@"Register users with and assigned roles")]
@@ -54,7 +56,12 @@ namespace AutoTestsSelenium.StepDefinitions
         [Then(@"Methodist create homework")]
         public void ThenMethodistCreateHomework(Table table)
         {
-            _stepsBySwagger.GivenMethodistCreateNewTask(table);                    
+            _homeworkMethodist.ClickChoiceGroupNumber();
+            AddNewHomework createHomework = table.CreateInstance<AddNewHomework>();
+            _homeworkMethodist.InputNameGroup(createHomework.Name);
+            _homeworkMethodist.InputDescriptionHomework(createHomework.Description);
+            _homeworkMethodist.InputLinkHomework(createHomework.Link);
+            _homeworkMethodist.ClickButtonAttachLink();
             //TODO teacher does not see homework in saved assignments (Task 2.5)
         }
 
@@ -72,7 +79,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void ThenTeacherLaysOutTheTaskCreatedByTheMethodologist(string nameHomework)
         {
             _lessonsTeacherPage.ClickHomeworksButton();
-            _homeworksTeacherPage.ClickButtonSavedHomework();
+            _homeworksTeacherPage.ClickSavedHomeworkButton();
             _homeworksDraftTeacherPage.ClickEditHomeworkButton(nameHomework);
             //TODO Òo task, emptiness (Task 2.5)
         }    
