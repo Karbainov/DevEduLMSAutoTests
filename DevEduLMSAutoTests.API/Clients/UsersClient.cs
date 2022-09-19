@@ -32,6 +32,7 @@
                 (responseMessage.Content.ReadAsStringAsync().Result)!;
             return response;
         }
+
         public void DeleteUsersRole(int userId, string role, string token, HttpStatusCode expectedCode = HttpStatusCode.NoContent)
         {
             HttpClient client = new HttpClient();

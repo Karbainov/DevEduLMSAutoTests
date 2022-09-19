@@ -8,25 +8,23 @@ namespace AutoTestsSelenium.StepDefinitions
         private AuthorizationUnauthorizedPage _authorizationUnauthorizedPage;
         private CreateGroupManagerAuthorizaedPage _createGroupManagerAuthorizaedPage;
         private GroupsManagerPage _groupsManagerPage;
-        private string _groupName;
-        private List<string> _groups;
+
         public CancelGroupCreationStepDefinition()
         {
             _swaggerGroupSteps = new GroupsAPIStepDefinitions();
-            _groups = new List<string>();
+            _driver = new ChromeDriver();
         }
 
         [Given(@"Registrate users with roles")]
         public void GivenRegistrateUsersWithRoles(Table table)
         {
             _swaggerGroupSteps.GivenRegisterNewUsersWithRolesInService(table);
-            List<RegistationModelWithRole> users = table.CreateSet<RegistationModelWithRole>().ToList();
         }
 
         [Given(@"Open a browser and open login page")]
         public void GivenOpenABrowserAndOpenLoginPage()
         {
-            _driver = new ChromeDriver();
+            
             _driver.Manage().Window.Maximize();
             _authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage(_driver);
             _authorizationUnauthorizedPage.OpenThisPage();
@@ -45,16 +43,15 @@ namespace AutoTestsSelenium.StepDefinitions
         public void GivenStartCreateAGroup(Table table)
         {
             _createGroupManagerAuthorizaedPage = new CreateGroupManagerAuthorizaedPage(_driver);
-            GroupCreationRequest groupModel = table.CreateInstance<GroupCreationRequest>();
-            _groupName = groupModel.Name;
-            Thread.Sleep(1500);
+            GroupCreationModel groupModel = table.CreateInstance<GroupCreationModel>();
+            Thread.Sleep(500);
             _createGroupManagerAuthorizaedPage.ClickAddGroupButton();
-            _createGroupManagerAuthorizaedPage.EnterGroupName(groupModel.Name);
+            _createGroupManagerAuthorizaedPage.EnterGroupName(groupModel.GroupName);
             _createGroupManagerAuthorizaedPage.ClickComboBoxCourses();
-            Thread.Sleep(1500);
+            Thread.Sleep(500);
             _createGroupManagerAuthorizaedPage.ChooseCourse(groupModel.CourseName);
-            _createGroupManagerAuthorizaedPage.ChooseTeacher(groupModel.Teacher);
-            _createGroupManagerAuthorizaedPage.ChooseTutor(groupModel.Tutor);
+            _createGroupManagerAuthorizaedPage.ChooseTeacher(groupModel.FullNameOfTeacher);
+            _createGroupManagerAuthorizaedPage.ChooseTutor(groupModel.FullNameOfTutor);
         }
 
         [When(@"Cancel creation")]

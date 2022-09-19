@@ -13,7 +13,7 @@ Scenario: Manager cancel creation of group
 	| Email              | Password     |
 	| marina@example.com | marinamarina |
 	And Start create a group
-	| Name       | CourseName   | Teacher          | Tutor          |
-	| Some group | Backend Java | Maksim Karbainov | Elisey Kakoyto |
+	| GroupName  | CourseName   | FullNameOfTeacher | FullNameOfTutor |
+	| Some group | Backend Java | Maksim Karbainov  | Elisey Kakoyto  |
 	When Cancel creation
 	Then Group "Some group" do not create

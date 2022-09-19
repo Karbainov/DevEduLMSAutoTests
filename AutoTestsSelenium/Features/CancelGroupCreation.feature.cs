@@ -154,10 +154,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("SignIn as manager", ((string)(null)), table2, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Name",
+                            "GroupName",
                             "CourseName",
-                            "Teacher",
-                            "Tutor"});
+                            "FullNameOfTeacher",
+                            "FullNameOfTutor"});
                 table3.AddRow(new string[] {
                             "Some group",
                             "Backend Java",
