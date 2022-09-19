@@ -23,5 +23,10 @@
             }
             return _instance;
         }
+
+        public static void CloseDriver()
+        {
+            _instance.Close();
+        }
     }
 }
