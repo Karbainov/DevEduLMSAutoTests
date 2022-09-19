@@ -8,8 +8,6 @@ Scenario: Teacher chek students homeworks results
 	| Ilya1     | Baikov     | string     | ilya1@student.com  | ilya1    | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student   |
 	| Ilya2     | Baikov     | string     | ilya2@student.com  | ilya2    | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student   |
 	| Ilya3     | Baikov     | string     | ilya3@student.com  | ilya3    | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student   |
-	| Ilya4     | Baikov     | string     | ilya4@student.com  | ilya4    | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student   |
-	| Ilya5     | Baikov     | string     | ilya5@student.com  | ilya5    | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student   |
 	| Anton     | Efremenkov | string     | anton@teacher.com   | anton1   | password | SaintPetersburg | 03.03.1994 | string        | 89995554433 | Teacher   |
 	And Admin create new groups
 	| Name    | CourseName | GroupStatusId | StartDate  | EndDate    | Timetable | PaymentPerMonth | PaymentsCount |
@@ -19,13 +17,11 @@ Scenario: Teacher chek students homeworks results
 	| Ilya1     | Baikov     | Student |
 	| Ilya2     | Baikov     | Student |
 	| Ilya3     | Baikov     | Student |
-	| Ilya4     | Baikov     | Student |
-	| Ilya5     | Baikov     | Student |
 	| Anton     | Efremenkov | Teacher |
 	When Authorize as a teacher
 	| Email             | Password |
 	| anton@teacher.com | password |
-	When teacher create new homework
+	When teacher create new homework for group "Group 1"
 	| Name  | Description         | Link               | StartDate  | EndDate    |
 	| Lists | Make your own lists | https://google.com | 19.09.2022 | 09.10.2022 |
 	And students did their homework 
@@ -33,8 +29,6 @@ Scenario: Teacher chek students homeworks results
 	| ilya1@student.com | password |
 	| ilya2@student.com | password |
 	| ilya3@student.com | password |
-	| ilya4@student.com | password |
-	| ilya5@student.com | password |
 	And Authorize as a teacher
 	| Email             | Password |
 	| anton@teacher.com | password |
@@ -43,7 +37,5 @@ Scenario: Teacher chek students homeworks results
 	| Ilya1 Baikov | Сдано  |
 	| Ilya2 Baikov | Сдано  |
 	| Ilya3 Baikov | Сдано  |
-	| Ilya4 Baikov | Сдано  |
-	| Ilya5 Baikov | Сдано  |
 	Then teacher should see students results in homewok tab
 	And teacher should see students results in tab General Progress

@@ -3,32 +3,29 @@ namespace AutoTestsSelenium.StepDefinitions
     [Binding]
     public class StatisticsStepDefinitions
     {
-        private List<SwaggerSignInRequest> _studensSignIn;
-        private SwaggerSignInRequest _teacherSingIn;
         private IWebDriver _driver;
         private SingInWindow _singInElements;
         private TeacherNavigatePanelElements _navigateButtons;
-        private TeachersHomeworkWindow _teacersHomeworkWindowElements;
         private StudentsHomeworkWindow _studentsHomeworkWindowElements;
         private List<StudentsHomeworkResultModel> _studentsResults;
         private HomeworkResultsElements _homeworkResultsElements;
         private GeneralProgressWindow _generalProgressElements;
         private AuthorizationUnauthorizedPage _authorizationPage;
+        private HomeworkCreationTeacherPage _homeworkCreationPage;
 
         public StatisticsStepDefinitions()
         {
-            _studensSignIn = new List<SwaggerSignInRequest>();
             _driver = SingleWebDriver.GetInstance();
             _driver.Manage().Window.Maximize();
             _driver.Navigate().GoToUrl(Urls.Host);
             _singInElements = new SingInWindow();
             _navigateButtons = new TeacherNavigatePanelElements();
-            _teacersHomeworkWindowElements = new TeachersHomeworkWindow();
             _studentsHomeworkWindowElements = new StudentsHomeworkWindow();
             _studentsResults = new List<StudentsHomeworkResultModel>();
             _homeworkResultsElements = new HomeworkResultsElements();
             _generalProgressElements = new GeneralProgressWindow();
             _authorizationPage = new AuthorizationUnauthorizedPage(_driver);
+            _homeworkCreationPage = new HomeworkCreationTeacherPage(_driver);
         }
 
         [When(@"Authorize as a teacher")]
@@ -41,33 +38,27 @@ namespace AutoTestsSelenium.StepDefinitions
             _authorizationPage.ClickEnterButton();
         }
 
-
-        [When(@"teacher create new homework")]
-        public void WhenTeacherCreateNewHomework(Table table)
+        [When(@"teacher create new homework for group ""([^""]*)""")]
+        public void WhenTeacherCreateNewHomeworkForGroup(string groupName, Table table)
         {
             AddNewHomework homework = table.CreateInstance<AddNewHomework>();
-            Thread.Sleep(200);
-            _driver.FindElement(_navigateButtons.XPathNewHomeworkButton).Click();
-            _teacersHomeworkWindowElements._groupName = "Group 1";
-            _driver.FindElement(_teacersHomeworkWindowElements.XPathGroupRB).Click();
-            var dateTB = _driver.FindElement(_teacersHomeworkWindowElements.XPathStartDateTextBox);
-            Actions setDate = new Actions(_driver);
-            setDate.DoubleClick(dateTB).SendKeys(homework.StartDate).Build().Perform();
-            dateTB = _driver.FindElement(_teacersHomeworkWindowElements.XPathEndDateTextBox);
-            setDate.DoubleClick(dateTB).SendKeys(homework.EndDate).Build().Perform();
-            _driver.FindElement(_teacersHomeworkWindowElements.XPathNameTB).SendKeys(homework.Name);
-            _driver.FindElement(_teacersHomeworkWindowElements.XPathDescriptionTB).SendKeys(homework.Description);
-            _driver.FindElement(_teacersHomeworkWindowElements.XPathLinkTB).SendKeys(homework.Link);
-            _driver.FindElement(_teacersHomeworkWindowElements.XPathAddLinkButton).Click();
-            _driver.FindElement(_teacersHomeworkWindowElements.XPathPublishButton).Click();
-            _driver.FindElement(_navigateButtons.XPathExitButton).Click();
+            _homeworkCreationPage.OpenThisPage();
+            _homeworkCreationPage.ClickRadioButtonGroupName(groupName);
+            _homeworkCreationPage.InputStarDate(homework.StartDate);
+            _homeworkCreationPage.InputEndDate(homework.EndDate);
+            _homeworkCreationPage.InputNameHomework(homework.Name);
+            _homeworkCreationPage.InputDescriptionHomework(homework.Description);
+            _homeworkCreationPage.InputLink(homework.Link);
+            _homeworkCreationPage.ClickAddLinkButton();
+            _homeworkCreationPage.ClickPublishButton();
+            _homeworkCreationPage.ClickExitButton();
         }
 
         [When(@"students did their homework")]
         public void WhenStudentsDidTheirHomework(Table table)
         {
             Thread.Sleep(1000);
-            _studensSignIn = table.CreateSet<SwaggerSignInRequest>().ToList();
+            List<SwaggerSignInRequest> _studensSignIn = table.CreateSet<SwaggerSignInRequest>().ToList();
             foreach(var student in _studensSignIn)
             {
                 _driver.FindElement(_singInElements.XPathEmailBox).SendKeys(student.Email);
