@@ -7,6 +7,9 @@
         public IWebElement ComboBoxCourses => _driver.FindElement(By.XPath($"//div[@class='drop-down-filter  ']"));
         public IWebElement ButtonSave => _driver.FindElement(By.XPath($"//button[text()='Сохранить']"));
         public IWebElement ButtonCancelCreateGroup => _driver.FindElement(By.XPath($"//*[text()='Отмена']"));
+        public IWebElement LabelEmptyGroupName => _driver.FindElement(By.XPath($"//*[text()='Вы не указали название']"));
+        public IWebElement LabelEmptyTeacherCheckBox => _driver.FindElement(By.XPath($"//*[text()='Вы не выбрали преподавателя']"));
+        public IWebElement LabelEmptyTutorCheckBox => _driver.FindElement(By.XPath($"//*[text()='Вы не выбрали тьютора']"));
 
         public GroupCreationManagerPage(IWebDriver driver) : base(driver)
         {

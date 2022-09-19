@@ -34,22 +34,24 @@ namespace AutoTestsSelenium.StepDefinitions
             _managerCreatesAGroupAddsUsersBySwagger.GivenRegisterNewUsersWithRolesInService(table);
         }
 
-        [Given(@"SignIn as manager")]
-        public void GivenSignInAsManager()
+        [Given(@"SignIn as manager in service")]
+        public void GivenSignInAsManagerInService()
         {
             AuthorizeUser(_manager);
         }
 
-        [Given(@"Manager create new group in service and cancel creation")]
+        [When(@"SignIn as manager in service")]
+        public void WhenSignInAsManagerInService()
+        {
+            AuthorizeUser(_manager);
+        }
+
+        [When(@"Manager create new group in service and cancel creation")]
         public void GivenManagerCreateNewGroupInServiceAndCancelCreation(Table table)
         {
             GroupCreationModel newGroup = table.CreateInstance<GroupCreationModel>();
             _groupCreationManagerPage.ClickAddGroupButton();
-            _groupCreationManagerPage.EnterGroupName(newGroup.GroupName);
-            _groupCreationManagerPage.ClickCoursesComboBox();
-            _groupCreationManagerPage.ClickDesiredCourseByName(newGroup.CourseName);
-            _groupCreationManagerPage.ChooseTeacher(newGroup.FullNameOfTeacher);
-            _groupCreationManagerPage.ChooseTutor(newGroup.FullNameOfTutor);
+            FillingData(newGroup);
             _groupCreationManagerPage.ClickCancelCreateGroupButton();
         }
 
@@ -58,11 +60,7 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             GroupCreationModel newGroup = table.CreateInstance<GroupCreationModel>();
             _groupCreationManagerPage.ClickAddGroupButton();
-            _groupCreationManagerPage.EnterGroupName(newGroup.GroupName);
-            _groupCreationManagerPage.ClickCoursesComboBox();
-            _groupCreationManagerPage.ClickDesiredCourseByName(newGroup.CourseName);
-            _groupCreationManagerPage.ChooseTeacher(newGroup.FullNameOfTeacher);
-            _groupCreationManagerPage.ChooseTutor(newGroup.FullNameOfTutor);
+            FillingData(newGroup);
             _groupCreationManagerPage.ClickSaveButton();
             //TODO Saves only when there are more than two teachers and tutors (Task 2.6).
         }
@@ -110,7 +108,6 @@ namespace AutoTestsSelenium.StepDefinitions
             var groups = _lessonsTutorPage.TutorGroups;
             Assert.Contains(groups, i => i.Text == checkingModel.CourseName);
             _lessonsTutorPage.ClickExitButton();
-            _driver.Close();
         }
 
         [Then(@"Group ""([^""]*)"" do not create")]
@@ -121,6 +118,46 @@ namespace AutoTestsSelenium.StepDefinitions
             Assert.DoesNotContain(groups, i => i.Text == groupName);
         }
 
+        [Then(@"Manager create new group in service with empty group name")]
+        public void ThenManagerCreateNewGroupInServiceWithEmptyGroupName(Table table)
+        {
+            GroupCreationModel newGroup = table.CreateInstance<GroupCreationModel>();
+            string expectedMessage = "Вы не указали название";
+            _groupCreationManagerPage.ClickAddGroupButton();
+            FillingData(newGroup);
+            _groupCreationManagerPage.ClickSaveButton();
+            Assert.Equal(expectedMessage, _groupCreationManagerPage.LabelEmptyGroupName.Text);
+            _groupCreationManagerPage.OpenThisPage();
+        }
+
+        [Then(@"Manager create new group in service with empty course name")]
+        public void ThenManagerCreateNewGroupInServiceWithEmptyCourseName(Table table)
+        {
+            GroupCreationModel newGroup = table.CreateInstance<GroupCreationModel>();
+            string expectedMessage = newGroup.CourseName;
+            _groupCreationManagerPage.ClickAddGroupButton();
+            _groupCreationManagerPage.EnterGroupName(newGroup.GroupName);
+            _groupCreationManagerPage.ChooseTeacher(newGroup.FullNameOfTeacher);
+            _groupCreationManagerPage.ChooseTutor(newGroup.FullNameOfTutor);
+            Assert.Equal(expectedMessage, _groupCreationManagerPage.ComboBoxCourses.Text);
+            _groupCreationManagerPage.OpenThisPage();
+        }
+
+        [Then(@"Manager create new group in service with empty teacher and tutor checkboxs")]
+        public void ThenManagerCreateNewGroupInServiceWithEmptyTeacherAndTutorCheckboxs(Table table)
+        {
+            GroupCreationModel newGroup = table.CreateInstance<GroupCreationModel>();
+            string expectedTeacherMessage = "Вы не выбрали преподавателя";
+            string expectedTutorMessage = "Вы не выбрали тьютора";
+            _groupCreationManagerPage.ClickAddGroupButton();
+            _groupCreationManagerPage.EnterGroupName(newGroup.GroupName);
+            _groupCreationManagerPage.ClickCoursesComboBox();
+            _groupCreationManagerPage.ClickDesiredCourseByName(newGroup.CourseName);
+            _groupCreationManagerPage.ClickSaveButton();
+            Assert.Equal(expectedTeacherMessage, _groupCreationManagerPage.LabelEmptyTeacherCheckBox.Text);
+            Assert.Equal(expectedTutorMessage, _groupCreationManagerPage.LabelEmptyTutorCheckBox.Text);
+        }
+
         private void AuthorizeUser(SwaggerSignInRequest user)
         {
             _driver.Manage().Window.Maximize();
@@ -128,6 +165,15 @@ namespace AutoTestsSelenium.StepDefinitions
             _authorizationUnauthorizedPage.EnterEmail(user.Email);
             _authorizationUnauthorizedPage.EnterPassword(user.Password);
             _authorizationUnauthorizedPage.ClickEnterButton();
+        }
+
+        private void FillingData(GroupCreationModel newGroup)
+        {
+            _groupCreationManagerPage.EnterGroupName(newGroup.GroupName);
+            _groupCreationManagerPage.ClickCoursesComboBox();
+            _groupCreationManagerPage.ClickDesiredCourseByName(newGroup.CourseName);
+            _groupCreationManagerPage.ChooseTeacher(newGroup.FullNameOfTeacher);
+            _groupCreationManagerPage.ChooseTutor(newGroup.FullNameOfTutor);
         }
     }
 }

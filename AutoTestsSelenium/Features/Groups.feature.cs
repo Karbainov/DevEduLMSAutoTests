@@ -160,7 +160,7 @@ this.ScenarioInitialize(scenarioInfo);
 testRunner.Given("Register new users with roles in service", ((string)(null)), table11, "Given ");
 #line hidden
 #line 12
-testRunner.And("SignIn as manager", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("SignIn as manager in service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
                             "GroupName",
@@ -283,7 +283,7 @@ this.ScenarioInitialize(scenarioInfo);
 testRunner.Given("Register new users with roles in service", ((string)(null)), table16, "Given ");
 #line hidden
 #line 33
-testRunner.And("SignIn as manager", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("SignIn as manager in service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
                             "GroupName",
@@ -296,10 +296,129 @@ testRunner.And("SignIn as manager", ((string)(null)), ((TechTalk.SpecFlow.Table)
                             "Maksim Karbainov",
                             "Elisey Kakoyto"});
 #line 34
-testRunner.And("Manager create new group in service and cancel creation", ((string)(null)), table17, "And ");
+testRunner.When("Manager create new group in service and cancel creation", ((string)(null)), table17, "When ");
 #line hidden
 #line 37
 testRunner.Then("Group \"Some group\" do not create", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Manager creates a group negative test")]
+        [Xunit.TraitAttribute("FeatureTitle", "Groups")]
+        [Xunit.TraitAttribute("Description", "Manager creates a group negative test")]
+        [Xunit.TraitAttribute("Category", "manager")]
+        [Xunit.TraitAttribute("Category", "group")]
+        public void ManagerCreatesAGroupNegativeTest()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "manager",
+                    "group"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Manager creates a group negative test", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 40
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "Patronymic",
+                            "Email",
+                            "Username",
+                            "Password",
+                            "City",
+                            "BirthDate",
+                            "GitHubAccount",
+                            "PhoneNumber",
+                            "Role"});
+                table18.AddRow(new string[] {
+                            "Isabella",
+                            "Abramson",
+                            "string",
+                            "isi@gmail.com",
+                            "Bella",
+                            "11345578",
+                            "SaintPetersburg",
+                            "22.05.2001",
+                            "string",
+                            "89514551247",
+                            "Student"});
+                table18.AddRow(new string[] {
+                            "Maksim",
+                            "Karbainov",
+                            "string",
+                            "maks@gmail.com",
+                            "Maksim",
+                            "22345678",
+                            "SaintPetersburg",
+                            "18.05.1995",
+                            "string",
+                            "89521496531",
+                            "Teacher"});
+                table18.AddRow(new string[] {
+                            "Elisey",
+                            "Kakoyto",
+                            "string",
+                            "elisey@gmail.com",
+                            "Elisey",
+                            "13345678",
+                            "SaintPetersburg",
+                            "07.10.1996",
+                            "string",
+                            "89518963148",
+                            "Tutor"});
+#line 41
+testRunner.Given("Register new users with roles in service", ((string)(null)), table18, "Given ");
+#line hidden
+#line 46
+testRunner.When("SignIn as manager in service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
+                            "GroupName",
+                            "CourseName",
+                            "FullNameOfTeacher",
+                            "FullNameOfTutor"});
+                table19.AddRow(new string[] {
+                            "",
+                            "Базовый C#",
+                            "Maksim Karbainov",
+                            "Elisey Kakoyto"});
+#line 47
+testRunner.Then("Manager create new group in service with empty group name", ((string)(null)), table19, "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table20 = new TechTalk.SpecFlow.Table(new string[] {
+                            "GroupName",
+                            "CourseName",
+                            "FullNameOfTeacher",
+                            "FullNameOfTutor"});
+                table20.AddRow(new string[] {
+                            "BaseSPb",
+                            "",
+                            "Maksim Karbainov",
+                            "Elisey Kakoyto"});
+#line 50
+testRunner.Then("Manager create new group in service with empty course name", ((string)(null)), table20, "Then ");
+#line hidden
+                TechTalk.SpecFlow.Table table21 = new TechTalk.SpecFlow.Table(new string[] {
+                            "GroupName",
+                            "CourseName",
+                            "FullNameOfTeacher",
+                            "FullNameOfTutor"});
+                table21.AddRow(new string[] {
+                            "BaseSPb",
+                            "Базовый C#",
+                            "",
+                            ""});
+#line 53
+testRunner.Then("Manager create new group in service with empty teacher and tutor checkboxs", ((string)(null)), table21, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
