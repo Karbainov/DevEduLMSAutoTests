@@ -1,14 +1,13 @@
-﻿namespace AutoTestsSelenium.PageObjects
+﻿using OpenQA.Selenium.DevTools.V102.Network;
+using OpenQA.Selenium.Support.UI;
+
+namespace AutoTestsSelenium.PageObjects
 {
     public class HomeworksStudentPage : AbstractStudentAuthorizedPage
     {
-        private string _homework;
         private const string PageUrl = $"{Urls.Host}/homeworks";
-        public IWebElement TaskButton => _driver.FindElement(By.XPath($"//a[@class='link-arrow']"));
-        public IWebElement LinkToAnswer => _driver.FindElement(By.XPath($"//input[@name='answer']"));
         public IWebElement AnswerButton => _driver.FindElement(By.XPath($"//button[@class='button-fly']"));
-        //public IWebElement TaskButton => _driver.FindElement(By.XPath($"//*[text()='{_homework}']"));
-
+ 
         public HomeworksStudentPage(IWebDriver driver) : base(driver)
         {
         }
@@ -25,17 +24,29 @@
 
         public void GoToTaskButton()
         {
-            TaskButton.Click();
+            GetToTask().Click();
         }
 
         public void InputLinkAnswer(string linkHome)
         {
-            LinkToAnswer.SendKeys(linkHome);
+            GetIntupLinkTextbox().SendKeys(linkHome);
         }
 
         public void SendAnswerButton()
         {
             AnswerButton.Click();
+        }
+
+        private IWebElement GetIntupLinkTextbox()
+        {
+            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(1));
+            return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//input[@name='answer']")));
+        }
+
+        private IWebElement GetToTask()
+        {
+            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(1));
+            return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//a[@class='link-arrow']")));
         }
     }
 }

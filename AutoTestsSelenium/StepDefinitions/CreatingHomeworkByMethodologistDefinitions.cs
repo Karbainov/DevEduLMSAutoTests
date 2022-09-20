@@ -17,7 +17,7 @@ namespace AutoTestsSelenium.StepDefinitions
 
         CreatingHomeworkByMethodologistDefinitions()
         {
-            _driver = new ChromeDriver();
+            _driver = SingleWebDriver.GetInstance();
             _authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage(_driver);
             _homeworkMethodist = new HomeworkCreationMethodistPage(_driver);
             _tablesClear = new DBCleaner();
@@ -53,8 +53,8 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Methodist create draft Homework")]
         public void WhenMethodistCreateDraftHomework(Table table)
         {
-            _homeworkMethodist.ClickChoiceGroupNumber();
             AddNewHomework createHomework = table.CreateInstance<AddNewHomework>();
+            _homeworkMethodist.ClickChoiceGroupNumber(createHomework.CourseName);
             _homeworkMethodist.InputNameGroup(createHomework.Name);
             _homeworkMethodist.InputDescriptionHomework(createHomework.Description);
             _homeworkMethodist.InputLinkHomework(createHomework.Link);
