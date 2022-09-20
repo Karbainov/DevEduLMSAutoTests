@@ -1,4 +1,7 @@
-﻿namespace AutoTestsSelenium.PageObjects
+﻿using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
+
+namespace AutoTestsSelenium.PageObjects
 {
     public class GroupCreationManagerPage : AbstractManagerAuthorizedPage
     {
@@ -37,11 +40,6 @@
             ButtonCancelCreateGroup.Click();
         }
 
-        public void ClickDesiredCourseByName(string courseName)
-        {
-            _driver.FindElement(By.XPath($"//li[text()='{courseName}']")).Click();
-        }
-
         public IWebElement GetDesiredTeacherByName(string fullNameOfTeacher)
         {
             return _driver.FindElement(By.XPath($"//*[text()='{fullNameOfTeacher}']/.."));
@@ -60,6 +58,17 @@
         public void ChooseTutor(string fullNameOfTutor)
         {
             GetDesiredTutorByName(fullNameOfTutor).Click();
+        }
+
+        public void ClickDesiredCourseByName(string courseName)
+        {
+            GetDesiredCourseByName(courseName).Click();
+        }
+
+        private IWebElement GetDesiredCourseByName(string courseName)
+        {
+            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(1));
+            return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//li[text()='{courseName}']")));
         }
     }
 }

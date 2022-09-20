@@ -44,11 +44,10 @@ namespace AutoTestsSelenium.StepDefinitions
         public void GivenStartCreateAGroup(Table table)
         {
             GroupCreationModel groupModel = table.CreateInstance<GroupCreationModel>();
-            Thread.Sleep(500);
+            Thread.Sleep(1500);
             _groupCreationManagerPage.ClickAddGroupButton();
             _groupCreationManagerPage.EnterGroupName(groupModel.GroupName);
             _groupCreationManagerPage.ClickCoursesComboBox();
-            Thread.Sleep(500);
             _groupCreationManagerPage.ClickDesiredCourseByName(groupModel.CourseName);
             _groupCreationManagerPage.ChooseTeacher(groupModel.FullNameOfTeacher);
             _groupCreationManagerPage.ChooseTutor(groupModel.FullNameOfTutor);
@@ -66,7 +65,6 @@ namespace AutoTestsSelenium.StepDefinitions
             _groupsManagerPage.ClickGroupsButton();
             List<IWebElement> actualGroups = _groupsManagerPage.GetAllGroups();
             Assert.DoesNotContain(actualGroups, i => i.Text == groupName);
-            _driver.Close();
         }
     }
 }
