@@ -94,7 +94,6 @@ namespace AutoTestsSelenium.StepDefinitions
             var groups = _lessonsTutorPage.TutorCourses;
             Assert.Contains(groups, i => i.Text == checkingModel.CourseName);
             _lessonsTutorPage.ClickExitButton();
-            _driver.Close();
         }
 
         private void AuthorizeUser(SwaggerSignInRequest user)
