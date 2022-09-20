@@ -124,7 +124,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "propper12@mail.ru",
                             "+79992314545"});
 #line 6
- testRunner.And("Fill all requared fields", ((string)(null)), table16, "And ");
+ testRunner.And("Fill all requared fields", ((string)(null)), table19, "And ");
 #line hidden
 #line 9
  testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
