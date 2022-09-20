@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-
-namespace DevEduLMSAutoTests.API.Support.Mappers
+﻿namespace DevEduLMSAutoTests.API.Support.Mappers
 {
     public class GroupMappers
     {

@@ -1,15 +1,7 @@
 ﻿namespace AutoTestsSelenium.Support.FindElements
 {
-    public class NavigatePanelElements
+    public class TeacherNavigatePanelElements
     {
-        public By XPathIssuingHomework
-        {
-            get
-            {
-                return By.XPath("//*[text()='Выдача заданий']");
-            }
-        }
-
         public By XPathNewHomeworkButton
         {
             get
@@ -18,6 +10,7 @@
             }
             private set { }
         }
+
         public By XPathSwitchRoleButton
         {
             get
@@ -31,10 +24,11 @@
         {
             get
             {
-                return By.XPath("//span[text()='Домашние задания']");
+                return By.XPath($"//*[@href='/homeworks']");
             }
             private set { }
         }
+
         public By XPathCheckHomeworksButton
         {
             get
@@ -43,14 +37,7 @@
             }
             private set { }
         }
-        public By XPathGeneralProgressButton
-        {
-            get
-            {
-                return By.XPath($"//*[@href='/general-progress']");
-            }
-            private set { }
-        }
+
         public By XPathExitButton
         {
             get
@@ -59,26 +46,53 @@
             }
             private set { }
         }
+
+        public By XPathLessonsButton
+        {
+            get
+            {
+                return By.XPath($"//*[@href='/lessons']");
+            }
+            private set { }
+        }
+
+        public By XPathIssuingHomework
+        {
+            get
+            {
+                return By.XPath("//*[text()='Выдача заданий']");
+            }
+        }
+
+        public By XPathGeneralProgressButton
+        {
+            get
+            {
+                return By.XPath($"//*[@href='/general-progress']");
+            }
+            private set { }
+        }
+
         public By XPathRoleButton(string role)
         {
             switch (role)
             {
-                case Options.RoleTeacher:
+                case OptionsSwagger.RoleTeacher:
                     role = "Преподаватель";
                     break;
-                case Options.RoleTutor:
+                case OptionsSwagger.RoleTutor:
                     role = "Тьютор";
                     break;
-                case Options.RoleManager:
+                case OptionsSwagger.RoleManager:
                     role = "Менеджер";
                     break;
-                case Options.RoleAdmin:
+                case OptionsSwagger.RoleAdmin:
                     role = "Администратор";
                     break;
-                case Options.RoleStudent:
+                case OptionsSwagger.RoleStudent:
                     role = "Студент";
                     break;
-                case Options.RoleMethodist:
+                case OptionsSwagger.RoleMethodist:
                     role = "Методист";
                     break;
             }

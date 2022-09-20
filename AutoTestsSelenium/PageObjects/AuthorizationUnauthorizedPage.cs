@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AutoTestsSelenium.PageObjects
+﻿namespace AutoTestsSelenium.PageObjects
 {
     public class AuthorizationUnauthorizedPage:AbstractUnauthorizedPage
     {
@@ -15,6 +9,11 @@ namespace AutoTestsSelenium.PageObjects
         
         public AuthorizationUnauthorizedPage(IWebDriver driver):base(driver)
         {
+        }
+
+        public override void OpenThisPage()
+        {
+            _driver.Navigate().GoToUrl(PageUrl);
         }
 
         public void EnterEmail(string email)
@@ -30,11 +29,6 @@ namespace AutoTestsSelenium.PageObjects
         public void ClickEnterButton()
         {
             ButtonEnter.Click();
-        }
-
-        public override void OpenThisPage()
-        {
-            _driver.Navigate().GoToUrl(PageUrl);
         }
     }
 }

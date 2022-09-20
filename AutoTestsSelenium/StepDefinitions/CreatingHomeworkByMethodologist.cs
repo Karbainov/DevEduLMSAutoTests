@@ -4,14 +4,12 @@ namespace AutoTestsSelenium.StepDefinitions
     public class CreatingHomeworkByMethodologist
     {
         private IWebDriver _driver;
-        private RegistrationWindow _registrationWindow;
         private SingInWindow _singInWindow;
         private MethodistHomeworkWindow _methodistHomeworkWindow;
 
         CreatingHomeworkByMethodologist()
         {
-            _driver = new ChromeDriver();
-            _registrationWindow = new RegistrationWindow();
+            _driver = SingleWebDriver.GetInstance();
             _singInWindow = new SingInWindow();
             _methodistHomeworkWindow = new MethodistHomeworkWindow();       
         }              
@@ -27,7 +25,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"authorization user as methodist")]
         public void WhenAuthorizationUserAsMethodist(Table table)
         {
-            SingInRequest singInRequest = table.CreateInstance<SingInRequest>();
+            SwaggerSignInRequest singInRequest = table.CreateInstance<SwaggerSignInRequest>();
             var emailBox = _driver.FindElement(_singInWindow.XPathEmailBox);
             emailBox.SendKeys(singInRequest.Email);
             var passBox = _driver.FindElement(_singInWindow.XPathPasswordBox);
@@ -38,41 +36,35 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"methodist click botton to come in")]
         public void WhenMethodistClickBottonToComeIn()
         {
-            var enter = _driver.FindElement(_singInWindow.XPathSingInButton);
-            enter.Click();
+            _driver.FindElement(_singInWindow.XPathSingInButton).Click();
             Thread.Sleep(1000);
         }
 
         [When(@"methodist click button add task")]
         public void WhenMethodistClickButtonAddTask()
         {
-            var homework = _driver.FindElement(_methodistHomeworkWindow.XPathHomeworkButton);
-            homework.Click();
-
-            var createHomework = _driver.FindElement(_methodistHomeworkWindow.XpathCreateHomework);
-            createHomework.Click();
+            _driver.FindElement(_methodistHomeworkWindow.XPathHomeworkButton).Click();
+            _driver.FindElement(_methodistHomeworkWindow.XpathCreateHomework).Click();
             Thread.Sleep(1000);
         }
 
         [When(@"methodist create draft Homework")]
         public void WhenMethodistCreateDraftHomework(Table table)
         {
-            var groupNumber = _driver.FindElement(_methodistHomeworkWindow.XpathChoiceGroupNumber);
-            groupNumber.Click();
-            CreateHomework createHomework = table.CreateInstance<CreateHomework>();
+            _driver.FindElement(_methodistHomeworkWindow.XpathChoiceGroupNumber).Click();
+            AddNewHomework createHomework = table.CreateInstance<AddNewHomework>();
             var nameHomework = _driver.FindElement(_methodistHomeworkWindow.XpathNameCreateHomework);
             nameHomework.SendKeys(createHomework.Name);
             var textInput = _driver.FindElement(_methodistHomeworkWindow.XpathDescriptionHomework);
             textInput.SendKeys(createHomework.Description);
             var linkInput = _driver.FindElement(_methodistHomeworkWindow.XpathLinkInputHomework);
-            linkInput.SendKeys(createHomework.LinkToRecord);
+            linkInput.SendKeys(createHomework.Link);
         }
 
         [Then(@"methodist click button save as draft")]
         public void ThenMethodistClickButtonSaveAsDraft()
         {
-            var saveDraftHomework = _driver.FindElement(_methodistHomeworkWindow.XpathButtonSaveDraftHomework);
-            saveDraftHomework.Click();
+            _driver.FindElement(_methodistHomeworkWindow.XpathButtonSaveDraftHomework).Click();
         }
 
         [When(@"methodist see all created homeworks")]

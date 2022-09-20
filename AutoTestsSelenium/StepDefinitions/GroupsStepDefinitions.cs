@@ -1,58 +1,109 @@
-using System;
-using TechTalk.SpecFlow;
-
 namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
     public class GroupsStepDefinitions
     {
-        private CreateGroupFromBrowser _newGroup;
+        private GroupsAPIStepDefinitions _managerCreatesAGroupAddsUsersBySwagger;
         private IWebDriver _driver;
+        private AuthorizationUnauthorizedPage _authorizationUnauthorizedPage;
+        private GroupCreationManagerPage _createGroupPage;
+        private StudentsListPage _studentsListPage;
+        private LessonsStudentPage _lessonsStudentPage;
+        private LessonsTeacherPage _lessonsTeacherPage;
+        private LessonsTutorPage _lessonsTutorPage;
+        private SwaggerSignInRequest _manager;
 
-        [When(@"manager create new group from browser")]
-        public void WhenManagerCreateNewGroupFromBrowser(Table table)
+        public GroupsStepDefinitions()
         {
-            _driver = new ChromeDriver();
+            _managerCreatesAGroupAddsUsersBySwagger = new GroupsAPIStepDefinitions();
+            _driver = SingleWebDriver.GetInstance();
+            _authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage(_driver);
+            _createGroupPage = new GroupCreationManagerPage(_driver);
+            _studentsListPage = new StudentsListPage(_driver);
+            _lessonsStudentPage = new LessonsStudentPage(_driver);
+            _lessonsTeacherPage = new LessonsTeacherPage(_driver);
+            _lessonsTutorPage = new LessonsTutorPage(_driver);
+            _manager = new SwaggerSignInRequest() { Email = OptionsSwagger.ManagersEmail, Password = OptionsSwagger.ManagersPassword };
+        }
+
+        [Given(@"Register new users with roles in service")]
+        public void GivenRegisterNewUsersWithRolesInService(Table table)
+        {
+            _managerCreatesAGroupAddsUsersBySwagger.GivenRegisterNewUsersWithRolesInService(table);
+        }
+
+        [When(@"Manager create new group in service")]
+        public void WhenManagerCreateNewGroupInService(Table table)
+        {
+            GroupCreationModel newGroup = table.CreateInstance<GroupCreationModel>();
+            AuthorizeUser(_manager);
+            Thread.Sleep(500);
+            _createGroupPage.ClickAddGroupButton();
+            _createGroupPage.EnterGroupName(newGroup.GroupName);
+            _createGroupPage.ClickCoursesComboBox();
+            _createGroupPage.ClickDesiredCourseByName(newGroup.CourseName);
+            _createGroupPage.ChooseTeacher(newGroup.FullNameOfTeacher);
+            _createGroupPage.ChooseTutor(newGroup.FullNameOfTutor);
+            _createGroupPage.ClickSaveButton();
+            //TODO Saves only when there are more than two teachers and tutors (Task 2.6).
+        }
+
+        [When(@"Manager add student ""([^""]*)"" to group ""([^""]*)"" in service")]
+        public void WhenManagerAddStudentToGroupInService(string fullNameOfStudent, string groupName)
+        {
+            _studentsListPage.ClickStudentsListButton();
+            _studentsListPage.ClickGroupsComboBoxByFullNameOfStudent(fullNameOfStudent);
+            _studentsListPage.ClickDesiredGroupByName(groupName);
+            _studentsListPage.ClickExitButton();
+            //TODO The page is implemented as a mock (Task 2.6).
+        }
+
+        [Then(@"Authorize student in service and check group")]
+        public void ThenAuthorizeStudentInServiceAndCheckGroup(Table table)
+        {
+            CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
+            AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });
+            Thread.Sleep(500);
+            _lessonsStudentPage.ClickLessonsButton();
+            var groups = _lessonsStudentPage.StudentCourses;
+            Assert.Contains(groups, i => i.Text == checkingModel.CourseName);
+            _lessonsStudentPage.ClickExitButton();
+        }
+
+        [Then(@"Authorize teacher in service and check group")]
+        public void ThenAuthorizeTeacherInServiceAndCheckGroup(Table table)
+        {
+            CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
+            AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });
+            _lessonsTeacherPage.ChageRole(checkingModel.Role);
+            Thread.Sleep(500);
+            _lessonsTeacherPage.ClickLessonsButton();
+            var groups = _lessonsTeacherPage.TeacherCourses;
+            Assert.Contains(groups, i => i.Text == checkingModel.CourseName);
+            _lessonsTeacherPage.ClickExitButton();
+        }
+
+        [Then(@"Authorize tutor in service and check group")]
+        public void ThenAuthorizeTutorInServiceAndCheckGroup(Table table)
+        {
+            CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
+            AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });
+            _lessonsTutorPage.ChageRole(checkingModel.Role);
+            Thread.Sleep(500);
+            _lessonsTutorPage.ClickLessonsButton();
+            var groups = _lessonsTutorPage.TutorCourses;
+            Assert.Contains(groups, i => i.Text == checkingModel.CourseName);
+            _lessonsTutorPage.ClickExitButton();
+            _driver.Close();
+        }
+
+        private void AuthorizeUser(SwaggerSignInRequest user)
+        {
             _driver.Manage().Window.Maximize();
-            _driver.Navigate().GoToUrl(Urls.Host);
-            _newGroup = table.CreateInstance<CreateGroupFromBrowser>();
-        }
-
-        [When(@"manager add students to group ""([^""]*)""")]
-        public void WhenManagerAddStudentsToGroup(string p0)
-        {
-            Thread.Sleep(100);
-            //throw new PendingStepException();
-        }
-
-        [Then(@"users should see their group")]
-        public void ThenUsersShouldSeeTheirGroup()
-        {
-            Thread.Sleep(100);
-            //throw new PendingStepException();
-        }
-
-        [Then(@"manager should see actual group")]
-        public void ThenManagerShouldSeeActualGroup()
-        {
-            Thread.Sleep(100);
-            //throw new PendingStepException();
-        }
-
-        [When(@"manager edit group ""([^""]*)""")]
-        public void WhenManagerEditGroup(string p0)
-        {
-            Thread.Sleep(100);
-            //throw new PendingStepException();
-        }
-
-        [When(@"manager delete students from group ""([^""]*)""")]
-        public void WhenManagerDeleteStudentsFromGroup(string p0, Table table)
-        {
-            string groupName = p0;
-            List<string> studentsToDelete = table.Header.Select(x => x.ToString()).ToList();
-
-            Thread.Sleep(100);
+            _authorizationUnauthorizedPage.OpenThisPage();
+            _authorizationUnauthorizedPage.EnterEmail(user.Email);
+            _authorizationUnauthorizedPage.EnterPassword(user.Password);
+            _authorizationUnauthorizedPage.ClickEnterButton();
         }
     }
 }

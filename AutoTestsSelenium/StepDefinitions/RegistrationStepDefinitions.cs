@@ -1,92 +1,111 @@
-using AutoTestsSelenium.PageObjects;
-using System;
-using TechTalk.SpecFlow;
-
 namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
     public class RegistrationStepDefinitions
     {
-        IWebDriver driver;
-        RegistrationPage registrationPage;
-        AuthorizationUnauthorizedPage authorizationPage;
-        SingInRequest singInModel;
+        private IWebDriver _driver;
+        private RegistrationPage _registrationPage;
+        private AuthorizationUnauthorizedPage _authorizationUnauthorizedPage;
+        private ProfilePage _profilePage;
+        private SwaggerSignInRequest _SignInRequest;
+        private RegistrationRequest _user;
+
+        public RegistrationStepDefinitions()
+        {
+            _driver = SingleWebDriver.GetInstance();
+            _registrationPage = new RegistrationPage(_driver);
+            _authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage(_driver);
+            _profilePage = new ProfilePage(_driver);
+        }
 
         [Given(@"Open registration page")]
         public void GivenOpenRegistrationPage()
         {
-            driver = new ChromeDriver();
-            driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl(Urls.Host);
-            authorizationPage = new AuthorizationUnauthorizedPage(driver);
+            _driver.Manage().Window.Maximize();
+            _registrationPage.OpenThisPage();
+            _registrationPage.ClickRegisterButton();
         }
-
-        [Given(@"Click on registration on sidebar")]
-        public void GivenClickOnRegistrationOnSidebar()
-        {
-            authorizationPage.ClickRegisterButton();
-        }
-
 
         [Given(@"Fill all requared fields")]
         public void GivenFillAllRequaredFields(Table table)
         {
-            registrationPage = new RegistrationPage(driver);
-            RegistrationRequest user = table.CreateInstance<RegistrationRequest>();
-            registrationPage.EnterFirstName(user.FirstName);
-            registrationPage.EnterLastName(user.LastName);
-            registrationPage.EnterPatronymic(user.Patronymic);
-            registrationPage.EnterBirthDate(user.BirthDate);
-            registrationPage.EnterPassword(user.Password);
-            registrationPage.EnterRepeatPassword(user.RepeatPassword);
-            registrationPage.EnterEmail(user.Email);
-            registrationPage.EnterPhone(user.PhoneNumber);
-            singInModel = new SingInRequest()
+            _user = table.CreateInstance<RegistrationRequest>();
+            _registrationPage.EnterFirstName(_user.FirstName);
+            _registrationPage.EnterLastName(_user.LastName);
+            _registrationPage.EnterPatronymic(_user.Patronymic);
+            _registrationPage.EnterBirthDate(_user.BirthDate);
+            _registrationPage.EnterPassword(_user.Password);
+            _registrationPage.EnterRepeatPassword(_user.RepeatPassword);
+            _registrationPage.EnterEmail(_user.Email);
+            _registrationPage.EnterPhone(_user.PhoneNumber);
+            _SignInRequest = new SwaggerSignInRequest()
             {
-                Email = user.Email,
-                Password = user.Password
+                Email = _user.Email,
+                Password = _user.Password
             };
-
         }
 
         [Given(@"Click on private policy checkbox")]
         public void GivenClickOnPrivatePolicyCheckbox()
         {
-            registrationPage.ClickOnConfirmRulesCheckBox();
+            _registrationPage.ClickOnConfirmRulesCheckBox();
         }
 
         [When(@"Click on register button")]
         public void WhenClickOnRegisterButton()
         {
-            registrationPage.ClickOnButtonRegistrate();
+            _registrationPage.ClickOnButtonRegistrate();
+        }
+
+        [Then(@"User should see the welcome modal window")]
+        public void ThenUserShouldSeeTheWelcomeModalWindow()
+        {
+            Thread.Sleep(500);
+            Assert.NotNull(_registrationPage.ModalWindowWelcome);
         }
 
         [When(@"Click on athorization sidebar button")]
+        [Then(@"Click on athorization sidebar button")]
         public void WhenClickOnAthorizationSidebarButton()
         {
-            registrationPage.ClickOnAuthSideBarButton();
+            _authorizationUnauthorizedPage.ClickEnterSideBarButton();
         }
 
+        [Then(@"Authorize user in service")]
         [When(@"Authorize user in service")]
         public void WhenAuthorizeUserInService()
         {
-           authorizationPage = new AuthorizationUnauthorizedPage(driver);
-            authorizationPage.EnterEmail(singInModel.Email);
-            authorizationPage.EnterPassword(singInModel.Password);
-            authorizationPage.ClickEnterButton();
+            Thread.Sleep(200);
+            _authorizationUnauthorizedPage.EnterEmail(_SignInRequest.Email);
+            _authorizationUnauthorizedPage.EnterPassword(_SignInRequest.Password);
+            _authorizationUnauthorizedPage.ClickEnterButton();
         }
 
-        [When(@"click on user's profile")]
+        [When(@"Click on user's profile")]
+        [Then(@"Click on user's profile")]
         public void WhenClickOnUsersProfile()
         {
-            throw new PendingStepException();
+            Thread.Sleep(200);
+            _profilePage.ClickNameButton();
         }
 
-        [Then(@"user should see his actual information")]
+        [Then(@"User should see his actual information")]
         public void ThenUserShouldSeeHisActualInformation()
         {
-            throw new PendingStepException();
+            string attributeName = "value";
+            RegistrationRequest actualUser = new RegistrationRequest()
+            {
+                LastName = _profilePage.TextBoxEnterLastName.GetAttribute(attributeName),
+                FirstName = _profilePage.TextBoxEnterFirstName.GetAttribute(attributeName),
+                Patronymic = _profilePage.TextBoxEnterPatronymic.GetAttribute(attributeName), 
+                BirthDate = _profilePage.TextBoxEnterBirthDate.GetAttribute(attributeName),
+                Password = _user.Password,
+                RepeatPassword = _user.RepeatPassword,
+                Email = _profilePage.TextBoxEmail.GetAttribute(attributeName), 
+                PhoneNumber = _profilePage.TextBoxEnterPhone.GetAttribute(attributeName)
+            };
+            Assert.Equivalent(_user, actualUser);
+            _driver.Close();
         }
-
     }
 }

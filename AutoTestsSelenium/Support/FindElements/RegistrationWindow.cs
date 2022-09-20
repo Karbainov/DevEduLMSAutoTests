@@ -87,7 +87,7 @@
         {
             get
             {
-                return By.XPath($"//*[@class='sc-bczRLJ iJvUkY btn btn-fill flex-container']");
+                return By.XPath($"//*[@type='submit']");
             }
             private set { }
         }
@@ -96,7 +96,7 @@
         {
             get
             {
-                return By.XPath($"//*[@class='sc-bczRLJ kEeNDb btn btn-text flex-container']");
+                return By.XPath($"//*[@type='reset']");
             }
             private set { }
         }

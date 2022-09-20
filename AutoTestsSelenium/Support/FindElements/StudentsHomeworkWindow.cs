@@ -10,6 +10,7 @@
             }
             private set { }
         }
+
         public By XPathLinkToAnswerTB
         {
             get
@@ -18,6 +19,7 @@
             }
             private set { }
         }
+
         public By XPathSendAnswerButton
         {
             get
@@ -26,6 +28,5 @@
             }
             private set { }
         }
-
     }
 }
