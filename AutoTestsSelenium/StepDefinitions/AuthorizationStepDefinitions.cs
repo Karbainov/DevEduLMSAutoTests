@@ -13,7 +13,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [Given(@"Open login page")]
         public void GivenOpenLoginPage()
         {
-            driver = new ChromeDriver();
+            driver = SingleWebDriver.GetInstance();
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl($"https://piter-education.ru:7074/login");
             loginPage=new AuthorizationUnauthorizedPage(driver);

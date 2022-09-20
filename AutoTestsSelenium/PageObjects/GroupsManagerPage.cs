@@ -21,6 +21,10 @@
         {
             return _driver.FindElement(By.XPath($"//*[text()='{groupName}']/.."));
         }
+        public List<IWebElement> GetAllGroups()
+        {
+            return _driver.FindElements(By.XPath($"//div[@class='tab-container']")).ToList();
+        }
 
         public void ChooseGroup(string groupName)
         {

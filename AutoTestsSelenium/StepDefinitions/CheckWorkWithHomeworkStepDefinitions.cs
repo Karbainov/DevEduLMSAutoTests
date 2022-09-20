@@ -16,6 +16,7 @@ namespace AutoTestsSelenium.StepDefinitions
         private HomeworksStudentPage _homeworksStudent;
         private HomeworksTeacherPage _homeworksTeacherPage;
         private HomeworksDraftTeacherPage _homeworksDraftTeacherPage;
+        private HomeworkCreationMethodistPage _homeworkMethodist;
 
         public CheckWorkWithHomeworkStepDefinitions()
         {
@@ -29,6 +30,7 @@ namespace AutoTestsSelenium.StepDefinitions
             _homeworksStudent = new HomeworksStudentPage(_driver);
             _homeworksTeacherPage = new HomeworksTeacherPage(_driver);
             _homeworksDraftTeacherPage = new HomeworksDraftTeacherPage(_driver);
+            _homeworkMethodist = new HomeworkCreationMethodistPage(_driver);
         }
    
         [When(@"Register users with and assigned roles")]
@@ -54,7 +56,12 @@ namespace AutoTestsSelenium.StepDefinitions
         [Then(@"Methodist create homework")]
         public void ThenMethodistCreateHomework(Table table)
         {
-            _stepsBySwagger.GivenMethodistCreateNewTask(table);                    
+            _homeworkMethodist.ClickChoiceGroupNumber();
+            AddNewHomework createHomework = table.CreateInstance<AddNewHomework>();
+            _homeworkMethodist.InputNameGroup(createHomework.Name);
+            _homeworkMethodist.InputDescriptionHomework(createHomework.Description);
+            _homeworkMethodist.InputLinkHomework(createHomework.Link);
+            _homeworkMethodist.ClickButtonAttachLink();
             //TODO teacher does not see homework in saved assignments (Task 2.5)
         }
 
@@ -72,9 +79,9 @@ namespace AutoTestsSelenium.StepDefinitions
         public void ThenTeacherLaysOutTheTaskCreatedByTheMethodologist(string nameHomework)
         {
             _lessonsTeacherPage.ClickHomeworksButton();
-            _homeworksTeacherPage.ClickButtonSavedHomework();
+            _homeworksTeacherPage.ClickSavedHomeworkButton();
             _homeworksDraftTeacherPage.ClickEditHomeworkButton(nameHomework);
-            //TODO Òo task, emptiness (Task 2.5)
+            //TODO ï¿½o task, emptiness (Task 2.5)
         }    
 
         [When(@"Teacher create issuing homework")]
@@ -88,14 +95,14 @@ namespace AutoTestsSelenium.StepDefinitions
             _homeworkExtraditionTeacherPage.InputDescriptionHomework(homework.Description);
             _homeworkExtraditionTeacherPage.InputUsefulLinks(homework.Link);
             _homeworkExtraditionTeacherPage.ClickAddLink();
-            //TODO Òo task, emptiness (Task 2.5)
+            //TODO ï¿½o task, emptiness (Task 2.5)
         }
 
         [Then(@"Teacher click button publish")]
         public void ThenTeacherClickButtonPublish()
         {
             _homeworkExtraditionTeacherPage.ClickPublish();
-            //TODO Òo task, emptiness (Task 2.5)
+            //TODO ï¿½o task, emptiness (Task 2.5)
         }
 
         [When(@"Teacher see all task")]
@@ -103,7 +110,7 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             _lessonsTeacherPage.ClickAddHomeworksButton();           
             _lessonsTeacherPage.ClickExitButton();
-            //TODO Òo task, emptiness (Task 2.5)
+            //TODO ï¿½o task, emptiness (Task 2.5)
         }
 
         [When(@"Student authorization")]
@@ -132,7 +139,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenStudenAttachesALinkToTheCompletedTask(string link)
         {
             _homeworksStudent.InputLinkAnswer(link);
-            //TODO Òo task, emptiness (Task 2.5)
+            //TODO ï¿½o task, emptiness (Task 2.5)
         }      
 
         [When(@"Studen click airplane icon")]
@@ -140,7 +147,7 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             _homeworksStudent.SendAnswerButton();
             _lessonsTeacherPage.ClickExitButton();
-            //TODO Òo task, emptiness (Task 2.5)
+            //TODO ï¿½o task, emptiness (Task 2.5)
         }
 
         [When(@"Teacher checks homework")]
@@ -151,7 +158,7 @@ namespace AutoTestsSelenium.StepDefinitions
             Thread.Sleep(500);
             _lessonsTeacherPage.ChageRole(checkingModel.Role);
             _lessonsTeacherPage.ClickCheckHomeworksButton();
-            //TODO Òo task, emptiness (Task 2.5)
+            //TODO ï¿½o task, emptiness (Task 2.5)
         }
 
         [Then(@"Teacher returned homework")]
@@ -172,7 +179,7 @@ namespace AutoTestsSelenium.StepDefinitions
             _homeworksStudent.InputLinkAnswer(link);
             _homeworksStudent.SendAnswerButton();
             _lessonsTeacherPage.ClickExitButton();
-            //TODO Òo task, emptiness (Task 2.5)
+            //TODO ï¿½o task, emptiness (Task 2.5)
         }     
 
         [Then(@"Teacher accepted homework")]
