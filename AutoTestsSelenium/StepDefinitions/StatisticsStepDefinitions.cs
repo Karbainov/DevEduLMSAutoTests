@@ -1,3 +1,5 @@
+using TechTalk.SpecFlow.CommonModels;
+
 namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
@@ -90,19 +92,27 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             _homeworksTeacherPage.OpenThisPage();
             _homeworksTeacherPage.ClickGoToTaskButton(homeworkName);
-            var actualResults = _homeworksTeacherPage.StudentsResults;
-            foreach(var result in actualResults)
+            var actualResultsElements = _homeworksTeacherPage.StudentsResults;
+            var expectedResults = _studentsResults;
+            List<StudentsHomeworkResultModel> actualResults = new List<StudentsHomeworkResultModel>();
+            for(int i = 1; i <= actualResultsElements.Count; i++)
             {
-                string resultText = result.Text;
-                Assert.Contains("ss", resultText);
-                //как написать проверку????
+                string xpathName = $"//div[@class='homework-result-container']/div[@class='table-row'][{i}]/div[1]";
+                string xpathResult = $"//div[@class='homework-result-container']/div[@class='table-row'][{i}]/div[3]";
+                string studentsName = actualResultsElements[i-1].FindElement(By.XPath(xpathName)).Text;
+                string studentsResult = actualResultsElements[i-1].FindElement(By.XPath(xpathResult)).Text;
+                actualResults.Add(new StudentsHomeworkResultModel() { FullName = studentsName, Result = studentsResult });
             }
+            Assert.Equal(expectedResults, actualResults);
         }
 
         [Then(@"teacher should see students results in tab General Progress")]
         public void ThenTeacherShouldSeeStudentsResultsInTabGeneralProgress()
         {
             _generalProgressTeacher.OpenThisPage();
+            var expectedResults = _studentsResults;
+            List<StudentsHomeworkResultModel> actualResults = new List<StudentsHomeworkResultModel>();
+            
             //как написать проверку???
         }
     }
