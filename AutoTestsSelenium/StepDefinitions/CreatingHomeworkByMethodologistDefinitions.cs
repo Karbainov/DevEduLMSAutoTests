@@ -1,18 +1,14 @@
-using AutoTestsSelenium.PageObjects;
-using TechTalk.SpecFlow;
-
 namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
     public class CreatingHomeworkByMethodologistDefinitions
     {
-        private string _groupName;
         private HomeworkCreationMethodistPage _homeworkMethodist;
         private AuthorizationUnauthorizedPage _authorizationUnauthorizedPage;
         private IWebDriver _driver;
         private DBCleaner _tablesClear;
         private TasksStepDefinitions _stepsBySwagger;
- 
+        private HomeworksTeacherPage _homeworksTeacherPage;
         private HomeworkExtraditionTeacherPage _homeworkExtraditionTeacherPage;
 
         CreatingHomeworkByMethodologistDefinitions()
@@ -23,6 +19,7 @@ namespace AutoTestsSelenium.StepDefinitions
             _tablesClear = new DBCleaner();
             _stepsBySwagger = new TasksStepDefinitions();
             _homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage(_driver);
+            _homeworksTeacherPage = new HomeworksTeacherPage(_driver);
         }
 
         [When(@"Register users with roles")]
@@ -37,17 +34,13 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
             AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });
-            Thread.Sleep(500);
-            _homeworkMethodist.ChageRole(checkingModel.Role);
-            Thread.Sleep(500);
         }      
 
         [When(@"Methodist click button add task")]
         public void WhenMethodistClickButtonAddTask()
         {
-            //_homeworkMethodist.ClickHomeworksButton();
-            //_homeworkExtraditionTeacherPage.ButtonHomeworksSideBar();
-            //Thread.Sleep(1000);
+            _homeworkMethodist.ClickHomeworksButton();
+            _homeworksTeacherPage.ClickAddHomework();
         }
 
         [When(@"Methodist create draft Homework")]
@@ -100,9 +93,6 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
             AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });
-            Thread.Sleep(500);
-            _homeworkMethodist.ChageRole(checkingModel.Role);
-            Thread.Sleep(500);
         }
 
         [Then(@"Teacher click button homework assignment")]
@@ -116,7 +106,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenTeacherFillOutANewAssignmentForm(Table table)
         {
             AddNewHomework homework = table.CreateInstance<AddNewHomework>();
-            _homeworkExtraditionTeacherPage.GetNumberGroup(_groupName).Click();
+            _homeworkExtraditionTeacherPage.GetNumberGroup(homework.CourseName);
             _homeworkExtraditionTeacherPage.InputStarDate(homework.StartDate);
             _homeworkExtraditionTeacherPage.InputEndDate(homework.EndDate);
             _homeworkExtraditionTeacherPage.InputNameHomework(homework.Name);
@@ -137,7 +127,6 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
             AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });
-            Thread.Sleep(500);
             _homeworkExtraditionTeacherPage.ClickHomeworksButton();
             //TODO Homework does not appear. emptiness (Tasl 2.3)
         }

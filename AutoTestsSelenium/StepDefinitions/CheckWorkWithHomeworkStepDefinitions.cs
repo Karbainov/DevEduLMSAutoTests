@@ -75,6 +75,7 @@ namespace AutoTestsSelenium.StepDefinitions
             _homeworkMethodist.InputDescriptionHomework(createHomework.Description);
             _homeworkMethodist.InputLinkHomework(createHomework.Link);
             _homeworkMethodist.ClickButtonAttachLink();
+            _homeworkMethodist.ClickButtonSaveDraft();
             //TODO teacher does not see homework in saved assignments (Task 2.5)
         }
 

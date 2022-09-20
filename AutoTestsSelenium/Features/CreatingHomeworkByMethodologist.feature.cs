@@ -208,12 +208,14 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Teacher click button homework assignment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
+                            "CourseName",
                             "Name",
                             "Description",
                             "Link",
                             "StartDate",
                             "EndDate"});
                 table15.AddRow(new string[] {
+                            "QA Automation",
                             "ЗаданиеЗадание",
                             "сделай то то",
                             "http://fjfjf.com",
