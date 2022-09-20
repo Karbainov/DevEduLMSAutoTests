@@ -11,7 +11,7 @@ namespace AutoTestsSelenium.StepDefinitions
 
         public CancelGroupCreationStepDefinition()
         {
-            _driver = new ChromeDriver();
+            _driver = SingleWebDriver.GetInstance();
             _swaggerGroupSteps = new GroupsAPIStepDefinitions();
             _authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage(_driver);
             _groupCreationManagerPage = new GroupCreationManagerPage(_driver);
