@@ -8,7 +8,7 @@ namespace AutoTestsSelenium.StepDefinitions
         private AuthorizationUnauthorizedPage _authorizationUnauthorizedPage;
         private ProfilePage _profilePage;
         private SwaggerSignInRequest _SignInRequest;
-        private RegistrationRequest _user;
+        private RegistrationModel _user;
 
         public RegistrationStepDefinitions()
         {
@@ -29,7 +29,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [Given(@"Fill all requared fields")]
         public void GivenFillAllRequaredFields(Table table)
         {
-            _user = table.CreateInstance<RegistrationRequest>();
+            _user = table.CreateInstance<RegistrationModel>();
             _registrationPage.EnterFirstName(_user.FirstName);
             _registrationPage.EnterLastName(_user.LastName);
             _registrationPage.EnterPatronymic(_user.Patronymic);
@@ -93,7 +93,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void ThenUserShouldSeeHisActualInformation()
         {
             string attributeName = "value";
-            RegistrationRequest actualUser = new RegistrationRequest()
+            RegistrationModel actualUser = new RegistrationModel()
             {
                 LastName = _profilePage.TextBoxEnterLastName.GetAttribute(attributeName),
                 FirstName = _profilePage.TextBoxEnterFirstName.GetAttribute(attributeName),

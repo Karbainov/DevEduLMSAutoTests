@@ -244,35 +244,31 @@ this.ScenarioInitialize(scenarioInfo);
 #line 35
  testRunner.And("studen click button to the task", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
-                            "LinkToGitHub"});
-                table7.AddRow(new string[] {
-                            "https://hd.kinopoisk.ru/"});
 #line 36
- testRunner.When("studen attaches a link to the completed task", ((string)(null)), table7, "When ");
+ testRunner.When("studen attaches a link \"https://hd.kinopoisk.ru/\" to the completed task", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 39
+#line 37
  testRunner.And("studen click airplane icon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 40
+#line 38
  testRunner.And("studen click button exit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password"});
-                table8.AddRow(new string[] {
+                table7.AddRow(new string[] {
                             "vitya21@teacher.com",
                             "password"});
-#line 41
- testRunner.And("teacher checks homework", ((string)(null)), table8, "And ");
+#line 39
+ testRunner.And("teacher checks homework", ((string)(null)), table7, "And ");
 #line hidden
-#line 45
+#line 43
  testRunner.Then("teacher returned homework", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 46
+#line 44
  testRunner.And("student attached link of corrected homework", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 47
+#line 45
  testRunner.Then("teacher accepted homework", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
