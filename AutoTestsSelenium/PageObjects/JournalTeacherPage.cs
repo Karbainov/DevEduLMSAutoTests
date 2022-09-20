@@ -4,7 +4,7 @@
     {
         private const string PageUrl = $"{Urls.Host}/journal";
 
-        public JournalTeacherPage(IWebDriver driver) : base(driver)
+        public JournalTeacherPage()
         {
         }
 

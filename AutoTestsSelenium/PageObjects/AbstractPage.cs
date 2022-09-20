@@ -6,9 +6,10 @@
         public IWebElement ButtonChangeTheme => _driver.FindElement(By.XPath($"//*[@class='toggle']"));
         protected IWebDriver _driver;
         
-        public AbstractPage(IWebDriver driver)
+        public AbstractPage()
         {
-            _driver = driver;
+            _driver = SingleWebDriver.GetInstance();
+            _driver.Manage().Window.Maximize();
         }
 
         public abstract void OpenThisPage();
@@ -21,6 +22,11 @@
         public void ClickChangeThemeButton()
         {
             ButtonChangeTheme.Click();
+        }
+
+        public void RefreshPage()
+        {
+            _driver.Navigate().Refresh();
         }
     }
 }

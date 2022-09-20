@@ -9,7 +9,7 @@
         public List<IWebElement> TutorsInGroup => _driver.FindElements(By.XPath($"//*[text()='Тьютор:']/parent::div[@class='groups-list']//span[contains(text(),'')]")).ToList();
         public List<IWebElement> AllGroups => _driver.FindElements(By.XPath($"//div[@class='tab-container']")).ToList();
 
-        public GroupsManagerPage(IWebDriver driver) : base(driver)
+        public GroupsManagerPage()
         {
         }
 

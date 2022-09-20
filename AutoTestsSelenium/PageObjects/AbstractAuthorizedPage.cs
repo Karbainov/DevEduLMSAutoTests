@@ -8,7 +8,7 @@
         public IWebElement ButtonSettingsSideBar => _driver.FindElement(By.XPath($"//*[text()='Настройки']/.."));
         public IWebElement ButtonExitSideBar => _driver.FindElement(By.XPath($"//*[text()='Выйти']/ancestor::button"));
         
-        protected AbstractAuthorizedPage(IWebDriver driver) : base(driver)
+        protected AbstractAuthorizedPage()
         {
         }
         

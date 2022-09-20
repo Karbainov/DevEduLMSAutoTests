@@ -12,7 +12,7 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             _driver = SingleWebDriver.GetInstance();
             _driver.Manage().Window.Maximize();
-            _registrationPage = new RegistrationPage(_driver);
+            _registrationPage = new RegistrationPage();
             _registrationPage.OpenThisPage();
             _registrationPage.ClickRegisterButton();
         }

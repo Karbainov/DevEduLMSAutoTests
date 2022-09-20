@@ -1,8 +1,4 @@
-﻿using Docker.DotNet.Models;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
-
-namespace AutoTestsSelenium.PageObjects
+﻿namespace AutoTestsSelenium.PageObjects
 {
     public class RegistrationPage : AbstractUnauthorizedPage
     {
@@ -18,10 +14,10 @@ namespace AutoTestsSelenium.PageObjects
         public IWebElement CheckBoxConfirmRules => _driver.FindElement(By.XPath($"//*[@class='custom-checkbox']"));
         public IWebElement ButtonRegistrate => _driver.FindElement(By.XPath($"//*[@type='submit']"));
         public IWebElement ButtonCancelRegistration => _driver.FindElement(By.XPath($"//*[@type='reset']"));
-        public IWebElement ModalWindowWelcome => _driver.FindElements(By.XPath($"//*[text()='Добро пожаловать!!']")).FirstOrDefault();
+        public IWebElement ModalWindowWelcome => _driver.FindElements(By.XPath($"//*[text()='Добро пожаловать!!']")).FirstOrDefault()!;
 
 
-        public RegistrationPage(IWebDriver driver) : base(driver)
+        public RegistrationPage()
         {
            
         }

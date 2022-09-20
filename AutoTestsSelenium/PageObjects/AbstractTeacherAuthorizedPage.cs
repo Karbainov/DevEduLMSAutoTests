@@ -3,25 +3,20 @@
     public abstract class AbstractTeacherAuthorizedPage : AbstractAuthorizedPage
     {
         public IWebElement ButtonAddLessonSideBar => _driver.FindElement(By.XPath($"//*[text()='Добавить занятие']/.."));
+        public IWebElement ButtonLessonsSideBar => GetButtonLessonsSideBar();
         public IWebElement ButtonHomeworksSideBar => _driver.FindElement(By.XPath($"//*[text()='Домашние задания']/.."));
         public IWebElement ButtonAddHomewrksSideBar => _driver.FindElement(By.XPath($"//*[text()='Выдача заданий']/.."));
         public IWebElement ButtonCheckHomeworksSideBar => _driver.FindElement(By.XPath($"//*[text()='Проверка заданий']/.."));
         public IWebElement ButtonGeneralProgressSideBar => _driver.FindElement(By.XPath($"//*[text()='Общая успеваемость']/.."));
         public IWebElement ButtonJournalSideBar => _driver.FindElement(By.XPath($"//*[text()='Журнал']/.."));
 
-        protected AbstractTeacherAuthorizedPage(IWebDriver driver) : base(driver)
+        protected AbstractTeacherAuthorizedPage()
         {
-        }
-
-        public IWebElement ButtonLessonsSideBar()
-        {
-            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(0.5));
-            return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//*[text()='Занятия']/..")));
         }
 
         public void ClickLessonsButton()
         {
-            ButtonLessonsSideBar().Click();
+            ButtonLessonsSideBar.Click();
         }
         
         public void ClickAddLessonButton()
@@ -52,6 +47,12 @@
         public void ClickJournalButton()
         {
             ButtonJournalSideBar.Click();
+        }
+
+        private IWebElement GetButtonLessonsSideBar()
+        {
+            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(0.5));
+            return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//*[text()='Занятия']/..")));
         }
     }
 }

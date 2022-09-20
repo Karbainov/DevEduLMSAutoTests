@@ -5,7 +5,7 @@
         private const string PageUrl = $"{Urls.Host}/lessons";
         public List<IWebElement> TutorGroups => _driver.FindElements(By.XPath($"//*[@class='tab-container']")).ToList();
 
-        public LessonsTutorPage(IWebDriver driver) : base(driver)
+        public LessonsTutorPage()
         {
         }
 
