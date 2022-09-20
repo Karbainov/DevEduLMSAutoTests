@@ -1,8 +1,10 @@
 ﻿namespace AutoTestsSelenium.PageObjects
 {
     public class HomeworkExtraditionTeacherPage : AbstractTeacherAuthorizedPage
-    {     
+    { 
         private const string PageUrl = $"{Urls.Host}/new-homework/edit-task/";    
+        private string _groupName;
+        public IWebElement RadioButtonNumberGroup => _driver.FindElement(By.XPath($"//*[text()='{_groupName}']"));
         public IWebElement TextBoxStartDate => _driver.FindElement(By.XPath($"//*[text()='Дата выдачи задания']//input"));
         public IWebElement TextBoxEndDate => _driver.FindElement(By.XPath($"//*[text()='Срок сдачи задания']//input"));
         public IWebElement TextBoxNameHomework => _driver.FindElement(By.XPath($"//*[@placeholder='Введите название']"));

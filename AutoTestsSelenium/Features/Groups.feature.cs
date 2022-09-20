@@ -178,7 +178,7 @@ testRunner.And("Manager add student \"Isabella Abramson\" to group \"BaseSPb\" i
                             "Password",
                             "CourseName",
                             "Role"});
-                table18.AddRow(new string[] {
+                table13.AddRow(new string[] {
                             "isi@gmail.com",
                             "11345578",
                             "Базовый C#",
@@ -191,7 +191,7 @@ testRunner.Then("Authorize student in service and check group", ((string)(null))
                             "Password",
                             "CourseName",
                             "Role"});
-                table19.AddRow(new string[] {
+                table14.AddRow(new string[] {
                             "maks@gmail.com",
                             "22345678",
                             "Базовый C#",
@@ -204,13 +204,109 @@ testRunner.And("Authorize teacher in service and check group", ((string)(null)),
                             "Password",
                             "CourseName",
                             "Role"});
-                table20.AddRow(new string[] {
+                table15.AddRow(new string[] {
                             "elisey@gmail.com",
                             "13345678",
                             "Базовый C#",
                             "Tutor"});
 #line 22
 testRunner.And("Authorize tutor in service and check group", ((string)(null)), table20, "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Manager cancel creation of group")]
+        [Xunit.TraitAttribute("FeatureTitle", "Groups")]
+        [Xunit.TraitAttribute("Description", "Manager cancel creation of group")]
+        [Xunit.TraitAttribute("Category", "manager")]
+        [Xunit.TraitAttribute("Category", "group")]
+        public void ManagerCancelCreationOfGroup()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "manager",
+                    "group"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Manager cancel creation of group", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 27
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "Patronymic",
+                            "Email",
+                            "Username",
+                            "Password",
+                            "City",
+                            "BirthDate",
+                            "GitHubAccount",
+                            "PhoneNumber",
+                            "Role"});
+                table16.AddRow(new string[] {
+                            "Maksim",
+                            "Karbainov",
+                            "string",
+                            "maks@gmail.com",
+                            "Maksim",
+                            "22345678",
+                            "SaintPetersburg",
+                            "18.05.1995",
+                            "string",
+                            "89521496531",
+                            "Teacher"});
+                table16.AddRow(new string[] {
+                            "Elisey",
+                            "Kakoyto",
+                            "string",
+                            "elisey@gmail.com",
+                            "Elisey",
+                            "13345678",
+                            "SaintPetersburg",
+                            "07.10.1996",
+                            "string",
+                            "89518963148",
+                            "Tutor"});
+#line 28
+ testRunner.Given("Registrate users with roles", ((string)(null)), table16, "Given ");
+#line hidden
+#line 32
+ testRunner.Given("Open a browser and open login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Email",
+                            "Password"});
+                table17.AddRow(new string[] {
+                            "marina@example.com",
+                            "marinamarina"});
+#line 33
+ testRunner.Given("SignIn as manager", ((string)(null)), table17, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
+                            "GroupName",
+                            "CourseName",
+                            "FullNameOfTeacher",
+                            "FullNameOfTutor"});
+                table18.AddRow(new string[] {
+                            "Some group",
+                            "Backend Java",
+                            "Maksim Karbainov",
+                            "Elisey Kakoyto"});
+#line 36
+ testRunner.And("Start create a group", ((string)(null)), table18, "And ");
+#line hidden
+#line 39
+ testRunner.When("Cancel creation", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 40
+ testRunner.Then("Group \"Some group\" do not create", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
