@@ -242,7 +242,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Lists",
                             "Make your own lists",
                             "https://google.com",
-                            "20.09.2022",
+                            "21.09.2022",
                             "09.10.2022"});
 #line 25
  testRunner.When("teacher create new homework for group \"Group 1\"", ((string)(null)), table23, "When ");
@@ -290,7 +290,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("Teacher should see students results in homework \"Lists\" page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 42
- testRunner.And("teacher should see students results in tab General Progress", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("teacher should see students results to homework \"Lists\" in tab General Progress", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

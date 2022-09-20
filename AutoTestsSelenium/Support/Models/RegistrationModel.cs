@@ -1,6 +1,6 @@
 ﻿namespace AutoTestsSelenium.Support.Models
 {
-    public class RegistrationRequest
+    public class RegistrationModel
     {
         public string LastName { get; set; }
 

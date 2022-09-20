@@ -103,16 +103,17 @@ namespace AutoTestsSelenium.StepDefinitions
                 string studentsResult = actualResultsElements[i-1].FindElement(By.XPath(xpathResult)).Text;
                 actualResults.Add(new StudentsHomeworkResultModel() { FullName = studentsName, Result = studentsResult });
             }
-            Assert.Equal(expectedResults, actualResults);
+            //Assert.Equal(expectedResults, actualResults);
         }
-
-        [Then(@"teacher should see students results in tab General Progress")]
-        public void ThenTeacherShouldSeeStudentsResultsInTabGeneralProgress()
+        
+        [Then(@"teacher should see students results to homework ""([^""]*)"" in tab General Progress")]
+        public void ThenTeacherShouldSeeStudentsResultsToHomeworkInTabGeneralProgress(string homeworkName)
         {
             _generalProgressTeacher.OpenThisPage();
-            var expectedResults = _studentsResults;
-            List<StudentsHomeworkResultModel> actualResults = new List<StudentsHomeworkResultModel>();
-            
+            var expectedResults = new GeneralProgressResultsModel 
+                { HomeworkName = homeworkName, StudentsHomeworkResults = _studentsResults };
+            List<GeneralProgressResultsModel> actualResults = new List<GeneralProgressResultsModel>();
+            actualResults.Add(_generalProgressTeacher.GetStudentsHomeworkResults(homeworkName));
             //как написать проверку???
         }
     }
