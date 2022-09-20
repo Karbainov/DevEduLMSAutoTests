@@ -16,6 +16,12 @@
             _cleaner.ClearDB();
         }
 
+        [BeforeScenario(new string[] {"@registration"})]
+        public void BeforeScenarioWithTag()
+        {
+            _tablesClear.ClearDB();
+        }
+
         [AfterScenario]
         public void AfterScenario()
         {

@@ -1,8 +1,4 @@
-﻿using Docker.DotNet.Models;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
-
-namespace AutoTestsSelenium.PageObjects
+﻿namespace AutoTestsSelenium.PageObjects
 {
     public class RegistrationPage : AbstractUnauthorizedPage
     {

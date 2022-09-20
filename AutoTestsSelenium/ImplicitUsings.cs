@@ -14,3 +14,5 @@ global using DevEduLMSAutoTests.API.Support.Models.Request;
 global using DevEduLMSAutoTests.API.Support;
 global using OpenQA.Selenium.Support.UI;
 global using SeleniumExtras.WaitHelpers;
+
+[assembly: Xunit.CollectionBehavior(DisableTestParallelization = true)]
