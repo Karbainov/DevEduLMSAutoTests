@@ -1,7 +1,4 @@
-﻿using OpenQA.Selenium.Support.UI;
-using SeleniumExtras.WaitHelpers;
-
-namespace AutoTestsSelenium.PageObjects
+﻿namespace AutoTestsSelenium.PageObjects
 {
     public class GroupCreationManagerPage : AbstractManagerAuthorizedPage
     {
