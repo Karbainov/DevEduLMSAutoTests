@@ -166,10 +166,12 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Methodist click button add task", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
+                            "CourseName",
                             "Name",
                             "Description",
                             "Link"});
                 table13.AddRow(new string[] {
+                            "QA Automation",
                             "ЗаданиеЗадание",
                             "string",
                             "http://fjfjf.com"});

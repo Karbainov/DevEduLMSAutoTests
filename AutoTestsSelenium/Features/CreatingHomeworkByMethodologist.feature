@@ -14,8 +14,8 @@ Scenario:  Creating an assignment by a methodologist for students
 	| lera21@methodist.com | password     | Methodist   |
 	And Methodist click button add task
 	When Methodist create draft Homework
-	|Name            | Description | Link             |
-	| ЗаданиеЗадание | string      |http://fjfjf.com  |
+	| CourseName   | Name           | Description | Link             |
+	| QA Automation| ЗаданиеЗадание | string      | http://fjfjf.com |
 	Then Methodist click button save as draft
 	When Methodist see all created homeworks
 	And Methodist click link edit

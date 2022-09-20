@@ -7,8 +7,6 @@ namespace AutoTestsSelenium.StepDefinitions
     {
         private TasksStepDefinitions _stepsBySwagger;
         private IWebDriver _driver;
-        private string _groupName;
-        private TeachersHomeworkWindow _teachersHomeworkWindowElements;
         private DBCleaner _tablesClear;
         private AuthorizationUnauthorizedPage _authorizationUnauthorizedPage;
         private HomeworkExtraditionTeacherPage _homeworkExtraditionTeacherPage;
@@ -21,7 +19,6 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             _stepsBySwagger = new TasksStepDefinitions();          
             _driver = SingleWebDriver.GetInstance();
-            _teachersHomeworkWindowElements = new TeachersHomeworkWindow();
             _tablesClear = new DBCleaner();
             _authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage(_driver);
             _homeworkExtraditionTeacherPage= new HomeworkExtraditionTeacherPage(_driver);
@@ -41,8 +38,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Manager create new group")]
         public void WhenManagerCreateNewGroup(Table table)
         {           
-            _groupName = _stepsBySwagger.GivenManagerCreateNewGroup(table);
-            _teachersHomeworkWindowElements._groupName = _groupName;
+            _stepsBySwagger.GivenManagerCreateNewGroup(table);
         }
 
         [When(@"Manager add users to group")]
@@ -67,14 +63,14 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Methodist click button add homework")]
         public void WhenMethodistClickButtonAddHomework()
         {
-            _homeworksTeacherPage.ClickAddHomework();
+            _homeworksTeacherPage.ClickAddHomework();        
         }
 
         [Then(@"Methodist create homework")]
         public void ThenMethodistCreateHomework(Table table)
-        {
-            _homeworkMethodist.ClickChoiceGroupNumber();
+        {        
             AddNewHomework createHomework = table.CreateInstance<AddNewHomework>();
+            _homeworkMethodist.ClickChoiceGroupNumber(createHomework.CourseName);
             _homeworkMethodist.InputNameGroup(createHomework.Name);
             _homeworkMethodist.InputDescriptionHomework(createHomework.Description);
             _homeworkMethodist.InputLinkHomework(createHomework.Link);
@@ -102,7 +98,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenTeacherCreateIssuingHomework(Table table)
         {
             AddNewHomework homework = table.CreateInstance<AddNewHomework>();
-            _homeworkExtraditionTeacherPage.ClickNumberGroupRadiobox(_groupName);
+            _homeworkExtraditionTeacherPage.ClickNumberGroupRadiobox(homework.CourseName);
             _homeworkExtraditionTeacherPage.InputStarDate(homework.StartDate);
             _homeworkExtraditionTeacherPage.InputEndDate(homework.EndDate);
             _homeworkExtraditionTeacherPage.InputNameHomework(homework.Name);

@@ -15,21 +15,15 @@ namespace AutoTestsSelenium.PageObjects
         public HomeworkCreationMethodistPage(IWebDriver driver) : base(driver)
         {
         }
-
-        private IWebElement GetGroupNumberQA()
-        {
-            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(1));
-            return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//*[text()='QA Automation']")));
-        }
-
+        
         public override void OpenThisPage()
         {
             _driver.Navigate().GoToUrl(PageUrl);
         }
 
-        public void ClickChoiceGroupNumber()
+        public void ClickChoiceGroupNumber(string groupName)
         {
-            GetChoiceGroupNumberButton().Click();
+            GetChoiceGroupNumberButton(groupName).Click();
         }
 
         public void InputNameGroup(string nameHomework)
@@ -57,10 +51,10 @@ namespace AutoTestsSelenium.PageObjects
             ButtonSaveDraft.Click();
         }
 
-        private IWebElement GetChoiceGroupNumberButton()
+        private IWebElement GetChoiceGroupNumberButton(string groupName)
         {
-            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(1));
-            return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"[text()='QA Automation']")));
+            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(4));
+            return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//*[text()='{groupName}']/ancestor::*[@class='radio-button']")));
         }
     }
 }

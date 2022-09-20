@@ -53,8 +53,8 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Methodist create draft Homework")]
         public void WhenMethodistCreateDraftHomework(Table table)
         {
-            _homeworkMethodist.ClickChoiceGroupNumber();
             AddNewHomework createHomework = table.CreateInstance<AddNewHomework>();
+            _homeworkMethodist.ClickChoiceGroupNumber(createHomework.CourseName);
             _homeworkMethodist.InputNameGroup(createHomework.Name);
             _homeworkMethodist.InputDescriptionHomework(createHomework.Description);
             _homeworkMethodist.InputLinkHomework(createHomework.Link);
