@@ -1,4 +1,6 @@
-﻿namespace AutoTestsSelenium.PageObjects
+﻿using OpenQA.Selenium.Support.UI;
+
+namespace AutoTestsSelenium.PageObjects
 {
     public class AuthorizationUnauthorizedPage:AbstractUnauthorizedPage
     {
@@ -25,10 +27,13 @@
         {
             TextBoxPassword.Clear();
             TextBoxPassword.SendKeys(password);
-        }
+        }       
+
         public void ClickEnterButton()
         {
             ButtonEnter.Click();
+            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(1));
+            webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//*[text()='Уведомления']/..")));
         }
     }
 }

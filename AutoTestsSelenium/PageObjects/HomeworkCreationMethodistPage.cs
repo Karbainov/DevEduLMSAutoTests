@@ -1,12 +1,11 @@
-﻿using System.Reflection.Metadata;
+﻿using OpenQA.Selenium.Support.UI;
+using System.Reflection.Metadata;
 
 namespace AutoTestsSelenium.PageObjects
 {
     public class HomeworkCreationMethodistPage : AbstractMethodistAuthorizedPage
     {
         public const string PageUrl = $"{Urls.Host}/new-homework";
-
-        public IWebElement GroupNumberQA => _driver.FindElement(By.XPath("//span[text()='QA Automation']"));
         public IWebElement NameHomework => _driver.FindElement(By.XPath("//input[@class='form-input']"));
         public IWebElement DescriptionHomework => _driver.FindElement(By.XPath("//textarea[@class='form-input']"));
         public IWebElement LinkHomework => _driver.FindElement(By.XPath("//textarea[@class='form-input_link form-input']"));
@@ -17,16 +16,20 @@ namespace AutoTestsSelenium.PageObjects
         {
         }
 
+        private IWebElement GetGroupNumberQA()
+        {
+            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(1));
+            return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//*[text()='QA Automation']")));
+        }
+
         public override void OpenThisPage()
         {
             _driver.Navigate().GoToUrl(PageUrl);
         }
 
-
-
         public void ClickChoiceGroupNumber()
         {
-            GroupNumberQA.Click();
+            GetChoiceGroupNumberButton().Click();
         }
 
         public void InputNameGroup(string nameHomework)
@@ -52,6 +55,12 @@ namespace AutoTestsSelenium.PageObjects
         public void ClickButtonSaveDraft()
         {
             ButtonSaveDraft.Click();
+        }
+
+        private IWebElement GetChoiceGroupNumberButton()
+        {
+            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(1));
+            return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"[text()='QA Automation']")));
         }
     }
 }

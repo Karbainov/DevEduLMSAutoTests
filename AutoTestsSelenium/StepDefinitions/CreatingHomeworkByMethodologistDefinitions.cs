@@ -17,7 +17,7 @@ namespace AutoTestsSelenium.StepDefinitions
 
         CreatingHomeworkByMethodologistDefinitions()
         {
-            _driver = new ChromeDriver();
+            _driver = SingleWebDriver.GetInstance();
             _authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage(_driver);
             _homeworkMethodist = new HomeworkCreationMethodistPage(_driver);
             _tablesClear = new DBCleaner();
