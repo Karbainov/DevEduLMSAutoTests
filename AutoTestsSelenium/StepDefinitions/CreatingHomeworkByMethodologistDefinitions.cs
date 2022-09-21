@@ -1,31 +1,20 @@
 namespace AutoTestsSelenium.StepDefinitions
 {
-    [Binding]
+    [Binding] 
     public class CreatingHomeworkByMethodologistDefinitions
     {
         private HomeworkCreationMethodistPage _homeworkMethodist;
         private AuthorizationUnauthorizedPage _authorizationUnauthorizedPage;
         private IWebDriver _driver;
-        private DBCleaner _tablesClear;
         private TasksStepDefinitions _stepsBySwagger;
         private HomeworksTeacherPage _homeworksTeacherPage;
         private HomeworkExtraditionTeacherPage _homeworkExtraditionTeacherPage;
 
-        CreatingHomeworkByMethodologistDefinitions()
-        {
-            _driver = SingleWebDriver.GetInstance();
-            _authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage(_driver);
-            _homeworkMethodist = new HomeworkCreationMethodistPage(_driver);
-            _tablesClear = new DBCleaner();
-            _stepsBySwagger = new TasksStepDefinitions();
-            _homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage(_driver);
-            _homeworksTeacherPage = new HomeworksTeacherPage(_driver);
-        }
-
         [When(@"Register users with roles")]
         public void WhenRegisterUsersWithRoles(Table table)
         {
-            _tablesClear.ClearDB();
+            _driver = SingleWebDriver.GetInstance();
+            _stepsBySwagger = new TasksStepDefinitions();
             _stepsBySwagger.GivenRegisterNewUsersWithRoles(table);
         }
 
@@ -39,7 +28,9 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Methodist click button add task")]
         public void WhenMethodistClickButtonAddTask()
         {
+            _homeworkMethodist = new HomeworkCreationMethodistPage(_driver);
             _homeworkMethodist.ClickHomeworksButton();
+            _homeworksTeacherPage = new HomeworksTeacherPage(_driver);
             _homeworksTeacherPage.ClickAddHomework();
         }
 
@@ -105,6 +96,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Teacher fill out a new assignment form")]
         public void WhenTeacherFillOutANewAssignmentForm(Table table)
         {
+            _homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage(_driver);
             AddNewHomework homework = table.CreateInstance<AddNewHomework>();
             _homeworkExtraditionTeacherPage.GetNumberGroup(homework.CourseName);
             _homeworkExtraditionTeacherPage.InputStarDate(homework.StartDate);
@@ -134,6 +126,7 @@ namespace AutoTestsSelenium.StepDefinitions
         private void AuthorizeUser(SwaggerSignInRequest user)
         {
             _driver.Manage().Window.Maximize();
+            _authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage(_driver);
             _authorizationUnauthorizedPage.OpenThisPage();
             _authorizationUnauthorizedPage.EnterEmail(user.Email);
             _authorizationUnauthorizedPage.EnterPassword(user.Password);
