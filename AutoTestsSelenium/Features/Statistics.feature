@@ -20,10 +20,10 @@ Scenario: Teacher chek students homeworks results
 	| Ilya3     | Baikov     | Student |
 	| Anton     | Efremenkov | Teacher |
 	When Open DevEdu web site
-	When Authorize as a user
+	And Authorize user
 	| Email             | Password |
 	| anton@teacher.com | password |
-	When teacher create new homework for group "Group 1"
+	And teacher create new homework for group "Group 1"
 	| Name  | Description         | Link               | StartDate  | EndDate    |
 	| Lists | Make your own lists | https://google.com | 21.09.2022 | 09.10.2022 |
 	And Students did their homework "Lists"
@@ -31,7 +31,7 @@ Scenario: Teacher chek students homeworks results
 	| ilya1@student.com | password |
 	| ilya2@student.com | password |
 	| ilya3@student.com | password |
-	And Authorize as a user
+	And Authorize user
 	| Email             | Password |
 	| anton@teacher.com | password |
 	And Teacher rate homeworks
@@ -40,4 +40,12 @@ Scenario: Teacher chek students homeworks results
 	| Ilya2 Baikov | Сдано  |
 	| Ilya3 Baikov | Сдано  |
 	Then Teacher should see students results in homework "Lists" page
+	| FullName     | Result |
+	| Ilya1 Baikov | Сдано  |
+	| Ilya2 Baikov | Сдано  |
+	| Ilya3 Baikov | Сдано  |
 	And teacher should see students results to homework "Lists" in tab General Progress
+	| FullName     | Result |
+	| Ilya1 Baikov | Сдано  |
+	| Ilya2 Baikov | Сдано  |
+	| Ilya3 Baikov | Сдано  |
