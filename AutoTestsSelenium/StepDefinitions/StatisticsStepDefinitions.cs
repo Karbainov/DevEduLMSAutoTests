@@ -38,7 +38,13 @@ namespace AutoTestsSelenium.StepDefinitions
             homeworkCreationPage.InputLink(homework.Link);
             homeworkCreationPage.ClickAddLinkButton();
             homeworkCreationPage.ClickPublishButton();
-            homeworkCreationPage.ClickExitButton();
+        }
+
+        [When(@"User exit")]
+        public void WhenUserExit()
+        {
+            var page = new HomeworkCreationTeacherPage(_driver);
+            page.ClickExitButton();
         }
 
         [When(@"Students did their homework ""([^""]*)""")]
@@ -71,9 +77,8 @@ namespace AutoTestsSelenium.StepDefinitions
             homeworkCheckingPage.OpenThisPage();
             foreach(var result in studentsResults)
             {
-
-            }
             //TODO: check homework page is empty now
+            }
         }
 
         [Then(@"Teacher should see students results in homework ""([^""]*)"" page")]
