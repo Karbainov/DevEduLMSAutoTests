@@ -6,16 +6,19 @@ namespace AutoTestsSelenium.StepDefinitions
     [Binding]
     public class SortingInTheOverallProgressTabStepDefinitions
     {
+        private TasksStepDefinitions _stepsBySwagger;
+
         [Given(@"Register new users with roles")]
         public void GivenRegisterNewUsersWithRoles(Table table)
         {
-            throw new PendingStepException();
+            _stepsBySwagger = new TasksStepDefinitions();
+            _stepsBySwagger.GivenRegisterNewUsersWithRoles(table);
         }
 
         [Given(@"Manager create new group")]
         public void GivenManagerCreateNewGroup(Table table)
         {
-            throw new PendingStepException();
+            _stepsBySwagger.GivenManagerCreateNewGroup(table);
         }
 
         [Given(@"Manager add users to group")]
