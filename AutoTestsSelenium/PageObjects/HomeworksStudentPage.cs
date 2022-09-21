@@ -7,7 +7,9 @@ namespace AutoTestsSelenium.PageObjects
     {
         private const string PageUrl = $"{Urls.Host}/homeworks";
         public IWebElement AnswerButton => _driver.FindElement(By.XPath($"//button[@class='button-fly']"));
- 
+        public IWebElement IntupLinkTextbox => GetIntupLinkTextbox();
+        public IWebElement ToTaskButton => GetToTask();
+
         public HomeworksStudentPage(IWebDriver driver) : base(driver)
         {
         }

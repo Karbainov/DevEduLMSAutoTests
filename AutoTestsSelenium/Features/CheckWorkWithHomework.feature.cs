@@ -222,12 +222,14 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("Teacher lays out the task \"ЗаданиеЗадание\" created by the methodologist", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
                 TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                            "CourseName",
                             "Name",
                             "Description",
                             "Link",
                             "StartDate",
                             "EndDate"});
                 table6.AddRow(new string[] {
+                            "QA Automation",
                             "ЗаданиеЗадание",
                             "сделай то то",
                             "http://fjfjf.com",
