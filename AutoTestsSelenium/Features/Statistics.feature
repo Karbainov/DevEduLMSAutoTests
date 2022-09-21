@@ -1,5 +1,6 @@
 ﻿Feature: Statistics
 
+Information about student attendance, results of homeworks
 
 @statistics @teacher @homework
 Scenario: Teacher chek students homeworks results
@@ -9,7 +10,6 @@ Scenario: Teacher chek students homeworks results
 	| Ilya2     | Baikov     | string     | ilya2@student.com | ilya2    | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student |
 	| Ilya3     | Baikov     | string     | ilya3@student.com | ilya3    | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student |
 	| Anton     | Efremenkov | string     | anton@teacher.com | anton1   | password | SaintPetersburg | 03.03.1994 | string        | 89995554433 | Teacher |
-	| AntonTut     | Efremenkov | string     | anton2@teacher.com | anton2   | password | SaintPetersburg | 03.03.1994 | string        | 89995554433 | Tutor |
 	And Admin create new groups
 	| Name    | CourseName | GroupStatusId | StartDate  | EndDate    | Timetable | PaymentPerMonth | PaymentsCount |
 	| Group 1 | Базовый C# | Forming       | 26.08.2022 | 26.08.2023 | string    | 5000            | 10            |
@@ -19,7 +19,8 @@ Scenario: Teacher chek students homeworks results
 	| Ilya2     | Baikov     | Student |
 	| Ilya3     | Baikov     | Student |
 	| Anton     | Efremenkov | Teacher |
-	When Authorize as a teacher
+	When Open DevEdu web site
+	When Authorize as a user
 	| Email             | Password |
 	| anton@teacher.com | password |
 	When teacher create new homework for group "Group 1"
@@ -30,7 +31,7 @@ Scenario: Teacher chek students homeworks results
 	| ilya1@student.com | password |
 	| ilya2@student.com | password |
 	| ilya3@student.com | password |
-	And Authorize as a teacher
+	And Authorize as a user
 	| Email             | Password |
 	| anton@teacher.com | password |
 	And Teacher rate homeworks
