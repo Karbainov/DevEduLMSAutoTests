@@ -12,7 +12,6 @@ namespace AutoTestsSelenium.StepDefinitions
         private IWebDriver _driver;
         private DBCleaner _tablesClear;
         private TasksStepDefinitions _stepsBySwagger;
- 
         private HomeworkExtraditionTeacherPage _homeworkExtraditionTeacherPage;
 
         CreatingHomeworkByMethodologistDefinitions()

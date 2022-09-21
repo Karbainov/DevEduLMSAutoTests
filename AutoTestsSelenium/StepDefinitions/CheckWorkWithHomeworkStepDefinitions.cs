@@ -1,5 +1,3 @@
-using FluentAssertions.Equivalency.Tracing;
-
 namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
@@ -7,31 +5,24 @@ namespace AutoTestsSelenium.StepDefinitions
     {
         private TasksStepDefinitions _stepsBySwagger;
         private IWebDriver _driver;
-        private DBCleaner _tablesClear;
         private AuthorizationUnauthorizedPage _authorizationUnauthorizedPage;
         private HomeworkExtraditionTeacherPage _homeworkExtraditionTeacherPage;
-        private HomeworksStudentPage _homeworksStudent;
+        private HomeworksStudentPage _homeworksStudentPage;
         private HomeworksTeacherPage _homeworksTeacherPage;
         private HomeworksDraftTeacherPage _homeworksDraftTeacherPage;
-        private HomeworkCreationMethodistPage _homeworkMethodist;
-
-        public CheckWorkWithHomeworkStepDefinitions()
-        {
-            _stepsBySwagger = new TasksStepDefinitions();          
-            _driver = SingleWebDriver.GetInstance();
-            _tablesClear = new DBCleaner();
-            _authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage(_driver);
-            _homeworkExtraditionTeacherPage= new HomeworkExtraditionTeacherPage(_driver);
-            _homeworksStudent = new HomeworksStudentPage(_driver);
-            _homeworksTeacherPage = new HomeworksTeacherPage(_driver);
-            _homeworksDraftTeacherPage = new HomeworksDraftTeacherPage(_driver);
-            _homeworkMethodist = new HomeworkCreationMethodistPage(_driver);
-        }
+        private HomeworkCreationMethodistPage _homeworkMethodist;      
    
         [When(@"Register users")]
         public void WhenRegisterUsersWithAndAssignedRoles(Table table)
         {
-            _tablesClear.ClearDB();
+            _stepsBySwagger = new TasksStepDefinitions();          
+            _driver = SingleWebDriver.GetInstance();
+            _authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage(_driver);
+            _homeworkExtraditionTeacherPage= new HomeworkExtraditionTeacherPage(_driver);
+            _homeworksStudentPage = new HomeworksStudentPage(_driver);
+            _homeworksTeacherPage = new HomeworksTeacherPage(_driver);
+            _homeworksDraftTeacherPage = new HomeworksDraftTeacherPage(_driver);
+            _homeworkMethodist = new HomeworkCreationMethodistPage(_driver);
             _stepsBySwagger.GivenRegisterNewUsersWithRoles(table);          
         }
 
@@ -139,21 +130,20 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Studen click button to the task")]
         public void WhenStudenClickButtonToTheTask()
         {
-            _homeworksStudent.GoToTaskButton();
+            _homeworksStudentPage.GoToTaskButton();
         }
 
         [When(@"Studen attaches a link ""([^""]*)"" to the completed task")]
         public void WhenStudenAttachesALinkToTheCompletedTask(string link)
         {
-            Thread.Sleep(500);
-            _homeworksStudent.InputLinkAnswer(link);
+            _homeworksStudentPage.InputLinkAnswer(link);
             //TODO �o task, emptiness (Task 2.5)
         }      
 
         [When(@"Studen click airplane icon")]
         public void WhenStudenClickAirplaneIcon()
         {
-            _homeworksStudent.SendAnswerButton();
+            _homeworksStudentPage.SendAnswerButton();
             _homeworksTeacherPage.ClickExitButton();
             //TODO �o task, emptiness (Task 2.5)
         }
@@ -180,9 +170,9 @@ namespace AutoTestsSelenium.StepDefinitions
             CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
             AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });
             _homeworksTeacherPage.ClickHomeworksButton();
-            _homeworksStudent.GoToTaskButton();
-            _homeworksStudent.InputLinkAnswer(link);
-            _homeworksStudent.SendAnswerButton();
+            _homeworksStudentPage.GoToTaskButton();
+            _homeworksStudentPage.InputLinkAnswer(link);
+            _homeworksStudentPage.SendAnswerButton();
             _homeworksTeacherPage.ClickExitButton();
             //TODO �o task, emptiness (Task 2.5)
         }     
