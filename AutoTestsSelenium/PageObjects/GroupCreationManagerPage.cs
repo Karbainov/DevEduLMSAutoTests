@@ -13,12 +13,7 @@ namespace AutoTestsSelenium.PageObjects
 
         public GroupCreationManagerPage()
         {
-        public GroupCreationManagerPage()
-        {
         }
-
-        public override void OpenThisPage()
-        {
 
         public override void OpenThisPage()
         {
