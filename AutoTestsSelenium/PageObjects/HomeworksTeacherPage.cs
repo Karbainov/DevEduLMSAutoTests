@@ -1,11 +1,10 @@
 ﻿namespace AutoTestsSelenium.PageObjects
 {
-    public class LessonsTeacherPage : AbstractTeacherAuthorizedPage
+    public class HomeworksTeacherPage : AbstractTeacherAuthorizedPage
     {
-        private const string PageUrl = $"{Urls.Host}/lessons";
-        public List<IWebElement> TeacherGroups => _driver.FindElements(By.XPath($"//*[@class='tab-container']")).ToList();
-
-        public LessonsTeacherPage()
+        private const string PageUrl = $"{Urls.Host}/homeworks";
+        
+        public HomeworksTeacherPage()
         {
         }
 

@@ -105,7 +105,6 @@ namespace AutoTestsSelenium.StepDefinitions
                 PhoneNumber = _profilePage.TextBoxEnterPhone.GetAttribute(attributeName)
             };
             Assert.Equivalent(_user, actualUser);
-            _driver.Close();
         }
     }
 }

@@ -9,7 +9,7 @@ namespace AutoTestsSelenium.PageObjects
         public IWebElement TextBoxPassword => _driver.FindElement(By.XPath($"//*[@name='password']"));
         public IWebElement ButtonEnter => _driver.FindElement(By.XPath("//button[text()='Войти']"));
         
-        public AuthorizationUnauthorizedPage(IWebDriver driver):base(driver)
+        public AuthorizationUnauthorizedPage()
         {
         }
 

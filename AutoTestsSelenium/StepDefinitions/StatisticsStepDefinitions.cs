@@ -19,7 +19,6 @@ namespace AutoTestsSelenium.StepDefinitions
 
         public StatisticsStepDefinitions()
         {
-            _driver = new ChromeDriver();
             _stepsBySwagger = new TasksStepDefinitions();
             _studensSignIn = new List<SwaggerSignInRequest>();
             _driver = SingleWebDriver.GetInstance();
@@ -175,7 +174,6 @@ namespace AutoTestsSelenium.StepDefinitions
             actualDeclinedHomework =_driver.FindElements(_generalProgressElements.ByXpathDecline).Count;
             //Assert.Equal(expectedPassedHomework, actualPassedHomework);
             //Assert.Equal(expectedDeclinedHomework, actualDeclinedHomework);
-            _driver.Close();
             _tablesClear.ClearDB();
         }
     }

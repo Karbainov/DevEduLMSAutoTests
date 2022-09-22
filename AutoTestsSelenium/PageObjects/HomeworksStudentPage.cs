@@ -10,7 +10,7 @@ namespace AutoTestsSelenium.PageObjects
         public IWebElement IntupLinkTextbox => GetIntupLinkTextbox();
         public IWebElement ToTaskButton => GetToTask();
 
-        public HomeworksStudentPage(IWebDriver driver) : base(driver)
+        public HomeworksStudentPage()
         {
         }
 
