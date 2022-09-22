@@ -1,4 +1,4 @@
-﻿namespace AutoTestsSelenium.PageObjects
+namespace AutoTestsSelenium.PageObjects
 {
     public class GroupCreationManagerPage : AbstractManagerAuthorizedPage
     {
@@ -13,7 +13,12 @@
 
         public GroupCreationManagerPage()
         {
+        public GroupCreationManagerPage()
+        {
         }
+
+        public override void OpenThisPage()
+        {
 
         public override void OpenThisPage()
         {
@@ -55,28 +60,4 @@
         public void ChooseTeacher(string fullNameOfTeacher)
         {
             GetDesiredTeacherByName(fullNameOfTeacher).Click();
-        }
-        
-        public IWebElement GetDesiredTutorByName(string fullNameOfTutor)
-        {
-            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(0.5));
-            return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//*[text()='{fullNameOfTutor}']/..")));
-        }
-
-        public void ChooseTutor(string fullNameOfTutor)
-        {
-            GetDesiredTutorByName(fullNameOfTutor).Click();
-        }
-
-        public void ClickDesiredCourseByName(string courseName)
-        {
-            GetDesiredCourseByName(courseName).Click();
-        }
-
-        private IWebElement GetDesiredCourseByName(string courseName)
-        {
-            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(1));
-            return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//li[text()='{courseName}']")));
-        }
-    }
-}
+        }
