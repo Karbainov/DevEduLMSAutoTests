@@ -14,7 +14,7 @@
         public IWebElement TextBoxEnterBirthDate => _driver.FindElement(By.XPath($"//*[@class='form-control']"));
         public IWebElement ButtonSave => _driver.FindElement(By.XPath($"//button[@class='sc-bczRLJ iJvUkY btn btn-fill flex-container']"));
 
-        public ProfilePage(IWebDriver driver) : base(driver)
+        public ProfilePage()
         {
         }
 
