@@ -4,7 +4,7 @@
     {
         private string PageUrl = $"{Urls.Host}/check-homework";
 
-        public HomeworksCheckingTeacherPage(IWebDriver driver) : base(driver)
+        public HomeworksCheckingTeacherPage() : base()
         {
         }
 

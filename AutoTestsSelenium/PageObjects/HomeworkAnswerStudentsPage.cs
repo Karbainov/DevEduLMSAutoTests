@@ -6,7 +6,7 @@
         public IWebElement TextBoxLinkToAnswer => GetTextBoxLinkToAnswer();
         public IWebElement ButtonSendAnswer => _driver.FindElement(By.XPath($"//button[@class='button-fly']"));
 
-        public HomeworkAnswerStudentsPage(IWebDriver driver) : base(driver)
+        public HomeworkAnswerStudentsPage() : base()
         {
         }
 

@@ -22,7 +22,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void GivenFillAllRequaredFields(Table table)
         {
             RegistrationPage registrationPage = new RegistrationPage();
-            _user = table.CreateInstance<RegistrationRequest>();
+            _user = table.CreateInstance<RegistrationModel>();
             registrationPage.EnterFirstName(_user.FirstName);
             registrationPage.EnterLastName(_user.LastName);
             registrationPage.EnterPatronymic(_user.Patronymic);

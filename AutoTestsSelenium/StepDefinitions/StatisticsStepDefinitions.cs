@@ -17,7 +17,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenAuthorizeAsAUser(Table table)
         {
             SwaggerSignInRequest signIn = table.CreateInstance<SwaggerSignInRequest>();
-            var authorizationPage = new AuthorizationUnauthorizedPage(_driver);
+            var authorizationPage = new AuthorizationUnauthorizedPage();
             authorizationPage.OpenThisPage();
             authorizationPage.EnterEmail(signIn.Email);
             authorizationPage.EnterPassword(signIn.Password);
@@ -28,7 +28,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenTeacherCreateNewHomeworkForGroup(string groupName, Table table)
         {
             AddNewHomework homework = table.CreateInstance<AddNewHomework>();
-            var homeworkCreationPage = new HomeworkCreationTeacherPage(_driver);
+            var homeworkCreationPage = new HomeworkCreationTeacherPage();
             homeworkCreationPage.ClickAddHomeworksButton();
             homeworkCreationPage.ClickRadioButtonGroupName(groupName);
             homeworkCreationPage.InputStarDate(homework.StartDate);
@@ -43,16 +43,16 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"User exit")]
         public void WhenUserExit()
         {
-            var page = new HomeworkCreationTeacherPage(_driver);
+            var page = new HomeworkCreationTeacherPage();
             page.ClickExitButton();
         }
 
         [When(@"Students did their homework ""([^""]*)""")]
         public void WhenStudentsDidTheirHomework(string homeworkName, Table table)
         {
-            var authorizationPage = new AuthorizationUnauthorizedPage(_driver);
-            var homeworksStudentPage = new HomeworksStudentPage(_driver);
-            var answerHomework = new HomeworkAnswerStudentsPage(_driver);
+            var authorizationPage = new AuthorizationUnauthorizedPage();
+            var homeworksStudentPage = new HomeworksStudentPage();
+            var answerHomework = new HomeworkAnswerStudentsPage();
             string studentsAnswer = "https://github.com";
             List<SwaggerSignInRequest> _studensSignIn = table.CreateSet<SwaggerSignInRequest>().ToList();
             foreach (var student in _studensSignIn)
@@ -72,7 +72,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Teacher rate homeworks")]
         public void WhenTeacherRateHomeworks(Table table)
         {
-            var homeworkCheckingPage = new HomeworksCheckingTeacherPage(_driver);
+            var homeworkCheckingPage = new HomeworksCheckingTeacherPage();
             var studentsResults = table.CreateSet<StudentsHomeworkResultModel>().ToList();
             homeworkCheckingPage.OpenThisPage();
             foreach(var result in studentsResults)
@@ -84,7 +84,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [Then(@"Teacher should see students results in homework ""([^""]*)"" page")]
         public void ThenTeacherShouldSeeStudentsResultsInHomeworkPage(string homeworkName, Table table)
         {
-            var _homeworksTeacherPage = new HomeworksTeacherPage(_driver);
+            var _homeworksTeacherPage = new HomeworksTeacherPage();
             _homeworksTeacherPage.OpenThisPage();
             _homeworksTeacherPage.ClickGoToTaskButton(homeworkName);
             var expectedResults = table.CreateSet<StudentsHomeworkResultModel>().ToList();
@@ -104,7 +104,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [Then(@"teacher should see students results to homework ""([^""]*)"" in tab General Progress")]
         public void ThenTeacherShouldSeeStudentsResultsToHomeworkInTabGeneralProgress(string homeworkName, Table table)
         {
-            var generalProgressTeacher = new GeneralStudentsProgressTeacherPage(_driver);
+            var generalProgressTeacher = new GeneralStudentsProgressTeacherPage();
             generalProgressTeacher.OpenThisPage();
             //TODO: сделать чтобы были читаемы все элементы
             Thread.Sleep(15000); //уменьшить масштаб страницы, прокрутить ползунок, иначе не считывает информацию
