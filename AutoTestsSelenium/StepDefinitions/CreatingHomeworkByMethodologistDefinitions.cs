@@ -32,17 +32,17 @@ namespace AutoTestsSelenium.StepDefinitions
             _homeworksTeacherPage.ClickAddHomework();
         }
 
-        [When(@"Methodist create draft Homework")]
-        public void WhenMethodistCreateDraftHomework(Table table)
+        [When(@"Methodist create draft Homework course name ""([^""]*)""")]
+        public void WhenMethodistCreateDraftHomeworkCourseName(string courseName, Table table)
         {
             AddNewHomework createHomework = table.CreateInstance<AddNewHomework>();
              HomeworkCreationMethodistPage _homeworkMethodist;
             _homeworkMethodist = new HomeworkCreationMethodistPage();
-            _homeworkMethodist.ClickChoiceGroupNumber(createHomework.CourseName);
+            _homeworkMethodist.ClickChoiceGroupNumber(courseName);
             _homeworkMethodist.InputNameGroup(createHomework.Name);
             _homeworkMethodist.InputDescriptionHomework(createHomework.Description);
             _homeworkMethodist.InputLinkHomework(createHomework.Link);
-            _homeworkMethodist.ClickButtonAttachLink();
+            _homeworkMethodist.ClickButtonAttachLink();         
         }
 
         [Then(@"Methodist click button save as draft")]
@@ -99,13 +99,13 @@ namespace AutoTestsSelenium.StepDefinitions
             _homeworkMethodist.ClickAddHomeworksButton();
         }
 
-        [When(@"Teacher fill out a new assignment form")]
-        public void WhenTeacherFillOutANewAssignmentForm(Table table)
+        [When(@"Teacher fill out a new assignment form course name ""([^""]*)""")]
+        public void WhenTeacherFillOutANewAssignmentFormCourseName(string courseName, Table table)
         {
             HomeworkExtraditionTeacherPage _homeworkExtraditionTeacherPage;
             _homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage();
             AddNewHomework homework = table.CreateInstance<AddNewHomework>();
-            _homeworkExtraditionTeacherPage.GetNumberGroup(homework.CourseName);
+            _homeworkExtraditionTeacherPage.GetNumberGroup(courseName);
             _homeworkExtraditionTeacherPage.InputStarDate(homework.StartDate);
             _homeworkExtraditionTeacherPage.InputEndDate(homework.EndDate);
             _homeworkExtraditionTeacherPage.InputNameHomework(homework.Name);
@@ -114,7 +114,7 @@ namespace AutoTestsSelenium.StepDefinitions
             _homeworkExtraditionTeacherPage.ClickAddLink();
             //TODO No choice of job number. combobox not implemented (Task 2.3)
         }
-
+       
         [When(@"Teacher click button publish")]
         public void WhenTeacherClickButtonPublish()
         {

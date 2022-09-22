@@ -23,16 +23,16 @@ Scenario: Assigned homework by teacher, turned in by student
 	|lera21@methodist.com  | password |
 	When Methodist click button homework
 	And Methodist click button add homework
-	Then Methodist create homework
-	| CourseName    | Name           | Description | Link             |
-	| QA Automation | ЗаданиеЗадание | string      | http://fjfjf.com |
+	Then Methodist create homework course name "QA Automation"
+	| Name           | Description | Link             |
+	| ЗаданиеЗадание | string      | http://fjfjf.com |
 	And Authorization user as teacher
 	| Email               | Password | Role    |
 	| vitya21@teacher.com | password | Teacher |
 	Then Teacher lays out the task "ЗаданиеЗадание" created by the methodologist 
-	When Teacher create issuing homework
-	| CourseName    | Name           | Description  | Link             | StartDate  | EndDate    |
-	| QA Automation | ЗаданиеЗадание | сделай то то | http://fjfjf.com | 30.09.2022 | 31.12.2022 |
+	When Teacher create issuing homework course name "QA Automation"
+	| Name           | Description  | Link             | StartDate  | EndDate    |
+	| ЗаданиеЗадание | сделай то то | http://fjfjf.com | 30.09.2022 | 31.12.2022 |
 	Then Teacher click button publish 
 	When Teacher see all task
 	And Student authorization 

@@ -13,7 +13,6 @@
         public IWebElement ButtonSaveDraft => _driver.FindElement(By.XPath($"//button[@class='sc-bczRLJ jsAGPN btn btn-white-with-border flex-container']"));
         public IWebElement ButtonCancel => _driver.FindElement(By.XPath($"//button[@class='sc-bczRLJ kEeNDb btn btn-text flex-container']"));
         public IWebElement ButtonCreateHomework => _driver.FindElement(By.XPath("//button[text()='Добавить задание'] "));
-        public IWebElement ButtonSavedHomework => _driver.FindElement(By.XPath("//button[@class='sc-bczRLJ jsAGPN btn btn-white-with-border flex-container']"));
 
         public HomeworkCreationTeacherPage()
         {
@@ -29,10 +28,16 @@
             ButtonCreateHomework.Click();
         }
 
+        public IWebElement GetRadioButtonByGroupName(string groupName)
+        {
+            return _driver.FindElement(By.XPath($"//*[text()='{groupName}']/ancestor::*[@class='radio-button']"));
+        }
+
         public void ClickRadioButtonGroupName(string groupName)
         {
             GetRadioButtonByGroupName(groupName).Click();
         }
+
 
         public void InputStarDate(string startDate)
         {
@@ -87,9 +92,5 @@
             ButtonCancel.Click();
         }
 
-        public void ClickButtonSavedHomework()
-        {
-            ButtonSavedHomework.Click();
-        }
     }
 }

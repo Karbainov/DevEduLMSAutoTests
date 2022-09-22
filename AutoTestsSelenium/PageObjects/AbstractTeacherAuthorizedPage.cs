@@ -13,7 +13,8 @@
 
         protected AbstractTeacherAuthorizedPage()
         {
-        }
+        }
+
 
         public void ClickLessonsButton()
         {
@@ -48,8 +49,10 @@
         public void ClickJournalButton()
         {
             ButtonJournalSideBar.Click();
-        }
-
+        }
+
+
+
         private IWebElement GetButtonLessonsSideBar()
         {
             WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(0.5));

@@ -14,9 +14,9 @@ Scenario:  Creating an assignment by a methodologist for students
 	| Email                | Password     | 
 	| lera21@methodist.com | password     | 
 	And Methodist click button add task
-	When Methodist create draft Homework
-	| CourseName   | Name           | Description | Link             |
-	| QA Automation| ЗаданиеЗадание | string      | http://fjfjf.com |
+	When Methodist create draft Homework course name "QA Automation"
+	| Name           | Description | Link             |
+	| ЗаданиеЗадание | string      | http://fjfjf.com |
 	Then Methodist click button save as draft
 	When Methodist see all created homeworks
 	And Methodist click link edit
@@ -26,9 +26,9 @@ Scenario:  Creating an assignment by a methodologist for students
 	| Email                |  Password | Role    |
 	|  vitya21@teacher.com |  password | Teacher |
 	And Teacher click button homework assignment
-	When Teacher fill out a new assignment form
-	| CourseName   |Name            | Description      | Link             |StartDate  | EndDate   |
-	| QA Automation| ЗаданиеЗадание | сделай то то     |http://fjfjf.com  |20.09.2022 | 31.12.2022|
+	When Teacher fill out a new assignment form course name "QA Automation"
+	|Name            | Description      | Link             |StartDate  | EndDate   |
+	| ЗаданиеЗадание | сделай то то     |http://fjfjf.com  |20.09.2022 | 31.12.2022|
 	And Teacher click button publish
 	Then Student should sees homework
 	| Email              | Password |
