@@ -13,6 +13,7 @@
         public IWebElement TextBoxEnterPhone => _driver.FindElement(By.XPath($"//input[@name='phoneNumber']"));
         public IWebElement TextBoxEnterBirthDate => _driver.FindElement(By.XPath($"//*[@class='form-control']"));
         public IWebElement ButtonSave => _driver.FindElement(By.XPath($"//button[@class='sc-bczRLJ iJvUkY btn btn-fill flex-container']"));
+        public IWebElement IconPhoto => _driver.FindElement(By.XPath($"//.[@class='avatar - photo']"));
 
         public ProfilePage()
         {
@@ -21,6 +22,11 @@
         public override void OpenThisPage()
         {
             _driver.Navigate().GoToUrl(PageUrl);
+        }
+
+        public void ClickOnProfilePhoto()
+        {
+            IconPhoto.Click();
         }
     }
 }
