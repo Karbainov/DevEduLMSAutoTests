@@ -144,8 +144,26 @@ this.ScenarioInitialize(scenarioInfo);
 #line 14
  testRunner.And("Click on user\'s profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
+                TechTalk.SpecFlow.Table table35 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "Patronymic",
+                            "BirthDate",
+                            "Password",
+                            "RepeatPassword",
+                            "Email",
+                            "PhoneNumber"});
+                table35.AddRow(new string[] {
+                            "Мистер",
+                            "Проппер",
+                            "Иванов",
+                            "31.07.1998",
+                            "Azino777",
+                            "Azino777",
+                            "propper12@mail.ru",
+                            "+79992314545"});
 #line 15
- testRunner.Then("User should see his actual information", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("User should see his actual information", ((string)(null)), table35, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

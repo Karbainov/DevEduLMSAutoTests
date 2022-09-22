@@ -4,7 +4,6 @@ namespace AutoTestsSelenium.StepDefinitions
     public class RegistrationStepDefinitions
     {
         private SwaggerSignInRequest _SignInRequest;
-        private RegistrationModel _user;
 
         public RegistrationStepDefinitions()
         {
@@ -22,19 +21,19 @@ namespace AutoTestsSelenium.StepDefinitions
         public void GivenFillAllRequaredFields(Table table)
         {
             RegistrationPage registrationPage = new RegistrationPage();
-            _user = table.CreateInstance<RegistrationModel>();
-            registrationPage.EnterFirstName(_user.FirstName);
-            registrationPage.EnterLastName(_user.LastName);
-            registrationPage.EnterPatronymic(_user.Patronymic);
-            registrationPage.EnterBirthDate(_user.BirthDate);
-            registrationPage.EnterPassword(_user.Password);
-            registrationPage.EnterRepeatPassword(_user.RepeatPassword);
-            registrationPage.EnterEmail(_user.Email);
-            registrationPage.EnterPhone(_user.PhoneNumber);
+            var user = table.CreateInstance<RegistrationModel>();
+            registrationPage.EnterFirstName(user.FirstName);
+            registrationPage.EnterLastName(user.LastName);
+            registrationPage.EnterPatronymic(user.Patronymic);
+            registrationPage.EnterBirthDate(user.BirthDate);
+            registrationPage.EnterPassword(user.Password);
+            registrationPage.EnterRepeatPassword(user.RepeatPassword);
+            registrationPage.EnterEmail(user.Email);
+            registrationPage.EnterPhone(user.PhoneNumber);
             _SignInRequest = new SwaggerSignInRequest()
             {
-                Email = _user.Email,
-                Password = _user.Password
+                Email = user.Email,
+                Password = user.Password
             };
         }
 
@@ -56,8 +55,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void ThenUserShouldSeeTheWelcomeModalWindow()
         {
             RegistrationPage registrationPage = new RegistrationPage();
-            Thread.Sleep(500);
-            Assert.NotNull(registrationPage.ModalWindowWelcome);
+            Assert.True(registrationPage.IsModalWindowWelcomeDisapear());
         }
 
         [When(@"Click on athorization sidebar button")]
@@ -73,7 +71,6 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenAuthorizeUserInService()
         {
             AuthorizationUnauthorizedPage authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage();
-            Thread.Sleep(200);
             authorizationUnauthorizedPage.EnterEmail(_SignInRequest.Email);
             authorizationUnauthorizedPage.EnterPassword(_SignInRequest.Password);
             authorizationUnauthorizedPage.ClickEnterButton();
@@ -84,13 +81,13 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenClickOnUsersProfile()
         {
             ProfilePage profilePage = new ProfilePage();
-            Thread.Sleep(200);
             profilePage.ClickNameButton();
         }
 
         [Then(@"User should see his actual information")]
-        public void ThenUserShouldSeeHisActualInformation()
+        public void ThenUserShouldSeeHisActualInformation(Table table)
         {
+            var expectedUser = table.CreateInstance<RegistrationModel>();
             ProfilePage profilePage = new ProfilePage();
             string attributeName = "value";
             RegistrationModel actualUser = new RegistrationModel()
@@ -99,12 +96,12 @@ namespace AutoTestsSelenium.StepDefinitions
                 FirstName = profilePage.TextBoxEnterFirstName.GetAttribute(attributeName),
                 Patronymic = profilePage.TextBoxEnterPatronymic.GetAttribute(attributeName), 
                 BirthDate = profilePage.TextBoxEnterBirthDate.GetAttribute(attributeName),
-                Password = _user.Password,
-                RepeatPassword = _user.RepeatPassword,
+                Password = expectedUser.Password,
+                RepeatPassword = expectedUser.RepeatPassword,
                 Email = profilePage.TextBoxEmail.GetAttribute(attributeName), 
                 PhoneNumber = profilePage.TextBoxEnterPhone.GetAttribute(attributeName)
             };
-            Assert.Equivalent(_user, actualUser);
+            Assert.Equivalent(expectedUser, actualUser);
         }
     }
 }
