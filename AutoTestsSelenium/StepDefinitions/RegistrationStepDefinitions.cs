@@ -13,9 +13,9 @@ namespace AutoTestsSelenium.StepDefinitions
         public RegistrationStepDefinitions()
         {
             _driver = SingleWebDriver.GetInstance();
-            _registrationPage = new RegistrationPage(_driver);
-            _authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage(_driver);
-            _profilePage = new ProfilePage(_driver);
+            _registrationPage = new RegistrationPage();
+            _authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage();
+            _profilePage = new ProfilePage();
         }
 
         [Given(@"Open registration page")]

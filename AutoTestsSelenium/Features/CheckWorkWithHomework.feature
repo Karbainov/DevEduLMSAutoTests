@@ -12,8 +12,8 @@ Scenario: Assigned homework by teacher, turned in by student
 	| Vitya     | Strashko | string     | vitya21@teacher.com   | vitya    | password | SaintPetersburg | 01.08.1995  | string        | 89817051893 | Teacher   |
 	And Admin create new groups
 	| Name          | CourseName | GroupStatusId | StartDate  | EndDate    | Timetable | PaymentPerMonth | PaymentsCount |
-	| GropForTest01 | Базовый C# | Forming       | 26.08.2022 | 26.08.2023 | string    | 5000            | 10            |
-	And Admin add users to group "GropForTest01"
+	| GropForTest   | Базовый C# | Forming       | 26.08.2022 | 26.08.2023 | string    | 5000            | 10            |
+	And Admin add users to group "GropForTest"
 	| FirstName | LastName | Role    |
 	| Vitya     | Strashko | Teacher |
 	| Ilya1     | Baikov   | Student |

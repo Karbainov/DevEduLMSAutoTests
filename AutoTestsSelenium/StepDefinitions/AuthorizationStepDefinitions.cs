@@ -16,7 +16,7 @@ namespace AutoTestsSelenium.StepDefinitions
             _driver = SingleWebDriver.GetInstance();
             _driver.Manage().Window.Maximize();
             _driver.Navigate().GoToUrl($"https://piter-education.ru:7074/login");
-            loginPage=new AuthorizationUnauthorizedPage(_driver);
+            loginPage=new AuthorizationUnauthorizedPage();
         }
 
         [When(@"Enter ""([^""]*)"" and ""([^""]*)""")]

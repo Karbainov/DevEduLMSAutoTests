@@ -17,11 +17,11 @@ namespace AutoTestsSelenium.StepDefinitions
         CreatingHomeworkByMethodologistDefinitions()
         {
             _driver = SingleWebDriver.GetInstance();
-            _authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage(_driver);
-            _homeworkMethodist = new HomeworkCreationMethodistPage(_driver);
+            _authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage();
+            _homeworkMethodist = new HomeworkCreationMethodistPage();
             _tablesClear = new DBCleaner();
             _stepsBySwagger = new TasksStepDefinitions();
-            _homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage(_driver);
+            _homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage();
         }
 
         [When(@"Register users with roles")]

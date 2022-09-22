@@ -5,6 +5,8 @@ namespace AutoTestsSelenium.StepDefinitions
     {
         private IWebDriver _driver;
 
+
+
         [When(@"Open DevEdu site")]
         public void WhenOpenDevEduWebSite()
         {
@@ -23,7 +25,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenMethodistClickButtonHomework()
         {
             HomeworkCreationMethodistPage _homeworkMethodist;
-            _homeworkMethodist = new HomeworkCreationMethodistPage(_driver);
+            _homeworkMethodist = new HomeworkCreationMethodistPage();
             _homeworkMethodist.ClickHomeworksButton();
         }
 
@@ -31,7 +33,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenMethodistClickButtonAddHomework()
         {
             HomeworksTeacherPage _homeworksTeacherPage;
-            _homeworksTeacherPage = new HomeworksTeacherPage(_driver);
+            _homeworksTeacherPage = new HomeworksTeacherPage();
             _homeworksTeacherPage.ClickAddHomework();        
         }
 
@@ -39,7 +41,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void ThenMethodistCreateHomework(Table table)
         {
             HomeworkCreationMethodistPage _homeworkMethodist;
-            _homeworkMethodist = new HomeworkCreationMethodistPage(_driver);
+            _homeworkMethodist = new HomeworkCreationMethodistPage();
             AddNewHomework createHomework = table.CreateInstance<AddNewHomework>();
             _homeworkMethodist.ClickChoiceGroupNumber(createHomework.CourseName);
             _homeworkMethodist.InputNameGroup(createHomework.Name);
@@ -60,9 +62,9 @@ namespace AutoTestsSelenium.StepDefinitions
         public void ThenTeacherLaysOutTheTaskCreatedByTheMethodologist(string nameHomework)
         {
             HomeworksDraftTeacherPage _homeworksDraftTeacherPage;
-            _homeworksDraftTeacherPage = new HomeworksDraftTeacherPage(_driver);
+            _homeworksDraftTeacherPage = new HomeworksDraftTeacherPage();
             HomeworksTeacherPage _homeworksTeacherPage;
-            _homeworksTeacherPage = new HomeworksTeacherPage(_driver);
+            _homeworksTeacherPage = new HomeworksTeacherPage();
             _homeworksTeacherPage.ClickHomeworksButton();
             _homeworksTeacherPage.ClickSavedHomeworkButton();
             _homeworksDraftTeacherPage.ClickEditHomeworkButton(nameHomework);
@@ -73,7 +75,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenTeacherCreateIssuingHomework(Table table)
         {
             HomeworkExtraditionTeacherPage _homeworkExtraditionTeacherPage;
-            _homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage(_driver);
+            _homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage();
             AddNewHomework homework = table.CreateInstance<AddNewHomework>();
             _homeworkExtraditionTeacherPage.ClickNumberGroupRadiobox(homework.CourseName);
             _homeworkExtraditionTeacherPage.InputStarDate(homework.StartDate);
@@ -89,7 +91,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void ThenTeacherClickButtonPublish()
         {
             HomeworkExtraditionTeacherPage _homeworkExtraditionTeacherPage;
-            _homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage(_driver);
+            _homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage();
             _homeworkExtraditionTeacherPage.ClickPublish();
             //TODO �o task, emptiness (Task 2.5)
         }
@@ -98,7 +100,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenSeeAllTask()
         {
             HomeworksTeacherPage _homeworksTeacherPage;
-            _homeworksTeacherPage = new HomeworksTeacherPage(_driver);
+            _homeworksTeacherPage = new HomeworksTeacherPage();
             _homeworksTeacherPage.ClickAddHomeworksButton();
             _homeworksTeacherPage.ClickExitButton();
             //TODO �o task, emptiness (Task 2.5)
@@ -115,7 +117,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenStudentClickButtonHomework()
         {
             HomeworksTeacherPage _homeworksTeacherPage;
-            _homeworksTeacherPage = new HomeworksTeacherPage(_driver);
+            _homeworksTeacherPage = new HomeworksTeacherPage();
             _homeworksTeacherPage.ClickHomeworksButton();
         }
 
@@ -123,7 +125,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenStudenClickButtonToTheTask()
         {
              HomeworksStudentPage _homeworksStudentPage;
-            _homeworksStudentPage = new HomeworksStudentPage(_driver);
+            _homeworksStudentPage = new HomeworksStudentPage();
             _homeworksStudentPage.GoToTaskButton();
         }
 
@@ -131,7 +133,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenStudenAttachesALinkToTheCompletedTask(string link)
         {
             HomeworksStudentPage _homeworksStudentPage;
-            _homeworksStudentPage = new HomeworksStudentPage(_driver);
+            _homeworksStudentPage = new HomeworksStudentPage();
             _homeworksStudentPage.InputLinkAnswer(link);
             //TODO �o task, emptiness (Task 2.5)
         }      
@@ -140,9 +142,9 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenStudenClickAirplaneIcon()
         {
             HomeworksTeacherPage _homeworksTeacherPage;
-            _homeworksTeacherPage = new HomeworksTeacherPage(_driver);
+            _homeworksTeacherPage = new HomeworksTeacherPage();
             HomeworksStudentPage _homeworksStudentPage;
-            _homeworksStudentPage = new HomeworksStudentPage(_driver);
+            _homeworksStudentPage = new HomeworksStudentPage();
             _homeworksStudentPage.SendAnswerButton();
             _homeworksTeacherPage.ClickExitButton();
             //TODO �o task, emptiness (Task 2.5)
@@ -152,7 +154,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenTeacherChecksHomework(Table table)
         {
             HomeworksTeacherPage _homeworksTeacherPage;
-            _homeworksTeacherPage = new HomeworksTeacherPage(_driver);
+            _homeworksTeacherPage = new HomeworksTeacherPage();
             CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
             AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });
             _homeworksTeacherPage.ClickCheckHomeworksButton();
@@ -170,9 +172,9 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenStudentAttachedLinkOfCorrectedHomework(string link, Table table)
         {
             HomeworksTeacherPage _homeworksTeacherPage;
-            _homeworksTeacherPage = new HomeworksTeacherPage(_driver);
+            _homeworksTeacherPage = new HomeworksTeacherPage();
             HomeworksStudentPage _homeworksStudentPage;
-            _homeworksStudentPage = new HomeworksStudentPage(_driver);
+            _homeworksStudentPage = new HomeworksStudentPage();
             CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
             AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });
             _homeworksTeacherPage.ClickHomeworksButton();
@@ -187,7 +189,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void ThenTeacherAcceptedHomework(Table table)
         {
             HomeworksTeacherPage _homeworksTeacherPage;
-            _homeworksTeacherPage = new HomeworksTeacherPage(_driver);
+            _homeworksTeacherPage = new HomeworksTeacherPage();
             CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
             AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });
             _homeworksTeacherPage.ClickCheckHomeworksButton();
@@ -198,7 +200,7 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             _driver.Manage().Window.Maximize();
             AuthorizationUnauthorizedPage _authorizationUnauthorizedPage;
-            _authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage(_driver);
+            _authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage();
             _authorizationUnauthorizedPage.OpenThisPage();
             _authorizationUnauthorizedPage.EnterEmail(user.Email);
             _authorizationUnauthorizedPage.EnterPassword(user.Password);

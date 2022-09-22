@@ -1,7 +1,4 @@
-﻿using OpenQA.Selenium.DevTools.V102.Network;
-using OpenQA.Selenium.Support.UI;
-
-namespace AutoTestsSelenium.PageObjects
+﻿namespace AutoTestsSelenium.PageObjects
 {
     public class HomeworksStudentPage : AbstractStudentAuthorizedPage
     {

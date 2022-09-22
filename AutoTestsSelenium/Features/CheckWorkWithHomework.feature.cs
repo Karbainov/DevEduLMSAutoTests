@@ -165,7 +165,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "PaymentPerMonth",
                             "PaymentsCount"});
                 table2.AddRow(new string[] {
-                            "GropForTest01",
+                            "GropForTest",
                             "Базовый C#",
                             "Forming",
                             "26.08.2022",
@@ -189,7 +189,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Baikov",
                             "Student"});
 #line 16
- testRunner.And("Admin add users to group \"GropForTest01\"", ((string)(null)), table3, "And ");
+ testRunner.And("Admin add users to group \"GropForTest\"", ((string)(null)), table3, "And ");
 #line hidden
 #line 20
  testRunner.When("Open DevEdu site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
