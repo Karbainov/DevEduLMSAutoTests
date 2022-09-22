@@ -2,16 +2,17 @@
 
 A short summary of the feature
 
-@tag1
+@teacher @student @manager @methodist
 Scenario:  Creating an assignment by a methodologist for students
-	When Register users with roles
+	Given Administrator registers new users with roles
 	| FirstName | LastName | Patronymic | Email               | Username | Password | City            | BirthDate   | GitHubAccount | PhoneNumber | Role      |
 	| Milana    | Maxina   | string     | milana@student.com    | mila     | password | SaintPetersburg | 02.07.2000  | string        | 89817051890 | Student   |
 	| Lera      | Puzikova | string     | lera21@methodist.com  | lera     | password | SaintPetersburg | 31.01.2000  | string        | 89817051892 | Methodist |
 	| Vitya     | Strashko | string     | vitya21@teacher.com   | vitya    | password | SaintPetersburg | 01.08.1995  | string        | 89817051893 | Teacher   |
+	And Open DevEdu site
 	And Authorization user as methodist
-	| Email                | Password     | Role        |
-	| lera21@methodist.com | password     | Methodist   |
+	| Email                | Password     | 
+	| lera21@methodist.com | password     | 
 	And Methodist click button add task
 	When Methodist create draft Homework
 	| CourseName   | Name           | Description | Link             |
