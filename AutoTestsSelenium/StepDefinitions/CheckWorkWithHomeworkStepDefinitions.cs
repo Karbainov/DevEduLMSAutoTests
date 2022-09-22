@@ -5,8 +5,6 @@ namespace AutoTestsSelenium.StepDefinitions
     {
         private IWebDriver _driver;
 
-
-
         [When(@"Open DevEdu site")]
         public void WhenOpenDevEduWebSite()
         {
