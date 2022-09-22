@@ -5,7 +5,7 @@
         public IWebElement ButtonRegisterSideBar => _driver.FindElement(By.XPath($"//*[@href='/register']"));
         public IWebElement ButtonEnterSideBar => _driver.FindElement(By.XPath($"//*[text()='Вход']"));
 
-        public AbstractUnauthorizedPage(IWebDriver driver) : base(driver)
+        public AbstractUnauthorizedPage()
         {
         }
 
