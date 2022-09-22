@@ -2,11 +2,11 @@
 {
     public class GroupMappers
     {
-        public GetAllGroupsResponse MappGetGroupByIdResponseToGetAllGroupsResponse(GetGroupByIdResponse model)
+        public CreateGroupResponse MappGetGroupByIdResponseToGetAllGroupsResponse(GetGroupByIdResponse model)
         {
-            var config = new MapperConfiguration(cfg => cfg.CreateMap<GetGroupByIdResponse, GetAllGroupsResponse>());
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<GetGroupByIdResponse, CreateGroupResponse>());
             Mapper mapper = new Mapper(config);
-            var response = mapper.Map<GetAllGroupsResponse>(model);
+            var response = mapper.Map<CreateGroupResponse>(model);
             response.Timetable = null;
             response.PaymentPerMonth = 0;
             response.PaymentsCount = 0;

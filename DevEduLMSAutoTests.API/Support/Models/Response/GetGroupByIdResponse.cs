@@ -44,7 +44,7 @@
             {
                 return false;
             }
-            CourseInGetAllGroupsResponse course = ((GetAllGroupsResponse)obj).Course;
+            CourseInGetAllGroupsResponse course = ((CreateGroupResponse)obj).Course;
             if (!course.Id.Equals(this.Course.Id) || !course.Name.Equals(this.Course.Name) || !course.IsDeleted.Equals(this.Course.IsDeleted))
             {
                 return false;

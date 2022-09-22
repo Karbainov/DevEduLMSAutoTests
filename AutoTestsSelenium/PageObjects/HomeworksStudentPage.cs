@@ -21,6 +21,12 @@
             return _driver.FindElement(By.XPath($"//*[text()='{courseName}']/.."));
         }
 
+        public void ClickGoToTaskButton(string taskName)
+        {
+            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(1));
+            webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//*[text()='{taskName}']/following-sibling::a"))).Click();
+        }
+
         public void GoToTaskButton()
         {
             GetToTask().Click();
