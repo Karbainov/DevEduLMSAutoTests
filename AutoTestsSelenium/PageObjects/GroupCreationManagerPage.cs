@@ -1,4 +1,4 @@
-﻿namespace AutoTestsSelenium.PageObjects
+namespace AutoTestsSelenium.PageObjects
 {
     public class GroupCreationManagerPage : AbstractManagerAuthorizedPage
     {
@@ -13,7 +13,12 @@
 
         public GroupCreationManagerPage()
         {
+        public GroupCreationManagerPage()
+        {
         }
+
+        public override void OpenThisPage()
+        {
 
         public override void OpenThisPage()
         {
