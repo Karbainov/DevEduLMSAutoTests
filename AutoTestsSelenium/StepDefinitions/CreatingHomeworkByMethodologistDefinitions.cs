@@ -3,19 +3,15 @@ namespace AutoTestsSelenium.StepDefinitions
     [Binding] 
     public class CreatingHomeworkByMethodologistDefinitions
     {
-        private HomeworkCreationMethodistPage _homeworkMethodist;
-        private AuthorizationUnauthorizedPage _authorizationUnauthorizedPage;
         private IWebDriver _driver;
-        private TasksStepDefinitions _stepsBySwagger;
-        private HomeworksTeacherPage _homeworksTeacherPage;
-        private HomeworkExtraditionTeacherPage _homeworkExtraditionTeacherPage;
 
         [When(@"Register users with roles")]
         public void WhenRegisterUsersWithRoles(Table table)
-        {
-            _driver = SingleWebDriver.GetInstance();
-            _stepsBySwagger = new TasksStepDefinitions();
-            _stepsBySwagger.GivenRegisterNewUsersWithRoles(table);
+        {              
+           TasksStepDefinitions _stepsBySwagger;
+           _driver = SingleWebDriver.GetInstance();
+           _stepsBySwagger = new TasksStepDefinitions();
+           _stepsBySwagger.GivenRegisterNewUsersWithRoles(table);
         }
 
         [When(@"Authorization user as methodist")]
@@ -28,6 +24,8 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Methodist click button add task")]
         public void WhenMethodistClickButtonAddTask()
         {
+             HomeworkCreationMethodistPage _homeworkMethodist;
+             HomeworksTeacherPage _homeworksTeacherPage;
             _homeworkMethodist = new HomeworkCreationMethodistPage(_driver);
             _homeworkMethodist.ClickHomeworksButton();
             _homeworksTeacherPage = new HomeworksTeacherPage(_driver);
@@ -38,6 +36,8 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenMethodistCreateDraftHomework(Table table)
         {
             AddNewHomework createHomework = table.CreateInstance<AddNewHomework>();
+             HomeworkCreationMethodistPage _homeworkMethodist;
+            _homeworkMethodist = new HomeworkCreationMethodistPage(_driver);
             _homeworkMethodist.ClickChoiceGroupNumber(createHomework.CourseName);
             _homeworkMethodist.InputNameGroup(createHomework.Name);
             _homeworkMethodist.InputDescriptionHomework(createHomework.Description);
@@ -48,6 +48,8 @@ namespace AutoTestsSelenium.StepDefinitions
         [Then(@"Methodist click button save as draft")]
         public void ThenMethodistClickButtonSaveAsDraft()
         {
+            HomeworkCreationMethodistPage _homeworkMethodist;
+            _homeworkMethodist = new HomeworkCreationMethodistPage(_driver);
             _homeworkMethodist.ClickButtonSaveDraft();
         }
 
@@ -89,6 +91,8 @@ namespace AutoTestsSelenium.StepDefinitions
         [Then(@"Teacher click button homework assignment")]
         public void ThenTeacherClickButtonHomeworkAssignment()
         {
+            HomeworkCreationMethodistPage _homeworkMethodist;
+            _homeworkMethodist = new HomeworkCreationMethodistPage(_driver);
             _homeworkMethodist.ClickHomeworksButton();
             _homeworkMethodist.ClickAddHomeworksButton();
         }
@@ -96,6 +100,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Teacher fill out a new assignment form")]
         public void WhenTeacherFillOutANewAssignmentForm(Table table)
         {
+            HomeworkExtraditionTeacherPage _homeworkExtraditionTeacherPage;
             _homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage(_driver);
             AddNewHomework homework = table.CreateInstance<AddNewHomework>();
             _homeworkExtraditionTeacherPage.GetNumberGroup(homework.CourseName);
@@ -111,12 +116,16 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Teacher click button publish")]
         public void WhenTeacherClickButtonPublish()
         {
+            HomeworkExtraditionTeacherPage _homeworkExtraditionTeacherPage;
+            _homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage(_driver);
             _homeworkExtraditionTeacherPage.ClickPublish();
         }
 
         [Then(@"Student should sees homework")]
         public void ThenStudentShouldSeesHomework(Table table)
         {
+            HomeworkExtraditionTeacherPage _homeworkExtraditionTeacherPage;
+            _homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage(_driver);
             CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
             AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });
             _homeworkExtraditionTeacherPage.ClickHomeworksButton();
@@ -126,6 +135,7 @@ namespace AutoTestsSelenium.StepDefinitions
         private void AuthorizeUser(SwaggerSignInRequest user)
         {
             _driver.Manage().Window.Maximize();
+            AuthorizationUnauthorizedPage _authorizationUnauthorizedPage;
             _authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage(_driver);
             _authorizationUnauthorizedPage.OpenThisPage();
             _authorizationUnauthorizedPage.EnterEmail(user.Email);
