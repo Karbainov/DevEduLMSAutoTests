@@ -1,4 +1,6 @@
-﻿namespace AutoTestsSelenium.Support.Models
+﻿using System.Xml.Linq;
+
+namespace AutoTestsSelenium.Support.Models
 {
     public class GeneralProgressResultsModel
     {
@@ -10,28 +12,53 @@
             var methodsResult = new List<GeneralProgressResultsModel>();
             var homeworks = page.Homeworks;
             var names = page.StudentsNames;
-            int tmp = 0;
             var allResults = page.AllResults;
             for(int i = 0; i < homeworks.Count; i++)
             {
                 string hwName = homeworks[i].Text;
-                if (hwName.Contains("\n"))
-                {
-                    var elements = homeworks[i].FindElements(GeneralProgressWindow.СomponentHWName);
-                    hwName = $"{elements[tmp].Text} {elements[tmp+1].Text}";
-                    tmp += 2;
-                }
+                hwName = RemoveWrongCharsFromHW(hwName);
                 var results = new List<StudentsHomeworkResultModel>();
                 for(int j= 0; j < names.Count; j++)
                 {
                     string name = names[j].Text;
                     int index = ((allResults.Count/homeworks.Count)*i)+j;
                     string crntResult = allResults[index].Text;
+                    crntResult = RemoveWrongCharsFromResult(crntResult);
                     results.Add(new StudentsHomeworkResultModel() { FullName = name, Result = crntResult});
                 }
                 methodsResult.Add(new GeneralProgressResultsModel() { HomeworkName = hwName, StudentsHomeworkResults = results });
             }
             return methodsResult;
+        }
+
+        private static string RemoveWrongCharsFromHW(string inputStrring)
+        {
+            string wrongChars = $"\r\n";
+            int wrongCharsLenght = 4;
+            if (inputStrring.Contains(wrongChars))
+            {
+                int removeIndex = inputStrring.IndexOf(wrongChars);
+                if (inputStrring.Contains(' '))
+                {
+                    inputStrring = inputStrring.Remove(removeIndex, wrongCharsLenght);
+                }
+                else
+                {
+                    inputStrring = inputStrring.Replace(wrongChars, " ");
+                }
+            }
+            return inputStrring;
+        }
+
+        private static string RemoveWrongCharsFromResult(string inputStrring)
+        {
+            string wrongChars = $"\r\n";
+            if (inputStrring.Contains(wrongChars))
+            {
+                int removeIndex = inputStrring.IndexOf(wrongChars);
+                inputStrring = inputStrring.Replace(wrongChars, " ");                
+            }
+            return inputStrring;
         }
     }
 }
