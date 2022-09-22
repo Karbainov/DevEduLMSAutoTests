@@ -16,6 +16,8 @@
         public IWebElement ButtonCancelRegistration => _driver.FindElement(By.XPath($"//*[@type='reset']"));
         public IWebElement ModalWindowWelcome => _driver.FindElements(By.XPath($"//*[text()='Добро пожаловать!!']")).FirstOrDefault()!;
         public IWebElement ExcaptionMessageEmptyLastName => _driver.FindElement(By.XPath(""));//element doesn't exist now
+        public IWebElement ExcaptionMessageEmptyFirstName => _driver.FindElement(By.XPath(""));//element doesn't exist now
+        public IWebElement ExcaptionMessageEmptyEmail => _driver.FindElement(By.XPath(""));//element doesn't exist now
 
 
         public RegistrationPage()

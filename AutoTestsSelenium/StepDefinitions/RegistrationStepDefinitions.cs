@@ -107,11 +107,25 @@ namespace AutoTestsSelenium.StepDefinitions
             Assert.Equivalent(_user, actualUser);
         }
 
-        [Then(@"Excaption message ""([^""]*)"" should appear")]
-        public void ThenExcaptionMessageShouldAppear(string ecaptionMessage)
+        [Then(@"Excaption message empty Last Name ""([^""]*)"" should appear")]
+        public void ThenExcaptionMessageEmptyLastNameShouldAppear(string excaptionMessage)
         {
             RegistrationPage page = new RegistrationPage();
-            Assert.Equal(page.ExcaptionMessageEmptyLastName.Text, ecaptionMessage);
+            Assert.Equal(page.ExcaptionMessageEmptyLastName.Text, excaptionMessage);
+        }
+
+        [Then(@"Excaption message empty First Name ""([^""]*)"" should appear")]
+        public void ThenExcaptionMessageEmptyFirstNameShouldAppear(string excaptionMessage)
+        {
+            RegistrationPage page = new RegistrationPage();
+            Assert.Equal(page.ExcaptionMessageEmptyFirstName.Text, excaptionMessage);
+        }
+
+        [Then(@"Excaption message empty Email ""([^""]*)"" should appear")]
+        public void ThenExcaptionMessageEmptyEmailShouldAppear(string excaptionMessage)
+        {
+            RegistrationPage page = new RegistrationPage();
+            Assert.Equal(page.ExcaptionMessageEmptyEmail.Text, excaptionMessage);
         }
     }
 }
