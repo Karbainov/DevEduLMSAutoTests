@@ -3,43 +3,15 @@ namespace AutoTestsSelenium.StepDefinitions
     [Binding]
     public class CheckWorkWithHomeworkStepDefinitions
     {
-        private IWebDriver _driver;           
-   
-        [When(@"Register users")]
-        public void WhenRegisterUsersWithAndAssignedRoles(Table table)
-        {
-           TasksStepDefinitions _stepsBySwagger;
-           _stepsBySwagger = new TasksStepDefinitions();
-           _driver = SingleWebDriver.GetInstance();
-           HomeworkExtraditionTeacherPage _homeworkExtraditionTeacherPage;
-           _homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage(_driver);
-           HomeworksStudentPage _homeworksStudentPage;
-           _homeworksStudentPage = new HomeworksStudentPage(_driver);
-           HomeworksTeacherPage _homeworksTeacherPage;
-           _homeworksTeacherPage = new HomeworksTeacherPage(_driver);
-           HomeworksDraftTeacherPage _homeworksDraftTeacherPage;
-           _homeworksDraftTeacherPage = new HomeworksDraftTeacherPage(_driver);
-            HomeworkCreationMethodistPage _homeworkMethodist;
-           _homeworkMethodist = new HomeworkCreationMethodistPage(_driver);
-           _stepsBySwagger.GivenRegisterNewUsersWithRoles(table);          
-        }
+        private IWebDriver _driver;
 
-        [When(@"Manager create new group")]
-        public void WhenManagerCreateNewGroup(Table table)
+        [When(@"Open DevEdu site")]
+        public void WhenOpenDevEduWebSite()
         {
-            TasksStepDefinitions _stepsBySwagger;
-            _stepsBySwagger = new TasksStepDefinitions();
-            _stepsBySwagger.GivenManagerCreateNewGroup(table);
+            _driver = SingleWebDriver.GetInstance();
+            _driver.Manage().Window.Maximize();
+            _driver.Navigate().GoToUrl(Urls.Host);
         }
-
-        [When(@"Manager add users to group")]
-        public void WhenManagerAddUsersToGroup()
-        {
-            TasksStepDefinitions _stepsBySwagger;
-            _stepsBySwagger = new TasksStepDefinitions();
-            _stepsBySwagger.GivenManagerAddUsersToGroup();
-        }
-
         [When(@"Methodist authorization on the site")]
         public void WhenMethodistAuthorizationOntheSite(Table table)
         {
