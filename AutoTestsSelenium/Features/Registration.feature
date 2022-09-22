@@ -45,7 +45,7 @@ Scenario: User try to registration with empty Email textbox
 	| Мистер    | Проппер  | Иваныч     | 31.07.1998 | Azino777 | Azino777       |       | +79992314545 |
 	And Click on private policy checkbox
 	When Click on register button
-	Then Excaption message empty Email "Необходимо ввести Email" should appear
+	Then Excaption message Email "Необходимо ввести Email" should appear
 
 @registration @negative
 Scenario: User try to registration with wrong data format in Birth Date textbox
@@ -112,6 +112,17 @@ Scenario: User try to registration with different password and repeat password t
 	And Click on private policy checkbox
 	When Click on register button
 	Then Excaption message Repeat Password "Пароли не совпадают" should appear
+
+@registration @negative
+Scenario: User try to registration with wrong Email format
+	Given Open DevEdu web site
+	And Open registration page
+	And Fill all requared fields
+	| FirstName | LastName | Patronymic | BirthDate  | Password | RepeatPassword | Email     | PhoneNumber  |
+	| Мистер    | Проппер  | Иваныч     | 31.07.1998 | Azino777 | Azino777       | propper12 | +79992314545 |
+	And Click on private policy checkbox
+	When Click on register button
+	Then Excaption message Email "Введите корректный Email" should appear
 
 @registration @negative
 Scenario: User try to registration with correct information but doesn't click on private policy checkbox

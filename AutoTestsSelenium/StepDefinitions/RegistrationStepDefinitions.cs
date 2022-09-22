@@ -125,7 +125,7 @@ namespace AutoTestsSelenium.StepDefinitions
             Assert.Equal(expectedMessage, actualMessage);
         }
 
-        [Then(@"Excaption message empty Email ""([^""]*)"" should appear")]
+        [Then(@"Excaption message Email ""([^""]*)"" should appear")]
         public void ThenExcaptionMessageEmptyEmailShouldAppear(string excaptionMessage)
         {
             RegistrationPage page = new RegistrationPage();
