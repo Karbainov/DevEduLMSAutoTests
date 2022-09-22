@@ -16,3 +16,5 @@ global using DevEduLMSAutoTests.API.Support.Models.Request;
 global using DevEduLMSAutoTests.API.Clients;
 global using DevEduLMSAutoTests.API.Support.Mappers;
 global using AutoMapper;
+
+[assembly: Xunit.CollectionBehavior(DisableTestParallelization = true)]

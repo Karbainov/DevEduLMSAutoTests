@@ -4,7 +4,7 @@ namespace AutoTestsSelenium.StepDefinitions
     public class RegistrationStepDefinitions
     {
         private SwaggerSignInRequest _SignInRequest;
-        private RegistrationRequest _user;
+        private RegistrationModel _user;
 
         public RegistrationStepDefinitions()
         {
@@ -22,7 +22,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void GivenFillAllRequaredFields(Table table)
         {
             RegistrationPage registrationPage = new RegistrationPage();
-            _user = table.CreateInstance<RegistrationRequest>();
+            _user = table.CreateInstance<RegistrationModel>();
             registrationPage.EnterFirstName(_user.FirstName);
             registrationPage.EnterLastName(_user.LastName);
             registrationPage.EnterPatronymic(_user.Patronymic);
@@ -93,7 +93,7 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             ProfilePage profilePage = new ProfilePage();
             string attributeName = "value";
-            RegistrationRequest actualUser = new RegistrationRequest()
+            RegistrationModel actualUser = new RegistrationModel()
             {
                 LastName = profilePage.TextBoxEnterLastName.GetAttribute(attributeName),
                 FirstName = profilePage.TextBoxEnterFirstName.GetAttribute(attributeName),

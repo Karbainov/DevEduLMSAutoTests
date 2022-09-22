@@ -45,7 +45,7 @@
         public string City { get; set; }
 
         [JsonPropertyName("groups")]
-        public List<GetAllGroupsResponse> Groups { get; set; }
+        public List<CreateGroupResponse> Groups { get; set; }
 
         public override bool Equals(object? obj)
         {
@@ -65,7 +65,7 @@
                     return false;
                 }
             }
-            List<GetAllGroupsResponse> groups = ((RegisterResponse)obj).Groups;
+            List<CreateGroupResponse> groups = ((RegisterResponse)obj).Groups;
             if (groups.Count != this.Groups.Count)
             {
                 return false;

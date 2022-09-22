@@ -1,3 +1,5 @@
+using TechTalk.SpecFlow;
+
 namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
@@ -167,13 +169,12 @@ namespace AutoTestsSelenium.StepDefinitions
             Thread.Sleep(500);
         }
 
-        [When(@"studen attaches a link to the completed task")]
-        public void WhenStudenAttachesALinkToTheCompletedTask(Table table)
+        [When(@"studen attaches a link ""([^""]*)"" to the completed task")]
+        public void WhenStudenAttachesALinkToTheCompletedTask(string link)
         {
-            StudentAttachesHomework studentAttachesHomework = table.CreateInstance<StudentAttachesHomework>();
             var linkGithub = _driver.FindElement(_studentsHomeworkWindowElements.XPathLinkToAnswerTB);
             linkGithub.Click();
-            linkGithub.SendKeys(studentAttachesHomework.LinkToGitHub);
+            linkGithub.SendKeys(link);
         }
 
         [When(@"studen click airplane icon")]

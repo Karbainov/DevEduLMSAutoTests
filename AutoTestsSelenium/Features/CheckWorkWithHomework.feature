@@ -33,9 +33,7 @@ Scenario: Assigned homework by teacher, turned in by student
 	| ilya21@student.com   | password |
 	And student click button homework
 	And studen click button to the task
-	When studen attaches a link to the completed task
-	| LinkToGitHub              |
-	| https://hd.kinopoisk.ru/  |
+	When studen attaches a link "https://hd.kinopoisk.ru/" to the completed task
 	And studen click airplane icon
 	And studen click button exit
 	And teacher checks homework 

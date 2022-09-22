@@ -6,7 +6,6 @@ global using OpenQA.Selenium.Chrome;
 global using OpenQA.Selenium.Interactions;
 global using AutoTestsSelenium.Support;
 global using AutoTestsSelenium.Support.FindElements;
-global using AutoTestsSelenium.Support.Models.Request;
 global using AutoTestsSelenium.Support.Models;
 global using AutoTestsSelenium.PageObjects;
 global using DevEduLMSAutoTests.API.StepDefinitions;

@@ -77,12 +77,24 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         public void ThenAuthorizeUsersInServiceAndCheckGroup()
         {
             GetGroupByIdResponse actualGroup = _groupsClient.GetGroupById(_groupId, _managerToken);
-            GetAllGroupsResponse group = _groupMappers.MappGetGroupByIdResponseToGetAllGroupsResponse(actualGroup);
+            CreateGroupResponse group = _groupMappers.MappGetGroupByIdResponseToGetAllGroupsResponse(actualGroup);
             foreach (var user in _newUsers)
             {
                 var userToken = _authenticationClient.AuthorizeUser(new SwaggerSignInRequest { Email = user.Email, Password = user.Password});
                 RegisterResponse actualUser = _usersClient.GetUserInfoByToken(userToken);
                 Assert.Equal(group, actualUser.Groups.Find(i => i.Id == group.Id));
+            }
+        }
+
+        [Given(@"Manager create new groups")]
+        public void GivenManagerCreateNewGroups(Table table)
+        {
+            List<CreateGroupRequest> groups = table.CreateSet<CreateGroupRequest>().ToList();
+            foreach (var group in groups)
+            {
+                if (group.CourseId == 0)
+                    group.CourseId = OptionsSwagger.Courses[group.CourseName];
+                _groupsClient.CreateNewGroup(group, _managerToken);
             }
         }
     }
