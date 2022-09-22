@@ -59,14 +59,12 @@ namespace AutoTestsSelenium.StepDefinitions
         }
 
         [When(@"Click on athorization sidebar button")]
-        [Then(@"Click on athorization sidebar button")]
         public void WhenClickOnAthorizationSidebarButton()
         {
             AuthorizationUnauthorizedPage authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage();
             authorizationUnauthorizedPage.ClickEnterSideBarButton();
         }
 
-        [Then(@"Authorize user in service")]
         [When(@"Authorize user in service")]
         public void WhenAuthorizeUserInService()
         {
@@ -77,7 +75,6 @@ namespace AutoTestsSelenium.StepDefinitions
         }
 
         [When(@"Click on user's profile")]
-        [Then(@"Click on user's profile")]
         public void WhenClickOnUsersProfile()
         {
             ProfilePage profilePage = new ProfilePage();
