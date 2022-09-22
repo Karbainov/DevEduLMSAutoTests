@@ -1,52 +1,17 @@
-using FluentAssertions.Equivalency.Tracing;
-
 namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
     public class CheckWorkWithHomeworkStepDefinitions
     {
-        private TasksStepDefinitions _stepsBySwagger;
         private IWebDriver _driver;
-        private DBCleaner _tablesClear;
-        private AuthorizationUnauthorizedPage _authorizationUnauthorizedPage;
-        private HomeworkExtraditionTeacherPage _homeworkExtraditionTeacherPage;
-        private HomeworksStudentPage _homeworksStudent;
-        private HomeworksTeacherPage _homeworksTeacherPage;
-        private HomeworksDraftTeacherPage _homeworksDraftTeacherPage;
-        private HomeworkCreationMethodistPage _homeworkMethodist;
 
-        public CheckWorkWithHomeworkStepDefinitions()
+        [When(@"Open DevEdu site")]
+        public void WhenOpenDevEduWebSite()
         {
-            _stepsBySwagger = new TasksStepDefinitions();          
             _driver = SingleWebDriver.GetInstance();
-            _tablesClear = new DBCleaner();
-            _authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage(_driver);
-            _homeworkExtraditionTeacherPage= new HomeworkExtraditionTeacherPage(_driver);
-            _homeworksStudent = new HomeworksStudentPage(_driver);
-            _homeworksTeacherPage = new HomeworksTeacherPage(_driver);
-            _homeworksDraftTeacherPage = new HomeworksDraftTeacherPage(_driver);
-            _homeworkMethodist = new HomeworkCreationMethodistPage(_driver);
+            _driver.Manage().Window.Maximize();
+            _driver.Navigate().GoToUrl(Urls.Host);
         }
-   
-        [When(@"Register users")]
-        public void WhenRegisterUsersWithAndAssignedRoles(Table table)
-        {
-            _tablesClear.ClearDB();
-            _stepsBySwagger.GivenRegisterNewUsersWithRoles(table);          
-        }
-
-        [When(@"Manager create new group")]
-        public void WhenManagerCreateNewGroup(Table table)
-        {           
-            _stepsBySwagger.GivenManagerCreateNewGroup(table);
-        }
-
-        [When(@"Manager add users to group")]
-        public void WhenManagerAddUsersToGroup()
-        {
-            _stepsBySwagger.GivenManagerAddUsersToGroup();
-        }
-
         [When(@"Methodist authorization on the site")]
         public void WhenMethodistAuthorizationOntheSite(Table table)
         {
@@ -57,18 +22,24 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Methodist click button homework")]
         public void WhenMethodistClickButtonHomework()
         {
+            HomeworkCreationMethodistPage _homeworkMethodist;
+            _homeworkMethodist = new HomeworkCreationMethodistPage();
             _homeworkMethodist.ClickHomeworksButton();
         }
 
         [When(@"Methodist click button add homework")]
         public void WhenMethodistClickButtonAddHomework()
         {
+            HomeworksTeacherPage _homeworksTeacherPage;
+            _homeworksTeacherPage = new HomeworksTeacherPage();
             _homeworksTeacherPage.ClickAddHomework();        
         }
 
         [Then(@"Methodist create homework")]
         public void ThenMethodistCreateHomework(Table table)
-        {        
+        {
+            HomeworkCreationMethodistPage _homeworkMethodist;
+            _homeworkMethodist = new HomeworkCreationMethodistPage();
             AddNewHomework createHomework = table.CreateInstance<AddNewHomework>();
             _homeworkMethodist.ClickChoiceGroupNumber(createHomework.CourseName);
             _homeworkMethodist.InputNameGroup(createHomework.Name);
@@ -89,6 +60,10 @@ namespace AutoTestsSelenium.StepDefinitions
         [Then(@"Teacher lays out the task ""([^""]*)"" created by the methodologist")]
         public void ThenTeacherLaysOutTheTaskCreatedByTheMethodologist(string nameHomework)
         {
+            HomeworksDraftTeacherPage _homeworksDraftTeacherPage;
+            _homeworksDraftTeacherPage = new HomeworksDraftTeacherPage();
+            HomeworksTeacherPage _homeworksTeacherPage;
+            _homeworksTeacherPage = new HomeworksTeacherPage();
             _homeworksTeacherPage.ClickHomeworksButton();
             _homeworksTeacherPage.ClickSavedHomeworkButton();
             _homeworksDraftTeacherPage.ClickEditHomeworkButton(nameHomework);
@@ -98,6 +73,8 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Teacher create issuing homework")]
         public void WhenTeacherCreateIssuingHomework(Table table)
         {
+            HomeworkExtraditionTeacherPage _homeworkExtraditionTeacherPage;
+            _homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage();
             AddNewHomework homework = table.CreateInstance<AddNewHomework>();
             _homeworkExtraditionTeacherPage.ClickNumberGroupRadiobox(homework.CourseName);
             _homeworkExtraditionTeacherPage.InputStarDate(homework.StartDate);
@@ -112,6 +89,8 @@ namespace AutoTestsSelenium.StepDefinitions
         [Then(@"Teacher click button publish")]
         public void ThenTeacherClickButtonPublish()
         {
+            HomeworkExtraditionTeacherPage _homeworkExtraditionTeacherPage;
+            _homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage();
             _homeworkExtraditionTeacherPage.ClickPublish();
             //TODO �o task, emptiness (Task 2.5)
         }
@@ -119,6 +98,8 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Teacher see all task")]
         public void WhenSeeAllTask()
         {
+            HomeworksTeacherPage _homeworksTeacherPage;
+            _homeworksTeacherPage = new HomeworksTeacherPage();
             _homeworksTeacherPage.ClickAddHomeworksButton();
             _homeworksTeacherPage.ClickExitButton();
             //TODO �o task, emptiness (Task 2.5)
@@ -134,27 +115,36 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Student click button homework")]
         public void WhenStudentClickButtonHomework()
         {
+            HomeworksTeacherPage _homeworksTeacherPage;
+            _homeworksTeacherPage = new HomeworksTeacherPage();
             _homeworksTeacherPage.ClickHomeworksButton();
         }
 
         [When(@"Studen click button to the task")]
         public void WhenStudenClickButtonToTheTask()
         {
-            _homeworksStudent.GoToTaskButton();
+             HomeworksStudentPage _homeworksStudentPage;
+            _homeworksStudentPage = new HomeworksStudentPage();
+            _homeworksStudentPage.GoToTaskButton();
         }
 
         [When(@"Studen attaches a link ""([^""]*)"" to the completed task")]
         public void WhenStudenAttachesALinkToTheCompletedTask(string link)
         {
-            Thread.Sleep(500);
-            _homeworksStudent.InputLinkAnswer(link);
+            HomeworksStudentPage _homeworksStudentPage;
+            _homeworksStudentPage = new HomeworksStudentPage();
+            _homeworksStudentPage.InputLinkAnswer(link);
             //TODO �o task, emptiness (Task 2.5)
         }      
 
         [When(@"Studen click airplane icon")]
         public void WhenStudenClickAirplaneIcon()
         {
-            _homeworksStudent.SendAnswerButton();
+            HomeworksTeacherPage _homeworksTeacherPage;
+            _homeworksTeacherPage = new HomeworksTeacherPage();
+            HomeworksStudentPage _homeworksStudentPage;
+            _homeworksStudentPage = new HomeworksStudentPage();
+            _homeworksStudentPage.SendAnswerButton();
             _homeworksTeacherPage.ClickExitButton();
             //TODO �o task, emptiness (Task 2.5)
         }
@@ -162,6 +152,8 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Teacher checks homework")]
         public void WhenTeacherChecksHomework(Table table)
         {
+            HomeworksTeacherPage _homeworksTeacherPage;
+            _homeworksTeacherPage = new HomeworksTeacherPage();
             CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
             AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });
             _homeworksTeacherPage.ClickCheckHomeworksButton();
@@ -178,12 +170,16 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Student attached link ""([^""]*)"" of corrected homework")]
         public void WhenStudentAttachedLinkOfCorrectedHomework(string link, Table table)
         {
+            HomeworksTeacherPage _homeworksTeacherPage;
+            _homeworksTeacherPage = new HomeworksTeacherPage();
+            HomeworksStudentPage _homeworksStudentPage;
+            _homeworksStudentPage = new HomeworksStudentPage();
             CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
             AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });
             _homeworksTeacherPage.ClickHomeworksButton();
-            _homeworksStudent.GoToTaskButton();
-            _homeworksStudent.InputLinkAnswer(link);
-            _homeworksStudent.SendAnswerButton();
+            _homeworksStudentPage.GoToTaskButton();
+            _homeworksStudentPage.InputLinkAnswer(link);
+            _homeworksStudentPage.SendAnswerButton();
             _homeworksTeacherPage.ClickExitButton();
             //TODO �o task, emptiness (Task 2.5)
         }     
@@ -191,6 +187,8 @@ namespace AutoTestsSelenium.StepDefinitions
         [Then(@"Teacher accepted homework")]
         public void ThenTeacherAcceptedHomework(Table table)
         {
+            HomeworksTeacherPage _homeworksTeacherPage;
+            _homeworksTeacherPage = new HomeworksTeacherPage();
             CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
             AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });
             _homeworksTeacherPage.ClickCheckHomeworksButton();
@@ -200,6 +198,8 @@ namespace AutoTestsSelenium.StepDefinitions
         private void AuthorizeUser(SwaggerSignInRequest user)
         {
             _driver.Manage().Window.Maximize();
+            AuthorizationUnauthorizedPage _authorizationUnauthorizedPage;
+            _authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage();
             _authorizationUnauthorizedPage.OpenThisPage();
             _authorizationUnauthorizedPage.EnterEmail(user.Email);
             _authorizationUnauthorizedPage.EnterPassword(user.Password);

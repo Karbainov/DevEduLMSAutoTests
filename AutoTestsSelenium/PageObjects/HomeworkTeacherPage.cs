@@ -6,7 +6,7 @@
         public IWebElement ButtonSavedHomework => _driver.FindElement(By.XPath("//button[@class='sc-bczRLJ jsAGPN btn btn-white-with-border flex-container']"));
         public IWebElement ButtonAddHomework => _driver.FindElement(By.XPath($"//button[@class='sc-bczRLJ iJvUkY btn btn-fill flex-container']"));
 
-        public HomeworksTeacherPage(IWebDriver driver) : base(driver)
+        public HomeworksTeacherPage()
         {
         }
 

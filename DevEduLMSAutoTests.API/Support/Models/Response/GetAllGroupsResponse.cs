@@ -12,7 +12,7 @@
         public CourseInGetAllGroupsResponse Course { get; set; }
 
         [JsonPropertyName("groupStatus")]
-        public string GroupStatus { get; set; }
+        public int GroupStatus { get; set; }
 
         [JsonPropertyName("startDate")]
         public string StartDate { get; set; }

@@ -5,15 +5,19 @@ A short summary of the feature
 
 @teacher @student @manager
 Scenario: Assigned homework by teacher, turned in by student
-	When Register users
+	Given Administrator registers new users with roles
 	| FirstName | LastName | Patronymic | Email               | Username | Password | City            | BirthDate   | GitHubAccount | PhoneNumber | Role      |
 	| Ilya1     | Baikov   | string     | ilya21@student.com    | ilya     | password | SaintPetersburg | 02.07.2000  | string        | 89817051890 | Student   |
 	| Lera      | Puzikova | string     | lera21@methodist.com  | lera     | password | SaintPetersburg | 31.01.2000  | string        | 89817051892 | Methodist |
 	| Vitya     | Strashko | string     | vitya21@teacher.com   | vitya    | password | SaintPetersburg | 01.08.1995  | string        | 89817051893 | Teacher   |
-	And Manager create new group
-	| Name          | CourseId | GroupStatusId | StartDate  | EndDate    | Timetable | PaymentPerMonth | PaymentsCount |
-	| GropForTest01 | 1370     | Forming       | 11.09.2022 | 31.12.2022 | string    | 1000            | 10            |
-	When Manager add users to group
+	And Admin create new groups
+	| Name          | CourseName | GroupStatusId | StartDate  | EndDate    | Timetable | PaymentPerMonth | PaymentsCount |
+	| GropForTest   | Базовый C# | Forming       | 26.08.2022 | 26.08.2023 | string    | 5000            | 10            |
+	And Admin add users to group "GropForTest"
+	| FirstName | LastName | Role    |
+	| Vitya     | Strashko | Teacher |
+	| Ilya1     | Baikov   | Student |
+	When Open DevEdu site
 	And Methodist authorization on the site
 	| Email                | Password |
 	|lera21@methodist.com  | password |
@@ -28,7 +32,7 @@ Scenario: Assigned homework by teacher, turned in by student
 	Then Teacher lays out the task "ЗаданиеЗадание" created by the methodologist 
 	When Teacher create issuing homework
 	| CourseName    | Name           | Description  | Link             | StartDate  | EndDate    |
-	| QA Automation | ЗаданиеЗадание | сделай то то | http://fjfjf.com | 20.09.2022 | 31.12.2022 |
+	| QA Automation | ЗаданиеЗадание | сделай то то | http://fjfjf.com | 30.09.2022 | 31.12.2022 |
 	Then Teacher click button publish 
 	When Teacher see all task
 	And Student authorization 

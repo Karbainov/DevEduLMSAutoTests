@@ -12,8 +12,7 @@ global using AutoTestsSelenium.PageObjects;
 global using DevEduLMSAutoTests.API.StepDefinitions;
 global using DevEduLMSAutoTests.API.Support.Models.Request;
 global using DevEduLMSAutoTests.API.Support;
-global using SeleniumExtras.WaitHelpers;
 global using OpenQA.Selenium.Support.UI;
-global using System.Reflection.Metadata;
+global using SeleniumExtras.WaitHelpers;
 
 [assembly: Xunit.CollectionBehavior(DisableTestParallelization = true)]
