@@ -5,7 +5,7 @@
         private const string PageUrl = $"{Urls.Host}/journal";
         public List<IWebElement> StudentsNames => _driver.FindElements(By.XPath($"//*[text()='Сортировать по фамилии']/../following-sibling::div")).ToList();
 
-        public JournalTeacherPage(IWebDriver driver) : base(driver)
+        public JournalTeacherPage()
         {
         }
 

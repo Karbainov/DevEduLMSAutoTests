@@ -12,7 +12,8 @@
         public IWebElement ButtonPublish => _driver.FindElement(By.XPath($"//*[text() = 'Опубликовать']"));
         public IWebElement ButtonSaveDraft => _driver.FindElement(By.XPath($"//button[@class='sc-bczRLJ jsAGPN btn btn-white-with-border flex-container']"));
         public IWebElement ButtonCancel => _driver.FindElement(By.XPath($"//button[@class='sc-bczRLJ kEeNDb btn btn-text flex-container']"));
-        public HomeworkCreationTeacherPage(IWebDriver driver) : base(driver)
+
+        public HomeworkCreationTeacherPage()
         {
         }
 

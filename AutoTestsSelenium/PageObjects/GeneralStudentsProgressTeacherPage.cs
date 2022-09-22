@@ -8,7 +8,7 @@
         public List<IWebElement> StudentsNames => _driver.FindElements(By.XPath($"//button[text()='Сортировать по фамилии']/../following-sibling::div")).ToList();
         public List<IWebElement> AllResults => _driver.FindElements(By.XPath($"//div[@class='scroll-content-div']/div[2]/descendant::div[starts-with(@class,'one-block')]")).ToList();
 
-        public GeneralStudentsProgressTeacherPage(IWebDriver driver) : base(driver)
+        public GeneralStudentsProgressTeacherPage()
         {
         }
 

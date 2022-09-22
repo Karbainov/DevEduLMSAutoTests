@@ -5,7 +5,7 @@
         private const string PageUrl = $"{Urls.Host}/homeworks";
         public List<IWebElement> StudentsResults => _driver.FindElements(By.XPath($"//div[@class='homework-result-container']/div[@class='table-row']")).ToList();
         
-        public HomeworksTeacherPage(IWebDriver driver) : base(driver)
+        public HomeworksTeacherPage()
         {
         }
 

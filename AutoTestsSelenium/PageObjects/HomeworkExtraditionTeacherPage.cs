@@ -15,7 +15,7 @@
         public IWebElement ButtonSaveDraft => _driver.FindElement(By.XPath($"//button[@class='sc-bczRLJ jsAGPN btn btn-white-with-border flex-container']"));
         public IWebElement ButtonCancel => _driver.FindElement(By.XPath($"//button[@class='sc-bczRLJ kEeNDb btn btn-text flex-container']"));
 
-        public HomeworkExtraditionTeacherPage(IWebDriver driver) : base(driver)
+        public HomeworkExtraditionTeacherPage()
         {
         }
 
@@ -26,8 +26,7 @@
 
         public IWebElement GetNumberGroup(string groupName)
         {
-            string xpath = $"//*[text()='{groupName}']";
-            return _driver.FindElement(By.XPath(xpath));
+            return _driver.FindElement(By.XPath($"//*[text()='{groupName}']"));
         }
 
         public void InputStarDate(string startDate)
