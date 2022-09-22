@@ -106,5 +106,12 @@ namespace AutoTestsSelenium.StepDefinitions
             };
             Assert.Equivalent(_user, actualUser);
         }
+
+        [Then(@"Excaption message ""([^""]*)"" should appear")]
+        public void ThenExcaptionMessageShouldAppear(string ecaptionMessage)
+        {
+            RegistrationPage page = new RegistrationPage();
+            Assert.Equal(page.ExcaptionMessageEmptyLastName.Text, ecaptionMessage);
+        }
     }
 }

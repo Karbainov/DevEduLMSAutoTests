@@ -151,6 +151,65 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioCleanup();
         }
         
+        [Xunit.SkippableFactAttribute(DisplayName="User try to registration with empty Last Name")]
+        [Xunit.TraitAttribute("FeatureTitle", "Registration")]
+        [Xunit.TraitAttribute("Description", "User try to registration with empty Last Name")]
+        [Xunit.TraitAttribute("Category", "registration")]
+        [Xunit.TraitAttribute("Category", "negative")]
+        public void UserTryToRegistrationWithEmptyLastName()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "registration",
+                    "negative"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User try to registration with empty Last Name", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 18
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 19
+ testRunner.Given("Open DevEdu web site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table35 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "Patronymic",
+                            "BirthDate",
+                            "Password",
+                            "RepeatPassword",
+                            "Email",
+                            "PhoneNumber"});
+                table35.AddRow(new string[] {
+                            "",
+                            "Проппер",
+                            "Иваныч",
+                            "31.07.1998",
+                            "Azino777",
+                            "Azino777",
+                            "propper12@mail.ru",
+                            "+79992314545"});
+#line 20
+ testRunner.And("Fill all requared fields", ((string)(null)), table35, "And ");
+#line hidden
+#line 23
+ testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 24
+ testRunner.When("Click on register button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 25
+ testRunner.Then("Excaption message \"Необходимо ввести фамилию\" should appear", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
         [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
         [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
         public class FixtureData : System.IDisposable
