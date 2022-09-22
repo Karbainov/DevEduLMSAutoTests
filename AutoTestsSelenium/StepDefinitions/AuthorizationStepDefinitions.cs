@@ -7,16 +7,16 @@ namespace AutoTestsSelenium.StepDefinitions
     [Binding]
     public class AuthorizationStepDefinitions
     {
-        IWebDriver driver;
+        private IWebDriver _driver;
         AuthorizationUnauthorizedPage loginPage;
 
         [Given(@"Open login page")]
         public void GivenOpenLoginPage()
         {
-            driver = SingleWebDriver.GetInstance();
-            driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl($"https://piter-education.ru:7074/login");
-            loginPage=new AuthorizationUnauthorizedPage();
+            _driver = SingleWebDriver.GetInstance();
+            _driver.Manage().Window.Maximize();
+            _driver.Navigate().GoToUrl($"https://piter-education.ru:7074/login");
+            loginPage=new AuthorizationUnauthorizedPage(_driver);
         }
 
         [When(@"Enter ""([^""]*)"" and ""([^""]*)""")]
