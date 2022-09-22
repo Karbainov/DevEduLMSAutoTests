@@ -11,9 +11,6 @@
         [JsonPropertyName("course")]
         public CourseInGetAllGroupsResponse Course { get; set; }
 
-        [JsonPropertyName("groupStatus")]
-        public int GroupStatus { get; set; }
-
         [JsonPropertyName("startDate")]
         public string StartDate { get; set; }
 
@@ -35,7 +32,6 @@
                    Id == response.Id &&
                    Name == response.Name &&
                    Course.Equals(response.Course) &&
-                   GroupStatus == response.GroupStatus &&
                    StartDate == response.StartDate &&
                    EndDate == response.EndDate &&
                    Timetable == response.Timetable &&

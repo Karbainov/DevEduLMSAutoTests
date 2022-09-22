@@ -86,6 +86,13 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
                             { Email = user.Email, Password = user.Password }));
                         }
                         break;
+                    case OptionsSwagger.RoleManager:
+                        {
+                            _methodistsIds.Add(id);
+                            _usersClient.AddNewRoleToUser(id, user.Role, _managerToken);
+                            _usersClient.DeleteUsersRole(id, OptionsSwagger.RoleStudent, _managerToken);
+                        }
+                        break;
                     case OptionsSwagger.RoleStudent:
                         {
                             _studentsIds.Add(id);

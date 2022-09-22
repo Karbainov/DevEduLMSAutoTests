@@ -1,13 +1,11 @@
 ﻿namespace AutoTestsSelenium.PageObjects
 {
-    public class HomeworksStudentPage : AbstractStudentAuthorizedPage
+    public class HomeworksTeacherPage : AbstractTeacherAuthorizedPage
     {
         private const string PageUrl = $"{Urls.Host}/homeworks";
-        public IWebElement AnswerButton => _driver.FindElement(By.XPath($"//button[@class='button-fly']"));
-        public IWebElement IntupLinkTextbox => GetIntupLinkTextbox();
-        public IWebElement ToTaskButton => GetToTask();
-
-        public HomeworksStudentPage()
+        public List<IWebElement> StudentsResults => _driver.FindElements(By.XPath($"//div[@class='homework-result-container']/div[@class='table-row']")).ToList();
+        
+        public HomeworksTeacherPage()
         {
         }
 
@@ -25,6 +23,13 @@
         {
             WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(1));
             webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//*[text()='{taskName}']/following-sibling::a"))).Click();
+        }
+
+        public bool IsStudentsResultDisapear(string studentsFullName, string studentsResult)
+        {
+            string xpath = $"//*[text()='{studentsFullName}']/following-sibling::*[text()='{studentsResult}']";
+            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(1));
+            return webDriverWait.Until<bool>(ExpectedConditions.InvisibilityOfElementLocated(By.XPath(xpath)));
         }
     }
 }
