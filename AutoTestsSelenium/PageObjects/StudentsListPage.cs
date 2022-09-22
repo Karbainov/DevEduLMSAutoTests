@@ -13,9 +13,14 @@
             _driver.Navigate().GoToUrl(PageUrl);
         }
 
-        public void ClickGroupsComboBoxByFullNameOfStudent(string fullNameOfStudent)
+        public IWebElement GetGroupByFullNameOfStudent(string fullNameOfStudent)
         {
-            _driver.FindElement(By.XPath($"//*[text()='{fullNameOfStudent}']/..//*[@class = 'drop-down-filter__wrapper']")).Click();
+            return _driver.FindElement(By.XPath($"//*[text()='{fullNameOfStudent}']/..//*[@class = 'drop-down-filter__wrapper']"));
+        }
+
+        public void ClickByFullNameOfStudentComboBox(string fullNameOfStudent)
+        {
+            GetGroupByFullNameOfStudent(fullNameOfStudent).Click();
         }
 
         public void ClickDesiredGroupByName(string groupName)
