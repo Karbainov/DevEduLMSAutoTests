@@ -7,7 +7,7 @@
         public IWebElement ButtonHomeworksSideBar => _driver.FindElement(By.XPath($"//*[text()='Домашние задания']/.."));
         public IWebElement ButtonAddHomewrksSideBar => _driver.FindElement(By.XPath($"//*[text()='Выдача заданий']/.."));
 
-        protected AbstractMethodistAuthorizedPage(IWebDriver driver) : base(driver)
+        protected AbstractMethodistAuthorizedPage()
         {
         }
 

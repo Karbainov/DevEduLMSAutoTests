@@ -9,7 +9,7 @@
         public IWebElement ButtonSave => _driver.FindElement(By.XPath($"//button[text()='Сохранить']"));
         public IWebElement ButtonCancelEditGroup => _driver.FindElement(By.XPath($"//*[text()='Отмена']"));
 
-        public GroupEditingManagerPage(IWebDriver driver) : base(driver)
+        public GroupEditingManagerPage()
         {
         }
 

@@ -4,7 +4,7 @@
     {
         private const string PageUrl = $"{Urls.Host}/homeworks";
 
-        public HomeworksStudentPage(IWebDriver driver) : base(driver)
+        public HomeworksStudentPage()
         {
         }
 
