@@ -3,178 +3,116 @@ namespace AutoTestsSelenium.StepDefinitions
     [Binding]
     public class StatisticsStepDefinitions
     {
-        private TasksStepDefinitions _stepsBySwagger;
-        private List<SwaggerSignInRequest> _studensSignIn;
-        private SwaggerSignInRequest _teacherSingIn;
         private IWebDriver _driver;
-        private SingInWindow _singInElements;
-        private TeacherNavigatePanelElements _navigateButtons;
-        private string _groupName;
-        private TeachersHomeworkWindow _teacersHomeworkWindowElements;
-        private StudentsHomeworkWindow _studentsHomeworkWindowElements;
-        private DBCleaner _tablesClear;
-        private List<StudentsHomeworkResultModel> _studentsResults;
-        private HomeworkResultsElements _homeworkResultsElements;
-        private GeneralProgressWindow _generalProgressElements;
 
-        public StatisticsStepDefinitions()
+        [When(@"Open DevEdu web site")]
+        public void WhenOpenDevEduWebSite()
         {
-            _stepsBySwagger = new TasksStepDefinitions();
-            _studensSignIn = new List<SwaggerSignInRequest>();
             _driver = SingleWebDriver.GetInstance();
-            _singInElements = new SingInWindow();
-            _navigateButtons = new TeacherNavigatePanelElements();
-            _teacersHomeworkWindowElements = new TeachersHomeworkWindow();
-            _studentsHomeworkWindowElements = new StudentsHomeworkWindow();
-            _tablesClear = new DBCleaner();
-            _studentsResults = new List<StudentsHomeworkResultModel>();
-            _homeworkResultsElements = new HomeworkResultsElements();
-            _generalProgressElements = new GeneralProgressWindow();
-        }
-
-        [Given(@"register new users with roles")]
-        public void GivenRegisterNewUsersWithRoles(Table table)
-        {
-            _tablesClear.ClearDB();
-            _stepsBySwagger.GivenRegisterNewUsersWithRoles(table);
-            List<RegistationModelWithRole> users = table.CreateSet<RegistationModelWithRole>().ToList();
-            foreach(var user in users)
-            {
-                if (user.Role == "Student")
-                {
-                    _studensSignIn.Add(new SwaggerSignInRequest() { Email=user.Email, Password = user.Password });
-                }
-                else if(user.Role == "Teacher")
-                {
-                    _teacherSingIn = new SwaggerSignInRequest() {Email=user.Email, Password=user.Password };
-                }
-            }
-        }
-
-        [Given(@"manager create new group")]
-        public void GivenManagerCreateNewGroup(Table table)
-        {
-            _groupName = _stepsBySwagger.GivenManagerCreateNewGroup(table);
-            _teacersHomeworkWindowElements._groupName = _groupName;
-        }
-
-        [Given(@"manager add users to group")]
-        public void GivenManagerAddUsersToGroup()
-        {
-            _stepsBySwagger.GivenManagerAddUsersToGroup();
-        }
-
-        [When(@"teacher create new homework")]
-        public void WhenTeacherCreateNewHomework(Table table)
-        {
-            AddNewHomework homework = table.CreateInstance<AddNewHomework>();
             _driver.Manage().Window.Maximize();
             _driver.Navigate().GoToUrl(Urls.Host);
-            Thread.Sleep(200);
-            _driver.FindElement(_singInElements.XPathEmailBox).SendKeys(_teacherSingIn.Email);
-            _driver.FindElement(_singInElements.XPathPasswordBox).Clear();
-            _driver.FindElement(_singInElements.XPathPasswordBox).SendKeys(_teacherSingIn.Password);
-            _driver.FindElement(_singInElements.XPathSingInButton).Click();
-            Thread.Sleep(100);
-            _driver.FindElement(_navigateButtons.XPathSwitchRoleButton).Click();
-            _driver.FindElement(_navigateButtons.XPathRoleButton(OptionsSwagger.RoleTeacher)).Click();
-            _driver.FindElement(_navigateButtons.XPathNewHomeworkButton).Click();
-            _driver.FindElement(_teacersHomeworkWindowElements.XPathGroupRB).Click();
-            var dateTB = _driver.FindElement(_teacersHomeworkWindowElements.XPathStartDateTextBox);
-            Actions setDate = new Actions(_driver);
-            setDate.DoubleClick(dateTB).SendKeys(homework.StartDate).Build().Perform();
-            dateTB = _driver.FindElement(_teacersHomeworkWindowElements.XPathEndDateTextBox);
-            setDate.DoubleClick(dateTB).SendKeys(homework.EndDate).Build().Perform();
-            _driver.FindElement(_teacersHomeworkWindowElements.XPathNameTB).SendKeys(homework.Name);
-            _driver.FindElement(_teacersHomeworkWindowElements.XPathDescriptionTB).SendKeys(homework.Description);
-            _driver.FindElement(_teacersHomeworkWindowElements.XPathLinkTB).SendKeys(homework.Link);
-            _driver.FindElement(_teacersHomeworkWindowElements.XPathAddLinkButton).Click();
-            _driver.FindElement(_teacersHomeworkWindowElements.XPathPublishButton).Click();
-            _driver.FindElement(_navigateButtons.XPathExitButton).Click();
         }
 
-        [When(@"students did their homework")]
-        public void WhenStudentsDidTheirHomework()
+        [When(@"Authorize user")]
+        public void WhenAuthorizeAsAUser(Table table)
         {
-            foreach(var student in _studensSignIn)
+            SwaggerSignInRequest signIn = table.CreateInstance<SwaggerSignInRequest>();
+            var authorizationPage = new AuthorizationUnauthorizedPage();
+            authorizationPage.OpenThisPage();
+            authorizationPage.EnterEmail(signIn.Email);
+            authorizationPage.EnterPassword(signIn.Password);
+            authorizationPage.ClickEnterButton();
+        }
+
+        [When(@"teacher create new homework for group ""([^""]*)""")]
+        public void WhenTeacherCreateNewHomeworkForGroup(string groupName, Table table)
+        {
+            AddNewHomework homework = table.CreateInstance<AddNewHomework>();
+            var homeworkCreationPage = new HomeworkCreationTeacherPage();
+            homeworkCreationPage.ClickCreateHomework();
+            homeworkCreationPage.ClickRadioButtonGroupName(groupName);
+            homeworkCreationPage.InputStarDate(homework.StartDate);
+            homeworkCreationPage.InputEndDate(homework.EndDate);
+            homeworkCreationPage.InputNameHomework(homework.Name);
+            homeworkCreationPage.InputDescriptionHomework(homework.Description);
+            homeworkCreationPage.InputLink(homework.Link);
+            homeworkCreationPage.ClickAddLinkButton();
+            homeworkCreationPage.ClickPublishButton();
+        }
+
+        [When(@"User exit")]
+        public void WhenUserExit()
+        {
+            var page = new HomeworkCreationTeacherPage();
+            page.ClickCancelButton();
+        }
+
+        [When(@"Students did their homework ""([^""]*)""")]
+        public void WhenStudentsDidTheirHomework(string homeworkName, Table table)
+        {
+            var authorizationPage = new AuthorizationUnauthorizedPage();
+            var homeworksStudentPage = new HomeworksStudentPage();
+            var answerHomework = new HomeworkAnswerStudentsPage();
+            string studentsAnswer = "https://github.com";
+            List<SwaggerSignInRequest> _studensSignIn = table.CreateSet<SwaggerSignInRequest>().ToList();
+            foreach (var student in _studensSignIn)
             {
-                _driver.FindElement(_singInElements.XPathEmailBox).SendKeys(student.Email);
-                _driver.FindElement(_singInElements.XPathPasswordBox).Clear();
-                _driver.FindElement(_singInElements.XPathPasswordBox).SendKeys(student.Password);
-                _driver.FindElement(_singInElements.XPathSingInButton).Click();
-                Thread.Sleep(200);
-                _driver.FindElement(_navigateButtons.XPathHomeworksButton).Click();
-                Thread.Sleep(200);
-                _driver.FindElement(_studentsHomeworkWindowElements.XPathGoToTaskButton).Click();
+                authorizationPage.EnterEmail(student.Email);
+                authorizationPage.EnterPassword(student.Password);
+                authorizationPage.ClickEnterButton();
+                homeworksStudentPage.OpenThisPage();
+                homeworksStudentPage.ClickGoToTaskButton(homeworkName);
                 _driver.Navigate().Refresh();
-                Thread.Sleep(100);
-                _driver.FindElement(_studentsHomeworkWindowElements.XPathLinkToAnswerTB).
-                    SendKeys($"https://github.com");
-                _driver.FindElement(_studentsHomeworkWindowElements.XPathSendAnswerButton).Click();
-                _driver.FindElement(_navigateButtons.XPathExitButton).Click();
+                answerHomework.EnterAnswer(studentsAnswer);
+                answerHomework.ClickSendAnswerButton();
+                answerHomework.ClickExitButton();
             }
         }
 
-        [When(@"teacher rate homeworks")]
+        [When(@"Teacher rate homeworks")]
         public void WhenTeacherRateHomeworks(Table table)
         {
-            _studentsResults = table.CreateSet<StudentsHomeworkResultModel>().ToList();
-            _driver.FindElement(_singInElements.XPathEmailBox).SendKeys(_teacherSingIn.Email);
-            _driver.FindElement(_singInElements.XPathPasswordBox).Clear();
-            _driver.FindElement(_singInElements.XPathPasswordBox).SendKeys(_teacherSingIn.Password);
-            _driver.FindElement(_singInElements.XPathSingInButton).Click();
-            Thread.Sleep(200);
-            _driver.FindElement(_navigateButtons.XPathSwitchRoleButton).Click();
-            _driver.FindElement(_navigateButtons.XPathRoleButton(OptionsSwagger.RoleTeacher)).Click();
-            _driver.FindElement(_navigateButtons.XPathCheckHomeworksButton).Click();
-            foreach(var result in _studentsResults)
+            var homeworkCheckingPage = new HomeworksCheckingTeacherPage();
+            var studentsResults = table.CreateSet<StudentsHomeworkResultModel>().ToList();
+            homeworkCheckingPage.OpenThisPage();
+            foreach(var result in studentsResults)
             {
-
+            //TODO: check homework page is empty now
             }
-            //check homework page is empty
         }
 
-        [Then(@"teacher should see students results in homewok tab")]
-        public void ThenTeacherShouldSeeStudentsResultsInHomewokTab()
+        [Then(@"Teacher should see students results in homework ""([^""]*)"" page")]
+        public void ThenTeacherShouldSeeStudentsResultsInHomeworkPage(string homeworkName, Table table)
         {
-            _driver.FindElement(_navigateButtons.XPathHomeworksButton).Click();
-            Thread.Sleep(300);
-            _driver.FindElement(_studentsHomeworkWindowElements.XPathGoToTaskButton).Click();
-            foreach (var result in _studentsResults)
-            {
-                By desiredElement = _homeworkResultsElements.
-                    XPathStudentsResultByNameByResult(result.FullName, result.Result);
-                var _expectedResult = _driver.FindElements(desiredElement).FirstOrDefault();
-                //Assert.NotNull(_expectedResult);
-            }
-            Thread.Sleep(1000);
+            //var _homeworksTeacherPage = new HomeworksTeacherPage();
+            //_homeworksTeacherPage.OpenThisPage();
+            //_homeworksTeacherPage.ClickAddHomework(homeworkName);
+            //var expectedResults = table.CreateSet<StudentsHomeworkResultModel>().ToList();
+            //var actualResultsElements = _homeworksTeacherPage.StudentsResults;
+            //var actualResults = new List<StudentsHomeworkResultModel>();
+            //for(int i = 1; i <= actualResultsElements.Count; i++)
+            //{
+            //    string xpathName = $"//div[@class='homework-result-container']/div[@class='table-row'][{i}]/div[1]";
+            //    string xpathResult = $"//div[@class='homework-result-container']/div[@class='table-row'][{i}]/div[3]";
+            //    string studentsName = actualResultsElements[i-1].FindElement(By.XPath(xpathName)).Text;
+            //    string studentsResult = actualResultsElements[i-1].FindElement(By.XPath(xpathResult)).Text;
+            //    actualResults.Add(new StudentsHomeworkResultModel() { FullName = studentsName, Result = studentsResult });
+            //}
+            //Assert.Equal(expectedResults, actualResults);
         }
-
-        [Then(@"teacher should see students results in tab General Progress")]
-        public void ThenTeacherShouldSeeStudentsResultsInTabGeneralProgress()
+        
+        [Then(@"teacher should see students results to homework ""([^""]*)"" in tab General Progress")]
+        public void ThenTeacherShouldSeeStudentsResultsToHomeworkInTabGeneralProgress(string homeworkName, Table table)
         {
-            _driver.FindElement(_navigateButtons.XPathGeneralProgressButton).Click();
-            Thread.Sleep(300);
-            int expectedPassedHomework = 0;
-            int expectedDeclinedHomework = 0;
-            int actualPassedHomework;
-            int actualDeclinedHomework;
-            foreach(var result in _studentsResults)
-            {
-                if (result.Result == "�����")
-                {
-                    expectedPassedHomework++;
-                }
-                else if (result.Result == "�� �����")
-                {
-                    expectedDeclinedHomework++;
-                }
-            }
-            actualPassedHomework =_driver.FindElements(_generalProgressElements.ByXpathAccept).Count;
-            actualDeclinedHomework =_driver.FindElements(_generalProgressElements.ByXpathDecline).Count;
-            //Assert.Equal(expectedPassedHomework, actualPassedHomework);
-            //Assert.Equal(expectedDeclinedHomework, actualDeclinedHomework);
-            _tablesClear.ClearDB();
+            var generalProgressTeacher = new GeneralStudentsProgressTeacherPage();
+            generalProgressTeacher.OpenThisPage();
+            //TODO: сделать чтобы были читаемы все элементы
+            Thread.Sleep(15000); //уменьшить масштаб страницы, прокрутить ползунок, иначе не считывает информацию
+            var expectedResults = new List<GeneralProgressResultsModel>();
+            var expectedHWresults = table.CreateSet<StudentsHomeworkResultModel>().ToList();
+            expectedResults.Add(new GeneralProgressResultsModel{ HomeworkName = homeworkName, StudentsHomeworkResults = expectedHWresults });
+            var actualResults = GeneralProgressResultsModel.GetResults(generalProgressTeacher);
+            Assert.Equal(expectedResults, actualResults);
         }
     }
 }

@@ -1,7 +1,4 @@
-﻿using OpenQA.Selenium.Support.UI;
-using System.Reflection.Metadata;
-
-namespace AutoTestsSelenium.PageObjects
+﻿namespace AutoTestsSelenium.PageObjects
 {
     public class HomeworkCreationMethodistPage : AbstractMethodistAuthorizedPage
     {

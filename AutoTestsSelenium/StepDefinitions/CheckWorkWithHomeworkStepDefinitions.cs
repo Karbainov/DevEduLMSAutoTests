@@ -1,3 +1,5 @@
+using TechTalk.SpecFlow;
+
 namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
@@ -35,20 +37,21 @@ namespace AutoTestsSelenium.StepDefinitions
             _homeworksTeacherPage.ClickAddHomework();        
         }
 
-        [Then(@"Methodist create homework")]
-        public void ThenMethodistCreateHomework(Table table)
+        [Then(@"Methodist create homework course name ""([^""]*)""")]
+        public void ThenMethodistCreateHomeworkCourseName(string courseName, Table table)
         {
             HomeworkCreationMethodistPage _homeworkMethodist;
             _homeworkMethodist = new HomeworkCreationMethodistPage();
             AddNewHomework createHomework = table.CreateInstance<AddNewHomework>();
-            _homeworkMethodist.ClickChoiceGroupNumber(createHomework.CourseName);
+            _homeworkMethodist.ClickChoiceGroupNumber(courseName);
             _homeworkMethodist.InputNameGroup(createHomework.Name);
             _homeworkMethodist.InputDescriptionHomework(createHomework.Description);
             _homeworkMethodist.InputLinkHomework(createHomework.Link);
             _homeworkMethodist.ClickButtonAttachLink();
+            _homeworkMethodist.ClickButtonSaveDraft();
             //TODO teacher does not see homework in saved assignments (Task 2.5)
         }
-
+   
         [Then(@"Authorization user as teacher")]
         public void ThenAuthorizationUserAsTeacher(Table table)
         {
@@ -67,15 +70,15 @@ namespace AutoTestsSelenium.StepDefinitions
             _homeworksTeacherPage.ClickSavedHomeworkButton();
             _homeworksDraftTeacherPage.ClickEditHomeworkButton(nameHomework);
             //TODO �o task, emptiness (Task 2.5)
-        }    
+        }
 
-        [When(@"Teacher create issuing homework")]
-        public void WhenTeacherCreateIssuingHomework(Table table)
-        {
+        [When(@"Teacher create issuing homework course name ""([^""]*)""")]
+        public void WhenTeacherCreateIssuingHomeworkCourseName(string courseName, Table table)
+        {          
             HomeworkExtraditionTeacherPage _homeworkExtraditionTeacherPage;
             _homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage();
             AddNewHomework homework = table.CreateInstance<AddNewHomework>();
-            _homeworkExtraditionTeacherPage.ClickNumberGroupRadiobox(homework.CourseName);
+            _homeworkExtraditionTeacherPage.ClickNumberGroupRadiobox(courseName);
             _homeworkExtraditionTeacherPage.InputStarDate(homework.StartDate);
             _homeworkExtraditionTeacherPage.InputEndDate(homework.EndDate);
             _homeworkExtraditionTeacherPage.InputNameHomework(homework.Name);

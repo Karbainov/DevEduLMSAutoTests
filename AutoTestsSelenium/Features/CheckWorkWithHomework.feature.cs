@@ -210,17 +210,15 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Methodist click button add homework", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
-                            "CourseName",
                             "Name",
                             "Description",
                             "Link"});
                 table5.AddRow(new string[] {
-                            "QA Automation",
                             "ЗаданиеЗадание",
                             "string",
                             "http://fjfjf.com"});
 #line 26
- testRunner.Then("Methodist create homework", ((string)(null)), table5, "Then ");
+ testRunner.Then("Methodist create homework course name \"QA Automation\"", ((string)(null)), table5, "Then ");
 #line hidden
                 TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
@@ -237,21 +235,19 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("Teacher lays out the task \"ЗаданиеЗадание\" created by the methodologist", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
                 TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
-                            "CourseName",
                             "Name",
                             "Description",
                             "Link",
                             "StartDate",
                             "EndDate"});
                 table7.AddRow(new string[] {
-                            "QA Automation",
                             "ЗаданиеЗадание",
                             "сделай то то",
                             "http://fjfjf.com",
                             "30.09.2022",
                             "31.12.2022"});
 #line 33
- testRunner.When("Teacher create issuing homework", ((string)(null)), table7, "When ");
+ testRunner.When("Teacher create issuing homework course name \"QA Automation\"", ((string)(null)), table7, "When ");
 #line hidden
 #line 36
  testRunner.Then("Teacher click button publish", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

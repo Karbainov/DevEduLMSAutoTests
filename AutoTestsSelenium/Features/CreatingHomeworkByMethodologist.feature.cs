@@ -83,11 +83,17 @@ namespace AutoTestsSelenium.Features
         [Xunit.SkippableFactAttribute(DisplayName="Creating an assignment by a methodologist for students")]
         [Xunit.TraitAttribute("FeatureTitle", "SpecialTwoPointFive")]
         [Xunit.TraitAttribute("Description", "Creating an assignment by a methodologist for students")]
-        [Xunit.TraitAttribute("Category", "tag1")]
+        [Xunit.TraitAttribute("Category", "teacher")]
+        [Xunit.TraitAttribute("Category", "student")]
+        [Xunit.TraitAttribute("Category", "manager")]
+        [Xunit.TraitAttribute("Category", "methodist")]
         public void CreatingAnAssignmentByAMethodologistForStudents()
         {
             string[] tagsOfScenario = new string[] {
-                    "tag1"};
+                    "teacher",
+                    "student",
+                    "manager",
+                    "methodist"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Creating an assignment by a methodologist for students", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
@@ -149,48 +155,47 @@ this.ScenarioInitialize(scenarioInfo);
                             "89817051893",
                             "Teacher"});
 #line 7
- testRunner.When("Register users with roles", ((string)(null)), table12, "When ");
+ testRunner.Given("Administrator registers new users with roles", ((string)(null)), table12, "Given ");
+#line hidden
+#line 12
+ testRunner.And("Open DevEdu site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table13 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
-                            "Password",
-                            "Role"});
+                            "Password"});
                 table13.AddRow(new string[] {
                             "lera21@methodist.com",
-                            "password",
-                            "Methodist"});
-#line 12
+                            "password"});
+#line 13
  testRunner.And("Authorization user as methodist", ((string)(null)), table13, "And ");
 #line hidden
-#line 15
+#line 16
  testRunner.And("Methodist click button add task", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table14 = new TechTalk.SpecFlow.Table(new string[] {
-                            "CourseName",
                             "Name",
                             "Description",
                             "Link"});
                 table14.AddRow(new string[] {
-                            "QA Automation",
                             "ЗаданиеЗадание",
                             "string",
                             "http://fjfjf.com"});
-#line 16
- testRunner.When("Methodist create draft Homework", ((string)(null)), table14, "When ");
-#line hidden
-#line 19
- testRunner.Then("Methodist click button save as draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 17
+ testRunner.When("Methodist create draft Homework course name \"QA Automation\"", ((string)(null)), table14, "When ");
 #line hidden
 #line 20
- testRunner.When("Methodist see all created homeworks", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Then("Methodist click button save as draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 21
- testRunner.And("Methodist click link edit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("Methodist see all created homeworks", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 22
- testRunner.When("Methodist edits homework", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("Methodist click link edit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 23
+ testRunner.When("Methodist edits homework", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 24
  testRunner.Then("Methodist click button save draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
                 TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
@@ -201,10 +206,10 @@ this.ScenarioInitialize(scenarioInfo);
                             "vitya21@teacher.com",
                             "password",
                             "Teacher"});
-#line 24
+#line 25
  testRunner.And("Teacher authorization", ((string)(null)), table15, "And ");
 #line hidden
-#line 27
+#line 28
  testRunner.And("Teacher click button homework assignment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
@@ -219,10 +224,10 @@ this.ScenarioInitialize(scenarioInfo);
                             "http://fjfjf.com",
                             "20.09.2022",
                             "31.12.2022"});
-#line 28
- testRunner.When("Teacher fill out a new assignment form", ((string)(null)), table16, "When ");
+#line 29
+ testRunner.When("Teacher fill out a new assignment form course name \"QA Automation\"", ((string)(null)), table16, "When ");
 #line hidden
-#line 31
+#line 32
  testRunner.And("Teacher click button publish", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table17 = new TechTalk.SpecFlow.Table(new string[] {
@@ -231,7 +236,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table17.AddRow(new string[] {
                             "milana@student.com",
                             "password"});
-#line 32
+#line 33
  testRunner.Then("Student should sees homework", ((string)(null)), table17, "Then ");
 #line hidden
             }
