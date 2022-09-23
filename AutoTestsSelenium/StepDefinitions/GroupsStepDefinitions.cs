@@ -108,7 +108,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Click button students list")]
         public void WhenClickButtonStudentsList()
         {
-            StudentsListPage studentsListPage = new StudentsListPage();
+            StudentsListManagerPage studentsListPage = new StudentsListManagerPage();
             studentsListPage.ClickStudentsListButton();
         }
 
@@ -136,7 +136,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Additing student ""([^""]*)"" to group ""([^""]*)""")]
         public void WhenManagerAddStudentToGroup(string fullNameOfStudent, string groupName)
         {
-            StudentsListPage studentsListPage = new StudentsListPage();
+            StudentsListManagerPage studentsListPage = new StudentsListManagerPage();
             studentsListPage.ClickByFullNameOfStudentComboBox(fullNameOfStudent);
             studentsListPage.ClickDesiredGroupByName(groupName);
             //TODO The page is implemented as a mock (Task 2.6).

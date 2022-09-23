@@ -1,10 +1,10 @@
 ﻿namespace AutoTestsSelenium.PageObjects
 {
-    public class StudentsListPage : AbstractManagerAuthorizedPage
+    public class StudentsListManagerPage : AbstractManagerAuthorizedPage
     {
         private const string PageUrl = $"{Urls.Host}/students-list";
 
-        public StudentsListPage()
+        public StudentsListManagerPage()
         {
         }
 
