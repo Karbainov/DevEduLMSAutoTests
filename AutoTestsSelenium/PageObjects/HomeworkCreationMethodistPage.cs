@@ -48,7 +48,7 @@
             ButtonSaveDraft.Click();
         }
 
-        private IWebElement GetChoiceGroupNumberButton(string groupName)
+        public IWebElement GetChoiceGroupNumberButton(string groupName)
         {
             WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(4));
             return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//*[text()='{groupName}']/ancestor::*[@class='radio-button']")));

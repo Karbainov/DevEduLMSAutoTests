@@ -44,7 +44,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenUserExit()
         {
             var page = new HomeworkCreationTeacherPage();
-            page.ClickCancelButton();
+            page.ClickExitButton();
         }
 
         [When(@"Students did their homework ""([^""]*)""")]
@@ -84,21 +84,21 @@ namespace AutoTestsSelenium.StepDefinitions
         [Then(@"Teacher should see students results in homework ""([^""]*)"" page")]
         public void ThenTeacherShouldSeeStudentsResultsInHomeworkPage(string homeworkName, Table table)
         {
-            //var _homeworksTeacherPage = new HomeworksTeacherPage();
-            //_homeworksTeacherPage.OpenThisPage();
-            //_homeworksTeacherPage.ClickAddHomework(homeworkName);
-            //var expectedResults = table.CreateSet<StudentsHomeworkResultModel>().ToList();
-            //var actualResultsElements = _homeworksTeacherPage.StudentsResults;
-            //var actualResults = new List<StudentsHomeworkResultModel>();
-            //for(int i = 1; i <= actualResultsElements.Count; i++)
-            //{
-            //    string xpathName = $"//div[@class='homework-result-container']/div[@class='table-row'][{i}]/div[1]";
-            //    string xpathResult = $"//div[@class='homework-result-container']/div[@class='table-row'][{i}]/div[3]";
-            //    string studentsName = actualResultsElements[i-1].FindElement(By.XPath(xpathName)).Text;
-            //    string studentsResult = actualResultsElements[i-1].FindElement(By.XPath(xpathResult)).Text;
-            //    actualResults.Add(new StudentsHomeworkResultModel() { FullName = studentsName, Result = studentsResult });
-            //}
-            //Assert.Equal(expectedResults, actualResults);
+            var _homeworksTeacherPage = new HomeworksTeacherPage();
+            _homeworksTeacherPage.OpenThisPage();
+            _homeworksTeacherPage.ClickGoToTaskButton(homeworkName);
+            var expectedResults = table.CreateSet<StudentsHomeworkResultModel>().ToList();
+            var actualResultsElements = _homeworksTeacherPage.StudentsResults;
+            var actualResults = new List<StudentsHomeworkResultModel>();
+            for (int i = 1; i <= actualResultsElements.Count; i++)
+            {
+                string xpathName = $"//div[@class='homework-result-container']/div[@class='table-row'][{i}]/div[1]";
+                string xpathResult = $"//div[@class='homework-result-container']/div[@class='table-row'][{i}]/div[3]";
+                string studentsName = actualResultsElements[i - 1].FindElement(By.XPath(xpathName)).Text;
+                string studentsResult = actualResultsElements[i - 1].FindElement(By.XPath(xpathResult)).Text;
+                actualResults.Add(new StudentsHomeworkResultModel() { FullName = studentsName, Result = studentsResult });
+            }
+            Assert.Equal(expectedResults, actualResults);
         }
         
         [Then(@"teacher should see students results to homework ""([^""]*)"" in tab General Progress")]

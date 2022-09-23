@@ -5,8 +5,7 @@
         public IWebElement ButtonAddLessonSideBar => _driver.FindElement(By.XPath($"//*[text()='Добавить занятие']/.."));
         public IWebElement ButtonLessonsSideBar => GetButtonLessonsSideBar();
         public IWebElement ButtonHomeworksSideBar => _driver.FindElement(By.XPath($"//*[text()='Домашние задания']/.."));
-        public IWebElement ButtonAddHomeworksSideBar => _driver.FindElement(By.XPath($"//*[text()='Выдача заданий']/.."));
-        public IWebElement ButtonAddHomewrksSideBar => GetButtonAddHomewrksSideBar();
+        public IWebElement ButtonAddHomeworksSideBar => GetButtonAddHomewrksSideBar();
         public IWebElement ButtonCheckHomeworksSideBar => _driver.FindElement(By.XPath($"//*[text()='Проверка заданий']/.."));
         public IWebElement ButtonGeneralProgressSideBar => _driver.FindElement(By.XPath($"//*[text()='Общая успеваемость']/.."));
         public IWebElement ButtonJournalSideBar => _driver.FindElement(By.XPath($"//*[text()='Журнал']/.."));
@@ -14,7 +13,6 @@
         protected AbstractTeacherAuthorizedPage()
         {
         }
-
 
         public void ClickLessonsButton()
         {
@@ -50,8 +48,6 @@
         {
             ButtonJournalSideBar.Click();
         }
-
-
 
         private IWebElement GetButtonLessonsSideBar()
         {

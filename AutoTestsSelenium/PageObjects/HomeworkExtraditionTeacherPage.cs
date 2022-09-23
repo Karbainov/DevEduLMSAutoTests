@@ -27,17 +27,12 @@
         public IWebElement GetRadioButtonByGroupName(string groupName)
         {
             return _driver.FindElement(By.XPath($"//*[text()='{groupName}']/ancestor::*[@class='radio-button']"));
-        }
-
+        }
+
         public void ClickRadioButtonGroupName(string groupName)
         {
             GetRadioButtonByGroupName(groupName).Click();
-        }
-        
-        public void ClickNumberGroupRadiobox(string groupName)
-        {
-            GetNumberGroup(groupName).Click();
-        }
+        }             
 
         public void InputStarDate(string startDate)
         {

@@ -1,6 +1,6 @@
 ﻿namespace AutoTestsSelenium.PageObjects
 {
-    public class HomeworkCreationTeacherPage : AbstractPage
+    public class HomeworkCreationTeacherPage : AbstractTeacherAuthorizedPage
     {
         private const string PageUrl = $"{Urls.Host}/new-homework";
         public IWebElement TextBoxStartDate => _driver.FindElement(By.XPath($"//*[text()='Дата выдачи задания']//input"));

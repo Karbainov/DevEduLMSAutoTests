@@ -4,7 +4,6 @@
     {       
         private const string PageUrl = $"{Urls.Host}/homeworks/draft";
         
-
         public HomeworksDraftTeacherPage()
         {
         }
@@ -29,6 +28,5 @@
         {
             GetNameHomework(nameHomework).Click();
         }
-
     }
 }

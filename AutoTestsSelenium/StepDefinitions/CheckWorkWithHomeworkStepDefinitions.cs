@@ -7,13 +7,14 @@ namespace AutoTestsSelenium.StepDefinitions
     {
         private IWebDriver _driver;
 
-        [When(@"Open DevEdu site")]
-        public void WhenOpenDevEduWebSite()
+        [When(@"Open DevEdu site ""([^""]*)""")]
+        public void WhenOpenDevEduSite(string link)
         {
             _driver = SingleWebDriver.GetInstance();
             _driver.Manage().Window.Maximize();
             _driver.Navigate().GoToUrl(Urls.Host);
         }
+
         [When(@"Methodist authorization on the site")]
         public void WhenMethodistAuthorizationOntheSite(Table table)
         {
@@ -37,8 +38,8 @@ namespace AutoTestsSelenium.StepDefinitions
             _homeworksTeacherPage.ClickAddHomework();        
         }
 
-        [Then(@"Methodist create homework course name ""([^""]*)""")]
-        public void ThenMethodistCreateHomeworkCourseName(string courseName, Table table)
+        [When(@"Methodist create homework course name ""([^""]*)""")]
+        public void WhenMethodistCreateHomeworkCourseName(string courseName, Table table)
         {
             HomeworkCreationMethodistPage _homeworkMethodist;
             _homeworkMethodist = new HomeworkCreationMethodistPage();
@@ -50,14 +51,7 @@ namespace AutoTestsSelenium.StepDefinitions
             _homeworkMethodist.ClickButtonAttachLink();
             _homeworkMethodist.ClickButtonSaveDraft();
             //TODO teacher does not see homework in saved assignments (Task 2.5)
-        }
-   
-        [Then(@"Authorization user as teacher")]
-        public void ThenAuthorizationUserAsTeacher(Table table)
-        {
-            CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
-            AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });       
-        }
+        }  
 
         [Then(@"Teacher lays out the task ""([^""]*)"" created by the methodologist")]
         public void ThenTeacherLaysOutTheTaskCreatedByTheMethodologist(string nameHomework)
@@ -73,12 +67,12 @@ namespace AutoTestsSelenium.StepDefinitions
         }
 
         [When(@"Teacher create issuing homework course name ""([^""]*)""")]
-        public void WhenTeacherCreateIssuingHomeworkCourseName(string courseName, Table table)
+        public void WhenTeacherCreateIssuingHomeworkCourseName(string groupName, Table table)
         {          
             HomeworkExtraditionTeacherPage _homeworkExtraditionTeacherPage;
             _homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage();
             AddNewHomework homework = table.CreateInstance<AddNewHomework>();
-            _homeworkExtraditionTeacherPage.ClickNumberGroupRadiobox(courseName);
+            _homeworkExtraditionTeacherPage.ClickRadioButtonGroupName(groupName);
             _homeworkExtraditionTeacherPage.InputStarDate(homework.StartDate);
             _homeworkExtraditionTeacherPage.InputEndDate(homework.EndDate);
             _homeworkExtraditionTeacherPage.InputNameHomework(homework.Name);
@@ -105,13 +99,6 @@ namespace AutoTestsSelenium.StepDefinitions
             _homeworksTeacherPage.ClickAddHomeworksButton();
             _homeworksTeacherPage.ClickExitButton();
             //TODO �o task, emptiness (Task 2.5)
-        }
-
-        [When(@"Student authorization")]
-        public void WhenStudentAuthorization(Table table)
-        {
-            CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
-            AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });         
         }
 
         [When(@"Student click button homework")]
@@ -152,32 +139,28 @@ namespace AutoTestsSelenium.StepDefinitions
         }
 
         [When(@"Teacher checks homework")]
-        public void WhenTeacherChecksHomework(Table table)
+        public void WhenTeacherChecksHomework()
         {
             HomeworksTeacherPage _homeworksTeacherPage;
             _homeworksTeacherPage = new HomeworksTeacherPage();
-            CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
-            AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });
             _homeworksTeacherPage.ClickCheckHomeworksButton();
             //TODO �o task, emptiness (Task 2.5)
         }
 
-        [Then(@"Teacher returned homework")]
-        public void ThenTeacherReturnedHomework()
+        [When(@"Teacher returned homework")]
+        public void WhenTeacherReturnedHomework()
         {
             throw new PendingStepException();
             //TODO Blank sheet task 2.5
         }
 
         [When(@"Student attached link ""([^""]*)"" of corrected homework")]
-        public void WhenStudentAttachedLinkOfCorrectedHomework(string link, Table table)
+        public void WhenStudentAttachedLinkOfCorrectedHomework(string link)
         {
             HomeworksTeacherPage _homeworksTeacherPage;
             _homeworksTeacherPage = new HomeworksTeacherPage();
             HomeworksStudentPage _homeworksStudentPage;
             _homeworksStudentPage = new HomeworksStudentPage();
-            CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
-            AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });
             _homeworksTeacherPage.ClickHomeworksButton();
             _homeworksStudentPage.GoToTaskButton();
             _homeworksStudentPage.InputLinkAnswer(link);
@@ -187,12 +170,10 @@ namespace AutoTestsSelenium.StepDefinitions
         }     
 
         [Then(@"Teacher accepted homework")]
-        public void ThenTeacherAcceptedHomework(Table table)
+        public void ThenTeacherAcceptedHomework()
         {
             HomeworksTeacherPage _homeworksTeacherPage;
             _homeworksTeacherPage = new HomeworksTeacherPage();
-            CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
-            AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });
             _homeworksTeacherPage.ClickCheckHomeworksButton();
             //TODO do not continue step due to missing step:Teacher returned homework
         }
