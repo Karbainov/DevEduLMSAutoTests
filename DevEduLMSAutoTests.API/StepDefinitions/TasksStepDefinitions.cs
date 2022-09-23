@@ -51,7 +51,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         [Given(@"register new users with roles")]
         public void GivenRegisterNewUsersWithRoles(Table table)
         {
-            _managerToken = _authenticationClient.AuthorizeUser(new SwaggerSignInRequest() { Email = OptionsSwagger.ManagersEmail, Password = OptionsSwagger.ManagersPassword });
+            _managerToken = _authenticationClient.AuthorizeUser(new SignInRequest() { Email = OptionsSwagger.ManagersEmail, Password = OptionsSwagger.ManagersPassword });
             _newUsers = table.CreateSet<RegistationModelWithRole>().ToList();
             foreach (var user in _newUsers)
             {
@@ -64,7 +64,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
                             _teachersIds.Add(id);
                             _usersClient.AddNewRoleToUser(id, user.Role, _managerToken, HttpStatusCode.NoContent);
                             _usersClient.DeleteUsersRole(id, OptionsSwagger.RoleStudent, _managerToken);
-                            _teachersTokens.Add(_authenticationClient.AuthorizeUser(new SwaggerSignInRequest()
+                            _teachersTokens.Add(_authenticationClient.AuthorizeUser(new SignInRequest()
                             { Email = user.Email, Password = user.Password }));
                         }
                         break;
@@ -73,7 +73,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
                             _tutorsIds.Add(id);
                             _usersClient.AddNewRoleToUser(id, user.Role, _managerToken, HttpStatusCode.NoContent);
                             _usersClient.DeleteUsersRole(id, OptionsSwagger.RoleStudent, _managerToken);
-                            _tutorsTokens.Add(_authenticationClient.AuthorizeUser(new SwaggerSignInRequest()
+                            _tutorsTokens.Add(_authenticationClient.AuthorizeUser(new SignInRequest()
                             { Email = user.Email, Password = user.Password }));
                         }
                         break;
@@ -82,7 +82,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
                             _methodistsIds.Add(id);
                             _usersClient.AddNewRoleToUser(id, user.Role, _managerToken, HttpStatusCode.NoContent);
                             _usersClient.DeleteUsersRole(id, OptionsSwagger.RoleStudent, _managerToken);
-                            _methodistsTokens.Add(_authenticationClient.AuthorizeUser(new SwaggerSignInRequest()
+                            _methodistsTokens.Add(_authenticationClient.AuthorizeUser(new SignInRequest()
                             { Email = user.Email, Password = user.Password }));
                         }
                         break;
@@ -96,7 +96,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
                     case OptionsSwagger.RoleStudent:
                         {
                             _studentsIds.Add(id);
-                            _studentsTokens.Add(_authenticationClient.AuthorizeUser(new SwaggerSignInRequest()
+                            _studentsTokens.Add(_authenticationClient.AuthorizeUser(new SignInRequest()
                             { Email = user.Email, Password = user.Password }));
                         }
                         break;

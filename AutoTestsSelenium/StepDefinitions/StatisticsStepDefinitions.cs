@@ -8,7 +8,6 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenOpenDevEduWebSite()
         {
             var driver = SingleWebDriver.GetInstance();
-            driver = SingleWebDriver.GetInstance();
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl(Urls.Host);
         }
@@ -16,7 +15,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Authorize user")]
         public void WhenAuthorizeAsAUser(Table table)
         {
-            SwaggerSignInRequest signIn = table.CreateInstance<SwaggerSignInRequest>();
+            SignInRequest signIn = table.CreateInstance<SignInRequest>();
             var authorizationPage = new AuthorizationUnauthorizedPage();
             authorizationPage.OpenThisPage();
             authorizationPage.EnterEmail(signIn.Email);
@@ -54,7 +53,7 @@ namespace AutoTestsSelenium.StepDefinitions
             var homeworksStudentPage = new HomeworksStudentPage();
             var answerHomework = new HomeworkAnswerStudentsPage();
             string studentsAnswer = "https://github.com";
-            List<SwaggerSignInRequest> _studensSignIn = table.CreateSet<SwaggerSignInRequest>().ToList();
+            List<SignInRequest> _studensSignIn = table.CreateSet<SignInRequest>().ToList();
             foreach (var student in _studensSignIn)
             {
                 authorizationPage.EnterEmail(student.Email);
@@ -98,7 +97,7 @@ namespace AutoTestsSelenium.StepDefinitions
                 string studentsResult = actualResultsElements[i-1].FindElement(By.XPath(xpathResult)).Text;
                 actualResults.Add(new StudentsHomeworkResultModel() { FullName = studentsName, Result = studentsResult });
             }
-            //Assert.Equal(expectedResults, actualResults);
+            Assert.Equal(expectedResults, actualResults);
         }
 
         [Then(@"teacher should see students results to homework ""([^""]*)"" in tab General Progress")]
@@ -108,7 +107,7 @@ namespace AutoTestsSelenium.StepDefinitions
             generalProgressTeacher.OpenThisPage();
             var driver = SingleWebDriver.GetInstance();
             driver.ExecuteJavaScript("document.body.style.zoom='0.5'");
-            Thread.Sleep(100);
+            Thread.Sleep(100);//Without this, the zoom does not have time to change
             driver.ExecuteJavaScript("document.querySelector('#root > div > main > div.journals > div.flex-container.journal-content-container > div.scroll-content-div > div.swiper.swiper-initialized.swiper-horizontal.swiper-pointer-events.first-swiper.swiper-backface-hidden > div.swiper-wrapper').setAttribute('style','transform: translate3d(0px, 0px, 0px);')");
             driver.ExecuteJavaScript("document.querySelector('#root > div > main > div.journals > div.flex-container.journal-content-container > div.scroll-content-div > div:nth-child(2) > div.swiper-wrapper').setAttribute('style','transform: translate3d(0px, 0px, 0px);')");
             var expectedResults = new List<GeneralProgressResultsModel>();
