@@ -1,3 +1,4 @@
+using OpenQA.Selenium.Support.Extensions;
 namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
@@ -106,8 +107,10 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             var generalProgressTeacher = new GeneralStudentsProgressTeacherPage();
             generalProgressTeacher.OpenThisPage();
-            //TODO: сделать чтобы были читаемы все элементы
-            Thread.Sleep(15000); //уменьшить масштаб страницы, прокрутить ползунок, иначе не считывает информацию
+            IJavaScriptExecutor js = (IJavaScriptExecutor)_driver;
+            _driver.ExecuteJavaScript("document.body.style.zoom='0.5'");
+            js.ExecuteScript("document.querySelector('#root > div > main > div.journals > div.flex-container.journal-content-container > div.scroll-content-div > div.swiper.swiper-initialized.swiper-horizontal.swiper-pointer-events.first-swiper.swiper-backface-hidden > div.swiper-wrapper').setAttribute('style','transform: translate3d(0px, 0px, 0px);')");
+            js.ExecuteScript("document.querySelector('#root > div > main > div.journals > div.flex-container.journal-content-container > div.scroll-content-div > div:nth-child(2) > div.swiper-wrapper').setAttribute('style','transform: translate3d(0px, 0px, 0px);')");
             var expectedResults = new List<GeneralProgressResultsModel>();
             var expectedHWresults = table.CreateSet<StudentsHomeworkResultModel>().ToList();
             expectedResults.Add(new GeneralProgressResultsModel{ HomeworkName = homeworkName, StudentsHomeworkResults = expectedHWresults });
