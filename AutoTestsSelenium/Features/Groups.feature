@@ -193,7 +193,7 @@ And Fills in group data
 | GroupName | CourseName | FullNameOfTeacher | FullNameOfTutor |
 |           | Базовый C# | Maksim Karbainov  | Elisey Kakoyto  |
 And Click button saves group
-Then Error message about absence of group name must match text "Вы не указали название"
+Then Error message about absence of a group name, when creating a group should be "Вы не указали название"
 
 @manager @group @negative
 Scenario: Manager creates a group without choosing a course negative test
@@ -210,7 +210,7 @@ And Fills in group data
 | GroupName | CourseName | FullNameOfTeacher | FullNameOfTutor |
 | BaseSPb   |            | Maksim Karbainov  | Elisey Kakoyto  |
 And Click button saves group
-Then Error message about absence of selected course must match text "Вы не выбрали курс"
+Then Error message about lack of course selection, when creating a group should be "Вы не выбрали курс"
 
 @manager @group @negative
 Scenario: Manager creates a group without choosing a teacher negative test
@@ -227,4 +227,82 @@ And Fills in group data
 | GroupName | CourseName | FullNameOfTeacher | FullNameOfTutor |
 | BaseSPb   | Базовый C# |                   | Elisey Kakoyto  |
 And Click button saves group
-Then Error message about absence of a teacher's choice should correspond to text "Вы не выбрали преподавателя"
+Then Error message about lack of teacher selection, when creating a group should be "Вы не выбрали преподавателя"
+
+@manager @group @editing @negative
+Scenario: Manager creates a group, edits a group without a name negative test
+Given Administrator registers new users with roles
+| FirstName | LastName   | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
+| Maksim    | Karbainov  | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
+| Elisey    | Kakoyto    | string     | elisey@gmail.com | Elisey   | 13345678 | SaintPetersburg | 07.10.1996 | string        | 89518963148 | Tutor   |
+And Admin create new groups
+| Name    | CourseName | GroupStatusId | StartDate  | EndDate    | Timetable | PaymentPerMonth | PaymentsCount |
+| BaseSPb | Базовый C# | Forming       | 29.09.2022 | 25.01.2023 | string    | 2500            | 3             |
+And Admin add users to group "BaseSPb"
+| FirstName | LastName   | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
+| Maksim    | Karbainov  | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
+| Elisey    | Kakoyto    | string     | elisey@gmail.com | Elisey   | 13345678 | SaintPetersburg | 07.10.1996 | string        | 89518963148 | Tutor   |
+When Open authorization page
+And SignIn user in service as manager
+| Email              | Password     |
+| marina@example.com | marinamarina |
+And Click button groups
+And Click button group with name "BaseSPb"
+And Click button edit
+And Fills in group data
+| GroupName | CourseName | FullNameOfTeacher | FullNameOfTutor |
+|           | Базовый C# | Maksim Karbainov  | Elisey Kakoyto  |
+And Click button saves edit group
+Then Error message about absence of group name, when editing group should be "Вы не указали название"
+
+@manager @group @editing @negative
+Scenario: Manager creates a group, edits the group without choosing a course negative test
+Given Administrator registers new users with roles
+| FirstName | LastName   | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
+| Maksim    | Karbainov  | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
+| Elisey    | Kakoyto    | string     | elisey@gmail.com | Elisey   | 13345678 | SaintPetersburg | 07.10.1996 | string        | 89518963148 | Tutor   |
+And Admin create new groups
+| Name    | CourseName | GroupStatusId | StartDate  | EndDate    | Timetable | PaymentPerMonth | PaymentsCount |
+| BaseSPb | Базовый C# | Forming       | 29.09.2022 | 25.01.2023 | string    | 2500            | 3             |
+And Admin add users to group "BaseSPb"
+| FirstName | LastName   | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
+| Maksim    | Karbainov  | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
+| Elisey    | Kakoyto    | string     | elisey@gmail.com | Elisey   | 13345678 | SaintPetersburg | 07.10.1996 | string        | 89518963148 | Tutor   |
+When Open authorization page
+And SignIn user in service as manager
+| Email              | Password     |
+| marina@example.com | marinamarina |
+And Click button groups
+And Click button group with name "BaseSPb"
+And Click button edit
+And Fills in group data
+| GroupName | CourseName | FullNameOfTeacher | FullNameOfTutor |
+| BaseSPb   |            | Maksim Karbainov  | Elisey Kakoyto  |
+And Click button saves edit group
+Then Error message about lack of course selection, when editing group should be "Вы не выбрали курс"
+
+@manager @group @editing @negative
+Scenario: Manager creates a group, edits the group without choosing a teacher negative test
+Given Administrator registers new users with roles
+| FirstName | LastName   | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
+| Maksim    | Karbainov  | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
+| Elisey    | Kakoyto    | string     | elisey@gmail.com | Elisey   | 13345678 | SaintPetersburg | 07.10.1996 | string        | 89518963148 | Tutor   |
+And Admin create new groups
+| Name    | CourseName | GroupStatusId | StartDate  | EndDate    | Timetable | PaymentPerMonth | PaymentsCount |
+| BaseSPb | Базовый C# | Forming       | 29.09.2022 | 25.01.2023 | string    | 2500            | 3             |
+And Admin add users to group "BaseSPb"
+| FirstName | LastName   | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
+| Maksim    | Karbainov  | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
+| Elisey    | Kakoyto    | string     | elisey@gmail.com | Elisey   | 13345678 | SaintPetersburg | 07.10.1996 | string        | 89518963148 | Tutor   |
+When Open authorization page
+And SignIn user in service as manager
+| Email              | Password     |
+| marina@example.com | marinamarina |
+And Click button groups
+And Click button group with name "BaseSPb"
+And Click button edit
+And Fills in group data
+| GroupName | CourseName | FullNameOfTeacher | FullNameOfTutor |
+| BaseSPb   | Базовый C# |                   | Elisey Kakoyto  |
+And Click button saves edit group
+Then Error message about lack of teacher selection, when editing group should be "Вы не выбрали преподавателя"

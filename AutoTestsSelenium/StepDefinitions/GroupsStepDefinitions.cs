@@ -217,16 +217,16 @@ namespace AutoTestsSelenium.StepDefinitions
             Assert.Contains(groups, i => i.Text == groupName);
         }
 
-        [Then(@"Error message about absence of group name must match text ""([^""]*)""")]
-        public void ThenErrorMessageAboutAbsenceOfGroupNameMustMatchText(string expectedErrorMessage)
+        [Then(@"Error message about absence of a group name, when creating a group should be ""([^""]*)""")]
+        public void ThenErrorMessageAboutAbsenceOfAGroupNameWhenCreatingAGroupShouldBe(string expectedErrorMessage)
         {
             GroupCreationManagerPage groupCreationManagerPage = new GroupCreationManagerPage();
             string actualErrorMessage = groupCreationManagerPage.LabelEmptyGroupName.Text;
             Assert.Equal(expectedErrorMessage, actualErrorMessage);
         }
 
-        [Then(@"Error message about absence of selected course must match text ""([^""]*)""")]
-        public void ThenErrorMessageAboutAbsenceOfSelectedCourseMustMatchText(string expectedErrorMessage)
+        [Then(@"Error message about lack of course selection, when creating a group should be ""([^""]*)""")]
+        public void ThenErrorMessageAboutLackOfCourseSelectionWhenCreatingAGroupShouldBe(string expectedErrorMessage)
         {
             GroupCreationManagerPage groupCreationManagerPage = new GroupCreationManagerPage();
             string actualErrorMessage = groupCreationManagerPage.LabelEmptyCourseComboBox.Text;
@@ -234,11 +234,36 @@ namespace AutoTestsSelenium.StepDefinitions
             //TODO Message does not appear that the course is not selected (Task 2.6.2)
         }
 
-        [Then(@"Error message about absence of a teacher's choice should correspond to text ""([^""]*)""")]
-        public void ThenErrorMessageAboutAbsenceOfATeachersChoiceShouldCorrespondToText(string expectedErrorMessage)
+        [Then(@"Error message about lack of teacher selection, when creating a group should be ""([^""]*)""")]
+        public void ThenErrorMessageAboutLackOfTeacherSelectionWhenCreatingAGroupShouldBe(string expectedErrorMessage)
         {
             GroupCreationManagerPage groupCreationManagerPage = new GroupCreationManagerPage();
             string actualErrorMessage = groupCreationManagerPage.LabelEmptyTeacherCheckBox.Text;
+            Assert.Equal(expectedErrorMessage, actualErrorMessage);
+        }
+
+        [Then(@"Error message about absence of group name, when editing group should be ""([^""]*)""")]
+        public void ThenErrorMessageAboutAbsenceOfGroupNameWhenEditingGroupShouldBe(string expectedErrorMessage)
+        {
+            GroupEditingManagerPage groupEditingManagerPage = new GroupEditingManagerPage();
+            string actualErrorMessage = groupEditingManagerPage.LabelEmptyGroupName.Text;
+            Assert.Equal(expectedErrorMessage, actualErrorMessage);
+        }
+
+        [Then(@"Error message about lack of course selection, when editing group should be ""([^""]*)""")]
+        public void ThenErrorMessageAboutLackOfCourseSelectionWhenEditingGroupShouldBe(string expectedErrorMessage)
+        {
+            GroupEditingManagerPage groupEditingManagerPage = new GroupEditingManagerPage();
+            string actualErrorMessage = groupEditingManagerPage.LabelEmptyCourseComboBox.Text;
+            Assert.Equal(expectedErrorMessage, actualErrorMessage);
+            //TODO Message does not appear that the course is not selected (Task 2.17.6)
+        }
+
+        [Then(@"Error message about lack of teacher selection, when editing group should be ""([^""]*)""")]
+        public void ThenErrorMessageAboutLackOfTeacherSelectionWhenEditingGroupShouldBe(string expectedErrorMessage)
+        {
+            GroupEditingManagerPage groupEditingManagerPage = new GroupEditingManagerPage();
+            string actualErrorMessage = groupEditingManagerPage.LabelEmptyTeacherCheckBox.Text;
             Assert.Equal(expectedErrorMessage, actualErrorMessage);
         }
 

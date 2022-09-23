@@ -105,7 +105,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 5
  testRunner.Given("Open registration page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table50 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table65 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -114,7 +114,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "PhoneNumber"});
-                table50.AddRow(new string[] {
+                table65.AddRow(new string[] {
                             "Мистер",
                             "Проппер",
                             "Иванов",
@@ -124,7 +124,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "propper12@mail.ru",
                             "+79992314545"});
 #line 6
- testRunner.And("Fill all requared fields", ((string)(null)), table50, "And ");
+ testRunner.And("Fill all requared fields", ((string)(null)), table65, "And ");
 #line hidden
 #line 9
  testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -179,7 +179,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 20
  testRunner.And("Open registration page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table35 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table66 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -188,7 +188,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "PhoneNumber"});
-                table35.AddRow(new string[] {
+                table66.AddRow(new string[] {
                             "",
                             "Проппер",
                             "Иваныч",
@@ -198,7 +198,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "propper12@mail.ru",
                             "+79992314545"});
 #line 21
- testRunner.And("Fill all requared fields", ((string)(null)), table35, "And ");
+ testRunner.And("Fill all requared fields", ((string)(null)), table66, "And ");
 #line hidden
 #line 24
  testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -241,7 +241,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 31
  testRunner.And("Open registration page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table36 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table67 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -250,7 +250,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "PhoneNumber"});
-                table36.AddRow(new string[] {
+                table67.AddRow(new string[] {
                             "Мистер",
                             "",
                             "Иваныч",
@@ -260,7 +260,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "propper12@mail.ru",
                             "+79992314545"});
 #line 32
- testRunner.And("Fill all requared fields", ((string)(null)), table36, "And ");
+ testRunner.And("Fill all requared fields", ((string)(null)), table67, "And ");
 #line hidden
 #line 35
  testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -303,7 +303,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 42
  testRunner.And("Open registration page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table37 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table68 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -312,7 +312,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "PhoneNumber"});
-                table37.AddRow(new string[] {
+                table68.AddRow(new string[] {
                             "Мистер",
                             "Проппер",
                             "Иваныч",
@@ -322,7 +322,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             "+79992314545"});
 #line 43
- testRunner.And("Fill all requared fields", ((string)(null)), table37, "And ");
+ testRunner.And("Fill all requared fields", ((string)(null)), table68, "And ");
 #line hidden
 #line 46
  testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -365,7 +365,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 53
  testRunner.And("Open registration page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table38 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table69 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -374,7 +374,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "PhoneNumber"});
-                table38.AddRow(new string[] {
+                table69.AddRow(new string[] {
                             "Mister",
                             "Проппер",
                             "Иваныч",
@@ -384,7 +384,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "propper12@mail.ru",
                             "+79992314545"});
 #line 54
- testRunner.And("Fill all requared fields", ((string)(null)), table38, "And ");
+ testRunner.And("Fill all requared fields", ((string)(null)), table69, "And ");
 #line hidden
 #line 57
  testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -427,7 +427,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 64
  testRunner.And("Open registration page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table39 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table70 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -436,7 +436,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "PhoneNumber"});
-                table39.AddRow(new string[] {
+                table70.AddRow(new string[] {
                             "Мистер",
                             "Проппер",
                             "Иваныч",
@@ -446,7 +446,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "propper12@mail.ru",
                             "+79992314545"});
 #line 65
- testRunner.And("Fill all requared fields", ((string)(null)), table39, "And ");
+ testRunner.And("Fill all requared fields", ((string)(null)), table70, "And ");
 #line hidden
 #line 68
  testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -489,7 +489,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 75
  testRunner.And("Open registration page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table40 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table71 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -498,7 +498,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "PhoneNumber"});
-                table40.AddRow(new string[] {
+                table71.AddRow(new string[] {
                             "Мистер",
                             "Проппер",
                             "Иваныч",
@@ -508,7 +508,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "propper12@mail.ru",
                             "+79992314545"});
 #line 76
- testRunner.And("Fill all requared fields", ((string)(null)), table40, "And ");
+ testRunner.And("Fill all requared fields", ((string)(null)), table71, "And ");
 #line hidden
 #line 79
  testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -554,7 +554,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 86
  testRunner.And("Open registration page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table41 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table72 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -563,7 +563,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "PhoneNumber"});
-                table41.AddRow(new string[] {
+                table72.AddRow(new string[] {
                             "Мистер",
                             "Проппер",
                             "Иваныч",
@@ -573,7 +573,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "propper12@mail.ru",
                             "+79992314545"});
 #line 87
- testRunner.And("Fill all requared fields", ((string)(null)), table41, "And ");
+ testRunner.And("Fill all requared fields", ((string)(null)), table72, "And ");
 #line hidden
 #line 90
  testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -619,7 +619,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 97
  testRunner.And("Open registration page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table42 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table73 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -628,7 +628,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "PhoneNumber"});
-                table42.AddRow(new string[] {
+                table73.AddRow(new string[] {
                             "Мистер",
                             "Проппер",
                             "Иваныч",
@@ -638,7 +638,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "propper12@mail.ru",
                             "+79992314545"});
 #line 98
- testRunner.And("Fill all requared fields", ((string)(null)), table42, "And ");
+ testRunner.And("Fill all requared fields", ((string)(null)), table73, "And ");
 #line hidden
 #line 101
  testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -681,7 +681,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 108
  testRunner.And("Open registration page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table43 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table74 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -690,7 +690,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "PhoneNumber"});
-                table43.AddRow(new string[] {
+                table74.AddRow(new string[] {
                             "Мистер",
                             "Проппер",
                             "Иваныч",
@@ -700,7 +700,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "propper12@mail.ru",
                             "+79992314545"});
 #line 109
- testRunner.And("Fill all requared fields", ((string)(null)), table43, "And ");
+ testRunner.And("Fill all requared fields", ((string)(null)), table74, "And ");
 #line hidden
 #line 112
  testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -743,7 +743,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 119
  testRunner.And("Open registration page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table44 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table75 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -752,7 +752,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "PhoneNumber"});
-                table44.AddRow(new string[] {
+                table75.AddRow(new string[] {
                             "Мистер",
                             "Проппер",
                             "Иваныч",
@@ -762,7 +762,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "propper12",
                             "+79992314545"});
 #line 120
- testRunner.And("Fill all requared fields", ((string)(null)), table44, "And ");
+ testRunner.And("Fill all requared fields", ((string)(null)), table75, "And ");
 #line hidden
 #line 123
  testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -808,7 +808,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 130
  testRunner.And("Open registration page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table45 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table76 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -817,7 +817,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "PhoneNumber"});
-                table45.AddRow(new string[] {
+                table76.AddRow(new string[] {
                             "Мистер",
                             "Проппер",
                             "Иваныч",
@@ -827,7 +827,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "propper12@mail.ru",
                             "+79992314545"});
 #line 131
- testRunner.And("Fill all requared fields", ((string)(null)), table45, "And ");
+ testRunner.And("Fill all requared fields", ((string)(null)), table76, "And ");
 #line hidden
 #line 134
  testRunner.When("Click on register button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -862,7 +862,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table46 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table77 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -874,7 +874,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "GitHubAccount",
                             "PhoneNumber",
                             "Role"});
-                table46.AddRow(new string[] {
+                table77.AddRow(new string[] {
                             "Ilya1",
                             "Baikov",
                             "string",
@@ -887,7 +887,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "89998887766",
                             "Student"});
 #line 139
- testRunner.Given("Administrator registers new users with roles", ((string)(null)), table46, "Given ");
+ testRunner.Given("Administrator registers new users with roles", ((string)(null)), table77, "Given ");
 #line hidden
 #line 142
  testRunner.And("Open DevEdu web site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -895,7 +895,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 143
  testRunner.And("Open registration page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table47 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table78 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -904,7 +904,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "PhoneNumber"});
-                table47.AddRow(new string[] {
+                table78.AddRow(new string[] {
                             "Мистер",
                             "Проппер",
                             "Иванов",
@@ -914,7 +914,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "ilya1@student.com",
                             "+79992314545"});
 #line 144
- testRunner.And("Fill all requared fields", ((string)(null)), table47, "And ");
+ testRunner.And("Fill all requared fields", ((string)(null)), table78, "And ");
 #line hidden
 #line 147
  testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
