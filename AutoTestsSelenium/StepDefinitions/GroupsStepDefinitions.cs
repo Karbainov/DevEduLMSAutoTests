@@ -82,34 +82,41 @@ namespace AutoTestsSelenium.StepDefinitions
             }
         }
 
-        [When(@"Saves group")]
-        public void WhenSavesGroup()
+        [When(@"Click button saves group")]
+        public void WhenClickButtonSavesGroup()
         {
             GroupCreationManagerPage groupCreationManagerPage = new GroupCreationManagerPage();
             groupCreationManagerPage.ClickSaveButton();
             //TODO Saves only when there are more than two teachers and tutors (Task 2.6).
         }
 
-        [When(@"Saves edit group")]
-        public void WhenSavesEditGroup()
+        [When(@"Click button saves edit group")]
+        public void WhenClickButtonSavesEditGroup()
         {
             GroupEditingManagerPage groupEditingManagerPage = new GroupEditingManagerPage();
-            groupEditingManagerPage.ClickExitButton();
+            groupEditingManagerPage.ClickSaveButton();
             //TODO Saves only when there are more than two teachers and tutors (Task 2.17).
         }
 
-        [When(@"Cancels creation of group")]
-        public void WhenCancelsCreationOfGroup()
+        [When(@"Click button cancels creation of group")]
+        public void WhenClickButtonCancelsCreationOfGroup()
         {
             GroupCreationManagerPage groupCreationManagerPage = new GroupCreationManagerPage();
             groupCreationManagerPage.ClickCancelCreateGroupButton();
         }
 
+        [When(@"Click button cancels editing of group")]
+        public void WhenClickButtonCancelsEditingOfGroup()
+        {
+            GroupEditingManagerPage groupEditingManagerPage = new GroupEditingManagerPage();
+            groupEditingManagerPage.ClickCancelEditGroupButton();
+        }
+
         [When(@"Click button students list")]
         public void WhenClickButtonStudentsList()
         {
-            StudentsListManagerPage studentsListPage = new StudentsListManagerPage();
-            studentsListPage.ClickStudentsListButton();
+            StudentsListManagerPage studentsListManagerPage = new StudentsListManagerPage();
+            studentsListManagerPage.ClickStudentsListButton();
         }
 
         [When(@"Click button groups")]
@@ -136,14 +143,14 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Additing student ""([^""]*)"" to group ""([^""]*)""")]
         public void WhenManagerAddStudentToGroup(string fullNameOfStudent, string groupName)
         {
-            StudentsListManagerPage studentsListPage = new StudentsListManagerPage();
-            studentsListPage.ClickByFullNameOfStudentComboBox(fullNameOfStudent);
-            studentsListPage.ClickDesiredGroupByName(groupName);
+            StudentsListManagerPage studentsListManagerPage = new StudentsListManagerPage();
+            studentsListManagerPage.ClickByFullNameOfStudentComboBox(fullNameOfStudent);
+            studentsListManagerPage.ClickDesiredGroupByName(groupName);
             //TODO The page is implemented as a mock (Task 2.6).
         }
 
-        [When(@"Exit account as manager")]
-        public void WhenExitAccountAsManager()
+        [When(@"Click button exit of account as manager")]
+        public void WhenClickButtonExitOfAccountAsManager()
         {
             GroupCreationManagerPage groupCreationManagerPage = new GroupCreationManagerPage();
             groupCreationManagerPage.ClickExitButton();
