@@ -24,9 +24,14 @@
            _driver.Navigate().GoToUrl(PageUrl);      
         }
 
-        public IWebElement GetNumberGroup(string groupName)
+        public IWebElement GetRadioButtonByGroupName(string groupName)
         {
-            return _driver.FindElement(By.XPath($"//*[text()='{groupName}']"));
+            return _driver.FindElement(By.XPath($"//*[text()='{groupName}']/ancestor::*[@class='radio-button']"));
+        }
+
+        public void ClickRadioButtonGroupName(string groupName)
+        {
+            GetRadioButtonByGroupName(groupName).Click();
         }
         
         public void ClickNumberGroupRadiobox(string groupName)

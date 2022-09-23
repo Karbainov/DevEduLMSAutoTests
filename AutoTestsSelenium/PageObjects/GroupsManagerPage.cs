@@ -20,7 +20,8 @@
 
         public IWebElement GetDesiredGroupByName(string groupName)
         {
-            return _driver.FindElement(By.XPath($"//*[text()='{groupName}']/.."));
+            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(0.5));
+            return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//*[text()='{groupName}']/..")));
         }
 
         public void ChooseGroup(string groupName)
