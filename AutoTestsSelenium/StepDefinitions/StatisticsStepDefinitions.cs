@@ -4,14 +4,13 @@ namespace AutoTestsSelenium.StepDefinitions
     [Binding]
     public class StatisticsStepDefinitions
     {
-        private IWebDriver _driver;
-
         [When(@"Open DevEdu web site")]
         public void WhenOpenDevEduWebSite()
         {
-            _driver = SingleWebDriver.GetInstance();
-            _driver.Manage().Window.Maximize();
-            _driver.Navigate().GoToUrl(Urls.Host);
+            var driver = SingleWebDriver.GetInstance();
+            driver = SingleWebDriver.GetInstance();
+            driver.Manage().Window.Maximize();
+            driver.Navigate().GoToUrl(Urls.Host);
         }
 
         [When(@"Authorize user")]
@@ -63,7 +62,7 @@ namespace AutoTestsSelenium.StepDefinitions
                 authorizationPage.ClickEnterButton();
                 homeworksStudentPage.OpenThisPage();
                 homeworksStudentPage.ClickGoToTaskButton(homeworkName);
-                _driver.Navigate().Refresh();
+                homeworksStudentPage.RefreshPage();
                 answerHomework.EnterAnswer(studentsAnswer);
                 answerHomework.ClickSendAnswerButton();
                 answerHomework.ClickExitButton();
@@ -101,20 +100,22 @@ namespace AutoTestsSelenium.StepDefinitions
             }
             Assert.Equal(expectedResults, actualResults);
         }
-        
+
         [Then(@"teacher should see students results to homework ""([^""]*)"" in tab General Progress")]
         public void ThenTeacherShouldSeeStudentsResultsToHomeworkInTabGeneralProgress(string homeworkName, Table table)
         {
             var generalProgressTeacher = new GeneralStudentsProgressTeacherPage();
             generalProgressTeacher.OpenThisPage();
-            IJavaScriptExecutor js = (IJavaScriptExecutor)_driver;
-            _driver.ExecuteJavaScript("document.body.style.zoom='0.5'");
-            js.ExecuteScript("document.querySelector('#root > div > main > div.journals > div.flex-container.journal-content-container > div.scroll-content-div > div.swiper.swiper-initialized.swiper-horizontal.swiper-pointer-events.first-swiper.swiper-backface-hidden > div.swiper-wrapper').setAttribute('style','transform: translate3d(0px, 0px, 0px);')");
-            js.ExecuteScript("document.querySelector('#root > div > main > div.journals > div.flex-container.journal-content-container > div.scroll-content-div > div:nth-child(2) > div.swiper-wrapper').setAttribute('style','transform: translate3d(0px, 0px, 0px);')");
+            var driver = SingleWebDriver.GetInstance();
+            driver.ExecuteJavaScript("document.body.style.zoom='0.5'");
+            Thread.Sleep(100);
+            driver.ExecuteJavaScript("document.querySelector('#root > div > main > div.journals > div.flex-container.journal-content-container > div.scroll-content-div > div.swiper.swiper-initialized.swiper-horizontal.swiper-pointer-events.first-swiper.swiper-backface-hidden > div.swiper-wrapper').setAttribute('style','transform: translate3d(0px, 0px, 0px);')");
+            driver.ExecuteJavaScript("document.querySelector('#root > div > main > div.journals > div.flex-container.journal-content-container > div.scroll-content-div > div:nth-child(2) > div.swiper-wrapper').setAttribute('style','transform: translate3d(0px, 0px, 0px);')");
             var expectedResults = new List<GeneralProgressResultsModel>();
             var expectedHWresults = table.CreateSet<StudentsHomeworkResultModel>().ToList();
             expectedResults.Add(new GeneralProgressResultsModel{ HomeworkName = homeworkName, StudentsHomeworkResults = expectedHWresults });
-            var actualResults = GeneralProgressResultsModel.GetResults(generalProgressTeacher);
+            var helper = new ModelsHelper();
+            var actualResults = helper.GetResults(generalProgressTeacher);
             Assert.Equal(expectedResults, actualResults);
         }
     }
