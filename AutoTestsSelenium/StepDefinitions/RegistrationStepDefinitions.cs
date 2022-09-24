@@ -68,17 +68,6 @@ namespace AutoTestsSelenium.StepDefinitions
             authorizationUnauthorizedPage.ClickEnterSideBarButton();
         }
 
-        [Then(@"Authorize user in service")]
-        [When(@"Authorize user in service")]
-        public void WhenAuthorizeUserInService()
-        {
-            AuthorizationUnauthorizedPage authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage();
-            Thread.Sleep(200);
-            authorizationUnauthorizedPage.EnterEmail(_SignInRequest.Email);
-            authorizationUnauthorizedPage.EnterPassword(_SignInRequest.Password);
-            authorizationUnauthorizedPage.ClickEnterButton();
-        }
-
         [When(@"Click on user's profile")]
         [Then(@"Click on user's profile")]
         public void WhenClickOnUsersProfile()

@@ -5,26 +5,6 @@ namespace AutoTestsSelenium.StepDefinitions
     {
         private IWebDriver _driver;
 
-        [Given(@"Open DevEdu web site")]
-        [When(@"Open DevEdu web site")]
-        public void WhenOpenDevEduWebSite()
-        {
-            _driver = SingleWebDriver.GetInstance();
-            _driver.Manage().Window.Maximize();
-            _driver.Navigate().GoToUrl(Urls.Host);
-        }
-
-        [When(@"Authorize user")]
-        public void WhenAuthorizeAsAUser(Table table)
-        {
-            SwaggerSignInRequest signIn = table.CreateInstance<SwaggerSignInRequest>();
-            var authorizationPage = new AuthorizationUnauthorizedPage();
-            authorizationPage.OpenThisPage();
-            authorizationPage.EnterEmail(signIn.Email);
-            authorizationPage.EnterPassword(signIn.Password);
-            authorizationPage.ClickEnterButton();
-        }
-
         [When(@"teacher create new homework for group ""([^""]*)""")]
         public void WhenTeacherCreateNewHomeworkForGroup(string groupName, Table table)
         {
@@ -39,13 +19,6 @@ namespace AutoTestsSelenium.StepDefinitions
             homeworkCreationPage.InputLink(homework.Link);
             homeworkCreationPage.ClickAddLinkButton();
             homeworkCreationPage.ClickPublishButton();
-        }
-
-        [When(@"User exit")]
-        public void WhenUserExit()
-        {
-            var page = new HomeworkCreationTeacherPage();
-            page.ClickExitButton();
         }
 
         [When(@"Students did their homework ""([^""]*)""")]
@@ -102,7 +75,7 @@ namespace AutoTestsSelenium.StepDefinitions
             Assert.Equal(expectedResults, actualResults);
         }
         
-        [Then(@"teacher should see students results to homework ""([^""]*)"" in tab General Progress")]
+        [Then(@"Teacher should see students results to homework ""([^""]*)"" in tab General Progress")]
         public void ThenTeacherShouldSeeStudentsResultsToHomeworkInTabGeneralProgress(string homeworkName, Table table)
         {
             var generalProgressTeacher = new GeneralStudentsProgressTeacherPage();
