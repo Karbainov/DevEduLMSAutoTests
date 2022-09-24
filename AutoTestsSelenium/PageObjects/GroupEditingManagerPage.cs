@@ -40,12 +40,14 @@
 
         public void ClickDesiredCourseByName(string courseName)
         {
-            _driver.FindElement(By.XPath($"//li[text()='{courseName}']")).Click();
+            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(0.5));
+            webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//li[text()='{courseName}']"))).Click();
         }
 
         public IWebElement GetDesiredTeacherByName(string fullNameOfTeacher)
         {
-            return _driver.FindElement(By.XPath($"//*[text()='{fullNameOfTeacher}']/.."));
+            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(0.5));
+            return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//*[text()='{fullNameOfTeacher}']/..")));
         }
 
         public void ChooseTeacher(string fullNameOfTeacher)
@@ -55,7 +57,8 @@
 
         public IWebElement GetDesiredTutorByName(string fullNameOfTutor)
         {
-            return _driver.FindElement(By.XPath($"//*[text()='{fullNameOfTutor}']/.."));
+            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(0.5));
+            return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//*[text()='{fullNameOfTutor}']/..")));
         }
 
         public void ChooseTutor(string fullNameOfTutor)

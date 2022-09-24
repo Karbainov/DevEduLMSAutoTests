@@ -105,7 +105,7 @@ namespace AutoTestsSelenium.StepDefinitions
             HomeworkExtraditionTeacherPage _homeworkExtraditionTeacherPage;
             _homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage();
             AddNewHomework homework = table.CreateInstance<AddNewHomework>();
-            _homeworkExtraditionTeacherPage.GetNumberGroup(courseName);
+            _homeworkExtraditionTeacherPage.ClickRadioButtonGroupName(courseName);
             _homeworkExtraditionTeacherPage.InputStarDate(homework.StartDate);
             _homeworkExtraditionTeacherPage.InputEndDate(homework.EndDate);
             _homeworkExtraditionTeacherPage.InputNameHomework(homework.Name);

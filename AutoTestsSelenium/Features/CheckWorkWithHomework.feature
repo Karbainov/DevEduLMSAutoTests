@@ -17,41 +17,49 @@ Scenario: Assigned homework by teacher, turned in by student
 	| FirstName | LastName | Role    |
 	| Vitya     | Strashko | Teacher |
 	| Ilya1     | Baikov   | Student |
-	When Open DevEdu site
-	And Methodist authorization on the site
+	When Open DevEdu site "https://piter-education.ru:7074/login"
+	And Authorize user
 	| Email                | Password |
 	|lera21@methodist.com  | password |
 	When Methodist click button homework
 	And Methodist click button add homework
-	Then Methodist create homework course name "QA Automation"
+	And Methodist create homework course name "QA Automation"
 	| Name           | Description | Link             |
 	| ЗаданиеЗадание | string      | http://fjfjf.com |
-	And Authorization user as teacher
-	| Email               | Password | Role    |
-	| vitya21@teacher.com | password | Teacher |
-	Then Teacher lays out the task "ЗаданиеЗадание" created by the methodologist 
-	When Teacher create issuing homework course name "QA Automation"
+	And User exit
+	When Authorize user
+	| Email               | Password | 
+	| vitya21@teacher.com | password |
+	And Teacher lays out the task "ЗаданиеЗадание" created by the methodologist 
+	And Teacher create issuing homework course name "QA Automation"
 	| Name           | Description  | Link             | StartDate  | EndDate    |
 	| ЗаданиеЗадание | сделай то то | http://fjfjf.com | 30.09.2022 | 31.12.2022 |
 	Then Teacher click button publish 
 	When Teacher see all task
-	And Student authorization 
+	And User exit
+	And Authorize user 
 	| Email               | Password |
-	| ilya21@student.com   | password |
+	| ilya21@student.com  | password |
 	And Student click button homework
 	And Studen click button to the task
 	When Studen attaches a link "https://hd.kinopoisk.ru/" to the completed task
 	And Studen click airplane icon
+	And User exit
+	And Authorize user
+	| Email                 | Password   |
+	| vitya21@teacher.com   | password   |
 	And Teacher checks homework 
-	| Email                 | Password   |Role     |
-	| vitya21@teacher.com   | password   | Teacher |
-	Then Teacher returned homework
-	When Student attached link "https://hd.kinopoisk.ru/" of corrected homework
+	When Teacher returned homework
+	And User exit
+	And Authorize user
 	| Email              | Password | 
 	| ilya21@student.com | password | 
+	When Student attached link "https://hd.kinopoisk.ru/" of corrected homework
+	And User exit
+	And Authorize user
+	| Email                 | Password   |
+	| vitya21@teacher.com   | password   |
 	Then Teacher accepted homework
-	| Email                 | Password   |Role     |
-	| vitya21@teacher.com   | password   | Teacher |
 
 
 

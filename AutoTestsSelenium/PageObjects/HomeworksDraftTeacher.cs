@@ -4,7 +4,6 @@
     {       
         private const string PageUrl = $"{Urls.Host}/homeworks/draft";
         
-
         public HomeworksDraftTeacherPage()
         {
         }
@@ -19,16 +18,10 @@
             return _driver.FindElement(By.XPath($"//*[text()='{courseName}']/.."));
         }
 
-        public IWebElement GetNameHomework(string nameHomework)
+        public void GetNameHomework(string nameHomework)
         {
-            string ButtonEditHomework = $"//span[contains(text(),'{nameHomework}')]/following-sibling::a";
-            return _driver.FindElement(By.XPath(ButtonEditHomework));
+            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(1));
+            webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//[text()='{nameHomework}']/following-sibling::a"))).Click();
         }
-
-        public void ClickEditHomeworkButton(string nameHomework)
-        {
-            GetNameHomework(nameHomework).Click();
-        }
-
     }
 }
