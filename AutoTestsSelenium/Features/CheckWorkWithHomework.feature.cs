@@ -233,7 +233,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("Authorize user", ((string)(null)), table6, "When ");
 #line hidden
 #line 33
- testRunner.Then("Teacher lays out the task \"ЗаданиеЗадание\" created by the methodologist", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("Teacher lays out the task \"ЗаданиеЗадание\" created by the methodologist", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
@@ -248,7 +248,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "30.09.2022",
                             "31.12.2022"});
 #line 34
- testRunner.When("Teacher create issuing homework course name \"QA Automation\"", ((string)(null)), table7, "When ");
+ testRunner.And("Teacher create issuing homework course name \"QA Automation\"", ((string)(null)), table7, "And ");
 #line hidden
 #line 37
  testRunner.Then("Teacher click button publish", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

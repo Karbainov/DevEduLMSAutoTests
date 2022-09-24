@@ -30,8 +30,8 @@ Scenario: Assigned homework by teacher, turned in by student
 	When Authorize user
 	| Email               | Password | 
 	| vitya21@teacher.com | password |
-	Then Teacher lays out the task "ЗаданиеЗадание" created by the methodologist 
-	When Teacher create issuing homework course name "QA Automation"
+	And Teacher lays out the task "ЗаданиеЗадание" created by the methodologist 
+	And Teacher create issuing homework course name "QA Automation"
 	| Name           | Description  | Link             | StartDate  | EndDate    |
 	| ЗаданиеЗадание | сделай то то | http://fjfjf.com | 30.09.2022 | 31.12.2022 |
 	Then Teacher click button publish 
