@@ -38,7 +38,6 @@
             GetRadioButtonByGroupName(groupName).Click();
         }
 
-
         public void InputStarDate(string startDate)
         {
             Actions setDate = new Actions(_driver);
@@ -91,6 +90,5 @@
         {
             ButtonCancel.Click();
         }
-
     }
 }
