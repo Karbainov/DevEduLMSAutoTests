@@ -62,7 +62,7 @@ namespace AutoTestsSelenium.StepDefinitions
                 authorizationPage.ClickEnterButton();
                 homeworksStudentPage.OpenThisPage();
                 homeworksStudentPage.ClickGoToTaskButton(homeworkName);
-                _driver.Navigate().Refresh();
+                homeworksStudentPage.RefreshPage();
                 answerHomework.EnterAnswer(studentsAnswer);
                 answerHomework.ClickSendAnswerButton();
                 answerHomework.ClickExitButton();
