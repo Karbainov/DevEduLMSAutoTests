@@ -34,7 +34,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         [Given(@"authorize admina")]
         public void GivenAuthorizeAdmin()
         {
-            SwaggerSignInRequest adminSignInRequest = new SwaggerSignInRequest()
+            SignInRequest adminSignInRequest = new SignInRequest()
             {
                 Email = OptionsSwagger.AdminsEmail,
                 Password = OptionsSwagger.AdminsPassword,
@@ -45,10 +45,10 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         [Given(@"authorize user")]
         public void GivenAuthorizeUser(Table table)
         {
-            List<SwaggerSignInRequest> signInRequests = table.CreateSet<SwaggerSignInRequest>().ToList();
-            SwaggerSignInRequest methodistSignInRequest = signInRequests[0];
-            SwaggerSignInRequest teacherSignInRequest = signInRequests[1];
-            SwaggerSignInRequest managerSignInRequest = signInRequests[2];
+            List<SignInRequest> signInRequests = table.CreateSet<SignInRequest>().ToList();
+            SignInRequest methodistSignInRequest = signInRequests[0];
+            SignInRequest teacherSignInRequest = signInRequests[1];
+            SignInRequest managerSignInRequest = signInRequests[2];
             _methodistToken = _authenticationClient.AuthorizeUser(methodistSignInRequest);
             _teacherToken = _authenticationClient.AuthorizeUser(teacherSignInRequest);
             _managerToken = _authenticationClient.AuthorizeUser(managerSignInRequest);
