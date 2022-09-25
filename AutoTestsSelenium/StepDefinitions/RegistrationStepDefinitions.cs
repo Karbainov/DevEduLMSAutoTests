@@ -3,7 +3,7 @@ namespace AutoTestsSelenium.StepDefinitions
     [Binding]
     public class RegistrationStepDefinitions
     {
-        private SwaggerSignInRequest _SignInRequest;
+        private SignInRequest _SignInRequest;
         private RegistrationModel _user;
 
         public RegistrationStepDefinitions()
@@ -31,7 +31,7 @@ namespace AutoTestsSelenium.StepDefinitions
             registrationPage.EnterRepeatPassword(_user.RepeatPassword);
             registrationPage.EnterEmail(_user.Email);
             registrationPage.EnterPhone(_user.PhoneNumber);
-            _SignInRequest = new SwaggerSignInRequest()
+            _SignInRequest = new SignInRequest()
             {
                 Email = _user.Email,
                 Password = _user.Password
@@ -66,17 +66,6 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             AuthorizationUnauthorizedPage authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage();
             authorizationUnauthorizedPage.ClickEnterSideBarButton();
-        }
-
-        [Then(@"Authorize user in service")]
-        [When(@"Authorize user in service")]
-        public void WhenAuthorizeUserInService()
-        {
-            AuthorizationUnauthorizedPage authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage();
-            Thread.Sleep(200);
-            authorizationUnauthorizedPage.EnterEmail(_SignInRequest.Email);
-            authorizationUnauthorizedPage.EnterPassword(_SignInRequest.Password);
-            authorizationUnauthorizedPage.ClickEnterButton();
         }
 
         [When(@"Click on user's profile")]
