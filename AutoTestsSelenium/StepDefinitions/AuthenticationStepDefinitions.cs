@@ -93,12 +93,21 @@ namespace AutoTestsSelenium.StepDefinitions
             Assert.Equal(expectedPassword, actualPassword);
         }
 
-        [Then(@"Excaption message wrong password or email ""([^""]*)"" should appear")]
+        [Then(@"Exception message under password textbox should appear with text ""([^""]*)""")]
         public void ThenExcaptionMessageWrongPasswordOrEmailShouldAppear(string exceptionMessage)
         {
             AuthorizationUnauthorizedPage page = new AuthorizationUnauthorizedPage();
             string expectedMessage = exceptionMessage;
-            string actualMessage = page.LabelWrongPasswordOrEmail.Text;
+            string actualMessage = page.LabelUnderPasswordTextBox.Text;
+            Assert.Equal(expectedMessage, actualMessage);
+        }
+
+        [Then(@"Exception message under email textbox should appear with text ""([^""]*)""")]
+        public void ThenExceptionMessageEmptyEmailShouldAppear(string exceptionMessage)
+        {
+            AuthorizationUnauthorizedPage page = new AuthorizationUnauthorizedPage();
+            string expectedMessage = exceptionMessage;
+            string actualMessage = page.LabelUnderEmailTextBox.Text;
             Assert.Equal(expectedMessage, actualMessage);
         }
     }

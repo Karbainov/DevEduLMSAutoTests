@@ -7,7 +7,8 @@
         public IWebElement TextBoxPassword => _driver.FindElement(By.XPath($"//*[@name='password']"));
         public IWebElement ButtonEnter => _driver.FindElement(By.XPath("//button[text()='Войти']"));
         public IWebElement ButtonCancel => _driver.FindElement(By.XPath("//button[@type='reset']"));
-        public IWebElement LabelWrongPasswordOrEmail => GetLabelWrongPasswordOrEmail();
+        public IWebElement LabelUnderPasswordTextBox => GetLabelUnderPasswordTextBox();
+        public IWebElement LabelUnderEmailTextBox => GetLabelUnderEmailTextBox();
         
         public AuthorizationUnauthorizedPage()
         {
@@ -41,10 +42,16 @@
             ButtonCancel.Click();
         }
 
-        private IWebElement GetLabelWrongPasswordOrEmail()
+        private IWebElement GetLabelUnderPasswordTextBox()
         {
             WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(0.5));
             return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//div[text()='Пароль']/following-sibling::div[@class='invalid-feedback']")));
+        }
+
+        private IWebElement GetLabelUnderEmailTextBox()
+        {
+            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(0.5));
+            return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//div[text()='E-mail']/following-sibling::div[@class='invalid-feedback']")));
         }
     }
 }
