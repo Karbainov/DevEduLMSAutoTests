@@ -3,6 +3,13 @@ namespace AutoTestsSelenium.StepDefinitions
     [Binding]
     public class AuthenticationStepDefinitions
     {
+        [Given(@"Open authorization page")]
+        public void GivenOpenAuthorizationPage()
+        {
+            AuthorizationUnauthorizedPage page = new AuthorizationUnauthorizedPage();
+            page.OpenThisPage();
+        }
+
         [Given(@"Enter email ""([^""]*)""")]
         [When(@"Enter email ""([^""]*)""")]
         public void WhenEnterEmail(string email)

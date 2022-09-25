@@ -127,10 +127,10 @@ this.ScenarioInitialize(scenarioInfo);
                             "89817051890",
                             "Student"});
 #line 8
- testRunner.Given("Administrator registers new users with roles", ((string)(null)), table1, "Given ");
+ testRunner.Given("Register new users with roles", ((string)(null)), table1, "Given ");
 #line hidden
 #line 11
- testRunner.And("Open DevEdu web site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
  testRunner.And("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -202,10 +202,10 @@ this.ScenarioInitialize(scenarioInfo);
                             "89817051890",
                             "Student"});
 #line 22
- testRunner.Given("Administrator registers new users with roles", ((string)(null)), table2, "Given ");
+ testRunner.Given("Register new users with roles", ((string)(null)), table2, "Given ");
 #line hidden
 #line 25
- testRunner.And("Open DevEdu web site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 26
  testRunner.And("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -293,10 +293,10 @@ this.ScenarioInitialize(scenarioInfo);
                             "89817051890",
                             "Student"});
 #line 36
- testRunner.Given("Administrator registers new users with roles", ((string)(null)), table3, "Given ");
+ testRunner.Given("Register new users with roles", ((string)(null)), table3, "Given ");
 #line hidden
 #line 39
- testRunner.And("Open DevEdu web site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 40
  testRunner.And("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -379,10 +379,10 @@ this.ScenarioInitialize(scenarioInfo);
                             "89817051890",
                             "Student"});
 #line 56
- testRunner.Given("Administrator registers new users with roles", ((string)(null)), table4, "Given ");
+ testRunner.Given("Register new users with roles", ((string)(null)), table4, "Given ");
 #line hidden
 #line 59
- testRunner.And("Open DevEdu web site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 60
  testRunner.And("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -450,10 +450,10 @@ this.ScenarioInitialize(scenarioInfo);
                             "89817051890",
                             "Student"});
 #line 78
-testRunner.Given("Administrator registers new users with roles", ((string)(null)), table5, "Given ");
+testRunner.Given("Register new users with roles", ((string)(null)), table5, "Given ");
 #line hidden
 #line 81
- testRunner.And("Open DevEdu web site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 82
  testRunner.And("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

@@ -5,10 +5,10 @@ User must enter a valid email and password to successfully authenticate.
 
 @authentication
 Scenario: Authentication on DevEdu web site
-	Given Administrator registers new users with roles
+	Given Register new users with roles
 	| FirstName | LastName | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 	| Ilya      | Baikov   | string     | ilya@student.com | ilya     | password | SaintPetersburg | 02.07.2000 | string        | 89817051890 | Student |
-	And Open DevEdu web site
+	And Open DevEdu web site https://piter-education.ru:7074/
 	And Open authorization page
 	And Enter email "ilya@student.com"
 	And Enter password "password"
@@ -19,10 +19,10 @@ Scenario: Authentication on DevEdu web site
 
 @authentication
 Scenario: Cancel authentication
-	Given Administrator registers new users with roles
+	Given Register new users with roles
 	| FirstName | LastName | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 	| Ilya      | Baikov   | string     | ilya@student.com | ilya     | password | SaintPetersburg | 02.07.2000 | string        | 89817051890 | Student |
-	And Open DevEdu web site
+	And Open DevEdu web site https://piter-education.ru:7074/
 	And Open authorization page
 	And Enter email "ilya@student.com"
 	And Enter password "password"
@@ -33,10 +33,10 @@ Scenario: Cancel authentication
 
 @authentication @negative
 Scenario: Authentication with wrong password or email
-	Given Administrator registers new users with roles
+	Given Register new users with roles
 	| FirstName | LastName | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 	| Ilya      | Baikov   | string     | ilya@student.com | ilya     | password | SaintPetersburg | 02.07.2000 | string        | 89817051890 | Student |
-	And Open DevEdu web site
+	And Open DevEdu web site https://piter-education.ru:7074/
 	And Open authorization page
 	And Enter email "<Email>"
 	And Enter password "<Password>"
@@ -53,10 +53,10 @@ Scenario: Authentication with wrong password or email
 
 @authentication @negative
 Scenario: Authentication with wrong email format
-	Given Administrator registers new users with roles
+	Given Register new users with roles
 	| FirstName | LastName | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 	| Ilya      | Baikov   | string     | ilya@student.com | ilya     | password | SaintPetersburg | 02.07.2000 | string        | 89817051890 | Student |
-	And Open DevEdu web site
+	And Open DevEdu web site https://piter-education.ru:7074/
 	And Open authorization page
 	And Enter email "<Email>"
 	And Enter password "password"
@@ -75,10 +75,10 @@ Scenario: Authentication with wrong email format
 
 @authentication @negative
 Scenario: AuAuthentication with empty email and password textboxes
-Given Administrator registers new users with roles
+Given Register new users with roles
 	| FirstName | LastName | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 	| Ilya      | Baikov   | string     | ilya@student.com | ilya     | password | SaintPetersburg | 02.07.2000 | string        | 89817051890 | Student |
-	And Open DevEdu web site
+	And Open DevEdu web site https://piter-education.ru:7074/
 	And Open authorization page
 	And Enter email ""
 	And Enter password ""
