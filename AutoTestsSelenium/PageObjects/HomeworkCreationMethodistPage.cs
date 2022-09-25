@@ -9,7 +9,7 @@
         public IWebElement ButtonSaveDraft => _driver.FindElement(By.XPath("//button[text()='Сохранить как черновик']"));
         public IWebElement ButtonAttachLink => _driver.FindElement(By.XPath("//button[@class='sc-bczRLJ kEeNDb btn btn-fill ellipse flex-container']"));
 
-        public HomeworkCreationMethodistPage(IWebDriver driver) : base(driver)
+        public HomeworkCreationMethodistPage()
         {
         }
         
@@ -48,7 +48,7 @@
             ButtonSaveDraft.Click();
         }
 
-        private IWebElement GetChoiceGroupNumberButton(string groupName)
+        public IWebElement GetChoiceGroupNumberButton(string groupName)
         {
             WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(4));
             return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//*[text()='{groupName}']/ancestor::*[@class='radio-button']")));

@@ -15,7 +15,7 @@
         public IWebElement ButtonSaveDraft => _driver.FindElement(By.XPath($"//button[@class='sc-bczRLJ jsAGPN btn btn-white-with-border flex-container']"));
         public IWebElement ButtonCancel => _driver.FindElement(By.XPath($"//button[@class='sc-bczRLJ kEeNDb btn btn-text flex-container']"));
 
-        public HomeworkExtraditionTeacherPage(IWebDriver driver) : base(driver)
+        public HomeworkExtraditionTeacherPage()
         {
         }
 
@@ -24,16 +24,15 @@
            _driver.Navigate().GoToUrl(PageUrl);      
         }
 
-        public IWebElement GetNumberGroup(string groupName)
+        public IWebElement GetRadioButtonByGroupName(string groupName)
         {
-            string xpath = $"//*[text()='{groupName}']";
-            return _driver.FindElement(By.XPath(xpath));
+            return _driver.FindElement(By.XPath($"//*[text()='{groupName}']/ancestor::*[@class='radio-button']"));
         }
-        
-        public void ClickNumberGroupRadiobox(string groupName)
+
+        public void ClickRadioButtonGroupName(string groupName)
         {
-            GetNumberGroup(groupName).Click();
-        }
+            GetRadioButtonByGroupName(groupName).Click();
+        }             
 
         public void InputStarDate(string startDate)
         {

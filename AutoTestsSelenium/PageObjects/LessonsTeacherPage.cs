@@ -3,9 +3,9 @@
     public class LessonsTeacherPage : AbstractTeacherAuthorizedPage
     {
         private const string PageUrl = $"{Urls.Host}/lessons";
-        public List<IWebElement> TeacherCourses => _driver.FindElements(By.XPath($"//*[@class='tab-container']")).ToList();
+        public List<IWebElement> TeacherGroups => _driver.FindElements(By.XPath($"//*[@class='tab-container']")).ToList();
 
-        public LessonsTeacherPage(IWebDriver driver) : base(driver)
+        public LessonsTeacherPage()
         {
         }
 

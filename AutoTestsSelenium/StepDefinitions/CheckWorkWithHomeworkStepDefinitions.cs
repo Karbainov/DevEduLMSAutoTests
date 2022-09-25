@@ -1,209 +1,168 @@
-using FluentAssertions.Equivalency.Tracing;
+using AutoTestsSelenium.PageObjects;
+using TechTalk.SpecFlow;
 
 namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
     public class CheckWorkWithHomeworkStepDefinitions
     {
-        private TasksStepDefinitions _stepsBySwagger;
         private IWebDriver _driver;
-        private DBCleaner _tablesClear;
-        private AuthorizationUnauthorizedPage _authorizationUnauthorizedPage;
-        private HomeworkExtraditionTeacherPage _homeworkExtraditionTeacherPage;
-        private HomeworksStudentPage _homeworksStudent;
-        private HomeworksTeacherPage _homeworksTeacherPage;
-        private HomeworksDraftTeacherPage _homeworksDraftTeacherPage;
-        private HomeworkCreationMethodistPage _homeworkMethodist;
 
-        public CheckWorkWithHomeworkStepDefinitions()
+        [When(@"Open DevEdu site ""([^""]*)""")]
+        public void WhenOpenDevEduSite(string link)
         {
-            _stepsBySwagger = new TasksStepDefinitions();          
             _driver = SingleWebDriver.GetInstance();
-            _tablesClear = new DBCleaner();
-            _authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage(_driver);
-            _homeworkExtraditionTeacherPage= new HomeworkExtraditionTeacherPage(_driver);
-            _homeworksStudent = new HomeworksStudentPage(_driver);
-            _homeworksTeacherPage = new HomeworksTeacherPage(_driver);
-            _homeworksDraftTeacherPage = new HomeworksDraftTeacherPage(_driver);
-            _homeworkMethodist = new HomeworkCreationMethodistPage(_driver);
-        }
-   
-        [When(@"Register users")]
-        public void WhenRegisterUsersWithAndAssignedRoles(Table table)
-        {
-            _tablesClear.ClearDB();
-            _stepsBySwagger.GivenRegisterNewUsersWithRoles(table);          
-        }
-
-        [When(@"Manager create new group")]
-        public void WhenManagerCreateNewGroup(Table table)
-        {           
-            _stepsBySwagger.GivenManagerCreateNewGroup(table);
-        }
-
-        [When(@"Manager add users to group")]
-        public void WhenManagerAddUsersToGroup()
-        {
-            _stepsBySwagger.GivenManagerAddUsersToGroup();
-        }
-
-        [When(@"Methodist authorization on the site")]
-        public void WhenMethodistAuthorizationOntheSite(Table table)
-        {
-            CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
-            AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });
+            _driver.Manage().Window.Maximize();
+            _driver.Navigate().GoToUrl(Urls.Host);
         }
 
         [When(@"Methodist click button homework")]
         public void WhenMethodistClickButtonHomework()
         {
-            _homeworkMethodist.ClickHomeworksButton();
+            HomeworkCreationMethodistPage homeworkMethodist;
+            homeworkMethodist = new HomeworkCreationMethodistPage();
+            homeworkMethodist.ClickHomeworksButton();
         }
 
         [When(@"Methodist click button add homework")]
         public void WhenMethodistClickButtonAddHomework()
         {
-            _homeworksTeacherPage.ClickAddHomework();        
+            HomeworksMethodistPage homeworksMethodistPage;
+            homeworksMethodistPage = new HomeworksMethodistPage();
+            homeworksMethodistPage.ClickAddHomework();        
         }
 
-        [Then(@"Methodist create homework")]
-        public void ThenMethodistCreateHomework(Table table)
-        {        
+        [When(@"Methodist create homework course name ""([^""]*)""")]
+        public void WhenMethodistCreateHomeworkCourseName(string courseName, Table table)
+        {
+            HomeworkCreationMethodistPage homeworkMethodist;
+            homeworkMethodist = new HomeworkCreationMethodistPage();
             AddNewHomework createHomework = table.CreateInstance<AddNewHomework>();
-            _homeworkMethodist.ClickChoiceGroupNumber(createHomework.CourseName);
-            _homeworkMethodist.InputNameGroup(createHomework.Name);
-            _homeworkMethodist.InputDescriptionHomework(createHomework.Description);
-            _homeworkMethodist.InputLinkHomework(createHomework.Link);
-            _homeworkMethodist.ClickButtonAttachLink();
-            _homeworkMethodist.ClickButtonSaveDraft();
-            //TODO teacher does not see homework in saved assignments (Task 2.5)
+            homeworkMethodist.ClickChoiceGroupNumber(courseName);
+            homeworkMethodist.InputNameGroup(createHomework.Name);
+            homeworkMethodist.InputDescriptionHomework(createHomework.Description);
+            homeworkMethodist.InputLinkHomework(createHomework.Link);
+            homeworkMethodist.ClickButtonAttachLink();
+            homeworkMethodist.ClickButtonSaveDraft();
+            //TODO saved as draft HW are not saved. Emptiness (Task 2.5)
         }
 
-        [Then(@"Authorization user as teacher")]
-        public void ThenAuthorizationUserAsTeacher(Table table)
+        [When(@"Teacher lays out the task ""([^""]*)"" created by the methodologist")]
+        public void WhenTeacherLaysOutTheTaskCreatedByTheMethodologist(string nameHomework)
         {
-            CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
-            AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });       
+            HomeworksDraftTeacherPage homeworksDraftTeacherPage;
+            homeworksDraftTeacherPage = new HomeworksDraftTeacherPage();
+            homeworksDraftTeacherPage.GetNameHomework(nameHomework);
+            HomeworksTeacherPage homeworksTeacherPage;
+            homeworksTeacherPage = new HomeworksTeacherPage();
+            homeworksTeacherPage.ClickHomeworksButton();
+            homeworksTeacherPage.ClickSavedHomeworkButton();
+            //TODO saved as draft HW are not saved. Emptiness (Task 2.5)
         }
 
-        [Then(@"Teacher lays out the task ""([^""]*)"" created by the methodologist")]
-        public void ThenTeacherLaysOutTheTaskCreatedByTheMethodologist(string nameHomework)
-        {
-            _homeworksTeacherPage.ClickHomeworksButton();
-            _homeworksTeacherPage.ClickSavedHomeworkButton();
-            _homeworksDraftTeacherPage.ClickEditHomeworkButton(nameHomework);
-            //TODO �o task, emptiness (Task 2.5)
-        }    
-
-        [When(@"Teacher create issuing homework")]
-        public void WhenTeacherCreateIssuingHomework(Table table)
-        {
+        [When(@"Teacher create issuing homework course name ""([^""]*)""")]
+        public void WhenTeacherCreateIssuingHomeworkCourseName(string groupName, Table table)
+        {          
+            HomeworkExtraditionTeacherPage homeworkExtraditionTeacherPage;
+            homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage();
             AddNewHomework homework = table.CreateInstance<AddNewHomework>();
-            _homeworkExtraditionTeacherPage.ClickNumberGroupRadiobox(homework.CourseName);
-            _homeworkExtraditionTeacherPage.InputStarDate(homework.StartDate);
-            _homeworkExtraditionTeacherPage.InputEndDate(homework.EndDate);
-            _homeworkExtraditionTeacherPage.InputNameHomework(homework.Name);
-            _homeworkExtraditionTeacherPage.InputDescriptionHomework(homework.Description);
-            _homeworkExtraditionTeacherPage.InputUsefulLinks(homework.Link);
-            _homeworkExtraditionTeacherPage.ClickAddLink();
-            //TODO �o task, emptiness (Task 2.5)
+            homeworkExtraditionTeacherPage.ClickRadioButtonGroupName(groupName);
+            homeworkExtraditionTeacherPage.InputStarDate(homework.StartDate);
+            homeworkExtraditionTeacherPage.InputEndDate(homework.EndDate);
+            homeworkExtraditionTeacherPage.InputNameHomework(homework.Name);
+            homeworkExtraditionTeacherPage.InputDescriptionHomework(homework.Description);
+            homeworkExtraditionTeacherPage.InputUsefulLinks(homework.Link);
+            homeworkExtraditionTeacherPage.ClickAddLink();
+            //TODO saved as draft HW are not saved. Emptiness (Task 2.5)
         }
 
         [Then(@"Teacher click button publish")]
         public void ThenTeacherClickButtonPublish()
         {
-            _homeworkExtraditionTeacherPage.ClickPublish();
-            //TODO �o task, emptiness (Task 2.5)
+            HomeworkExtraditionTeacherPage homeworkExtraditionTeacherPage;
+            homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage();
+            homeworkExtraditionTeacherPage.ClickPublish();
+            //TODO saved as draft HW are not saved. Emptiness (Task 2.5)
         }
 
         [When(@"Teacher see all task")]
         public void WhenSeeAllTask()
         {
-            _homeworksTeacherPage.ClickAddHomeworksButton();
-            _homeworksTeacherPage.ClickExitButton();
-            //TODO �o task, emptiness (Task 2.5)
-        }
-
-        [When(@"Student authorization")]
-        public void WhenStudentAuthorization(Table table)
-        {
-            CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
-            AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });         
+            HomeworksTeacherPage homeworksTeacherPage;
+            homeworksTeacherPage = new HomeworksTeacherPage();
+            homeworksTeacherPage.ClickAddHomeworksButton();
+            homeworksTeacherPage.ClickExitButton();
+            //TODO saved as draft HW are not saved. Emptiness (Task 2.5)
         }
 
         [When(@"Student click button homework")]
         public void WhenStudentClickButtonHomework()
         {
-            _homeworksTeacherPage.ClickHomeworksButton();
+            HomeworksStudentPage homeworksStudentPage;
+            homeworksStudentPage = new HomeworksStudentPage();
+            homeworksStudentPage.ClickHomeworksButton();
         }
 
         [When(@"Studen click button to the task")]
         public void WhenStudenClickButtonToTheTask()
         {
-            _homeworksStudent.GoToTaskButton();
+             HomeworksStudentPage homeworksStudentPage;
+            homeworksStudentPage = new HomeworksStudentPage();
+            homeworksStudentPage.GoToTaskButton();
         }
 
         [When(@"Studen attaches a link ""([^""]*)"" to the completed task")]
         public void WhenStudenAttachesALinkToTheCompletedTask(string link)
         {
-            Thread.Sleep(500);
-            _homeworksStudent.InputLinkAnswer(link);
-            //TODO �o task, emptiness (Task 2.5)
-        }      
+            HomeworksStudentPage homeworksStudentPage;
+            homeworksStudentPage = new HomeworksStudentPage();
+            homeworksStudentPage.InputLinkAnswer(link);
+            //TODO saved as draft HW are not saved. Emptiness (Task 2.5)
+        }
 
         [When(@"Studen click airplane icon")]
         public void WhenStudenClickAirplaneIcon()
         {
-            _homeworksStudent.SendAnswerButton();
-            _homeworksTeacherPage.ClickExitButton();
-            //TODO �o task, emptiness (Task 2.5)
+            HomeworksStudentPage homeworksStudentPage;
+            homeworksStudentPage = new HomeworksStudentPage();
+            homeworksStudentPage.SendAnswerButton();          
         }
 
         [When(@"Teacher checks homework")]
-        public void WhenTeacherChecksHomework(Table table)
+        public void WhenTeacherChecksHomework()
         {
-            CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
-            AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });
-            _homeworksTeacherPage.ClickCheckHomeworksButton();
-            //TODO �o task, emptiness (Task 2.5)
+            HomeworksTeacherPage homeworksTeacherPage;
+            homeworksTeacherPage = new HomeworksTeacherPage();
+            homeworksTeacherPage.ClickCheckHomeworksButton();
+            //TODO homework is not reviewed.Emptiness (Task 2.5)
         }
 
-        [Then(@"Teacher returned homework")]
-        public void ThenTeacherReturnedHomework()
+        [When(@"Teacher returned homework")]
+        public void WhenTeacherReturnedHomework()
         {
             throw new PendingStepException();
             //TODO Blank sheet task 2.5
         }
 
         [When(@"Student attached link ""([^""]*)"" of corrected homework")]
-        public void WhenStudentAttachedLinkOfCorrectedHomework(string link, Table table)
+        public void WhenStudentAttachedLinkOfCorrectedHomework(string link)
         {
-            CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
-            AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });
-            _homeworksTeacherPage.ClickHomeworksButton();
-            _homeworksStudent.GoToTaskButton();
-            _homeworksStudent.InputLinkAnswer(link);
-            _homeworksStudent.SendAnswerButton();
-            _homeworksTeacherPage.ClickExitButton();
+            HomeworksStudentPage homeworksStudentPage;
+            homeworksStudentPage = new HomeworksStudentPage();
+            homeworksStudentPage.ClickHomeworksButton();
+            homeworksStudentPage.GoToTaskButton();
+            homeworksStudentPage.InputLinkAnswer(link);
+            homeworksStudentPage.SendAnswerButton();
             //TODO �o task, emptiness (Task 2.5)
         }     
 
         [Then(@"Teacher accepted homework")]
-        public void ThenTeacherAcceptedHomework(Table table)
+        public void ThenTeacherAcceptedHomework()
         {
-            CheckingUserInGroupModel checkingModel = table.CreateInstance<CheckingUserInGroupModel>();
-            AuthorizeUser(new SwaggerSignInRequest() { Email = checkingModel.Email, Password = checkingModel.Password });
-            _homeworksTeacherPage.ClickCheckHomeworksButton();
+            HomeworksTeacherPage homeworksTeacherPage;
+            homeworksTeacherPage = new HomeworksTeacherPage();
+            homeworksTeacherPage.ClickCheckHomeworksButton();
             //TODO do not continue step due to missing step:Teacher returned homework
-        }
-
-        private void AuthorizeUser(SwaggerSignInRequest user)
-        {
-            _driver.Manage().Window.Maximize();
-            _authorizationUnauthorizedPage.OpenThisPage();
-            _authorizationUnauthorizedPage.EnterEmail(user.Email);
-            _authorizationUnauthorizedPage.EnterPassword(user.Password);
-            _authorizationUnauthorizedPage.ClickEnterButton();
         }
     }
 }
