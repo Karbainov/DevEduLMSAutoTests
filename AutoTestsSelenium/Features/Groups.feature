@@ -85,7 +85,7 @@ And Fills in group data
 | Some group | Базовый C# | Maksim Karbainov  | Elisey Kakoyto  |
 And Click button cancels creation of group
 And Click button groups
-Then Manager checks absence of group "Some group" in list groups
+Then Manager should not find group "Some group" in list groups
 
 @manager @teacher @tutor @student @group @editing
 Scenario: Manager creates a group, fills it with users. Manager changes the composition of the group. Manager sees that the composition of the group has changed
@@ -145,7 +145,7 @@ And Fills in edit group data
 | QASPb     | QA Automation | Maksim Karbainov  |                 |
 And Click button saves edit group
 And Click button groups
-Then Manager checks for presence of group "QASPb" in list groups
+Then Manager should find group "QASPb" in list groups
 When Click button exit of account as manager
 And SignIn user in service as teacher
 | Email          | Password |
@@ -176,7 +176,7 @@ And Fills in edit group data
 | QASPb     | QA Automation | Maksim Karbainov  |                 |
 And Click button cancels editing of group
 And Click button groups
-Then Manager checks for presence of group "BaseSPb" in list groups
+Then Manager should find group "BaseSPb" in list groups
 
 @manager @group @negative
 Scenario: Manager creates a group without a name negative test

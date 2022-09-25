@@ -201,16 +201,16 @@ namespace AutoTestsSelenium.StepDefinitions
             Assert.Contains(groups, i => i.Text == courseName);
         }
 
-        [Then(@"Manager checks absence of group ""([^""]*)"" in list groups")]
-        public void ThenManagerChecksAbsenceOfGroupInListGroups(string groupName)
+        [Then(@"Manager should not find group ""([^""]*)"" in list groups")]
+        public void ThenManagerShouldNotFindGroupInListGroups(string groupName)
         {
             GroupsManagerPage groupsManagerPage = new GroupsManagerPage();
             var groups = groupsManagerPage.AllGroups;
             Assert.DoesNotContain(groups, i => i.Text == groupName);
         }
 
-        [Then(@"Manager checks for presence of group ""([^""]*)"" in list groups")]
-        public void ThenManagerChecksForPresenceOfGroupInListGroups(string groupName)
+        [Then(@"Manager should find group ""([^""]*)"" in list groups")]
+        public void ThenManagerShouldFindGroupInListGroups(string groupName)
         {
             GroupsManagerPage groupsManagerPage = new GroupsManagerPage();
             var groups = groupsManagerPage.AllGroups;
