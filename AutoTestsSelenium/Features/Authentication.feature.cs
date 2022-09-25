@@ -129,7 +129,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("Administrator registers new users with roles", ((string)(null)), table1, "Given ");
 #line hidden
 #line 10
- testRunner.When("Open DevEdu web site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("Open DevEdu web site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 11
  testRunner.And("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -141,16 +141,91 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Enter password \"password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 14
- testRunner.And("Click button Enter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("Click button Enter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 15
  testRunner.Then("The notification page should open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 16
- testRunner.Then("Text with name on sidebar should be \"Baikov Ilya\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("Text with name on sidebar should be \"Baikov Ilya\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 17
  testRunner.And("Text with role on sidebar should be \"Студент\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Cancel authentication")]
+        [Xunit.TraitAttribute("FeatureTitle", "Authentication")]
+        [Xunit.TraitAttribute("Description", "Cancel authentication")]
+        [Xunit.TraitAttribute("Category", "authentication")]
+        public void CancelAuthentication()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "authentication"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cancel authentication", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 20
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "Patronymic",
+                            "Email",
+                            "Username",
+                            "Password",
+                            "City",
+                            "BirthDate",
+                            "GitHubAccount",
+                            "PhoneNumber",
+                            "Role"});
+                table2.AddRow(new string[] {
+                            "Ilya",
+                            "Baikov",
+                            "string",
+                            "ilya@student.com",
+                            "ilya",
+                            "password",
+                            "SaintPetersburg",
+                            "02.07.2000",
+                            "string",
+                            "89817051890",
+                            "Student"});
+#line 21
+ testRunner.Given("Administrator registers new users with roles", ((string)(null)), table2, "Given ");
+#line hidden
+#line 24
+ testRunner.And("Open DevEdu web site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 25
+ testRunner.And("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 26
+ testRunner.And("Enter email \"ilya@student.com\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 27
+ testRunner.And("Enter password \"password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 28
+ testRunner.When("Click button Cancel", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 29
+ testRunner.Then("Text in email textbox should be empty", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 30
+ testRunner.And("Label in email textbox should be \"example@mail.ru\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 31
+ testRunner.And("Text in password textbox should be empty", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

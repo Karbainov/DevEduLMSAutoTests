@@ -3,6 +3,7 @@ namespace AutoTestsSelenium.StepDefinitions
     [Binding]
     public class AuthenticationStepDefinitions
     {
+        [Given(@"Enter email ""([^""]*)""")]
         [When(@"Enter email ""([^""]*)""")]
         public void WhenEnterEmail(string email)
         {
@@ -10,6 +11,7 @@ namespace AutoTestsSelenium.StepDefinitions
             page.EnterEmail(email);
         }
 
+        [Given(@"Enter password ""([^""]*)""")]
         [When(@"Enter password ""([^""]*)""")]
         public void WhenEnterPassword(string password)
         {
@@ -48,6 +50,40 @@ namespace AutoTestsSelenium.StepDefinitions
             string expectedRole = role;
             string actualRole = page.ComboBoxRoles.Text;
             Assert.Equal(expectedRole, actualRole);
+        }
+
+        [When(@"Click button Cancel")]
+        public void WhenClickButtonCancel()
+        {
+            AuthorizationUnauthorizedPage page = new AuthorizationUnauthorizedPage();
+            page.ClickCancelButton();
+        }
+
+        [Then(@"Text in email textbox should be empty")]
+        public void ThenTextInEmailTextboxShouldBeEmpty()
+        {
+            AuthorizationUnauthorizedPage page = new AuthorizationUnauthorizedPage();
+            string expectedEmail = "";
+            string actualEmail = page.TextBoxEmail.Text;
+            Assert.Equal(expectedEmail, actualEmail);
+        }
+
+        [Then(@"Label in email textbox should be ""([^""]*)""")]
+        public void ThenLabelInEmailTextboxShouldBe(string label)
+        {
+            AuthorizationUnauthorizedPage page = new AuthorizationUnauthorizedPage();
+            string expectedLabel = label;
+            string actualLabel = page.TextBoxEmail.GetAttribute("placeholder");
+            Assert.Equal(expectedLabel, actualLabel);
+        }
+
+        [Then(@"Text in password textbox should be empty")]
+        public void ThenTextInPasswordTextboxShouldBeEmpty()
+        {
+            AuthorizationUnauthorizedPage page = new AuthorizationUnauthorizedPage();
+            string expectedPassword = "";
+            string actualPassword = page.TextBoxPassword.Text;
+            Assert.Equal(expectedPassword, actualPassword);
         }
     }
 }

@@ -6,6 +6,7 @@
         public IWebElement TextBoxEmail => _driver.FindElement(By.XPath($"//*[@name='email']"));
         public IWebElement TextBoxPassword => _driver.FindElement(By.XPath($"//*[@name='password']"));
         public IWebElement ButtonEnter => _driver.FindElement(By.XPath("//button[text()='Войти']"));
+        public IWebElement ButtonCancel => _driver.FindElement(By.XPath("//button[@type='reset']"));
         
         public AuthorizationUnauthorizedPage()
         {
@@ -32,6 +33,11 @@
             ButtonEnter.Click();
             WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(1));
             webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//*[text()='Уведомления']/..")));
+        }
+
+        public void ClickCancelButton()
+        {
+            ButtonCancel.Click();
         }
     }
 }

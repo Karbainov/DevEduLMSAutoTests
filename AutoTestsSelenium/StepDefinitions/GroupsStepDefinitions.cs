@@ -7,6 +7,7 @@ namespace AutoTestsSelenium.StepDefinitions
         {
         }
 
+        [Given(@"Open authorization page")]
         [When(@"Open authorization page")]
         public void WhenOpenAuthorizationPage()
         {
