@@ -239,7 +239,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("teacher create new homework for group \"Group 1\"", ((string)(null)), table64, "And ");
 #line hidden
 #line 29
- testRunner.And("Exit account as teacher", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("User exit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table65 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",

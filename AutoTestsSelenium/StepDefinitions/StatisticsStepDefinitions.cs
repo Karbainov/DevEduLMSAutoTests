@@ -4,8 +4,6 @@ namespace AutoTestsSelenium.StepDefinitions
     [Binding]
     public class StatisticsStepDefinitions
     {
-        private IWebDriver _driver;
-
         [When(@"teacher create new homework for group ""([^""]*)""")]
         public void WhenTeacherCreateNewHomeworkForGroup(string groupName, Table table)
         {
