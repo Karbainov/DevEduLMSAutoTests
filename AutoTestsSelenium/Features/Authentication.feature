@@ -5,7 +5,7 @@ Authentication is the act of proving an assertion, such as the identity of a com
 @authentication
 Scenario: Authentication on DevEdu web site.
 	Given Administrator registers new users with roles
-	| FirstName | LastName | Patronymic | Email              | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
+	| FirstName | LastName | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 	| Ilya      | Baikov   | string     | ilya@student.com | ilya     | password | SaintPetersburg | 02.07.2000 | string        | 89817051890 | Student |
 	And Open DevEdu web site
 	And Open authorization page
@@ -19,7 +19,7 @@ Scenario: Authentication on DevEdu web site.
 @authentication
 Scenario: Cancel authentication
 	Given Administrator registers new users with roles
-	| FirstName | LastName | Patronymic | Email              | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
+	| FirstName | LastName | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 	| Ilya      | Baikov   | string     | ilya@student.com | ilya     | password | SaintPetersburg | 02.07.2000 | string        | 89817051890 | Student |
 	And Open DevEdu web site
 	And Open authorization page
@@ -31,13 +31,20 @@ Scenario: Cancel authentication
 	And Text in password textbox should be empty
 
 @authentication @negative
-Scenario: Authentication with wrong password
+Scenario: Authentication with wrong password or email
 	Given Administrator registers new users with roles
-	| FirstName | LastName | Patronymic | Email              | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
+	| FirstName | LastName | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 	| Ilya      | Baikov   | string     | ilya@student.com | ilya     | password | SaintPetersburg | 02.07.2000 | string        | 89817051890 | Student |
 	And Open DevEdu web site
 	And Open authorization page
-	And Enter email "ilya@student.com"
-	And Enter password "passpass"
+	And Enter email "<Email>"
+	And Enter password "<Password>"
 	When Click on button Enter
 	Then Excaption message wrong password or email "Неправильные логин или пароль" should appear
+	Examples: 
+	| Email            | Password   |
+	| maks@student.com | password   |
+	| ilya@student.com | passpass   |
+	| ilya@student.com | PASSWORD   |
+	| ilya@student.com | password11 |
+	| ilya@student.com | pass       |

@@ -231,18 +231,30 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Authentication with wrong password")]
+        [Xunit.SkippableTheoryAttribute(DisplayName="Authentication with wrong password or email")]
         [Xunit.TraitAttribute("FeatureTitle", "Authentication")]
-        [Xunit.TraitAttribute("Description", "Authentication with wrong password")]
+        [Xunit.TraitAttribute("Description", "Authentication with wrong password or email")]
         [Xunit.TraitAttribute("Category", "authentication")]
         [Xunit.TraitAttribute("Category", "negative")]
-        public void AuthenticationWithWrongPassword()
+        [Xunit.InlineDataAttribute("maks@student.com", "password", new string[0])]
+        [Xunit.InlineDataAttribute("ilya@student.com", "passpass", new string[0])]
+        [Xunit.InlineDataAttribute("ilya@student.com", "PASSWORD", new string[0])]
+        [Xunit.InlineDataAttribute("ilya@student.com", "password11", new string[0])]
+        [Xunit.InlineDataAttribute("ilya@student.com", "pass", new string[0])]
+        public void AuthenticationWithWrongPasswordOrEmail(string email, string password, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
                     "authentication",
                     "negative"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Authentication with wrong password", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            argumentsOfScenario.Add("Email", email);
+            argumentsOfScenario.Add("Password", password);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Authentication with wrong password or email", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 34
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -287,10 +299,10 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 40
- testRunner.And("Enter email \"ilya@student.com\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("Enter email \"{0}\"", email), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 41
- testRunner.And("Enter password \"passpass\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("Enter password \"{0}\"", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 42
  testRunner.When("Click on button Enter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
