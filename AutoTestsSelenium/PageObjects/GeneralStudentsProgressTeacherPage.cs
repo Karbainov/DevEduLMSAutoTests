@@ -7,6 +7,7 @@
         public List<IWebElement> Homeworks => _driver.FindElements(By.XPath($"//div[starts-with(@class,'one-block block-column')]/preceding-sibling::div[starts-with(@class,'one-block tall')]/b")).ToList();
         public List<IWebElement> StudentsNames => _driver.FindElements(By.XPath($"//button[text()='Сортировать по фамилии']/../following-sibling::div")).ToList();
         public List<IWebElement> AllResults => _driver.FindElements(By.XPath($"//div[@class='scroll-content-div']/div[2]/descendant::div[starts-with(@class,'one-block')]")).ToList();
+        public IWebElement BottomScrollBar => _driver.FindElement(By.XPath($"//div[contains(@class,'swiper-ini')][2]//div[@class='swiper-wrapper']"));
 
         public GeneralStudentsProgressTeacherPage()
         {
@@ -30,6 +31,11 @@
         public IWebElement GetSortBottom(string taskName)
         {
             return _driver.FindElement(By.XPath($"//*[starts-with(text(),'{taskName}')]/ancestor::div[starts-with(@class,'swiper-slide')]/div[contains(@class,'buttons')]/child::button[starts-with(@class,'button-style-reset')]/child::*[name()='svg' and @class='arrow-bottom ']"));
+        }
+
+        public void ClickOnBottomScrollBar()
+        {
+            BottomScrollBar.Click();
         }
     }
 }

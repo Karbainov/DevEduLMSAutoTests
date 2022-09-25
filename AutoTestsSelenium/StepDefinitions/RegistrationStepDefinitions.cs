@@ -3,7 +3,7 @@ namespace AutoTestsSelenium.StepDefinitions
     [Binding]
     public class RegistrationStepDefinitions
     {
-        private SwaggerSignInRequest _SignInRequest;
+        private SignInRequest _SignInRequest;
         private RegistrationModel _user;
 
         public RegistrationStepDefinitions()
@@ -31,7 +31,7 @@ namespace AutoTestsSelenium.StepDefinitions
             registrationPage.EnterRepeatPassword(_user.RepeatPassword);
             registrationPage.EnterEmail(_user.Email);
             registrationPage.EnterPhone(_user.PhoneNumber);
-            _SignInRequest = new SwaggerSignInRequest()
+            _SignInRequest = new SignInRequest()
             {
                 Email = _user.Email,
                 Password = _user.Password
@@ -105,6 +105,78 @@ namespace AutoTestsSelenium.StepDefinitions
                 PhoneNumber = profilePage.TextBoxEnterPhone.GetAttribute(attributeName)
             };
             Assert.Equivalent(_user, actualUser);
+        }
+
+        [Then(@"Excaption message empty Last Name ""([^""]*)"" should appear")]
+        public void ThenExcaptionMessageEmptyLastNameShouldAppear(string excaptionMessage)
+        {
+            RegistrationPage page = new RegistrationPage();
+            string expectedMessage = excaptionMessage;
+            string actualMessage = page.ExcaptionLastNameMessage.Text;
+            Assert.Equal(expectedMessage, actualMessage);
+        }
+
+        [Then(@"Excaption message empty First Name ""([^""]*)"" should appear")]
+        public void ThenExcaptionMessageEmptyFirstNameShouldAppear(string excaptionMessage)
+        {
+            RegistrationPage page = new RegistrationPage();
+            string expectedMessage = excaptionMessage;
+            string actualMessage = page.ExcaptionFirstNameMessage.Text;
+            Assert.Equal(expectedMessage, actualMessage);
+        }
+
+        [Then(@"Excaption message Email ""([^""]*)"" should appear")]
+        public void ThenExcaptionMessageEmptyEmailShouldAppear(string excaptionMessage)
+        {
+            RegistrationPage page = new RegistrationPage();
+            string expectedMessage = excaptionMessage;
+            string actualMessage = page.ExcaptionEmailMessage.Text;
+            Assert.Equal(expectedMessage, actualMessage);
+        }
+
+        [Then(@"Excaption message Password ""([^""]*)"" should appear")]
+        public void ThenExcaptionMessageEmptyPasswordShouldAppear(string excaptionMessage)
+        {
+            RegistrationPage page = new RegistrationPage();
+            string expectedMessage = excaptionMessage;
+            string actualMessage = page.ExcaptionPasswordMessage.Text;
+            Assert.Equal(expectedMessage, actualMessage);
+        }
+
+        [Then(@"Excaption message Repeat Password ""([^""]*)"" should appear")]
+        public void ThenExcaptionMessageEmptyRepeatPasswordShouldAppear(string excaptionMessage)
+        {
+            RegistrationPage page = new RegistrationPage();
+            string expectedMessage = excaptionMessage;
+            string actualMessage = page.ExcaptionRepeatPasswordMessage.Text;
+            Assert.Equal(expectedMessage, actualMessage);
+        }
+
+        [Then(@"Excaption message Private policy ""([^""]*)"" should appear")]
+        public void ThenExcaptionMessagePrivatePolicyShouldAppear(string excaptionMessage)
+        {
+            RegistrationPage page = new RegistrationPage();
+            string expectedMessage = excaptionMessage;
+            string actualMessage = page.ExcaptionPrivatePolicyMessage.Text;
+            Assert.Equal(expectedMessage, actualMessage);
+        }
+
+        [Then(@"Excaption message wrong Date Birth ""([^""]*)"" should appear")]
+        public void ThenExcaptionMessageWrongDateBirthShouldAppear(string excaptionMessage)
+        {
+            RegistrationPage page = new RegistrationPage();
+            string expectedMessage = excaptionMessage;
+            string actualMessage = page.ExcaptionBirthDateMessage.Text;
+            Assert.Equal(expectedMessage, actualMessage);
+        }
+
+        [Then(@"User should see the exception modal window\twith text ""([^""]*)""")]
+        public void ThenUserShouldSeeTheExceptionModalWindowWithText(string excaptionMessage)
+        {
+            RegistrationPage page = new RegistrationPage();
+            string expectedMessage = excaptionMessage;
+            string actualMessage = page.ModalWindowExcaption.Text;
+            Assert.Equal(expectedMessage, actualMessage);
         }
     }
 }

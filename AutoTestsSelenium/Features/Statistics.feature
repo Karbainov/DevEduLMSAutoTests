@@ -25,7 +25,7 @@ Scenario: Teacher chek students homeworks results
 	| anton@teacher.com | password |
 	And teacher create new homework for group "Group 1"
 	| Name  | Description         | Link               | StartDate  | EndDate    |
-	| Lists | Make your own lists | https://google.com | 22.09.2022 | 09.10.2022 |
+	| Lists | Make your own lists | https://google.com | 23.09.2022 | 09.10.2022 |
 	And User exit
 	And Students did their homework "Lists"
 	| Email             | Password |
