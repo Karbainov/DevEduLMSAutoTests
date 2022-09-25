@@ -47,5 +47,13 @@
             };
             _driver.FindElement(By.XPath($"//li[text()='{role}']")).Click();
         }
+
+        public string GetUserFullName()
+        {
+            var lastName = _driver.FindElement(By.XPath($"//*[contains(@class,'avatar-name m')]")).Text;
+            var firstName = _driver.FindElement(By.XPath($"//*[contains(@class,'avatar-name t')]")).Text;
+            string fullName = $"{lastName} {firstName}";
+            return fullName;
+        }
     }
 }
