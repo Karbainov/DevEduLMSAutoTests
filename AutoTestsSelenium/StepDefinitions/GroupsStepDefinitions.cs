@@ -21,7 +21,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenSignInUserInServiceAsManager(Table table)
         {
             AuthorizationUnauthorizedPage authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage();
-            SwaggerSignInRequest user = table.CreateInstance<SwaggerSignInRequest>();
+            SignInRequest user = table.CreateInstance<SignInRequest>();
             authorizationUnauthorizedPage.EnterEmail(user.Email);
             authorizationUnauthorizedPage.EnterPassword(user.Password);
             authorizationUnauthorizedPage.ClickEnterButton();
