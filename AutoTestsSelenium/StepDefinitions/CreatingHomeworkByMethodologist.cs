@@ -25,7 +25,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"authorization user as methodist")]
         public void WhenAuthorizationUserAsMethodist(Table table)
         {
-            SwaggerSignInRequest singInRequest = table.CreateInstance<SwaggerSignInRequest>();
+            SignInRequest singInRequest = table.CreateInstance<SignInRequest>();
             var emailBox = _driver.FindElement(_singInWindow.XPathEmailBox);
             emailBox.SendKeys(singInRequest.Email);
             var passBox = _driver.FindElement(_singInWindow.XPathPasswordBox);

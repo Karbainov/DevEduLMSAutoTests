@@ -1,6 +1,6 @@
 ﻿namespace DevEduLMSAutoTests.API.Support.Models.Request
 {
-    public class SwaggerSignInRequest
+    public class SignInRequest
     {
         [JsonPropertyName("email")]
         public string Email { get; set; }

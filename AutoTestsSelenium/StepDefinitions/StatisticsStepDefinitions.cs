@@ -1,23 +1,21 @@
+using OpenQA.Selenium.Support.Extensions;
 namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
     public class StatisticsStepDefinitions
     {
-        private IWebDriver _driver;
-
-        [Given(@"Open DevEdu web site")]
         [When(@"Open DevEdu web site")]
         public void WhenOpenDevEduWebSite()
         {
-            _driver = SingleWebDriver.GetInstance();
-            _driver.Manage().Window.Maximize();
-            _driver.Navigate().GoToUrl(Urls.Host);
+            var driver = SingleWebDriver.GetInstance();
+            driver.Manage().Window.Maximize();
+            driver.Navigate().GoToUrl(Urls.Host);
         }
 
         [When(@"Authorize user")]
         public void WhenAuthorizeAsAUser(Table table)
         {
-            SwaggerSignInRequest signIn = table.CreateInstance<SwaggerSignInRequest>();
+            SignInRequest signIn = table.CreateInstance<SignInRequest>();
             var authorizationPage = new AuthorizationUnauthorizedPage();
             authorizationPage.OpenThisPage();
             authorizationPage.EnterEmail(signIn.Email);
@@ -55,7 +53,7 @@ namespace AutoTestsSelenium.StepDefinitions
             var homeworksStudentPage = new HomeworksStudentPage();
             var answerHomework = new HomeworkAnswerStudentsPage();
             string studentsAnswer = "https://github.com";
-            List<SwaggerSignInRequest> _studensSignIn = table.CreateSet<SwaggerSignInRequest>().ToList();
+            List<SignInRequest> _studensSignIn = table.CreateSet<SignInRequest>().ToList();
             foreach (var student in _studensSignIn)
             {
                 authorizationPage.EnterEmail(student.Email);
@@ -63,7 +61,7 @@ namespace AutoTestsSelenium.StepDefinitions
                 authorizationPage.ClickEnterButton();
                 homeworksStudentPage.OpenThisPage();
                 homeworksStudentPage.ClickGoToTaskButton(homeworkName);
-                _driver.Navigate().Refresh();
+                homeworksStudentPage.RefreshPage();
                 answerHomework.EnterAnswer(studentsAnswer);
                 answerHomework.ClickSendAnswerButton();
                 answerHomework.ClickExitButton();
@@ -101,18 +99,22 @@ namespace AutoTestsSelenium.StepDefinitions
             }
             Assert.Equal(expectedResults, actualResults);
         }
-        
+
         [Then(@"teacher should see students results to homework ""([^""]*)"" in tab General Progress")]
         public void ThenTeacherShouldSeeStudentsResultsToHomeworkInTabGeneralProgress(string homeworkName, Table table)
         {
             var generalProgressTeacher = new GeneralStudentsProgressTeacherPage();
             generalProgressTeacher.OpenThisPage();
-            //TODO: сделать чтобы были читаемы все элементы
-            Thread.Sleep(15000); //уменьшить масштаб страницы, прокрутить ползунок, иначе не считывает информацию
+            var driver = SingleWebDriver.GetInstance();
+            driver.ExecuteJavaScript("document.body.style.zoom='0.5'");
+            Thread.Sleep(100);//Without this, the zoom does not have time to change
+            driver.ExecuteJavaScript("document.querySelector('#root > div > main > div.journals > div.flex-container.journal-content-container > div.scroll-content-div > div.swiper.swiper-initialized.swiper-horizontal.swiper-pointer-events.first-swiper.swiper-backface-hidden > div.swiper-wrapper').setAttribute('style','transform: translate3d(0px, 0px, 0px);')");
+            driver.ExecuteJavaScript("document.querySelector('#root > div > main > div.journals > div.flex-container.journal-content-container > div.scroll-content-div > div:nth-child(2) > div.swiper-wrapper').setAttribute('style','transform: translate3d(0px, 0px, 0px);')");
             var expectedResults = new List<GeneralProgressResultsModel>();
             var expectedHWresults = table.CreateSet<StudentsHomeworkResultModel>().ToList();
             expectedResults.Add(new GeneralProgressResultsModel{ HomeworkName = homeworkName, StudentsHomeworkResults = expectedHWresults });
-            var actualResults = GeneralProgressResultsModel.GetResults(generalProgressTeacher);
+            var helper = new ModelsHelper();
+            var actualResults = helper.GetResults(generalProgressTeacher);
             Assert.Equal(expectedResults, actualResults);
         }
     }
