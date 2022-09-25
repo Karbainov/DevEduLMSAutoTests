@@ -26,6 +26,13 @@ namespace AutoTestsSelenium.StepDefinitions
             page.ClickEnterButton();
         }
 
+        [When(@"Click on button Enter")]
+        public void WhenClickOnButtonEnter()
+        {
+            AuthorizationUnauthorizedPage page = new AuthorizationUnauthorizedPage();
+            page.ButtonEnter.Click();
+        }
+
         [Then(@"The notification page should open")]
         public void ThenTheNotificationPageShouldOpen()
         {
@@ -84,6 +91,15 @@ namespace AutoTestsSelenium.StepDefinitions
             string expectedPassword = "";
             string actualPassword = page.TextBoxPassword.Text;
             Assert.Equal(expectedPassword, actualPassword);
+        }
+
+        [Then(@"Excaption message wrong password or email ""([^""]*)"" should appear")]
+        public void ThenExcaptionMessageWrongPasswordOrEmailShouldAppear(string exceptionMessage)
+        {
+            AuthorizationUnauthorizedPage page = new AuthorizationUnauthorizedPage();
+            string expectedMessage = exceptionMessage;
+            string actualMessage = page.LabelWrongPasswordOrEmail.Text;
+            Assert.Equal(expectedMessage, actualMessage);
         }
     }
 }

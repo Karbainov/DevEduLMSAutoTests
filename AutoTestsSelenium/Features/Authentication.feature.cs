@@ -144,13 +144,13 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("Click button Enter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 15
- testRunner.Then("The notification page should open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Text with name on sidebar should be \"Baikov Ilya\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 16
- testRunner.And("Text with name on sidebar should be \"Baikov Ilya\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Text with role on sidebar should be \"Студент\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 17
- testRunner.And("Text with role on sidebar should be \"Студент\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("The notification page should open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -226,6 +226,78 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 31
  testRunner.And("Text in password textbox should be empty", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Authentication with wrong password")]
+        [Xunit.TraitAttribute("FeatureTitle", "Authentication")]
+        [Xunit.TraitAttribute("Description", "Authentication with wrong password")]
+        [Xunit.TraitAttribute("Category", "authentication")]
+        [Xunit.TraitAttribute("Category", "negative")]
+        public void AuthenticationWithWrongPassword()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "authentication",
+                    "negative"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Authentication with wrong password", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 34
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "Patronymic",
+                            "Email",
+                            "Username",
+                            "Password",
+                            "City",
+                            "BirthDate",
+                            "GitHubAccount",
+                            "PhoneNumber",
+                            "Role"});
+                table3.AddRow(new string[] {
+                            "Ilya",
+                            "Baikov",
+                            "string",
+                            "ilya@student.com",
+                            "ilya",
+                            "password",
+                            "SaintPetersburg",
+                            "02.07.2000",
+                            "string",
+                            "89817051890",
+                            "Student"});
+#line 35
+ testRunner.Given("Administrator registers new users with roles", ((string)(null)), table3, "Given ");
+#line hidden
+#line 38
+ testRunner.And("Open DevEdu web site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 39
+ testRunner.And("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 40
+ testRunner.And("Enter email \"ilya@student.com\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 41
+ testRunner.And("Enter password \"passpass\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 42
+ testRunner.When("Click on button Enter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 43
+ testRunner.Then("Excaption message wrong password or email \"Неправильные логин или пароль\" should " +
+                        "appear", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
