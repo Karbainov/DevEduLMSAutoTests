@@ -39,7 +39,7 @@ When Click button create group
 And Fills in group data
 | GroupName | CourseName | FullNameOfTeacher | FullNameOfTutor |
 | BaseSPb   | Базовый C# | Maksim Karbainov  |                 |
-And Saves group
+And Click button saves group
 And Exit account as manager
 And Authorize user in service as teacher
 | Email          | Password |
@@ -61,7 +61,7 @@ When Click button create group
 And Fills in group data
 | GroupName | CourseName | FullNameOfTeacher | FullNameOfTutor |
 | BaseSPb   | Базовый C# | Maksim Karbainov  | Elisey Kakoyto  |
-And Saves group
+And Click button saves group
 And Exit account as manager
 And Authorize user in service as tutor
 | Email            | Password |
@@ -155,17 +155,17 @@ Then Teacher checks presence of group by name course "QA Automation"
 
 @manager @teacher @group @editing
 Scenario: Manager creates a group, edits the group and cancels editing
-Given Administrator registers new users with roles
+Given Register new users with roles
 | FirstName | LastName   | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 | Maksim    | Karbainov  | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
-And Admin create new groups
+And Create new groups
 | Name    | CourseName | GroupStatusId | StartDate  | EndDate    | Timetable | PaymentPerMonth | PaymentsCount |
 | BaseSPb | Базовый C# | Forming       | 29.09.2022 | 25.01.2023 | string    | 2500            | 3             |
-And Admin add users to group "BaseSPb"
+And Add users to group "BaseSPb"
 | FirstName | LastName   | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 | Maksim    | Karbainov  | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
-And Open authorization page
-And SignIn user in service as manager
+And Open DevEdu web site https://piter-education.ru:7074/
+And Authorize user in service
 | Email              | Password     |
 | marina@example.com | marinamarina |
 When Click button groups
@@ -231,14 +231,14 @@ Then Error message about lack of teacher selection, when creating a group should
 
 @manager @group @editing @negative
 Scenario: Manager creates a group, edits a group without a name negative test
-Given Administrator registers new users with roles
+Given Register new users with roles
 | FirstName | LastName   | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 | Maksim    | Karbainov  | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
 | Elisey    | Kakoyto    | string     | elisey@gmail.com | Elisey   | 13345678 | SaintPetersburg | 07.10.1996 | string        | 89518963148 | Tutor   |
-And Admin create new groups
+And Create new groups
 | Name    | CourseName | GroupStatusId | StartDate  | EndDate    | Timetable | PaymentPerMonth | PaymentsCount |
 | BaseSPb | Базовый C# | Forming       | 29.09.2022 | 25.01.2023 | string    | 2500            | 3             |
-And Admin add users to group "BaseSPb"
+And Add users to group "BaseSPb"
 | FirstName | LastName   | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 | Maksim    | Karbainov  | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
 | Elisey    | Kakoyto    | string     | elisey@gmail.com | Elisey   | 13345678 | SaintPetersburg | 07.10.1996 | string        | 89518963148 | Tutor   |
@@ -257,14 +257,14 @@ Then Error message about absence of group name, when editing group should be "В
 
 @manager @group @editing @negative
 Scenario: Manager creates a group, edits the group without choosing a course negative test
-Given Administrator registers new users with roles
+Given Register new users with roles
 | FirstName | LastName   | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 | Maksim    | Karbainov  | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
 | Elisey    | Kakoyto    | string     | elisey@gmail.com | Elisey   | 13345678 | SaintPetersburg | 07.10.1996 | string        | 89518963148 | Tutor   |
-And Admin create new groups
+And Create new groups
 | Name    | CourseName | GroupStatusId | StartDate  | EndDate    | Timetable | PaymentPerMonth | PaymentsCount |
 | BaseSPb | Базовый C# | Forming       | 29.09.2022 | 25.01.2023 | string    | 2500            | 3             |
-And Admin add users to group "BaseSPb"
+And Add users to group "BaseSPb"
 | FirstName | LastName   | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 | Maksim    | Karbainov  | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
 | Elisey    | Kakoyto    | string     | elisey@gmail.com | Elisey   | 13345678 | SaintPetersburg | 07.10.1996 | string        | 89518963148 | Tutor   |
@@ -283,14 +283,14 @@ Then Error message about lack of course selection, when editing group should be 
 
 @manager @group @editing @negative
 Scenario: Manager creates a group, edits the group without choosing a teacher negative test
-Given Administrator registers new users with roles
+Given Register new users with roles
 | FirstName | LastName   | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 | Maksim    | Karbainov  | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
 | Elisey    | Kakoyto    | string     | elisey@gmail.com | Elisey   | 13345678 | SaintPetersburg | 07.10.1996 | string        | 89518963148 | Tutor   |
-And Admin create new groups
+And Create new groups
 | Name    | CourseName | GroupStatusId | StartDate  | EndDate    | Timetable | PaymentPerMonth | PaymentsCount |
 | BaseSPb | Базовый C# | Forming       | 29.09.2022 | 25.01.2023 | string    | 2500            | 3             |
-And Admin add users to group "BaseSPb"
+And Add users to group "BaseSPb"
 | FirstName | LastName   | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 | Maksim    | Karbainov  | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
 | Elisey    | Kakoyto    | string     | elisey@gmail.com | Elisey   | 13345678 | SaintPetersburg | 07.10.1996 | string        | 89518963148 | Tutor   |
