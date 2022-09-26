@@ -29,20 +29,13 @@ Scenario: Sort by surname
 	And Admin add new homework
 	| StartDate  | EndDate    |
     | 01.10.2022 | 25.10.2022 |
-	Given Students authorize
-	| Email              | Password |
-	| kroko@gmail.com    | password |
-	| bukin@student.com  | password |
-	| golub@student.com  | password |
-	| yula@student.com   | password |
-	| kraska@student.com | password |
-	And Students send their homework
-	| string         |
-	| link@razdva.ru |
-	| link@razdva.ru |
-	| link@razdva.ru |
-	| link@razdva.ru |
-	| link@razdva.ru |
+	Given Students authorize and send their homework
+	| Email              | Password | String         |
+	| kroko@gmail.com    | password | link@razdva.ru |
+	| bukin@student.com  | password | link@razdva.ru |
+	| golub@student.com  | password | link@razdva.ru |
+	| yula@student.com   | password | link@razdva.ru |
+	| kraska@student.com | password | link@razdva.ru |
 	Given Admin accept three homeworks and decline two
 	Given Open a browser and open login page
 	Given Teacher authorize
