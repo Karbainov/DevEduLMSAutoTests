@@ -158,7 +158,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("Register new users with roles", ((string)(null)), table17, "Given ");
 #line hidden
 #line 12
- testRunner.When("Open DevEdu site https://piter-education.ru:7074/login", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table18 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
@@ -181,19 +181,19 @@ this.ScenarioInitialize(scenarioInfo);
                             "string",
                             "http://fjfjf.com"});
 #line 17
- testRunner.When("Methodist create draft Homework course name \"QA Automation\"", ((string)(null)), table19, "When ");
+ testRunner.And("Methodist create draft Homework course name \"QA Automation\"", ((string)(null)), table19, "And ");
 #line hidden
 #line 20
  testRunner.And("Methodist click button save as draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 21
- testRunner.When("Methodist see all created homeworks", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("Methodist see all created homeworks", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 22
  testRunner.And("Methodist click edit", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 23
- testRunner.When("Methodist edits homework", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("Methodist edits homework", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 24
  testRunner.And("Methodist click button save draft", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -226,7 +226,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "20.09.2022",
                             "31.12.2022"});
 #line 30
- testRunner.When("Teacher fill out a new assignment form course name \"QA Automation\"", ((string)(null)), table21, "When ");
+ testRunner.And("Teacher fill out a new assignment form course name \"QA Automation\"", ((string)(null)), table21, "And ");
 #line hidden
 #line 33
  testRunner.And("Teacher click button publish", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
