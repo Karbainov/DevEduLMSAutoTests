@@ -22,6 +22,6 @@
             { "Backend Java", 2375 },
             { "QA Automation", 2376 }
         };
-        public static SwaggerSignInRequest AdminSignIn = new SwaggerSignInRequest() { Email = AdminsEmail, Password = AdminsPassword };
+        public static SignInRequest AdminSignIn = new SignInRequest() { Email = AdminsEmail, Password = AdminsPassword };
     }
 }

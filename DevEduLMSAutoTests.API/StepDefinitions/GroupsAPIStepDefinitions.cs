@@ -26,7 +26,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         [Given(@"register new users with roles in service")]
         public void GivenRegisterNewUsersWithRolesInService(Table table)
         {
-            _managerToken = _authenticationClient.AuthorizeUser(new SwaggerSignInRequest() { Email = OptionsSwagger.ManagersEmail, Password = OptionsSwagger.ManagersPassword });
+            _managerToken = _authenticationClient.AuthorizeUser(new SignInRequest() { Email = OptionsSwagger.ManagersEmail, Password = OptionsSwagger.ManagersPassword });
             _newUsers = table.CreateSet<RegistationModelWithRole>().ToList();
             foreach (var user in _newUsers)
             {
@@ -80,7 +80,7 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             CreateGroupResponse group = _groupMappers.MappGetGroupByIdResponseToGetAllGroupsResponse(actualGroup);
             foreach (var user in _newUsers)
             {
-                var userToken = _authenticationClient.AuthorizeUser(new SwaggerSignInRequest { Email = user.Email, Password = user.Password});
+                var userToken = _authenticationClient.AuthorizeUser(new SignInRequest { Email = user.Email, Password = user.Password});
                 RegisterResponse actualUser = _usersClient.GetUserInfoByToken(userToken);
                 Assert.Equal(group, actualUser.Groups.Find(i => i.Id == group.Id));
             }

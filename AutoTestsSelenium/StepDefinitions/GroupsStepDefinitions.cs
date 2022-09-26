@@ -7,33 +7,6 @@ namespace AutoTestsSelenium.StepDefinitions
         {
         }
 
-        [Given(@"Register new users with roles")]
-        public void GivenRegisterNewUsersWithRoles(Table table)
-        {
-            GroupsAPIStepDefinitions managerCreatesAGroupAddsUsersBySwagger = new GroupsAPIStepDefinitions();
-            managerCreatesAGroupAddsUsersBySwagger.GivenRegisterNewUsersWithRolesInService(table);
-        }
-
-        [When(@"Open authorization page")]
-        public void WhenOpenAuthorizationPage()
-        {
-            AuthorizationUnauthorizedPage authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage();
-            authorizationUnauthorizedPage.OpenThisPage();
-        }
-
-        [When(@"SignIn user in service as manager")]
-        [When(@"SignIn user in service as student")]
-        [When(@"SignIn user in service as teacher")]
-        [When(@"SignIn user in service as tutor")]
-        public void WhenSignInUserInServiceAsManager(Table table)
-        {
-            AuthorizationUnauthorizedPage authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage();
-            SwaggerSignInRequest user = table.CreateInstance<SwaggerSignInRequest>();
-            authorizationUnauthorizedPage.EnterEmail(user.Email);
-            authorizationUnauthorizedPage.EnterPassword(user.Password);
-            authorizationUnauthorizedPage.ClickEnterButton();
-        }
-
         [When(@"Click button create group")]
         public void WhenClickButtonCreateGroup()
         {
@@ -65,12 +38,44 @@ namespace AutoTestsSelenium.StepDefinitions
             }
         }
 
+        [When(@"Fills in edit group data")]
+        public void WhenFillsInEditGroupData(Table table)
+        {
+            GroupCreationModel newGroup = table.CreateInstance<GroupCreationModel>();
+            GroupEditingManagerPage groupEditingManagerPage = new GroupEditingManagerPage();
+            if (newGroup.GroupName != "")
+            {
+                groupEditingManagerPage.EnterGroupName(newGroup.GroupName);
+            }
+            if (newGroup.CourseName != "")
+            {
+                groupEditingManagerPage.ClickCoursesComboBox();
+                groupEditingManagerPage.ClickDesiredCourseByName(newGroup.CourseName);
+            }
+            if (newGroup.FullNameOfTeacher != "")
+            {
+                groupEditingManagerPage.ChooseTeacher(newGroup.FullNameOfTeacher);
+            }
+            if (newGroup.FullNameOfTutor != "")
+            {
+                groupEditingManagerPage.ChooseTutor(newGroup.FullNameOfTutor);
+            }
+        }
+
         [When(@"Saves group")]
         public void WhenSavesGroup()
         {
             GroupCreationManagerPage groupCreationManagerPage = new GroupCreationManagerPage();
             groupCreationManagerPage.ClickSaveButton();
             //TODO Saves only when there are more than two teachers and tutors (Task 2.6).
+        }
+
+        [When(@"Saves edit group")]
+        public void WhenSavesEditGroup()
+        {
+            GroupEditingManagerPage groupEditingManagerPage = new GroupEditingManagerPage();
+            groupEditingManagerPage.ClickExitButton();
+            //TODO Saves only when there are more than two teachers and tutors (Task 2.17).
         }
 
         [When(@"Cancels creation of group")]
@@ -83,7 +88,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Click button students list")]
         public void WhenClickButtonStudentsList()
         {
-            StudentsListPage studentsListPage = new StudentsListPage();
+            StudentsListManagerPage studentsListPage = new StudentsListManagerPage();
             studentsListPage.ClickStudentsListButton();
         }
 
@@ -94,20 +99,27 @@ namespace AutoTestsSelenium.StepDefinitions
             groupsManagerPage.ClickGroupsButton();
         }
 
+        [When(@"Click button group with name ""([^""]*)""")]
+        public void WhenClickButtonGroupWithName(string groupName)
+        {
+            GroupsManagerPage groupsManagerPage = new GroupsManagerPage();
+            groupsManagerPage.ChooseGroup(groupName);
+        }
+
+        [When(@"Click button edit")]
+        public void WhenClickButtonEdit()
+        {
+            GroupsManagerPage groupsManagerPage = new GroupsManagerPage();
+            groupsManagerPage.ClickEditButton();
+        }
+
         [When(@"Additing student ""([^""]*)"" to group ""([^""]*)""")]
         public void WhenManagerAddStudentToGroup(string fullNameOfStudent, string groupName)
         {
-            StudentsListPage studentsListPage = new StudentsListPage();
-            studentsListPage.ClickGroupsComboBoxByFullNameOfStudent(fullNameOfStudent);
+            StudentsListManagerPage studentsListPage = new StudentsListManagerPage();
+            studentsListPage.ClickByFullNameOfStudentComboBox(fullNameOfStudent);
             studentsListPage.ClickDesiredGroupByName(groupName);
             //TODO The page is implemented as a mock (Task 2.6).
-        }
-
-        [When(@"Exit account as manager")]
-        public void WhenExitAccountAsManager()
-        {
-            GroupCreationManagerPage groupCreationManagerPage = new GroupCreationManagerPage();
-            groupCreationManagerPage.ClickExitButton();
         }
 
         [When(@"Click button lessons as student")]
@@ -155,12 +167,20 @@ namespace AutoTestsSelenium.StepDefinitions
             Assert.Contains(groups, i => i.Text == courseName);
         }
 
-        [Then(@"Manager checks group ""([^""]*)"" in list groups")]
-        public void ThenManagerChecksGroupInListGroups(string groupName)
+        [Then(@"Manager checks absence of group ""([^""]*)"" in list groups")]
+        public void ThenManagerChecksAbsenceOfGroupInListGroups(string groupName)
         {
             GroupsManagerPage groupsManagerPage = new GroupsManagerPage();
             var groups = groupsManagerPage.AllGroups;
             Assert.DoesNotContain(groups, i => i.Text == groupName);
+        }
+
+        [Then(@"Manager checks for presence of group ""([^""]*)"" in list groups")]
+        public void ThenManagerChecksForPresenceOfGroupInListGroups(string groupName)
+        {
+            GroupsManagerPage groupsManagerPage = new GroupsManagerPage();
+            var groups = groupsManagerPage.AllGroups;
+            Assert.Contains(groups, i => i.Text == groupName);
         }
 
         [Then(@"Error message about absence of group name must match text ""([^""]*)""")]
@@ -186,6 +206,24 @@ namespace AutoTestsSelenium.StepDefinitions
             GroupCreationManagerPage groupCreationManagerPage = new GroupCreationManagerPage();
             string actualErrorMessage = groupCreationManagerPage.LabelEmptyTeacherCheckBox.Text;
             Assert.Equal(expectedErrorMessage, actualErrorMessage);
+        }
+
+        [Then(@"Should be a teacher in group ""([^""]*)"" and should not be a teacher ""([^""]*)""")]
+        public void ThenShouldBeATeacherInGroupAndShouldNotBeATeacher(string newTeacher, string oldTeacher)
+        {
+            GroupsManagerPage groupsManagerPage = new GroupsManagerPage();
+            var teachers = groupsManagerPage.TeachersInGroup;
+            Assert.Contains(teachers, i => i.Text == newTeacher);
+            Assert.DoesNotContain(teachers, i => i.Text == oldTeacher);
+        }
+
+        [Then(@"Should be a tutor in group ""([^""]*)"" and should not be a tutor ""([^""]*)""")]
+        public void ThenShouldBeATutorInGroupAndShouldNotBeATutor(string newTutor, string oldTutor)
+        {
+            GroupsManagerPage groupsManagerPage = new GroupsManagerPage();
+            var tutors = groupsManagerPage.TeachersInGroup;
+            Assert.Contains(tutors, i => i.Text == newTutor);
+            Assert.DoesNotContain(tutors, i => i.Text == oldTutor);
         }
     }
 }

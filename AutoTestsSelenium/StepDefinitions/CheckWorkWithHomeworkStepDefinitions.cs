@@ -6,10 +6,10 @@ namespace AutoTestsSelenium.StepDefinitions
     public class CheckWorkWithHomeworkStepDefinitions
     {
         private TasksStepDefinitions _stepsBySwagger;
-        private List<SwaggerSignInRequest> _studensSignIn;
+        private List<SignInRequest> _studensSignIn;
         private ChangeRoleCombobox _changeRoleOfTeacher;
-        private SwaggerSignInRequest _teacherSingIn;
-        private SwaggerSignInRequest _methodist;
+        private SignInRequest _teacherSingIn;
+        private SignInRequest _methodist;
         private IWebDriver _driver;
         private SingInWindow _singInWindow;
         private TeacherNavigatePanelElements _navigateButtons;
@@ -22,7 +22,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public CheckWorkWithHomeworkStepDefinitions()
         {
             _stepsBySwagger = new TasksStepDefinitions();
-            _studensSignIn = new List<SwaggerSignInRequest>();
+            _studensSignIn = new List<SignInRequest>();
             _driver = SingleWebDriver.GetInstance();
             _singInWindow = new SingInWindow();
             _navigateButtons = new TeacherNavigatePanelElements();
@@ -42,15 +42,15 @@ namespace AutoTestsSelenium.StepDefinitions
             {
                 if (user.Role == "Student")
                 {
-                    _studensSignIn.Add(new SwaggerSignInRequest() { Email = user.Email, Password = user.Password });
+                    _studensSignIn.Add(new SignInRequest() { Email = user.Email, Password = user.Password });
                 }
                 else if (user.Role == "Teacher")
                 {
-                    _teacherSingIn = new SwaggerSignInRequest() { Email = user.Email, Password = user.Password };
+                    _teacherSingIn = new SignInRequest() { Email = user.Email, Password = user.Password };
                 }
                 else
                 {
-                    _methodist = new SwaggerSignInRequest() { Email = user.Email, Password = user.Password };
+                    _methodist = new SignInRequest() { Email = user.Email, Password = user.Password };
                 }
             }
         }
@@ -78,7 +78,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void ThenAuthorizationUserAsTeacher(Table table)
         {
 
-            SwaggerSignInRequest singInRequest = table.CreateInstance<SwaggerSignInRequest>();
+            SignInRequest singInRequest = table.CreateInstance<SignInRequest>();
             _driver.Manage().Window.Maximize();
             _driver.Navigate().GoToUrl(Urls.Host);
             Thread.Sleep(1000);
@@ -146,7 +146,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"student authorization")]
         public void WhenStudentAuthorization(Table table)
         {
-            SwaggerSignInRequest singInRequest = table.CreateInstance<SwaggerSignInRequest>();
+            SignInRequest singInRequest = table.CreateInstance<SignInRequest>();
             _driver.FindElement(_singInWindow.XPathEmailBox).SendKeys(singInRequest.Email);         
             var passBox = _driver.FindElement(_singInWindow.XPathPasswordBox);
             passBox.Clear();
@@ -192,7 +192,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"teacher checks homework")]
         public void WhenTeacherChecksHomework(Table table)
         {
-            SwaggerSignInRequest singInRequest = table.CreateInstance<SwaggerSignInRequest>();
+            SignInRequest singInRequest = table.CreateInstance<SignInRequest>();
             _driver.Manage().Window.Maximize();
             _driver.Navigate().GoToUrl(Urls.Host);
             Thread.Sleep(1000);

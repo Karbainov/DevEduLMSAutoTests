@@ -19,7 +19,7 @@ namespace AutoTestsSelenium.StepDefinitions
             _adminsToken = _authClient.AuthorizeUser(OptionsSwagger.AdminSignIn);
         }
 
-        [Given(@"Administrator registers new users with roles")]
+        [Given(@"Register new users with roles")]
         public void GivenAdministratorRegistersNewUsersWithRoles(Table table)
         {
             List<RegistationModelWithRole> newUsers = table.CreateSet<RegistationModelWithRole>().ToList();
@@ -72,7 +72,7 @@ namespace AutoTestsSelenium.StepDefinitions
             }
         }
 
-        [Given(@"Admin create new groups")]
+        [Given(@"Create new groups")]
         public void GivenAdminCreateNewGroups(Table table)
         {
             List<CreateGroupRequest> groups = table.CreateSet<CreateGroupRequest>().ToList();
@@ -86,7 +86,7 @@ namespace AutoTestsSelenium.StepDefinitions
             }
         }
 
-        [Given(@"Admin add users to group ""([^""]*)""")]
+        [Given(@"Add users to group ""([^""]*)""")]
         public void GivenAdminAddUsersToGroup(string groupName, Table table)
         {
             int groupId = GetGroupIdByName(groupName);
