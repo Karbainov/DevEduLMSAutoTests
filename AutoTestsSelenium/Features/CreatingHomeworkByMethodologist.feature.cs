@@ -19,7 +19,7 @@ namespace AutoTestsSelenium.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class SpecialTwoPointFiveFeature : object, Xunit.IClassFixture<SpecialTwoPointFiveFeature.FixtureData>, System.IDisposable
+    public partial class CreatingHomeworkByMethodologistFeature : object, Xunit.IClassFixture<CreatingHomeworkByMethodologistFeature.FixtureData>, System.IDisposable
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace AutoTestsSelenium.Features
 #line 1 "CreatingHomeworkByMethodologist.feature"
 #line hidden
         
-        public SpecialTwoPointFiveFeature(SpecialTwoPointFiveFeature.FixtureData fixtureData, AutoTestsSelenium_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public CreatingHomeworkByMethodologistFeature(CreatingHomeworkByMethodologistFeature.FixtureData fixtureData, AutoTestsSelenium_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();
@@ -40,7 +40,7 @@ namespace AutoTestsSelenium.Features
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "SpecialTwoPointFive", "A short summary of the feature", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "CreatingHomeworkByMethodologist", "A short summary of the feature", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -81,7 +81,7 @@ namespace AutoTestsSelenium.Features
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="Creating an assignment by a methodologist for students")]
-        [Xunit.TraitAttribute("FeatureTitle", "SpecialTwoPointFive")]
+        [Xunit.TraitAttribute("FeatureTitle", "CreatingHomeworkByMethodologist")]
         [Xunit.TraitAttribute("Description", "Creating an assignment by a methodologist for students")]
         [Xunit.TraitAttribute("Category", "teacher")]
         [Xunit.TraitAttribute("Category", "student")]
@@ -257,12 +257,12 @@ this.ScenarioInitialize(scenarioInfo);
             
             public FixtureData()
             {
-                SpecialTwoPointFiveFeature.FeatureSetup();
+                CreatingHomeworkByMethodologistFeature.FeatureSetup();
             }
             
             void System.IDisposable.Dispose()
             {
-                SpecialTwoPointFiveFeature.FeatureTearDown();
+                CreatingHomeworkByMethodologistFeature.FeatureTearDown();
             }
         }
     }
