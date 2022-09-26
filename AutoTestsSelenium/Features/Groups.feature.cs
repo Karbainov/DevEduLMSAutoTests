@@ -149,7 +149,7 @@ this.ScenarioInitialize(scenarioInfo);
 testRunner.Given("Administrator registers new users with roles", ((string)(null)), table10, "Given ");
 #line hidden
 #line 11
-testRunner.When("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.And("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table11 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
@@ -161,7 +161,7 @@ testRunner.When("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow
 testRunner.And("SignIn user in service as manager", ((string)(null)), table11, "And ");
 #line hidden
 #line 15
-testRunner.And("Click button create group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.When("Click button create group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table12 = new TechTalk.SpecFlow.Table(new string[] {
                             "GroupName",
@@ -262,7 +262,7 @@ this.ScenarioInitialize(scenarioInfo);
 testRunner.Given("Administrator registers new users with roles", ((string)(null)), table14, "Given ");
 #line hidden
 #line 34
-testRunner.When("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.And("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table15 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
@@ -274,7 +274,7 @@ testRunner.When("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow
 testRunner.And("SignIn user in service as manager", ((string)(null)), table15, "And ");
 #line hidden
 #line 38
-testRunner.And("Click button create group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.When("Click button create group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table16 = new TechTalk.SpecFlow.Table(new string[] {
                             "GroupName",
@@ -383,7 +383,7 @@ this.ScenarioInitialize(scenarioInfo);
 testRunner.Given("Administrator registers new users with roles", ((string)(null)), table18, "Given ");
 #line hidden
 #line 56
-testRunner.When("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.And("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table19 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
@@ -395,7 +395,7 @@ testRunner.When("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow
 testRunner.And("SignIn user in service as manager", ((string)(null)), table19, "And ");
 #line hidden
 #line 60
-testRunner.And("Click button create group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.When("Click button create group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table20 = new TechTalk.SpecFlow.Table(new string[] {
                             "GroupName",
@@ -497,7 +497,7 @@ this.ScenarioInitialize(scenarioInfo);
 testRunner.Given("Administrator registers new users with roles", ((string)(null)), table22, "Given ");
 #line hidden
 #line 78
-testRunner.When("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.And("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table23 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
@@ -509,7 +509,7 @@ testRunner.When("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow
 testRunner.And("SignIn user in service as manager", ((string)(null)), table23, "And ");
 #line hidden
 #line 82
-testRunner.And("Click button create group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.When("Click button create group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table24 = new TechTalk.SpecFlow.Table(new string[] {
                             "GroupName",
@@ -531,7 +531,7 @@ testRunner.And("Click button cancels creation of group", ((string)(null)), ((Tec
 testRunner.And("Click button groups", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 88
-testRunner.Then("Manager checks absence of group \"Some group\" in list groups", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("Manager should not find group \"Some group\" in list groups", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -742,7 +742,7 @@ testRunner.And("Admin create new groups", ((string)(null)), table26, "And ");
 testRunner.And("Admin add users to group \"BaseSPb\"", ((string)(null)), table27, "And ");
 #line hidden
 #line 109
-testRunner.When("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.And("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table28 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
@@ -754,7 +754,7 @@ testRunner.When("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow
 testRunner.And("SignIn user in service as manager", ((string)(null)), table28, "And ");
 #line hidden
 #line 113
-testRunner.And("Click button groups", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.When("Click button groups", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 114
 testRunner.And("Click button group with name \"BaseSPb\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -904,7 +904,7 @@ testRunner.And("Admin create new groups", ((string)(null)), table31, "And ");
 testRunner.And("Admin add users to group \"BaseSPb\"", ((string)(null)), table32, "And ");
 #line hidden
 #line 136
-testRunner.When("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.And("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table33 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
@@ -916,7 +916,7 @@ testRunner.When("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow
 testRunner.And("SignIn user in service as manager", ((string)(null)), table33, "And ");
 #line hidden
 #line 140
-testRunner.And("Click button groups", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.When("Click button groups", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 141
 testRunner.And("Click button group with name \"BaseSPb\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -944,7 +944,7 @@ testRunner.And("Click button saves edit group", ((string)(null)), ((TechTalk.Spe
 testRunner.And("Click button groups", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 148
-testRunner.Then("Manager checks for presence of group \"QASPb\" in list groups", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("Manager should find group \"QASPb\" in list groups", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 149
 testRunner.When("Click button exit of account as manager", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -1070,7 +1070,7 @@ testRunner.And("Admin create new groups", ((string)(null)), table37, "And ");
 testRunner.And("Admin add users to group \"BaseSPb\"", ((string)(null)), table38, "And ");
 #line hidden
 #line 167
-testRunner.When("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.And("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table39 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
@@ -1082,7 +1082,7 @@ testRunner.When("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow
 testRunner.And("SignIn user in service as manager", ((string)(null)), table39, "And ");
 #line hidden
 #line 171
-testRunner.And("Click button groups", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.When("Click button groups", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 172
 testRunner.And("Click button group with name \"BaseSPb\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -1110,7 +1110,7 @@ testRunner.And("Click button cancels editing of group", ((string)(null)), ((Tech
 testRunner.And("Click button groups", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 179
-testRunner.Then("Manager checks for presence of group \"BaseSPb\" in list groups", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+testRunner.Then("Manager should find group \"BaseSPb\" in list groups", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -1180,7 +1180,7 @@ this.ScenarioInitialize(scenarioInfo);
 testRunner.Given("Administrator registers new users with roles", ((string)(null)), table41, "Given ");
 #line hidden
 #line 187
-testRunner.When("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.And("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table42 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
@@ -1192,7 +1192,7 @@ testRunner.When("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow
 testRunner.And("SignIn user in service as manager", ((string)(null)), table42, "And ");
 #line hidden
 #line 191
-testRunner.And("Click button create group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.When("Click button create group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table43 = new TechTalk.SpecFlow.Table(new string[] {
                             "GroupName",
@@ -1282,7 +1282,7 @@ this.ScenarioInitialize(scenarioInfo);
 testRunner.Given("Administrator registers new users with roles", ((string)(null)), table44, "Given ");
 #line hidden
 #line 204
-testRunner.When("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.And("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table45 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
@@ -1294,7 +1294,7 @@ testRunner.When("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow
 testRunner.And("SignIn user in service as manager", ((string)(null)), table45, "And ");
 #line hidden
 #line 208
-testRunner.And("Click button create group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.When("Click button create group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table46 = new TechTalk.SpecFlow.Table(new string[] {
                             "GroupName",
@@ -1384,7 +1384,7 @@ this.ScenarioInitialize(scenarioInfo);
 testRunner.Given("Administrator registers new users with roles", ((string)(null)), table47, "Given ");
 #line hidden
 #line 221
-testRunner.When("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.And("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table48 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
@@ -1396,7 +1396,7 @@ testRunner.When("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow
 testRunner.And("SignIn user in service as manager", ((string)(null)), table48, "And ");
 #line hidden
 #line 225
-testRunner.And("Click button create group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.When("Click button create group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table49 = new TechTalk.SpecFlow.Table(new string[] {
                             "GroupName",
@@ -1548,7 +1548,7 @@ testRunner.And("Admin create new groups", ((string)(null)), table51, "And ");
 testRunner.And("Admin add users to group \"BaseSPb\"", ((string)(null)), table52, "And ");
 #line hidden
 #line 245
-testRunner.When("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.And("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table53 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
@@ -1560,7 +1560,7 @@ testRunner.When("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow
 testRunner.And("SignIn user in service as manager", ((string)(null)), table53, "And ");
 #line hidden
 #line 249
-testRunner.And("Click button groups", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.When("Click button groups", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 250
 testRunner.And("Click button group with name \"BaseSPb\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -1718,7 +1718,7 @@ testRunner.And("Admin create new groups", ((string)(null)), table56, "And ");
 testRunner.And("Admin add users to group \"BaseSPb\"", ((string)(null)), table57, "And ");
 #line hidden
 #line 271
-testRunner.When("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.And("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table58 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
@@ -1730,7 +1730,7 @@ testRunner.When("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow
 testRunner.And("SignIn user in service as manager", ((string)(null)), table58, "And ");
 #line hidden
 #line 275
-testRunner.And("Click button groups", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.When("Click button groups", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 276
 testRunner.And("Click button group with name \"BaseSPb\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -1891,7 +1891,7 @@ testRunner.And("Admin create new groups", ((string)(null)), table61, "And ");
 testRunner.And("Admin add users to group \"BaseSPb\"", ((string)(null)), table62, "And ");
 #line hidden
 #line 297
-testRunner.When("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.And("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table63 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
@@ -1903,7 +1903,7 @@ testRunner.When("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow
 testRunner.And("SignIn user in service as manager", ((string)(null)), table63, "And ");
 #line hidden
 #line 301
-testRunner.And("Click button groups", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.When("Click button groups", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 302
 testRunner.And("Click button group with name \"BaseSPb\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

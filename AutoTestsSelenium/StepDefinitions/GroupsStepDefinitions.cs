@@ -7,18 +7,18 @@ namespace AutoTestsSelenium.StepDefinitions
         {
         }
 
-        [When(@"Open authorization page")]
-        public void WhenOpenAuthorizationPage()
+        [Given(@"Open authorization page")]
+        public void GivenOpenAuthorizationPage()
         {
             AuthorizationUnauthorizedPage authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage();
             authorizationUnauthorizedPage.OpenThisPage();
         }
 
-        [When(@"SignIn user in service as manager")]
+        [Given(@"SignIn user in service as manager")]
         [When(@"SignIn user in service as student")]
         [When(@"SignIn user in service as teacher")]
         [When(@"SignIn user in service as tutor")]
-        public void WhenSignInUserInServiceAsManager(Table table)
+        public void GivenSignInUserInServiceAsManager(Table table)
         {
             AuthorizationUnauthorizedPage authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage();
             SwaggerSignInRequest user = table.CreateInstance<SwaggerSignInRequest>();
@@ -33,29 +33,17 @@ namespace AutoTestsSelenium.StepDefinitions
             GroupCreationManagerPage groupCreationManagerPage = new GroupCreationManagerPage();
             groupCreationManagerPage.ClickAddGroupButton();
         }
-        
+
         [When(@"Fills in group data")]
         public void WhenFillsInGroupData(Table table)
         {
             GroupCreationModel newGroup = table.CreateInstance<GroupCreationModel>();
             GroupCreationManagerPage groupCreationManagerPage = new GroupCreationManagerPage();
-            if(newGroup.GroupName != "")
-            {
-                groupCreationManagerPage.EnterGroupName(newGroup.GroupName);
-            }
-            if (newGroup.CourseName != "")
-            {
-                groupCreationManagerPage.ClickCoursesComboBox();
-                groupCreationManagerPage.ClickDesiredCourseByName(newGroup.CourseName);
-            }
-            if (newGroup.FullNameOfTeacher != "")
-            {
-                groupCreationManagerPage.ChooseTeacher(newGroup.FullNameOfTeacher);
-            }
-            if (newGroup.FullNameOfTutor != "")
-            {
-                groupCreationManagerPage.ChooseTutor(newGroup.FullNameOfTutor);
-            }
+            groupCreationManagerPage.EnterGroupName(newGroup.GroupName);
+            groupCreationManagerPage.ClickCoursesComboBox();
+            groupCreationManagerPage.ClickDesiredCourseByName(newGroup.CourseName);
+            groupCreationManagerPage.ChooseTeacher(newGroup.FullNameOfTeacher);
+            groupCreationManagerPage.ChooseTutor(newGroup.FullNameOfTutor);
         }
 
         [When(@"Fills in edit group data")]
@@ -63,23 +51,11 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             GroupCreationModel newGroup = table.CreateInstance<GroupCreationModel>();
             GroupEditingManagerPage groupEditingManagerPage = new GroupEditingManagerPage();
-            if (newGroup.GroupName != "")
-            {
-                groupEditingManagerPage.EnterGroupName(newGroup.GroupName);
-            }
-            if (newGroup.CourseName != "")
-            {
-                groupEditingManagerPage.ClickCoursesComboBox();
-                groupEditingManagerPage.ClickDesiredCourseByName(newGroup.CourseName);
-            }
-            if (newGroup.FullNameOfTeacher != "")
-            {
-                groupEditingManagerPage.ChooseTeacher(newGroup.FullNameOfTeacher);
-            }
-            if (newGroup.FullNameOfTutor != "")
-            {
-                groupEditingManagerPage.ChooseTutor(newGroup.FullNameOfTutor);
-            }
+            groupEditingManagerPage.EnterGroupName(newGroup.GroupName);
+            groupEditingManagerPage.ClickCoursesComboBox();
+            groupEditingManagerPage.ClickDesiredCourseByName(newGroup.CourseName);
+            groupEditingManagerPage.ChooseTeacher(newGroup.FullNameOfTeacher);
+            groupEditingManagerPage.ChooseTutor(newGroup.FullNameOfTutor);
         }
 
         [When(@"Click button saves group")]

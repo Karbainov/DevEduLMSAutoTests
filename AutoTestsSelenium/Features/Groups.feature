@@ -8,11 +8,11 @@ Given Administrator registers new users with roles
 | FirstName | LastName   | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 | Isabella  | Abramson   | string     | isi@gmail.com    | Bella    | 11345578 | SaintPetersburg | 22.05.2001 | string        | 89514551247 | Student |
 | Maksim    | Karbainov  | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
-When Open authorization page
+And Open authorization page
 And SignIn user in service as manager
 | Email              | Password     |
 | marina@example.com | marinamarina |
-And Click button create group
+When Click button create group
 And Fills in group data
 | GroupName | CourseName | FullNameOfTeacher | FullNameOfTutor |
 | BaseSPb   | Базовый C# | Maksim Karbainov  |                 |
@@ -31,11 +31,11 @@ Scenario: Manager creates a group with the teacher and the teacher checks the pr
 Given Administrator registers new users with roles
 | FirstName | LastName   | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 | Maksim    | Karbainov  | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
-When Open authorization page
+And Open authorization page
 And SignIn user in service as manager
 | Email              | Password     |
 | marina@example.com | marinamarina |
-And Click button create group
+When Click button create group
 And Fills in group data
 | GroupName | CourseName | FullNameOfTeacher | FullNameOfTutor |
 | BaseSPb   | Базовый C# | Maksim Karbainov  |                 |
@@ -53,11 +53,11 @@ Given Administrator registers new users with roles
 | FirstName | LastName   | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 | Maksim    | Karbainov  | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
 | Elisey    | Kakoyto    | string     | elisey@gmail.com | Elisey   | 13345678 | SaintPetersburg | 07.10.1996 | string        | 89518963148 | Tutor   |
-When Open authorization page
+And Open authorization page
 And SignIn user in service as manager
 | Email              | Password     |
 | marina@example.com | marinamarina |
-And Click button create group
+When Click button create group
 And Fills in group data
 | GroupName | CourseName | FullNameOfTeacher | FullNameOfTutor |
 | BaseSPb   | Базовый C# | Maksim Karbainov  | Elisey Kakoyto  |
@@ -75,11 +75,11 @@ Given Administrator registers new users with roles
 | FirstName | LastName  | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 | Maksim    | Karbainov | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
 | Elisey    | Kakoyto   | string     | elisey@gmail.com | Elisey   | 13345678 | SaintPetersburg | 07.10.1996 | string        | 89518963148 | Tutor   |
-When Open authorization page
+And Open authorization page
 And SignIn user in service as manager
 | Email              | Password     |
 | marina@example.com | marinamarina |
-And Click button create group
+When Click button create group
 And Fills in group data
 | GroupName  | CourseName | FullNameOfTeacher | FullNameOfTutor |
 | Some group | Базовый C# | Maksim Karbainov  | Elisey Kakoyto  |
@@ -106,11 +106,11 @@ And Admin add users to group "BaseSPb"
 | Daniela   | Watson     | string     | neli@gmail.com   | Neli     | 11333578 | SaintPetersburg | 14.01.2001 | string        | 89517751247 | Student |
 | Maksim    | Karbainov  | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
 | Elisey    | Kakoyto    | string     | elisey@gmail.com | Elisey   | 13345678 | SaintPetersburg | 07.10.1996 | string        | 89518963148 | Tutor   |
-When Open authorization page
+And Open authorization page
 And SignIn user in service as manager
 | Email              | Password     |
 | marina@example.com | marinamarina |
-And Click button groups
+When Click button groups
 And Click button group with name "BaseSPb"
 And Click button edit
 And Fills in edit group data
@@ -133,11 +133,11 @@ And Admin create new groups
 And Admin add users to group "BaseSPb"
 | FirstName | LastName   | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 | Maksim    | Karbainov  | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
-When Open authorization page
+And Open authorization page
 And SignIn user in service as manager
 | Email              | Password     |
 | marina@example.com | marinamarina |
-And Click button groups
+When Click button groups
 And Click button group with name "BaseSPb"
 And Click button edit
 And Fills in edit group data
@@ -164,11 +164,11 @@ And Admin create new groups
 And Admin add users to group "BaseSPb"
 | FirstName | LastName   | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 | Maksim    | Karbainov  | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
-When Open authorization page
+And Open authorization page
 And SignIn user in service as manager
 | Email              | Password     |
 | marina@example.com | marinamarina |
-And Click button groups
+When Click button groups
 And Click button group with name "BaseSPb"
 And Click button edit
 And Fills in edit group data
@@ -184,11 +184,11 @@ Given Administrator registers new users with roles
 | FirstName | LastName   | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 | Maksim    | Karbainov  | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
 | Elisey    | Kakoyto    | string     | elisey@gmail.com | Elisey   | 13345678 | SaintPetersburg | 07.10.1996 | string        | 89518963148 | Tutor   |
-When Open authorization page
+And Open authorization page
 And SignIn user in service as manager
 | Email              | Password     |
 | marina@example.com | marinamarina |
-And Click button create group
+When Click button create group
 And Fills in group data
 | GroupName | CourseName | FullNameOfTeacher | FullNameOfTutor |
 |           | Базовый C# | Maksim Karbainov  | Elisey Kakoyto  |
@@ -201,11 +201,11 @@ Given Administrator registers new users with roles
 | FirstName | LastName   | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 | Maksim    | Karbainov  | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
 | Elisey    | Kakoyto    | string     | elisey@gmail.com | Elisey   | 13345678 | SaintPetersburg | 07.10.1996 | string        | 89518963148 | Tutor   |
-When Open authorization page
+And Open authorization page
 And SignIn user in service as manager
 | Email              | Password     |
 | marina@example.com | marinamarina |
-And Click button create group
+When Click button create group
 And Fills in group data
 | GroupName | CourseName | FullNameOfTeacher | FullNameOfTutor |
 | BaseSPb   |            | Maksim Karbainov  | Elisey Kakoyto  |
@@ -218,11 +218,11 @@ Given Administrator registers new users with roles
 | FirstName | LastName   | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 | Maksim    | Karbainov  | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
 | Elisey    | Kakoyto    | string     | elisey@gmail.com | Elisey   | 13345678 | SaintPetersburg | 07.10.1996 | string        | 89518963148 | Tutor   |
-When Open authorization page
+And Open authorization page
 And SignIn user in service as manager
 | Email              | Password     |
 | marina@example.com | marinamarina |
-And Click button create group
+When Click button create group
 And Fills in group data
 | GroupName | CourseName | FullNameOfTeacher | FullNameOfTutor |
 | BaseSPb   | Базовый C# |                   | Elisey Kakoyto  |
@@ -242,11 +242,11 @@ And Admin add users to group "BaseSPb"
 | FirstName | LastName   | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 | Maksim    | Karbainov  | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
 | Elisey    | Kakoyto    | string     | elisey@gmail.com | Elisey   | 13345678 | SaintPetersburg | 07.10.1996 | string        | 89518963148 | Tutor   |
-When Open authorization page
+And Open authorization page
 And SignIn user in service as manager
 | Email              | Password     |
 | marina@example.com | marinamarina |
-And Click button groups
+When Click button groups
 And Click button group with name "BaseSPb"
 And Click button edit
 And Fills in group data
@@ -268,11 +268,11 @@ And Admin add users to group "BaseSPb"
 | FirstName | LastName   | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 | Maksim    | Karbainov  | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
 | Elisey    | Kakoyto    | string     | elisey@gmail.com | Elisey   | 13345678 | SaintPetersburg | 07.10.1996 | string        | 89518963148 | Tutor   |
-When Open authorization page
+And Open authorization page
 And SignIn user in service as manager
 | Email              | Password     |
 | marina@example.com | marinamarina |
-And Click button groups
+When Click button groups
 And Click button group with name "BaseSPb"
 And Click button edit
 And Fills in group data
@@ -294,11 +294,11 @@ And Admin add users to group "BaseSPb"
 | FirstName | LastName   | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 | Maksim    | Karbainov  | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
 | Elisey    | Kakoyto    | string     | elisey@gmail.com | Elisey   | 13345678 | SaintPetersburg | 07.10.1996 | string        | 89518963148 | Tutor   |
-When Open authorization page
+And Open authorization page
 And SignIn user in service as manager
 | Email              | Password     |
 | marina@example.com | marinamarina |
-And Click button groups
+When Click button groups
 And Click button group with name "BaseSPb"
 And Click button edit
 And Fills in group data
