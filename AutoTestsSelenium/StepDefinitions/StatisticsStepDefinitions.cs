@@ -9,7 +9,7 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             AddNewHomework homework = table.CreateInstance<AddNewHomework>();
             var homeworkCreationPage = new HomeworkCreationTeacherPage();
-            homeworkCreationPage.ClickCreateHomework();
+            homeworkCreationPage.ClickAddHomeworksButton();
             homeworkCreationPage.ClickRadioButtonGroupName(groupName);
             homeworkCreationPage.InputStarDate(homework.StartDate);
             homeworkCreationPage.InputEndDate(homework.EndDate);
