@@ -308,7 +308,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Ilya3 Baikov",
                             "Сдано"});
 #line 48
- testRunner.Then("Teacher should see students results to homework \"Lists\" in tab General Progress", ((string)(null)), table74, "Then ");
+ testRunner.And("Teacher should see students results to homework \"Lists\" in tab General Progress", ((string)(null)), table74, "And ");
 #line hidden
             }
             this.ScenarioCleanup();
