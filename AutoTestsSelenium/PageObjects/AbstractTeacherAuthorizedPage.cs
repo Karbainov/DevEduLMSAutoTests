@@ -5,7 +5,7 @@
         public IWebElement ButtonAddLessonSideBar => GetButtonAddLessonSideBar();
         public IWebElement ButtonLessonsSideBar => GetButtonLessonsSideBar();
         public IWebElement ButtonHomeworksSideBar => _driver.FindElement(By.XPath($"//*[text()='Домашние задания']/.."));
-        public IWebElement ButtonAddHomewrksSideBar => GetButtonAddHomewrksSideBar();
+        public IWebElement ButtonAddHomeworksSideBar => GetButtonAddHomewrksSideBar();
         public IWebElement ButtonCheckHomeworksSideBar => _driver.FindElement(By.XPath($"//*[text()='Проверка заданий']/.."));
         public IWebElement ButtonGeneralProgressSideBar => GetButtonGeneralProgressSideBar();
         public IWebElement ButtonJournalSideBar => _driver.FindElement(By.XPath($"//*[text()='Журнал']/.."));
@@ -31,7 +31,7 @@
 
         public void ClickAddHomeworksButton()
         {
-            ButtonAddHomewrksSideBar.Click();
+            ButtonAddHomeworksSideBar.Click();
         }
 
         public void ClickCheckHomeworksButton()

@@ -98,6 +98,5 @@
             }
             return By.XPath($"//li[text()='{role}']");
         }
-
     }
 }
