@@ -19,7 +19,7 @@ And Fills in group data
 And Click button saves group
 And Click button students list
 And Additing student "Isabella Abramson" to group "BaseSPb"
-And Exit account as manager
+And Manager logged out
 And Authorize user in service as student
 | Email         | Password |
 | isi@gmail.com | 11345578 |
@@ -40,7 +40,7 @@ And Fills in group data
 | GroupName | CourseName | FullNameOfTeacher | FullNameOfTutor |
 | BaseSPb   | Базовый C# | Maksim Karbainov  |                 |
 And Click button saves group
-And Exit account as manager
+And Manager logged out
 And Authorize user in service as teacher
 | Email          | Password |
 | maks@gmail.com | 22345678 |
@@ -62,7 +62,7 @@ And Fills in group data
 | GroupName | CourseName | FullNameOfTeacher | FullNameOfTutor |
 | BaseSPb   | Базовый C# | Maksim Karbainov  | Elisey Kakoyto  |
 And Click button saves group
-And Exit account as manager
+And Manager logged out
 And Authorize user in service as tutor
 | Email            | Password |
 | elisey@gmail.com | 13345678 |
@@ -146,7 +146,7 @@ And Fills in edit group data
 And Click button saves edit group
 And Click button groups
 Then Manager should find group "QASPb" in list groups
-When Exit account as manager
+When Manager logged out
 And Authorize user in service as teacher
 | Email          | Password |
 | maks@gmail.com | 22345678 |
