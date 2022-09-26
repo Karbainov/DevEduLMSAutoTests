@@ -2,7 +2,7 @@
 {
     public abstract class AbstractTeacherAuthorizedPage : AbstractAuthorizedPage
     {
-        public IWebElement ButtonAddLessonSideBar => _driver.FindElement(By.XPath($"//*[text()='Добавить занятие']/.."));
+        public IWebElement ButtonAddLessonSideBar => GetButtonAddLessonSideBar();
         public IWebElement ButtonLessonsSideBar => GetButtonLessonsSideBar();
         public IWebElement ButtonHomeworksSideBar => _driver.FindElement(By.XPath($"//*[text()='Домашние задания']/.."));
         public IWebElement ButtonAddHomewrksSideBar => GetButtonAddHomewrksSideBar();
@@ -65,6 +65,12 @@
         {
             WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(1));
             return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//*[text()='Общая успеваемость']/..")));
+        }
+
+        private IWebElement GetButtonAddLessonSideBar()
+        {
+            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(1));
+            return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//*[text()='Добавить занятие']/..")));
         }
     }
 }
