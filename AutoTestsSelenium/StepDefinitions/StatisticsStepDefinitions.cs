@@ -1,4 +1,3 @@
-using OpenQA.Selenium.Support.Extensions;
 namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]

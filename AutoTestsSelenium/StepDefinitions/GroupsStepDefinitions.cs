@@ -3,10 +3,6 @@ namespace AutoTestsSelenium.StepDefinitions
     [Binding]
     public class GroupsStepDefinitions
     {
-        public GroupsStepDefinitions()
-        {
-        }
-
         [When(@"Click button create group")]
         public void WhenClickButtonCreateGroup()
         {

@@ -5,7 +5,7 @@ Scenario: User registration
 	Given Open DevEdu web site https://piter-education.ru:7074/
 	And Open registration page
 	And Fill all requared fields
-	| FirstName | LastName | Patronymic | BirthDate  | Password | RepeatPassword | Email             | PhoneNumber   |
+	| FirstName | LastName | Patronymic | BirthDate  | Password | RepeatPassword | Email             | PhoneNumber  |
 	| Мистер    | Проппер  | Иванов     | 31.07.1998 | Azino777 | Azino777       | propper12@mail.ru | +79992314545 |
 	And Click on private policy checkbox 
 	When Click on register button
@@ -15,7 +15,9 @@ Scenario: User registration
 	| Email             | Password |
 	| propper12@mail.ru | Azino777 |
 	And Click on user's profile 
-	Then User should see his actual information 
+	Then User should see his actual information
+	| FirstName | LastName | Patronymic | BirthDate  | Email             | PhoneNumber   |
+	| Мистер    | Проппер  | Иванов     | 31.07.1998 | propper12@mail.ru | +79992314545 |
 
 @registration @negative
 Scenario: User try to registration with empty First Name textbox

@@ -1,6 +1,3 @@
-using AutoTestsSelenium.PageObjects;
-using TechTalk.SpecFlow;
-
 namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
