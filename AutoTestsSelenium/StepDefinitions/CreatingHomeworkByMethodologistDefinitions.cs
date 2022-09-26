@@ -3,16 +3,6 @@ namespace AutoTestsSelenium.StepDefinitions
     [Binding]
     public class CreatingHomeworkByMethodologistDefinitions
     {
-        private IWebDriver _driver;
-
-        [Given(@"Open DevEdu site")]
-        public void WhenOpenDevEduWebSite()
-        {
-            _driver = SingleWebDriver.GetInstance();
-            _driver.Manage().Window.Maximize();
-            _driver.Navigate().GoToUrl(Urls.Host);
-        }
-
         [When(@"Methodist click button add task")]
         public void WhenMethodistClickButtonAddTask()
         {

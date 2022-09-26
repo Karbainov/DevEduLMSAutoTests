@@ -22,7 +22,7 @@ Scenario:  Creating an assignment by a methodologist for students
 	And Methodist click edit
 	When Methodist edits homework
 	And Methodist click button save draft
-	And Exit account as methodist
+	And Methodist logged out
 	And Authorize user in service as teacher
 	| Email                |  Password | 
 	|  vitya21@teacher.com |  password |
@@ -31,7 +31,7 @@ Scenario:  Creating an assignment by a methodologist for students
 	|Name            | Description      | Link             |StartDate  | EndDate   |
 	| ЗаданиеЗадание | сделай то то     |http://fjfjf.com  |20.09.2022 | 31.12.2022|
 	And Teacher click button publish
-	And Exit account as teacher
+	And Teacher logged out
 	And Authorize user in service as student
 	| Email              | Password |
 	| milana@student.com | password |

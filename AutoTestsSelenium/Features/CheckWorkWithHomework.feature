@@ -26,7 +26,7 @@ Scenario: Assigned homework by teacher, turned in by student
 	And Methodist create homework course name "QA Automation"
 	| Name           | Description | Link             |
 	| ЗаданиеЗадание | string      | http://fjfjf.com |
-	And Exit account as methodist
+	And Methodist logged out
 	When Authorize user in service as teacher
 	| Email               | Password | 
 	| vitya21@teacher.com | password |
@@ -36,7 +36,7 @@ Scenario: Assigned homework by teacher, turned in by student
 	| ЗаданиеЗадание | сделай то то | http://fjfjf.com | 30.09.2022 | 31.12.2022 |
 	Then Teacher click button publish 
 	When Teacher see all task
-	And Exit account as teacher
+	And Teacher logged out
 	And Authorize user in service as student 
 	| Email               | Password |
 	| ilya21@student.com  | password |
@@ -44,18 +44,18 @@ Scenario: Assigned homework by teacher, turned in by student
 	And Studen click button to the task
 	When Studen attaches a link "https://hd.kinopoisk.ru/" to the completed task
 	And Studen click airplane icon
-	And Exit account as student
+	And Student logged out
 	And Authorize user in service as teacher
 	| Email                 | Password   |
 	| vitya21@teacher.com   | password   |
 	And Teacher checks homework 
 	When Teacher returned homework
-	And Exit account as teacher
+	And Teacher logged out
 	And Authorize user in service as student
 	| Email              | Password | 
 	| ilya21@student.com | password | 
 	When Student attached link "https://hd.kinopoisk.ru/" of corrected homework
-	And Exit account as student
+	And Student logged out
 	And Authorize user in service as teacher
 	| Email                 | Password   |
 	| vitya21@teacher.com   | password   |
