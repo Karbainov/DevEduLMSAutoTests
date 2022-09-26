@@ -7,26 +7,6 @@ namespace AutoTestsSelenium.StepDefinitions
         {
         }
 
-        [Given(@"Open authorization page")]
-        public void GivenOpenAuthorizationPage()
-        {
-            AuthorizationUnauthorizedPage authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage();
-            authorizationUnauthorizedPage.OpenThisPage();
-        }
-
-        [Given(@"SignIn user in service as manager")]
-        [When(@"SignIn user in service as student")]
-        [When(@"SignIn user in service as teacher")]
-        [When(@"SignIn user in service as tutor")]
-        public void GivenSignInUserInServiceAsManager(Table table)
-        {
-            AuthorizationUnauthorizedPage authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage();
-            SwaggerSignInRequest user = table.CreateInstance<SwaggerSignInRequest>();
-            authorizationUnauthorizedPage.EnterEmail(user.Email);
-            authorizationUnauthorizedPage.EnterPassword(user.Password);
-            authorizationUnauthorizedPage.ClickEnterButton();
-        }
-
         [When(@"Click button create group")]
         public void WhenClickButtonCreateGroup()
         {
@@ -123,13 +103,6 @@ namespace AutoTestsSelenium.StepDefinitions
             studentsListManagerPage.ClickByFullNameOfStudentComboBox(fullNameOfStudent);
             studentsListManagerPage.ClickDesiredGroupByName(groupName);
             //TODO The page is implemented as a mock (Task 2.6).
-        }
-
-        [When(@"Click button exit of account as manager")]
-        public void WhenClickButtonExitOfAccountAsManager()
-        {
-            GroupCreationManagerPage groupCreationManagerPage = new GroupCreationManagerPage();
-            groupCreationManagerPage.ClickExitButton();
         }
 
         [When(@"Click button lessons as student")]
