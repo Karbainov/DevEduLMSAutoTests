@@ -9,7 +9,7 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             AddNewHomework homework = table.CreateInstance<AddNewHomework>();
             var homeworkCreationPage = new HomeworkCreationTeacherPage();
-            homeworkCreationPage.ClickAddHomeworksButton();
+            homeworkCreationPage.ClickCreateHomework();
             homeworkCreationPage.ClickRadioButtonGroupName(groupName);
             homeworkCreationPage.InputStarDate(homework.StartDate);
             homeworkCreationPage.InputEndDate(homework.EndDate);
@@ -63,12 +63,12 @@ namespace AutoTestsSelenium.StepDefinitions
             var expectedResults = table.CreateSet<StudentsHomeworkResultModel>().ToList();
             var actualResultsElements = _homeworksTeacherPage.StudentsResults;
             var actualResults = new List<StudentsHomeworkResultModel>();
-            for(int i = 1; i <= actualResultsElements.Count; i++)
+            for (int i = 1; i <= actualResultsElements.Count; i++)
             {
                 string xpathName = $"//div[@class='homework-result-container']/div[@class='table-row'][{i}]/div[1]";
                 string xpathResult = $"//div[@class='homework-result-container']/div[@class='table-row'][{i}]/div[3]";
-                string studentsName = actualResultsElements[i-1].FindElement(By.XPath(xpathName)).Text;
-                string studentsResult = actualResultsElements[i-1].FindElement(By.XPath(xpathResult)).Text;
+                string studentsName = actualResultsElements[i - 1].FindElement(By.XPath(xpathName)).Text;
+                string studentsResult = actualResultsElements[i - 1].FindElement(By.XPath(xpathResult)).Text;
                 actualResults.Add(new StudentsHomeworkResultModel() { FullName = studentsName, Result = studentsResult });
             }
             Assert.Equal(expectedResults, actualResults);
