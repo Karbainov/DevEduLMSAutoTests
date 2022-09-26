@@ -50,7 +50,7 @@ Scenario: Teacher sorts students by status
 	| Fakunto   | Arano      | Student |
 	| Lolo      | Nabokova   | Student |
 	| Maksim    | Karbainov  | Teacher |
-	When Open DevEdu site "https://piter-education.ru:7074/login" 
+	When Open DevEdu site https://piter-education.ru:7074/login
 	And Authorize user
 	| Email            | Password |
 	| maks@teacher.com | password |
@@ -77,14 +77,7 @@ Scenario: Teacher sorts students by status
 	| Valya  Baikova    | Сдано		|
 	| Fakunto Arano     | Сдано		|
 	| Lolo Nabokova     | не сдано	|
-	And Teacher should see students results to homework "answers" in tab General Progress
-	| FullName          | Result	|
-	| Isabella Abramson | Сдано		|
-	| Lilya Baikov      | Сдано     |
-	| Diana Noname      | не сдано  |
-	| Valya  Baikova    | Сдано		|
-	| Fakunto Arano     | Сдано		|
-	| Lolo Nabokova     | не сдано	|
+	And Teacher should see students results to homework in tab General Progress	
 	When Teacher click ascending sorting in a column "Покрыть"
 	#не длинное ли описание
 	Then Teacher see list after sort

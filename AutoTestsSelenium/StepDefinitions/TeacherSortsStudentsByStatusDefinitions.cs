@@ -1,3 +1,5 @@
+using OpenQA.Selenium.Support.Extensions;
+
 namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
@@ -5,8 +7,8 @@ namespace AutoTestsSelenium.StepDefinitions
     {
         private IWebDriver _driver;
 
-        [When(@"Open DevEdu site https://piter-education\.ru:(.*)/login")]
-        public void WhenOpenDevEduSiteHttpsPiter_Education_RuLogin(int p0)
+        [When(@"Open DevEdu site https://piter-education.ru:7074/login")]
+        public void WhenOpenDevEduSiteHttpsPiter_Education_RuLogin()
         {
             _driver = SingleWebDriver.GetInstance();
             _driver.Manage().Window.Maximize();
@@ -31,31 +33,25 @@ namespace AutoTestsSelenium.StepDefinitions
             homeworkCreationTeacherPage.ClickPublishButton();
         }
 
-        [When(@"Teacher should see students results to homework ""([^""]*)"" in tab General Progress")]
-        public void WhenTeacherShouldSeeStudentsResultsToHomeworkInTabGeneralProgress(string homeworkName, Table table)
+        [When(@"Teacher should see students results to homework in tab General Progress")]
+        public void WhenTeacherShouldSeeStudentsResultsToHomeworkInTabGeneralProgress()
         {
-            var _homeworksTeacherPage = new HomeworksTeacherPage();
-            _homeworksTeacherPage.OpenThisPage();
-            _homeworksTeacherPage.ClickGoToTaskButton(homeworkName);
-            var expectedResults = table.CreateSet<StudentsHomeworkResultModel>().ToList();
-            var actualResultsElements = _homeworksTeacherPage.StudentsResults;
-            var actualResults = new List<StudentsHomeworkResultModel>();
-            for (int i = 1; i <= actualResultsElements.Count; i++)
-            {
-                string xpathName = $"//div[@class='homework-result-container']/div[@class='table-row'][{i}]/div[1]";
-                string xpathResult = $"//div[@class='homework-result-container']/div[@class='table-row'][{i}]/div[3]";
-                string studentsName = actualResultsElements[i - 1].FindElement(By.XPath(xpathName)).Text;
-                string studentsResult = actualResultsElements[i - 1].FindElement(By.XPath(xpathResult)).Text;
-                actualResults.Add(new StudentsHomeworkResultModel() { FullName = studentsName, Result = studentsResult });
-            }
-            Assert.Equal(expectedResults, actualResults);
+            HomeworksTeacherPage homeworksTeacherPage;
+            homeworksTeacherPage = new HomeworksTeacherPage();
+            homeworksTeacherPage.ClickGeneralProgressButton();
         }
 
         [When(@"Teacher click ascending sorting in a column ""([^""]*)""")]
         public void WhenTeacherClickAscendingSortingInAColumn(string taskName)
         {
             GeneralStudentsProgressTeacherPage generalStudentsProgressTeacherPage;
-            generalStudentsProgressTeacherPage= new GeneralStudentsProgressTeacherPage();
+            generalStudentsProgressTeacherPage = new GeneralStudentsProgressTeacherPage();
+            generalStudentsProgressTeacherPage.OpenThisPage();
+            var driver = SingleWebDriver.GetInstance();
+            driver.ExecuteJavaScript("document.body.style.zoom='0.5'");
+            Thread.Sleep(100);//Without this, the zoom does not have time to change
+            driver.ExecuteJavaScript("document.querySelector('#root > div > main > div.journals > div.flex-container.journal-content-container > div.scroll-content-div > div.swiper.swiper-initialized.swiper-horizontal.swiper-pointer-events.first-swiper.swiper-backface-hidden > div.swiper-wrapper').setAttribute('style','transform: translate3d(0px, 0px, 0px);')");
+            driver.ExecuteJavaScript("document.querySelector('#root > div > main > div.journals > div.flex-container.journal-content-container > div.scroll-content-div > div:nth-child(2) > div.swiper-wrapper').setAttribute('style','transform: translate3d(0px, 0px, 0px);')");
             generalStudentsProgressTeacherPage.ClickSortBottomButton(taskName);
         }
 
@@ -66,7 +62,7 @@ namespace AutoTestsSelenium.StepDefinitions
         }
 
         [Then(@"Teacher click descending sorting in a column ""([^""]*)""")]
-        public void ThenTeacherClickDescendingSortingInAColumn(string покрыть)
+        public void ThenTeacherClickDescendingSortingInAColumn(string name)
         {
             throw new PendingStepException();
         }
