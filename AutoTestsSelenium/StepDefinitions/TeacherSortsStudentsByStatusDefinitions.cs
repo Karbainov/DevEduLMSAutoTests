@@ -7,14 +7,6 @@ namespace AutoTestsSelenium.StepDefinitions
     {
         private IWebDriver _driver;
 
-        [When(@"Open DevEdu site https://piter-education.ru:7074/login")]
-        public void WhenOpenDevEduSiteHttpsPiter_Education_RuLogin()
-        {
-            _driver = SingleWebDriver.GetInstance();
-            _driver.Manage().Window.Maximize();
-            _driver.Navigate().GoToUrl(Urls.Host);
-        }
-
         [When(@"Teacher create new homework for new group ""([^""]*)""")]
         public void WhenTeacherCreateNewHomeworkForNewGroup(string nameGroup, Table table)
         {
@@ -39,6 +31,7 @@ namespace AutoTestsSelenium.StepDefinitions
             HomeworksTeacherPage homeworksTeacherPage;
             homeworksTeacherPage = new HomeworksTeacherPage();
             homeworksTeacherPage.ClickGeneralProgressButton();
+            //TODO Mock(Tack 2.27)
         }
 
         [When(@"Teacher click ascending sorting in a column ""([^""]*)""")]
