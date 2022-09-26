@@ -72,7 +72,6 @@ namespace AutoTestsSelenium.StepDefinitions
             }
         }
 
-
         [Given(@"Create new groups")]
         public void GivenAdminCreateNewGroups(Table table)
         {
