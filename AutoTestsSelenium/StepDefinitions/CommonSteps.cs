@@ -14,6 +14,7 @@
 
         [Given(@"Authorize user in service")]
         [When(@"Authorize user in service")]
+        [Given(@"Authorize user in service as manager")]
         [When(@"Authorize user in service as manager")]
         [When(@"Authorize user in service as methodist")]
         [When(@"Authorize user in service as student")]
