@@ -1,5 +1,4 @@
-﻿
-Feature: CheckWorkWithHomework
+﻿Feature: CheckWorkWithHomework
 
 A short summary of the feature
 
@@ -17,17 +16,17 @@ Scenario: Assigned homework by teacher, turned in by student
 	| FirstName | LastName | Role    |
 	| Vitya     | Strashko | Teacher |
 	| Ilya1     | Baikov   | Student |
-	When Open DevEdu site https://piter-education.ru:7074/login
+	When Open DevEdu web site https://piter-education.ru:7074/
 	And Authorize user in service as methodist
 	| Email                | Password |
 	|lera21@methodist.com  | password |
-	When Methodist click button homework
+	And Methodist click button homework
 	And Methodist click button add homework
 	And Methodist create homework course name "QA Automation"
 	| Name           | Description | Link             |
 	| ЗаданиеЗадание | string      | http://fjfjf.com |
 	And Methodist logged out
-	When Authorize user in service as teacher
+	And Authorize user in service as teacher
 	| Email               | Password | 
 	| vitya21@teacher.com | password |
 	And Teacher lays out the task "ЗаданиеЗадание" created by the methodologist 
@@ -42,28 +41,21 @@ Scenario: Assigned homework by teacher, turned in by student
 	| ilya21@student.com  | password |
 	And Student click button homework
 	And Studen click button to the task
-	When Studen attaches a link "https://hd.kinopoisk.ru/" to the completed task
+	And Studen attaches a link "https://hd.kinopoisk.ru/" to the completed task
 	And Studen click airplane icon
 	And Student logged out
 	And Authorize user in service as teacher
 	| Email                 | Password   |
 	| vitya21@teacher.com   | password   |
 	And Teacher checks homework 
-	When Teacher returned homework
+	And Teacher returned homework
 	And Teacher logged out
 	And Authorize user in service as student
 	| Email              | Password | 
 	| ilya21@student.com | password | 
-	When Student attached link "https://hd.kinopoisk.ru/" of corrected homework
+	And Student attached link "https://hd.kinopoisk.ru/" of corrected homework
 	And Student logged out
 	And Authorize user in service as teacher
 	| Email                 | Password   |
 	| vitya21@teacher.com   | password   |
 	Then Teacher accepted homework
-
-
-
-
-
-
-
