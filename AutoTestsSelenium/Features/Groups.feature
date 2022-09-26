@@ -306,3 +306,26 @@ And Fills in group data
 | BaseSPb   | Базовый C# |                   | Elisey Kakoyto  |
 And Click button saves edit group
 Then Error message about lack of teacher selection, when editing group should be "Вы не выбрали преподавателя"
+
+@group @student
+Scenario: The group completed the basic course and moved on to the next one. The student sees the history of his courses.
+	Given Register new users with roles
+	| FirstName | LastName | Patronymic | Email           | Username | Password  | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
+	| Вася      | Ложкин   | Вилкович   | vasyok@dev.com  | Lojka    | password | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Student |
+	And Create new groups
+	| Name       | CourseName    | GroupStatusId | StartDate  | EndDate    | Timetable | PaymentPerMonth | PaymentsCount |
+	| Navigators | Базовый C#    | Completed     | 21.02.2022 | 30.05.2022 | string    | 2500            | 3             |
+	| Winners    | QA Automation | Forming       | 21.06.2022 | 10.10.2022 | string    | 7500            | 3             |
+	And Add users to group "Navigators"
+	| FirstName | LastName | Role    |
+	| Вася      | Ложкин   | Student |
+	And Add users to group "Winners"
+	| FirstName | LastName | Role    |
+	| Вася      | Ложкин   | Student |
+	And Open DevEdu web site https://piter-education.ru:7074/
+	When Authorize user in service as student
+	| Email          | Password |
+	| vasyok@dev.com | password |
+	And Click button lessons as student
+	Then Student checks presence of group by name course "Базовый C#"
+	And Student checks presence of group by name course "QA Automation"
