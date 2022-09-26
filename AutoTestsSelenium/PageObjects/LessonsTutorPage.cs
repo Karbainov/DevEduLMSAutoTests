@@ -3,7 +3,7 @@
     public class LessonsTutorPage : AbstractTutorAuthorizedPage
     {
         private const string PageUrl = $"{Urls.Host}/lessons";
-        public List<IWebElement> TutorGroups => _driver.FindElements(By.XPath($"//*[@class='tab-container']")).ToList();
+        public List<IWebElement> TutorGroups => _driver.FindElements(By.XPath($"//*[@class='tab-container']/child::div")).ToList();
 
         public LessonsTutorPage()
         {
