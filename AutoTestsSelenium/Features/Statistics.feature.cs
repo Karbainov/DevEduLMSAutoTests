@@ -233,7 +233,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Lists",
                             "Make your own lists",
                             "https://google.com",
-                            "25.09.2022",
+                            "26.09.2022",
                             "09.10.2022"});
 #line 26
  testRunner.And("teacher create new homework for group \"Group 1\"", ((string)(null)), table69, "And ");
@@ -308,7 +308,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Ilya3 Baikov",
                             "Сдано"});
 #line 48
- testRunner.And("Teacher should see students results to homework \"Lists\" in tab General Progress", ((string)(null)), table74, "And ");
+ testRunner.Then("Teacher should see students results to homework \"Lists\" in tab General Progress", ((string)(null)), table74, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

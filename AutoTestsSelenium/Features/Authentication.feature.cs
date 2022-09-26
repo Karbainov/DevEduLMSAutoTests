@@ -308,7 +308,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And(string.Format("Enter password \"{0}\"", password), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 43
- testRunner.When("Click on button Enter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("Click button Enter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 44
  testRunner.Then(string.Format("Exception message under password textbox should appear with text \"{0}\"", message), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -394,7 +394,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Enter password \"password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 63
- testRunner.When("Click on button Enter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("Click button Enter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 64
  testRunner.Then(string.Format("Exception message under email textbox should appear with text \"{0}\"", message), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -403,18 +403,18 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="AuAuthentication with empty email and password textboxes")]
+        [Xunit.SkippableFactAttribute(DisplayName="Authentication with empty email and password textboxes")]
         [Xunit.TraitAttribute("FeatureTitle", "Authentication")]
-        [Xunit.TraitAttribute("Description", "AuAuthentication with empty email and password textboxes")]
+        [Xunit.TraitAttribute("Description", "Authentication with empty email and password textboxes")]
         [Xunit.TraitAttribute("Category", "authentication")]
         [Xunit.TraitAttribute("Category", "negative")]
-        public void AuAuthenticationWithEmptyEmailAndPasswordTextboxes()
+        public void AuthenticationWithEmptyEmailAndPasswordTextboxes()
         {
             string[] tagsOfScenario = new string[] {
                     "authentication",
                     "negative"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("AuAuthentication with empty email and password textboxes", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Authentication with empty email and password textboxes", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 77
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -465,7 +465,7 @@ testRunner.Given("Register new users with roles", ((string)(null)), table5, "Giv
  testRunner.And("Enter password \"\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 85
- testRunner.When("Click on button Enter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("Click button Enter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 86
  testRunner.Then("Exception message under email textbox should appear with text \"Введите Email\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

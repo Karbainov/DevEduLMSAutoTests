@@ -7,7 +7,7 @@
         public IWebElement ButtonHomeworksSideBar => _driver.FindElement(By.XPath($"//*[text()='Домашние задания']/.."));
         public IWebElement ButtonAddHomewrksSideBar => GetButtonAddHomewrksSideBar();
         public IWebElement ButtonCheckHomeworksSideBar => _driver.FindElement(By.XPath($"//*[text()='Проверка заданий']/.."));
-        public IWebElement ButtonGeneralProgressSideBar => _driver.FindElement(By.XPath($"//*[text()='Общая успеваемость']/.."));
+        public IWebElement ButtonGeneralProgressSideBar => GetButtonGeneralProgressSideBar();
         public IWebElement ButtonJournalSideBar => _driver.FindElement(By.XPath($"//*[text()='Журнал']/.."));
 
         protected AbstractTeacherAuthorizedPage()
@@ -59,6 +59,12 @@
         {
             WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(1));
             return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//*[text()='Выдача заданий']/..")));
+        }
+
+        private IWebElement GetButtonGeneralProgressSideBar()
+        {
+            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(1));
+            return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//*[text()='Общая успеваемость']/..")));
         }
     }
 }

@@ -33,13 +33,6 @@ namespace AutoTestsSelenium.StepDefinitions
             page.ClickEnterButton();
         }
 
-        [When(@"Click on button Enter")]
-        public void WhenClickOnButtonEnter()
-        {
-            AuthorizationUnauthorizedPage page = new AuthorizationUnauthorizedPage();
-            page.ButtonEnter.Click();
-        }
-
         [Then(@"The notification page should open")]
         public void ThenTheNotificationPageShouldOpen()
         {

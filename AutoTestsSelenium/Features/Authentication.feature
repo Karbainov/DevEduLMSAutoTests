@@ -40,7 +40,7 @@ Scenario: Authentication with wrong password or email
 	And Open authorization page
 	And Enter email "<Email>"
 	And Enter password "<Password>"
-	When Click on button Enter
+	When Click button Enter
 	Then Exception message under password textbox should appear with text "<Message>"
 	Examples: 
 	| Email            | Password   | Message                       |
@@ -60,7 +60,7 @@ Scenario: Authentication with wrong email format
 	And Open authorization page
 	And Enter email "<Email>"
 	And Enter password "password"
-	When Click on button Enter
+	When Click button Enter
 	Then Exception message under email textbox should appear with text "<Message>"
 	Examples: 
 	| Email       | Message                   |
@@ -74,7 +74,7 @@ Scenario: Authentication with wrong email format
 	| @mail.ru    | Введен некорректный email |
 
 @authentication @negative
-Scenario: AuAuthentication with empty email and password textboxes
+Scenario: Authentication with empty email and password textboxes
 Given Register new users with roles
 	| FirstName | LastName | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 	| Ilya      | Baikov   | string     | ilya@student.com | ilya     | password | SaintPetersburg | 02.07.2000 | string        | 89817051890 | Student |
@@ -82,6 +82,6 @@ Given Register new users with roles
 	And Open authorization page
 	And Enter email ""
 	And Enter password ""
-	When Click on button Enter
+	When Click button Enter
 	Then Exception message under email textbox should appear with text "Введите Email"
 	And Exception message under password textbox should appear with text "Введите пароль"

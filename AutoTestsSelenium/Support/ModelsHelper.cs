@@ -1,9 +1,16 @@
-﻿namespace AutoTestsSelenium.Support
+﻿using OpenQA.Selenium.Support.Extensions;
+
+namespace AutoTestsSelenium.Support
 {
     public class ModelsHelper
     {
         public List<GeneralProgressResultsModel> GetResults(GeneralStudentsProgressTeacherPage page)
         {
+            var driver = SingleWebDriver.GetInstance();
+            driver.ExecuteJavaScript("document.body.style.zoom='0.5'");
+            Thread.Sleep(100);//Without this, the zoom does not have time to change
+            driver.ExecuteJavaScript("document.querySelector('#root > div > main > div.journals > div.flex-container.journal-content-container > div.scroll-content-div > div.swiper.swiper-initialized.swiper-horizontal.swiper-pointer-events.first-swiper.swiper-backface-hidden > div.swiper-wrapper').setAttribute('style','transform: translate3d(0px, 0px, 0px);')");
+            driver.ExecuteJavaScript("document.querySelector('#root > div > main > div.journals > div.flex-container.journal-content-container > div.scroll-content-div > div:nth-child(2) > div.swiper-wrapper').setAttribute('style','transform: translate3d(0px, 0px, 0px);')");
             var methodsResult = new List<GeneralProgressResultsModel>();
             var homeworks = page.Homeworks;
             var names = page.StudentsNames;
