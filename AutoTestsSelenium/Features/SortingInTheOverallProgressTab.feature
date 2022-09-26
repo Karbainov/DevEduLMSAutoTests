@@ -1,6 +1,6 @@
 ﻿Feature: SortingInTheOverallProgressTab
 
-A short summary of the feature
+Teacher sort students progress by surname
 
 @teacher
 Scenario: Sort by surname
@@ -26,6 +26,24 @@ Scenario: Sort by surname
 	And Admin create new task
 	| Name  | Description | Links  | IsRequired |
 	| Apple | Lemon       | string | true       |
+	And Admin add new homework
+	| StartDate  | EndDate    |
+    | 01.10.2022 | 25.10.2022 |
+	Given Students authorize and send their homework
+	| Email              | Password | String         |
+	| kroko@gmail.com    | password | link@razdva.ru |
+	| bukin@student.com  | password | link@razdva.ru |
+	| golub@student.com  | password | link@razdva.ru |
+	| yula@student.com   | password | link@razdva.ru |
+	| kraska@student.com | password | link@razdva.ru |
+	Given Admin accept three homeworks and decline two
+	Given Open a browser and open login page
+	Given Teacher authorize
+	| Email             | Password |
+	| witch@teacher.com | password |
+	Given Teacher go to common progress
+	When Teacher sort students by sername
+	Then Students should sort by sername
 
 @teacher
 Scenario: Teacher sorts students by status

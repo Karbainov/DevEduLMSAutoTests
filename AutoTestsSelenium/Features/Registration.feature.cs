@@ -103,9 +103,12 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 5
- testRunner.Given("Open registration page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table53 = new TechTalk.SpecFlow.Table(new string[] {
+#line 6
+ testRunner.And("Open registration page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table65 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -114,7 +117,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "PhoneNumber"});
-                table53.AddRow(new string[] {
+                table65.AddRow(new string[] {
                             "Мистер",
                             "Проппер",
                             "Иванов",
@@ -123,28 +126,34 @@ this.ScenarioInitialize(scenarioInfo);
                             "Azino777",
                             "propper12@mail.ru",
                             "+79992314545"});
-#line 6
- testRunner.And("Fill all requared fields", ((string)(null)), table53, "And ");
-#line hidden
-#line 9
- testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 7
+ testRunner.And("Fill all requared fields", ((string)(null)), table65, "And ");
 #line hidden
 #line 10
- testRunner.When("Click on register button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 11
- testRunner.Then("User should see the welcome modal window", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("Click on register button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 12
- testRunner.When("Click on athorization sidebar button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Then("User should see the welcome modal window", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 13
- testRunner.And("Authorize user in service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("Click on athorization sidebar button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
+                TechTalk.SpecFlow.Table table66 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Email",
+                            "Password"});
+                table66.AddRow(new string[] {
+                            "propper12@mail.ru",
+                            "Azino777"});
 #line 14
+ testRunner.And("Authorize user in service", ((string)(null)), table66, "And ");
+#line hidden
+#line 17
  testRunner.And("Click on user\'s profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 15
+#line 18
  testRunner.Then("User should see his actual information", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -163,7 +172,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "negative"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User try to registration with empty First Name textbox", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 18
+#line 21
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -173,13 +182,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 19
- testRunner.Given("Open DevEdu web site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 22
+ testRunner.Given("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 20
+#line 23
  testRunner.And("Open registration page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table35 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table67 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -188,7 +197,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "PhoneNumber"});
-                table35.AddRow(new string[] {
+                table67.AddRow(new string[] {
                             "",
                             "Проппер",
                             "Иваныч",
@@ -197,16 +206,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "Azino777",
                             "propper12@mail.ru",
                             "+79992314545"});
-#line 21
- testRunner.And("Fill all requared fields", ((string)(null)), table35, "And ");
-#line hidden
 #line 24
+ testRunner.And("Fill all requared fields", ((string)(null)), table67, "And ");
+#line hidden
+#line 27
  testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 25
+#line 28
  testRunner.When("Click on register button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 26
+#line 29
  testRunner.Then("Excaption message empty First Name \"Необходимо ввести имя\" should appear", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -225,7 +234,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "negative"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User try to registration with empty Last Name textbox", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 29
+#line 32
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -235,13 +244,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 30
- testRunner.Given("Open DevEdu web site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 33
+ testRunner.Given("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 31
+#line 34
  testRunner.And("Open registration page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table36 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table68 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -250,7 +259,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "PhoneNumber"});
-                table36.AddRow(new string[] {
+                table68.AddRow(new string[] {
                             "Мистер",
                             "",
                             "Иваныч",
@@ -259,16 +268,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "Azino777",
                             "propper12@mail.ru",
                             "+79992314545"});
-#line 32
- testRunner.And("Fill all requared fields", ((string)(null)), table36, "And ");
-#line hidden
 #line 35
+ testRunner.And("Fill all requared fields", ((string)(null)), table68, "And ");
+#line hidden
+#line 38
  testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 36
+#line 39
  testRunner.When("Click on register button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 37
+#line 40
  testRunner.Then("Excaption message empty Last Name \"Необходимо ввести фамилию\" should appear", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -287,7 +296,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "negative"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User try to registration with empty Email textbox", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 40
+#line 43
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -297,13 +306,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 41
- testRunner.Given("Open DevEdu web site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 44
+ testRunner.Given("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 42
+#line 45
  testRunner.And("Open registration page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table37 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table69 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -312,7 +321,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "PhoneNumber"});
-                table37.AddRow(new string[] {
+                table69.AddRow(new string[] {
                             "Мистер",
                             "Проппер",
                             "Иваныч",
@@ -321,16 +330,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "Azino777",
                             "",
                             "+79992314545"});
-#line 43
- testRunner.And("Fill all requared fields", ((string)(null)), table37, "And ");
-#line hidden
 #line 46
+ testRunner.And("Fill all requared fields", ((string)(null)), table69, "And ");
+#line hidden
+#line 49
  testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 47
+#line 50
  testRunner.When("Click on register button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 48
+#line 51
  testRunner.Then("Excaption message Email \"Необходимо ввести Email\" should appear", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -349,7 +358,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "negative"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User try to registration with wrong data format in Birth Date textbox", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 51
+#line 54
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -359,13 +368,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 52
- testRunner.Given("Open DevEdu web site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 55
+ testRunner.Given("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 53
+#line 56
  testRunner.And("Open registration page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table38 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table70 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -374,7 +383,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "PhoneNumber"});
-                table38.AddRow(new string[] {
+                table70.AddRow(new string[] {
                             "Mister",
                             "Проппер",
                             "Иваныч",
@@ -383,16 +392,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "Azino777",
                             "propper12@mail.ru",
                             "+79992314545"});
-#line 54
- testRunner.And("Fill all requared fields", ((string)(null)), table38, "And ");
-#line hidden
 #line 57
+ testRunner.And("Fill all requared fields", ((string)(null)), table70, "And ");
+#line hidden
+#line 60
  testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 58
+#line 61
  testRunner.When("Click on register button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 59
+#line 62
  testRunner.Then("Excaption message wrong Date Birth \"Введите корректную дату\" should appear", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -411,7 +420,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "negative"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User try to registration with empty password textbox", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 62
+#line 65
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -421,13 +430,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 63
- testRunner.Given("Open DevEdu web site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 66
+ testRunner.Given("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 64
+#line 67
  testRunner.And("Open registration page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table39 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table71 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -436,7 +445,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "PhoneNumber"});
-                table39.AddRow(new string[] {
+                table71.AddRow(new string[] {
                             "Мистер",
                             "Проппер",
                             "Иваныч",
@@ -445,16 +454,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "Azino777",
                             "propper12@mail.ru",
                             "+79992314545"});
-#line 65
- testRunner.And("Fill all requared fields", ((string)(null)), table39, "And ");
-#line hidden
 #line 68
+ testRunner.And("Fill all requared fields", ((string)(null)), table71, "And ");
+#line hidden
+#line 71
  testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 69
+#line 72
  testRunner.When("Click on register button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 70
+#line 73
  testRunner.Then("Excaption message Password \"Обязательно для заполнения\" should appear", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -473,7 +482,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "negative"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User try to registration with empty repeat password textbox", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 73
+#line 76
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -483,13 +492,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 74
- testRunner.Given("Open DevEdu web site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 77
+ testRunner.Given("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 75
+#line 78
  testRunner.And("Open registration page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table40 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table72 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -498,7 +507,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "PhoneNumber"});
-                table40.AddRow(new string[] {
+                table72.AddRow(new string[] {
                             "Мистер",
                             "Проппер",
                             "Иваныч",
@@ -507,16 +516,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             "propper12@mail.ru",
                             "+79992314545"});
-#line 76
- testRunner.And("Fill all requared fields", ((string)(null)), table40, "And ");
-#line hidden
 #line 79
+ testRunner.And("Fill all requared fields", ((string)(null)), table72, "And ");
+#line hidden
+#line 82
  testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 80
+#line 83
  testRunner.When("Click on register button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 81
+#line 84
  testRunner.Then("Excaption message Repeat Password \"Обязательно для заполнения\" should appear", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -538,7 +547,7 @@ this.ScenarioInitialize(scenarioInfo);
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User try to registration with password shorter than shorter than eight characters" +
                     "", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 84
+#line 87
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -548,13 +557,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 85
- testRunner.Given("Open DevEdu web site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 88
+ testRunner.Given("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 86
+#line 89
  testRunner.And("Open registration page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table41 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table73 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -563,7 +572,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "PhoneNumber"});
-                table41.AddRow(new string[] {
+                table73.AddRow(new string[] {
                             "Мистер",
                             "Проппер",
                             "Иваныч",
@@ -572,16 +581,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "Azino777",
                             "propper12@mail.ru",
                             "+79992314545"});
-#line 87
- testRunner.And("Fill all requared fields", ((string)(null)), table41, "And ");
-#line hidden
 #line 90
+ testRunner.And("Fill all requared fields", ((string)(null)), table73, "And ");
+#line hidden
+#line 93
  testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 91
+#line 94
  testRunner.When("Click on register button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 92
+#line 95
  testRunner.Then("Excaption message Password \"Минимальная длина - 8 знаков\" should appear", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -603,7 +612,7 @@ this.ScenarioInitialize(scenarioInfo);
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User try to registration with repeat password shorter than shorter than eight cha" +
                     "racters", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 95
+#line 98
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -613,13 +622,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 96
- testRunner.Given("Open DevEdu web site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 99
+ testRunner.Given("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 97
+#line 100
  testRunner.And("Open registration page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table42 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table74 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -628,7 +637,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "PhoneNumber"});
-                table42.AddRow(new string[] {
+                table74.AddRow(new string[] {
                             "Мистер",
                             "Проппер",
                             "Иваныч",
@@ -637,16 +646,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "Azino",
                             "propper12@mail.ru",
                             "+79992314545"});
-#line 98
- testRunner.And("Fill all requared fields", ((string)(null)), table42, "And ");
-#line hidden
 #line 101
+ testRunner.And("Fill all requared fields", ((string)(null)), table74, "And ");
+#line hidden
+#line 104
  testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 102
+#line 105
  testRunner.When("Click on register button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 103
+#line 106
  testRunner.Then("Excaption message Repeat Password \"Минимальная длина - 8 знаков\" should appear", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -665,7 +674,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "negative"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User try to registration with different password and repeat password textboxes", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 106
+#line 109
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -675,13 +684,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 107
- testRunner.Given("Open DevEdu web site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 110
+ testRunner.Given("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 108
+#line 111
  testRunner.And("Open registration page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table43 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table75 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -690,7 +699,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "PhoneNumber"});
-                table43.AddRow(new string[] {
+                table75.AddRow(new string[] {
                             "Мистер",
                             "Проппер",
                             "Иваныч",
@@ -699,16 +708,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "Azino778",
                             "propper12@mail.ru",
                             "+79992314545"});
-#line 109
- testRunner.And("Fill all requared fields", ((string)(null)), table43, "And ");
-#line hidden
 #line 112
+ testRunner.And("Fill all requared fields", ((string)(null)), table75, "And ");
+#line hidden
+#line 115
  testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 113
+#line 116
  testRunner.When("Click on register button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 114
+#line 117
  testRunner.Then("Excaption message Repeat Password \"Пароли не совпадают\" should appear", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -727,7 +736,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "negative"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User try to registration with wrong Email format", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 117
+#line 120
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -737,13 +746,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 118
- testRunner.Given("Open DevEdu web site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 121
+ testRunner.Given("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 119
+#line 122
  testRunner.And("Open registration page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table44 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table76 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -752,7 +761,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "PhoneNumber"});
-                table44.AddRow(new string[] {
+                table76.AddRow(new string[] {
                             "Мистер",
                             "Проппер",
                             "Иваныч",
@@ -761,16 +770,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "Azino777",
                             "propper12",
                             "+79992314545"});
-#line 120
- testRunner.And("Fill all requared fields", ((string)(null)), table44, "And ");
-#line hidden
 #line 123
+ testRunner.And("Fill all requared fields", ((string)(null)), table76, "And ");
+#line hidden
+#line 126
  testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 124
+#line 127
  testRunner.When("Click on register button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 125
+#line 128
  testRunner.Then("Excaption message Email \"Введите корректный Email\" should appear", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -792,7 +801,7 @@ this.ScenarioInitialize(scenarioInfo);
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User try to registration with correct information but doesn\'t click on private po" +
                     "licy checkbox", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 128
+#line 131
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -802,13 +811,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 129
- testRunner.Given("Open DevEdu web site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 132
+ testRunner.Given("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 130
+#line 133
  testRunner.And("Open registration page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table45 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table77 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -817,7 +826,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "PhoneNumber"});
-                table45.AddRow(new string[] {
+                table77.AddRow(new string[] {
                             "Мистер",
                             "Проппер",
                             "Иваныч",
@@ -826,13 +835,13 @@ this.ScenarioInitialize(scenarioInfo);
                             "Azino777",
                             "propper12@mail.ru",
                             "+79992314545"});
-#line 131
- testRunner.And("Fill all requared fields", ((string)(null)), table45, "And ");
-#line hidden
 #line 134
+ testRunner.And("Fill all requared fields", ((string)(null)), table77, "And ");
+#line hidden
+#line 137
  testRunner.When("Click on register button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 135
+#line 138
  testRunner.Then("Excaption message Private policy \"Для регистрации необходимо указать согласие с п" +
                         "олитикой конфиденциальности\" should appear", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
@@ -852,7 +861,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "negative"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User try to register an account with an already registered email", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 138
+#line 141
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -862,7 +871,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table46 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table78 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -874,7 +883,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "GitHubAccount",
                             "PhoneNumber",
                             "Role"});
-                table46.AddRow(new string[] {
+                table78.AddRow(new string[] {
                             "Ilya1",
                             "Baikov",
                             "string",
@@ -886,16 +895,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "string",
                             "89998887766",
                             "Student"});
-#line 139
- testRunner.Given("Administrator registers new users with roles", ((string)(null)), table46, "Given ");
-#line hidden
 #line 142
- testRunner.And("Open DevEdu web site", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("Register new users with roles", ((string)(null)), table78, "Given ");
 #line hidden
-#line 143
+#line 145
+ testRunner.And("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 146
  testRunner.And("Open registration page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table47 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table79 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -904,7 +913,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "RepeatPassword",
                             "Email",
                             "PhoneNumber"});
-                table47.AddRow(new string[] {
+                table79.AddRow(new string[] {
                             "Мистер",
                             "Проппер",
                             "Иванов",
@@ -913,16 +922,16 @@ this.ScenarioInitialize(scenarioInfo);
                             "Azino777",
                             "ilya1@student.com",
                             "+79992314545"});
-#line 144
- testRunner.And("Fill all requared fields", ((string)(null)), table47, "And ");
-#line hidden
 #line 147
+ testRunner.And("Fill all requared fields", ((string)(null)), table79, "And ");
+#line hidden
+#line 150
  testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 148
+#line 151
  testRunner.When("Click on register button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 149
+#line 152
  testRunner.Then("User should see the exception modal window\twith text \"Данный Email уже зарегистри" +
                         "рован\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
