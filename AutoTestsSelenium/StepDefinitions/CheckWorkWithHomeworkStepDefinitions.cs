@@ -8,8 +8,8 @@ namespace AutoTestsSelenium.StepDefinitions
     {
         private IWebDriver _driver;
 
-        [When(@"Open DevEdu site ""([^""]*)""")]
-        public void WhenOpenDevEduSite(string link)
+        [When(@"Open DevEdu site https://piter-education.ru:7074/login")]
+        public void WhenOpenDevEduSite()
         {
             _driver = SingleWebDriver.GetInstance();
             _driver.Manage().Window.Maximize();

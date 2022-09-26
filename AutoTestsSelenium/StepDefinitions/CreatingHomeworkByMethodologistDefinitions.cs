@@ -1,8 +1,6 @@
-using AutoTestsSelenium.PageObjects;
-
 namespace AutoTestsSelenium.StepDefinitions
 {
-    [Binding] 
+    [Binding]
     public class CreatingHomeworkByMethodologistDefinitions
     {
         private IWebDriver _driver;
@@ -34,7 +32,7 @@ namespace AutoTestsSelenium.StepDefinitions
             homeworkMethodistPage.InputNameGroup(createHomework.Name);
             homeworkMethodistPage.InputDescriptionHomework(createHomework.Description);
             homeworkMethodistPage.InputLinkHomework(createHomework.Link);
-            homeworkMethodistPage.ClickButtonAttachLink();         
+            homeworkMethodistPage.ClickButtonAttachLink();
         }
 
         [When(@"Methodist click button save as draft")]
@@ -99,7 +97,7 @@ namespace AutoTestsSelenium.StepDefinitions
             homeworkExtraditionTeacherPage.ClickAddLink();
             //TODO No choice of job number. combobox not implemented (Task 2.3)
         }
-       
+
         [When(@"Teacher click button publish")]
         public void WhenTeacherClickButtonPublish()
         {
