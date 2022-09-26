@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace DevEduLMSAutoTests.API.Support.Models.Request
+﻿namespace DevEduLMSAutoTests.API.Support.Models.Request
 {
     public class AddTasksByTeacherRequest
     {

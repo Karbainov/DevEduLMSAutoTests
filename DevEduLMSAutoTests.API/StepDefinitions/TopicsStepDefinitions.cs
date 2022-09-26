@@ -50,7 +50,7 @@
         public void GivenManagerAddRolesToUsers()
         {
             _usersClient = new UsersClient();
-            _usersClient.AddNewRoleToUser(_methodistId, Options.RoleMethodist, _managerToken, HttpStatusCode.NoContent);
+            _usersClient.AddNewRoleToUser(_methodistId, OptionsSwagger.RoleMethodist, _managerToken, HttpStatusCode.NoContent);
         }
 
         [Given(@"methodist create a topic")]
@@ -75,7 +75,7 @@
             _topicsClient = new TopicsClient();
             HttpStatusCode expectedCode = HttpStatusCode.OK;
             List<AddTopicToCourseResponse> listOfTopics = _topicsClient.GetAllTopicsInTheCourseById(_coursesId, _methodistToken, expectedCode);
-            CollectionAssert.Contains(listOfTopics, _newTopic);
+            Assert.Contains(_newTopic, listOfTopics);
         }
 
         [Given(@"methodist update topic")]
@@ -92,7 +92,7 @@
             _topicsClient = new TopicsClient();
             _actualTopic = _topicsClient.GetTopicById(_topicId, _methodistToken);
 
-            Assert.AreEqual(_expectedTopic, _actualTopic);
+            Assert.Equal(_expectedTopic, _actualTopic);
         }
 
         [Given(@"methodist change order of topics")]
@@ -117,7 +117,7 @@
             HttpStatusCode expectedCode = HttpStatusCode.OK;
             List<AddTopicToCourseResponse> listOfTopics = _topicsClient.GetAllTopicsInTheCourseById(_coursesId, _methodistToken, expectedCode);
             AddTopicToCourseResponse updatedTopicPosition = _expectedTopicPosition[0];
-            CollectionAssert.Contains(listOfTopics, updatedTopicPosition);
+            Assert.Contains(updatedTopicPosition, listOfTopics);
         }
 
 

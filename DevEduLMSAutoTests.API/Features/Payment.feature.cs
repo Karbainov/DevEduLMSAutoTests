@@ -19,39 +19,41 @@ namespace DevEduLMSAutoTests.API.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Payment")]
-    public partial class PaymentFeature
+    public partial class PaymentFeature : object, Xunit.IClassFixture<PaymentFeature.FixtureData>, System.IDisposable
     {
         
-        private TechTalk.SpecFlow.ITestRunner testRunner;
+        private static TechTalk.SpecFlow.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
+        
+        private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
 #line 1 "Payment.feature"
 #line hidden
         
-        [NUnit.Framework.OneTimeSetUpAttribute()]
-        public virtual void FeatureSetup()
+        public PaymentFeature(PaymentFeature.FixtureData fixtureData, DevEduLMSAutoTests_API_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        {
+            this._testOutputHelper = testOutputHelper;
+            this.TestInitialize();
+        }
+        
+        public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Payment", "A short summary of the feature", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        [NUnit.Framework.OneTimeTearDownAttribute()]
-        public virtual void FeatureTearDown()
+        public static void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
         
-        [NUnit.Framework.SetUpAttribute()]
         public void TestInitialize()
         {
         }
         
-        [NUnit.Framework.TearDownAttribute()]
         public void TestTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -60,7 +62,7 @@ namespace DevEduLMSAutoTests.API.Features
         public void ScenarioInitialize(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo);
-            testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<NUnit.Framework.TestContext>(NUnit.Framework.TestContext.CurrentContext);
+            testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<Xunit.Abstractions.ITestOutputHelper>(_testOutputHelper);
         }
         
         public void ScenarioStart()
@@ -73,9 +75,15 @@ namespace DevEduLMSAutoTests.API.Features
             testRunner.CollectScenarioErrors();
         }
         
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Add payments by manager")]
-        [NUnit.Framework.CategoryAttribute("manager")]
+        void System.IDisposable.Dispose()
+        {
+            this.TestTearDown();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Add payments by manager")]
+        [Xunit.TraitAttribute("FeatureTitle", "Payment")]
+        [Xunit.TraitAttribute("Description", "Add payments by manager")]
+        [Xunit.TraitAttribute("Category", "manager")]
         public void AddPaymentsByManager()
         {
             string[] tagsOfScenario = new string[] {
@@ -92,7 +100,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -103,7 +111,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "BirthDate",
                             "GitHubAccount",
                             "PhoneNumber"});
-                table7.AddRow(new string[] {
+                table3.AddRow(new string[] {
                             "Alex",
                             "Smith",
                             "string",
@@ -115,41 +123,41 @@ this.ScenarioInitialize(scenarioInfo);
                             "string",
                             "89998887766"});
 #line 7
-testRunner.Given("register as user", ((string)(null)), table7, "Given ");
+testRunner.Given("register as user", ((string)(null)), table3, "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password"});
-                table8.AddRow(new string[] {
+                table4.AddRow(new string[] {
                             "marina@example.com",
                             "marinamarina"});
 #line 10
-    testRunner.And("authorize as manager", ((string)(null)), table8, "And ");
+    testRunner.And("authorize as manager", ((string)(null)), table4, "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
                             "Date",
                             "Sum",
                             "IsPaid"});
-                table9.AddRow(new string[] {
+                table5.AddRow(new string[] {
                             "01.02.2001",
                             "2000",
                             "true"});
 #line 13
- testRunner.And("manager add payment to student user", ((string)(null)), table9, "And ");
+ testRunner.And("manager add payment to student user", ((string)(null)), table5, "And ");
 #line hidden
 #line 16
  testRunner.And("manager can see this payment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                             "Date",
                             "Sum",
                             "IsPaid"});
-                table10.AddRow(new string[] {
+                table6.AddRow(new string[] {
                             "03.02.2021",
                             "3000",
                             "true"});
 #line 17
- testRunner.And("manager updates this payment", ((string)(null)), table10, "And ");
+ testRunner.And("manager updates this payment", ((string)(null)), table6, "And ");
 #line hidden
 #line 20
  testRunner.And("manager can see the updated payment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -162,6 +170,22 @@ testRunner.Given("register as user", ((string)(null)), table7, "Given ");
 #line hidden
             }
             this.ScenarioCleanup();
+        }
+        
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
+        [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        public class FixtureData : System.IDisposable
+        {
+            
+            public FixtureData()
+            {
+                PaymentFeature.FeatureSetup();
+            }
+            
+            void System.IDisposable.Dispose()
+            {
+                PaymentFeature.FeatureTearDown();
+            }
         }
     }
 }
