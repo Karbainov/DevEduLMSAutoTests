@@ -1,5 +1,6 @@
 ﻿using DevEduLMSAutoTests.API.Clients;
 using DevEduLMSAutoTests.API.Support.Models.Response;
+using TechTalk.SpecFlow.Assist;
 
 namespace AutoTestsSelenium.StepDefinitions
 {
@@ -9,6 +10,8 @@ namespace AutoTestsSelenium.StepDefinitions
         private AuthenticationClient _authClient;
         private GroupsClient _groupsClient;
         private UsersClient _usersClient;
+        private TasksClient _tasksClient;
+        private HomeworksClient _homeworksClient;
         private string _adminsToken;
 
         public Preconditions()
@@ -16,6 +19,8 @@ namespace AutoTestsSelenium.StepDefinitions
             _authClient = new AuthenticationClient();
             _groupsClient = new GroupsClient();
             _usersClient = new UsersClient();
+            _tasksClient = new TasksClient();
+            _homeworksClient = new HomeworksClient();
             _adminsToken = _authClient.AuthorizeUser(OptionsSwagger.AdminSignIn);
         }
 
@@ -98,6 +103,30 @@ namespace AutoTestsSelenium.StepDefinitions
             }
         }
 
+        [Given(@"Create new task")]
+        public void GivenCreateNewTasks(string groupName, Table table)
+        {
+            int groupId = GetGroupIdByName(groupName);
+            List<AddTasksByTeacherRequest> tasks = table.CreateSet<AddTasksByTeacherRequest>().ToList();
+            foreach (var task in tasks)
+            {
+                task.GroupId = groupId;
+                _tasksClient.CreateTask(task, _adminsToken);
+            }
+        }
+
+        [Given(@"Add new homeworks")]
+        public void GivenAddNewHomeworks(string groupName, string taskName, Table table)
+        {
+            int groupId = GetGroupIdByName(groupName);
+            int taskId = GetTaskIdByName(taskName);
+            List<AddHomeworkRequest> homeworks = table.CreateSet<AddHomeworkRequest>().ToList();
+            foreach (var homework in homeworks)
+            {
+                _homeworksClient.AddHomework(homework, groupId, taskId, _adminsToken);
+            }
+        }
+
         private int GetGroupIdByName(string groupName)
         {
             int groupId = 0;
@@ -117,6 +146,28 @@ namespace AutoTestsSelenium.StepDefinitions
             else
             {
                 return groupId;
+            }
+        }
+        
+        private int GetTaskIdByName(string taskName)
+        {
+            int taskId = 0;
+            List<TaskResponse> tasks = _tasksClient.GetAllTasks(_adminsToken);
+            foreach (var task in tasks)
+            {
+                if (task.Name == taskName)
+                {
+                    taskId = task.Id;
+                    break;
+                }
+            }
+            if (taskId == 0)
+            {
+                throw new ArgumentOutOfRangeException("There is no task with this name");
+            }
+            else
+            {
+                return taskId;
             }
         }
 
