@@ -1,3 +1,4 @@
+using AutoTestsSelenium.PageObjects;
 using TechTalk.SpecFlow;
 
 namespace AutoTestsSelenium.StepDefinitions
@@ -5,229 +6,163 @@ namespace AutoTestsSelenium.StepDefinitions
     [Binding]
     public class CheckWorkWithHomeworkStepDefinitions
     {
-        private TasksStepDefinitions _stepsBySwagger;
-        private List<SignInRequest> _studensSignIn;
-        private ChangeRoleCombobox _changeRoleOfTeacher;
-        private SignInRequest _teacherSingIn;
-        private SignInRequest _methodist;
         private IWebDriver _driver;
-        private SingInWindow _singInWindow;
-        private TeacherNavigatePanelElements _navigateButtons;
-        private string _groupName;
-        private TeachersHomeworkWindow _teachersHomeworkWindowElements;
-        private StudentsHomeworkWindow _studentsHomeworkWindowElements;
-        private DBCleaner _tablesClear;
-       
-        
-        public CheckWorkWithHomeworkStepDefinitions()
+
+        [When(@"Open DevEdu site https://piter-education.ru:7074/login")]
+        public void WhenOpenDevEduSite()
         {
-            _stepsBySwagger = new TasksStepDefinitions();
-            _studensSignIn = new List<SignInRequest>();
             _driver = SingleWebDriver.GetInstance();
-            _singInWindow = new SingInWindow();
-            _navigateButtons = new TeacherNavigatePanelElements();
-            _teachersHomeworkWindowElements = new TeachersHomeworkWindow();
-            _studentsHomeworkWindowElements = new StudentsHomeworkWindow();
-            _tablesClear = new DBCleaner();           
-            _changeRoleOfTeacher = new ChangeRoleCombobox();
-        }
-
-        [When(@"register users with and assigned roles")]
-        public void WhenRegisterUsersWithAndAssignedRoles(Table table)
-        {
-            _tablesClear.ClearDB();
-            _stepsBySwagger.GivenRegisterNewUsersWithRoles(table);
-            List<RegistationModelWithRole> users = table.CreateSet<RegistationModelWithRole>().ToList();
-            foreach (var user in users)
-            {
-                if (user.Role == "Student")
-                {
-                    _studensSignIn.Add(new SignInRequest() { Email = user.Email, Password = user.Password });
-                }
-                else if (user.Role == "Teacher")
-                {
-                    _teacherSingIn = new SignInRequest() { Email = user.Email, Password = user.Password };
-                }
-                else
-                {
-                    _methodist = new SignInRequest() { Email = user.Email, Password = user.Password };
-                }
-            }
-        }
-
-        [When(@"manager create new group")]
-        public void WhenManagerCreateNewGroup(Table table)
-        {           
-            _groupName = _stepsBySwagger.GivenManagerCreateNewGroup(table);
-            _teachersHomeworkWindowElements._groupName = _groupName;
-        }
-
-        [When(@"manager add users to group")]
-        public void WhenManagerAddUsersToGroup()
-        {
-            _stepsBySwagger.GivenManagerAddUsersToGroup();
-        }
-
-        [Then(@"methodist create homework")]
-        public void ThenMethodistCreateHomework(Table table)
-        {
-            _stepsBySwagger.GivenMethodistCreateNewTask(table);
-        }
-
-        [Then(@"authorization user as teacher")]
-        public void ThenAuthorizationUserAsTeacher(Table table)
-        {
-
-            SignInRequest singInRequest = table.CreateInstance<SignInRequest>();
             _driver.Manage().Window.Maximize();
             _driver.Navigate().GoToUrl(Urls.Host);
-            Thread.Sleep(1000);
-            var emailBox = _driver.FindElement(_singInWindow.XPathEmailBox);
-            emailBox.SendKeys(singInRequest.Email);
-            var passBox = _driver.FindElement(_singInWindow.XPathPasswordBox);
-            passBox.Clear();
-            passBox.SendKeys(singInRequest.Password);
         }
 
-        [Then(@"teacher click button issuing homework")]
-        public void ThenTeacherClickButtonIssuingHomework()
+        [When(@"Methodist click button homework")]
+        public void WhenMethodistClickButtonHomework()
         {
-            _driver.FindElement(_singInWindow.XPathSingInButton).Click();
-            Thread.Sleep(500);
-        }
-        [Then(@"teacher changes role")]
-        public void ThenTeacherChangesRole()
-        {
-            _driver.FindElement(_changeRoleOfTeacher.XpathCombobox).Click();
-            Thread.Sleep(500);
-            _driver.FindElement(_changeRoleOfTeacher.XpathChangeRole).Click();
+            HomeworkCreationMethodistPage homeworkMethodist;
+            homeworkMethodist = new HomeworkCreationMethodistPage();
+            homeworkMethodist.ClickHomeworksButton();
         }
 
-        [When(@"teacher create issuing homework")]
-        public void WhenTeacherCreateIssuingHomework(Table table)
+        [When(@"Methodist click button add homework")]
+        public void WhenMethodistClickButtonAddHomework()
         {
-            AddNewHomework homework = table.CreateInstance<AddNewHomework>();
-            _driver.FindElement(_navigateButtons.XPathIssuingHomework).Click();
-            _driver.FindElement(_teachersHomeworkWindowElements.XPathGroupRB).Click();
-            var dateTB = _driver.FindElement(_teachersHomeworkWindowElements.XPathStartDateTextBox);
-            dateTB.Clear();
-            Actions setDate = new Actions(_driver);
-            setDate.DoubleClick(dateTB).SendKeys(homework.StartDate).Build().Perform();
-            dateTB = _driver.FindElement(_teachersHomeworkWindowElements.XPathEndDateTextBox);
-            dateTB.Clear();
-            setDate.DoubleClick(dateTB).SendKeys(homework.EndDate).Build().Perform();
+            HomeworksMethodistPage homeworksMethodistPage;
+            homeworksMethodistPage = new HomeworksMethodistPage();
+            homeworksMethodistPage.ClickAddHomework();        
+        }
+
+        [When(@"Methodist create homework course name ""([^""]*)""")]
+        public void WhenMethodistCreateHomeworkCourseName(string courseName, Table table)
+        {
+            HomeworkCreationMethodistPage homeworkMethodist;
+            homeworkMethodist = new HomeworkCreationMethodistPage();
             AddNewHomework createHomework = table.CreateInstance<AddNewHomework>();
-            var nameHomework = _driver.FindElement(_teachersHomeworkWindowElements.XPathNameTB);
-            nameHomework.SendKeys(createHomework.Name);
-            var textInput = _driver.FindElement(_teachersHomeworkWindowElements.XPathDescriptionTB);
-            textInput.SendKeys(createHomework.Description);
-            _driver.FindElement(_teachersHomeworkWindowElements.XPathLinkTB).SendKeys(createHomework.Link);          
+            homeworkMethodist.ClickChoiceGroupNumber(courseName);
+            homeworkMethodist.InputNameGroup(createHomework.Name);
+            homeworkMethodist.InputDescriptionHomework(createHomework.Description);
+            homeworkMethodist.InputLinkHomework(createHomework.Link);
+            homeworkMethodist.ClickButtonAttachLink();
+            homeworkMethodist.ClickButtonSaveDraft();
+            //TODO saved as draft HW are not saved. Emptiness (Task 2.5)
         }
 
-        [Then(@"teacher click button publish")]
+        [When(@"Teacher lays out the task ""([^""]*)"" created by the methodologist")]
+        public void WhenTeacherLaysOutTheTaskCreatedByTheMethodologist(string nameHomework)
+        {
+            HomeworksDraftTeacherPage homeworksDraftTeacherPage;
+            homeworksDraftTeacherPage = new HomeworksDraftTeacherPage();
+            homeworksDraftTeacherPage.GetNameHomework(nameHomework);
+            HomeworksTeacherPage homeworksTeacherPage;
+            homeworksTeacherPage = new HomeworksTeacherPage();
+            homeworksTeacherPage.ClickHomeworksButton();
+            homeworksTeacherPage.ClickSavedHomeworkButton();
+            //TODO saved as draft HW are not saved. Emptiness (Task 2.5)
+        }
+
+        [When(@"Teacher create issuing homework course name ""([^""]*)""")]
+        public void WhenTeacherCreateIssuingHomeworkCourseName(string groupName, Table table)
+        {          
+            HomeworkExtraditionTeacherPage homeworkExtraditionTeacherPage;
+            homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage();
+            AddNewHomework homework = table.CreateInstance<AddNewHomework>();
+            homeworkExtraditionTeacherPage.ClickRadioButtonGroupName(groupName);
+            homeworkExtraditionTeacherPage.InputStarDate(homework.StartDate);
+            homeworkExtraditionTeacherPage.InputEndDate(homework.EndDate);
+            homeworkExtraditionTeacherPage.InputNameHomework(homework.Name);
+            homeworkExtraditionTeacherPage.InputDescriptionHomework(homework.Description);
+            homeworkExtraditionTeacherPage.InputUsefulLinks(homework.Link);
+            homeworkExtraditionTeacherPage.ClickAddLink();
+            //TODO saved as draft HW are not saved. Emptiness (Task 2.5)
+        }
+
+        [Then(@"Teacher click button publish")]
         public void ThenTeacherClickButtonPublish()
         {
-            _driver.FindElement(_teachersHomeworkWindowElements.XPathPublishButton).Click();
+            HomeworkExtraditionTeacherPage homeworkExtraditionTeacherPage;
+            homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage();
+            homeworkExtraditionTeacherPage.ClickPublish();
+            //TODO saved as draft HW are not saved. Emptiness (Task 2.5)
         }
 
-        [When(@"teacher see all task")]
+        [When(@"Teacher see all task")]
         public void WhenSeeAllTask()
         {
-            _driver.FindElement(_navigateButtons.XPathHomeworksButton).Click();
-
+            HomeworksTeacherPage homeworksTeacherPage;
+            homeworksTeacherPage = new HomeworksTeacherPage();
+            homeworksTeacherPage.ClickAddHomeworksButton();
+            homeworksTeacherPage.ClickExitButton();
+            //TODO saved as draft HW are not saved. Emptiness (Task 2.5)
         }
 
-        [When(@"teacher click button exit")]
-        public void WhenTeacherClickButtonExit()
-        {
-            _driver.FindElement(_singInWindow.XPathCancelSingInButton).Click();
-        }
-
-        [When(@"student authorization")]
-        public void WhenStudentAuthorization(Table table)
-        {
-            SignInRequest singInRequest = table.CreateInstance<SignInRequest>();
-            _driver.FindElement(_singInWindow.XPathEmailBox).SendKeys(singInRequest.Email);         
-            var passBox = _driver.FindElement(_singInWindow.XPathPasswordBox);
-            passBox.Clear();
-            passBox.SendKeys(singInRequest.Password);
-            _driver.FindElement(_singInWindow.XPathSingInButton).Click();
-            Thread.Sleep(500);
-        }
-
-        [When(@"student click button homework")]
+        [When(@"Student click button homework")]
         public void WhenStudentClickButtonHomework()
         {
-            _driver.FindElement(_navigateButtons.XPathHomeworksButton).Click();
-            Thread.Sleep(500);
+            HomeworksStudentPage homeworksStudentPage;
+            homeworksStudentPage = new HomeworksStudentPage();
+            homeworksStudentPage.ClickHomeworksButton();
         }
 
-        [When(@"studen click button to the task")]
+        [When(@"Studen click button to the task")]
         public void WhenStudenClickButtonToTheTask()
         {
-            _driver.FindElement(_studentsHomeworkWindowElements.XPathGoToTaskButton).Click();
-            Thread.Sleep(500);
+             HomeworksStudentPage homeworksStudentPage;
+            homeworksStudentPage = new HomeworksStudentPage();
+            homeworksStudentPage.GoToTaskButton();
         }
 
-        [When(@"studen attaches a link ""([^""]*)"" to the completed task")]
+        [When(@"Studen attaches a link ""([^""]*)"" to the completed task")]
         public void WhenStudenAttachesALinkToTheCompletedTask(string link)
         {
-            var linkGithub = _driver.FindElement(_studentsHomeworkWindowElements.XPathLinkToAnswerTB);
-            linkGithub.Click();
-            linkGithub.SendKeys(link);
+            HomeworksStudentPage homeworksStudentPage;
+            homeworksStudentPage = new HomeworksStudentPage();
+            homeworksStudentPage.InputLinkAnswer(link);
+            //TODO saved as draft HW are not saved. Emptiness (Task 2.5)
         }
 
-        [When(@"studen click airplane icon")]
+        [When(@"Studen click airplane icon")]
         public void WhenStudenClickAirplaneIcon()
         {
-            _driver.FindElement(_studentsHomeworkWindowElements.XPathSendAnswerButton).Click();
+            HomeworksStudentPage homeworksStudentPage;
+            homeworksStudentPage = new HomeworksStudentPage();
+            homeworksStudentPage.SendAnswerButton();          
         }
 
-        [When(@"studen click button exit")]
-        public void WhenStudenClickButtonExit()
+        [When(@"Teacher checks homework")]
+        public void WhenTeacherChecksHomework()
         {
-            _driver.FindElement(_singInWindow.XPathCancelSingInButton).Click();
+            HomeworksTeacherPage homeworksTeacherPage;
+            homeworksTeacherPage = new HomeworksTeacherPage();
+            homeworksTeacherPage.ClickCheckHomeworksButton();
+            //TODO homework is not reviewed.Emptiness (Task 2.5)
         }
 
-        [When(@"teacher checks homework")]
-        public void WhenTeacherChecksHomework(Table table)
-        {
-            SignInRequest singInRequest = table.CreateInstance<SignInRequest>();
-            _driver.Manage().Window.Maximize();
-            _driver.Navigate().GoToUrl(Urls.Host);
-            Thread.Sleep(1000);
-            var emailBox = _driver.FindElement(_singInWindow.XPathEmailBox);
-            emailBox.SendKeys(singInRequest.Email);
-            var passBox = _driver.FindElement(_singInWindow.XPathPasswordBox);
-            passBox.Clear();
-            passBox.SendKeys(singInRequest.Password);
-            var enter = _driver.FindElement(_singInWindow.XPathSingInButton);
-            enter.Click();
-            Thread.Sleep(500);
-            var combobox = _driver.FindElement(_changeRoleOfTeacher.XpathCombobox);
-            combobox.Click();
-            Thread.Sleep(500);
-            var chanceRole = _driver.FindElement(_changeRoleOfTeacher.XpathChangeRole);
-            chanceRole.Click();
-            _driver.FindElement(_navigateButtons.XPathCheckHomeworksButton).Click();
-        }
-
-        [Then(@"teacher returned homework")]
-        public void ThenTeacherReturnedHomework()
+        [When(@"Teacher returned homework")]
+        public void WhenTeacherReturnedHomework()
         {
             throw new PendingStepException();
+            //TODO Blank sheet task 2.5
         }
 
-        [When(@"student attached link of corrected homework")]
-        public void WhenStudentAttachedLinkOfCorrectedHomework()
+        [When(@"Student attached link ""([^""]*)"" of corrected homework")]
+        public void WhenStudentAttachedLinkOfCorrectedHomework(string link)
         {
-            throw new PendingStepException();
-        }
+            HomeworksStudentPage homeworksStudentPage;
+            homeworksStudentPage = new HomeworksStudentPage();
+            homeworksStudentPage.ClickHomeworksButton();
+            homeworksStudentPage.GoToTaskButton();
+            homeworksStudentPage.InputLinkAnswer(link);
+            homeworksStudentPage.SendAnswerButton();
+            //TODO �o task, emptiness (Task 2.5)
+        }     
 
-        [Then(@"teacher accepted homework")]
+        [Then(@"Teacher accepted homework")]
         public void ThenTeacherAcceptedHomework()
         {
-            throw new PendingStepException();
+            HomeworksTeacherPage homeworksTeacherPage;
+            homeworksTeacherPage = new HomeworksTeacherPage();
+            homeworksTeacherPage.ClickCheckHomeworksButton();
+            //TODO do not continue step due to missing step:Teacher returned homework
         }
     }
 }
