@@ -13,29 +13,17 @@ namespace AutoTestsSelenium.StepDefinitions
             GroupCreationManagerPage groupCreationManagerPage = new GroupCreationManagerPage();
             groupCreationManagerPage.ClickAddGroupButton();
         }
-        
+
         [When(@"Fills in group data")]
         public void WhenFillsInGroupData(Table table)
         {
             GroupCreationModel newGroup = table.CreateInstance<GroupCreationModel>();
             GroupCreationManagerPage groupCreationManagerPage = new GroupCreationManagerPage();
-            if(newGroup.GroupName != "")
-            {
-                groupCreationManagerPage.EnterGroupName(newGroup.GroupName);
-            }
-            if (newGroup.CourseName != "")
-            {
-                groupCreationManagerPage.ClickCoursesComboBox();
-                groupCreationManagerPage.ClickDesiredCourseByName(newGroup.CourseName);
-            }
-            if (newGroup.FullNameOfTeacher != "")
-            {
-                groupCreationManagerPage.ChooseTeacher(newGroup.FullNameOfTeacher);
-            }
-            if (newGroup.FullNameOfTutor != "")
-            {
-                groupCreationManagerPage.ChooseTutor(newGroup.FullNameOfTutor);
-            }
+            groupCreationManagerPage.EnterGroupName(newGroup.GroupName);
+            groupCreationManagerPage.ClickCoursesComboBox();
+            groupCreationManagerPage.ClickDesiredCourseByName(newGroup.CourseName);
+            groupCreationManagerPage.ChooseTeacher(newGroup.FullNameOfTeacher);
+            groupCreationManagerPage.ChooseTutor(newGroup.FullNameOfTutor);
         }
 
         [When(@"Fills in edit group data")]
@@ -43,53 +31,48 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             GroupCreationModel newGroup = table.CreateInstance<GroupCreationModel>();
             GroupEditingManagerPage groupEditingManagerPage = new GroupEditingManagerPage();
-            if (newGroup.GroupName != "")
-            {
-                groupEditingManagerPage.EnterGroupName(newGroup.GroupName);
-            }
-            if (newGroup.CourseName != "")
-            {
-                groupEditingManagerPage.ClickCoursesComboBox();
-                groupEditingManagerPage.ClickDesiredCourseByName(newGroup.CourseName);
-            }
-            if (newGroup.FullNameOfTeacher != "")
-            {
-                groupEditingManagerPage.ChooseTeacher(newGroup.FullNameOfTeacher);
-            }
-            if (newGroup.FullNameOfTutor != "")
-            {
-                groupEditingManagerPage.ChooseTutor(newGroup.FullNameOfTutor);
-            }
+            groupEditingManagerPage.EnterGroupName(newGroup.GroupName);
+            groupEditingManagerPage.ClickCoursesComboBox();
+            groupEditingManagerPage.ClickDesiredCourseByName(newGroup.CourseName);
+            groupEditingManagerPage.ChooseTeacher(newGroup.FullNameOfTeacher);
+            groupEditingManagerPage.ChooseTutor(newGroup.FullNameOfTutor);
         }
 
-        [When(@"Saves group")]
-        public void WhenSavesGroup()
+        [When(@"Click button saves group")]
+        public void WhenClickButtonSavesGroup()
         {
             GroupCreationManagerPage groupCreationManagerPage = new GroupCreationManagerPage();
             groupCreationManagerPage.ClickSaveButton();
             //TODO Saves only when there are more than two teachers and tutors (Task 2.6).
         }
 
-        [When(@"Saves edit group")]
-        public void WhenSavesEditGroup()
+        [When(@"Click button saves edit group")]
+        public void WhenClickButtonSavesEditGroup()
         {
             GroupEditingManagerPage groupEditingManagerPage = new GroupEditingManagerPage();
-            groupEditingManagerPage.ClickExitButton();
+            groupEditingManagerPage.ClickSaveButton();
             //TODO Saves only when there are more than two teachers and tutors (Task 2.17).
         }
 
-        [When(@"Cancels creation of group")]
-        public void WhenCancelsCreationOfGroup()
+        [When(@"Click button cancels creation of group")]
+        public void WhenClickButtonCancelsCreationOfGroup()
         {
             GroupCreationManagerPage groupCreationManagerPage = new GroupCreationManagerPage();
             groupCreationManagerPage.ClickCancelCreateGroupButton();
         }
 
+        [When(@"Click button cancels editing of group")]
+        public void WhenClickButtonCancelsEditingOfGroup()
+        {
+            GroupEditingManagerPage groupEditingManagerPage = new GroupEditingManagerPage();
+            groupEditingManagerPage.ClickCancelEditGroupButton();
+        }
+
         [When(@"Click button students list")]
         public void WhenClickButtonStudentsList()
         {
-            StudentsListManagerPage studentsListPage = new StudentsListManagerPage();
-            studentsListPage.ClickStudentsListButton();
+            StudentsListManagerPage studentsListManagerPage = new StudentsListManagerPage();
+            studentsListManagerPage.ClickStudentsListButton();
         }
 
         [When(@"Click button groups")]
@@ -116,9 +99,9 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Additing student ""([^""]*)"" to group ""([^""]*)""")]
         public void WhenManagerAddStudentToGroup(string fullNameOfStudent, string groupName)
         {
-            StudentsListManagerPage studentsListPage = new StudentsListManagerPage();
-            studentsListPage.ClickByFullNameOfStudentComboBox(fullNameOfStudent);
-            studentsListPage.ClickDesiredGroupByName(groupName);
+            StudentsListManagerPage studentsListManagerPage = new StudentsListManagerPage();
+            studentsListManagerPage.ClickByFullNameOfStudentComboBox(fullNameOfStudent);
+            studentsListManagerPage.ClickDesiredGroupByName(groupName);
             //TODO The page is implemented as a mock (Task 2.6).
         }
 
@@ -167,32 +150,32 @@ namespace AutoTestsSelenium.StepDefinitions
             Assert.Contains(groups, i => i.Text == courseName);
         }
 
-        [Then(@"Manager checks absence of group ""([^""]*)"" in list groups")]
-        public void ThenManagerChecksAbsenceOfGroupInListGroups(string groupName)
+        [Then(@"Manager should not find group ""([^""]*)"" in list groups")]
+        public void ThenManagerShouldNotFindGroupInListGroups(string groupName)
         {
             GroupsManagerPage groupsManagerPage = new GroupsManagerPage();
             var groups = groupsManagerPage.AllGroups;
             Assert.DoesNotContain(groups, i => i.Text == groupName);
         }
 
-        [Then(@"Manager checks for presence of group ""([^""]*)"" in list groups")]
-        public void ThenManagerChecksForPresenceOfGroupInListGroups(string groupName)
+        [Then(@"Manager should find group ""([^""]*)"" in list groups")]
+        public void ThenManagerShouldFindGroupInListGroups(string groupName)
         {
             GroupsManagerPage groupsManagerPage = new GroupsManagerPage();
             var groups = groupsManagerPage.AllGroups;
             Assert.Contains(groups, i => i.Text == groupName);
         }
 
-        [Then(@"Error message about absence of group name must match text ""([^""]*)""")]
-        public void ThenErrorMessageAboutAbsenceOfGroupNameMustMatchText(string expectedErrorMessage)
+        [Then(@"Error message about absence of a group name, when creating a group should be ""([^""]*)""")]
+        public void ThenErrorMessageAboutAbsenceOfAGroupNameWhenCreatingAGroupShouldBe(string expectedErrorMessage)
         {
             GroupCreationManagerPage groupCreationManagerPage = new GroupCreationManagerPage();
             string actualErrorMessage = groupCreationManagerPage.LabelEmptyGroupName.Text;
             Assert.Equal(expectedErrorMessage, actualErrorMessage);
         }
 
-        [Then(@"Error message about absence of selected course must match text ""([^""]*)""")]
-        public void ThenErrorMessageAboutAbsenceOfSelectedCourseMustMatchText(string expectedErrorMessage)
+        [Then(@"Error message about lack of course selection, when creating a group should be ""([^""]*)""")]
+        public void ThenErrorMessageAboutLackOfCourseSelectionWhenCreatingAGroupShouldBe(string expectedErrorMessage)
         {
             GroupCreationManagerPage groupCreationManagerPage = new GroupCreationManagerPage();
             string actualErrorMessage = groupCreationManagerPage.LabelEmptyCourseComboBox.Text;
@@ -200,11 +183,36 @@ namespace AutoTestsSelenium.StepDefinitions
             //TODO Message does not appear that the course is not selected (Task 2.6.2)
         }
 
-        [Then(@"Error message about absence of a teacher's choice should correspond to text ""([^""]*)""")]
-        public void ThenErrorMessageAboutAbsenceOfATeachersChoiceShouldCorrespondToText(string expectedErrorMessage)
+        [Then(@"Error message about lack of teacher selection, when creating a group should be ""([^""]*)""")]
+        public void ThenErrorMessageAboutLackOfTeacherSelectionWhenCreatingAGroupShouldBe(string expectedErrorMessage)
         {
             GroupCreationManagerPage groupCreationManagerPage = new GroupCreationManagerPage();
             string actualErrorMessage = groupCreationManagerPage.LabelEmptyTeacherCheckBox.Text;
+            Assert.Equal(expectedErrorMessage, actualErrorMessage);
+        }
+
+        [Then(@"Error message about absence of group name, when editing group should be ""([^""]*)""")]
+        public void ThenErrorMessageAboutAbsenceOfGroupNameWhenEditingGroupShouldBe(string expectedErrorMessage)
+        {
+            GroupEditingManagerPage groupEditingManagerPage = new GroupEditingManagerPage();
+            string actualErrorMessage = groupEditingManagerPage.LabelEmptyGroupName.Text;
+            Assert.Equal(expectedErrorMessage, actualErrorMessage);
+        }
+
+        [Then(@"Error message about lack of course selection, when editing group should be ""([^""]*)""")]
+        public void ThenErrorMessageAboutLackOfCourseSelectionWhenEditingGroupShouldBe(string expectedErrorMessage)
+        {
+            GroupEditingManagerPage groupEditingManagerPage = new GroupEditingManagerPage();
+            string actualErrorMessage = groupEditingManagerPage.LabelEmptyCourseComboBox.Text;
+            Assert.Equal(expectedErrorMessage, actualErrorMessage);
+            //TODO Message does not appear that the course is not selected (Task 2.17.6)
+        }
+
+        [Then(@"Error message about lack of teacher selection, when editing group should be ""([^""]*)""")]
+        public void ThenErrorMessageAboutLackOfTeacherSelectionWhenEditingGroupShouldBe(string expectedErrorMessage)
+        {
+            GroupEditingManagerPage groupEditingManagerPage = new GroupEditingManagerPage();
+            string actualErrorMessage = groupEditingManagerPage.LabelEmptyTeacherCheckBox.Text;
             Assert.Equal(expectedErrorMessage, actualErrorMessage);
         }
 
