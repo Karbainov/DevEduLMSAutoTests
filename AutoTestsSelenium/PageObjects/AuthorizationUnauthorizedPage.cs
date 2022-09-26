@@ -35,9 +35,6 @@
             ButtonEnter.Click();
         }
 
-            webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//*[text()='Уведомления']/..")));
-        }
-
         public void ClickCancelButton()
         {
             ButtonCancel.Click();
