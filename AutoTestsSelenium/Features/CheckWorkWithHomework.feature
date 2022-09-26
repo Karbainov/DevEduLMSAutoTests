@@ -17,7 +17,7 @@ Scenario: Assigned homework by teacher, turned in by student
 	| FirstName | LastName | Role    |
 	| Vitya     | Strashko | Teacher |
 	| Ilya1     | Baikov   | Student |
-	When Open DevEdu site "https://piter-education.ru:7074/login"
+	When Open DevEdu site https://piter-education.ru:7074/login
 	And Authorize user
 	| Email                | Password |
 	|lera21@methodist.com  | password |
