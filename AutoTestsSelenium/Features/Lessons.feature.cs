@@ -40,7 +40,7 @@ namespace AutoTestsSelenium.Features
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Lessons", "A short summary of the feature", ProgrammingLanguage.CSharp, featureTags);
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Lessons", "Teacher create lesson as draft, save it and publish", ProgrammingLanguage.CSharp, featureTags);
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -80,16 +80,18 @@ namespace AutoTestsSelenium.Features
             this.TestTearDown();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Teacher create lesson as draft, save it and publish.")]
+        [Xunit.SkippableFactAttribute(DisplayName="Lesson creation as draft and publishing")]
         [Xunit.TraitAttribute("FeatureTitle", "Lessons")]
-        [Xunit.TraitAttribute("Description", "Teacher create lesson as draft, save it and publish.")]
-        [Xunit.TraitAttribute("Category", "tag1")]
-        public void TeacherCreateLessonAsDraftSaveItAndPublish_()
+        [Xunit.TraitAttribute("Description", "Lesson creation as draft and publishing")]
+        [Xunit.TraitAttribute("Category", "teacher")]
+        [Xunit.TraitAttribute("Category", "lesson")]
+        public void LessonCreationAsDraftAndPublishing()
         {
             string[] tagsOfScenario = new string[] {
-                    "tag1"};
+                    "teacher",
+                    "lesson"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Teacher create lesson as draft, save it and publish.", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Lesson creation as draft and publishing", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -100,7 +102,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table45 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table73 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -112,7 +114,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "GitHubAccount",
                             "PhoneNumber",
                             "Role"});
-                table45.AddRow(new string[] {
+                table73.AddRow(new string[] {
                             "Gennadiy",
                             "Krokodilov",
                             "string",
@@ -124,7 +126,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "string",
                             "89514551247",
                             "Student"});
-                table45.AddRow(new string[] {
+                table73.AddRow(new string[] {
                             "Gennadiy",
                             "Bukin",
                             "string",
@@ -136,7 +138,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "string",
                             "89998887766",
                             "Student"});
-                table45.AddRow(new string[] {
+                table73.AddRow(new string[] {
                             "Gennadiy",
                             "Golub",
                             "string",
@@ -148,7 +150,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "string",
                             "89998887766",
                             "Student"});
-                table45.AddRow(new string[] {
+                table73.AddRow(new string[] {
                             "Serafima",
                             "Pekova",
                             "string",
@@ -161,9 +163,9 @@ this.ScenarioInitialize(scenarioInfo);
                             "89998887766",
                             "Teacher"});
 #line 7
- testRunner.Given("Register new users with roles", ((string)(null)), table45, "Given ");
+ testRunner.Given("Register new users with roles", ((string)(null)), table73, "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table46 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table74 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
                             "CourseId",
                             "GroupStatusId",
@@ -172,7 +174,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Timetable",
                             "PaymentPerMonth",
                             "PaymentsCount"});
-                table46.AddRow(new string[] {
+                table74.AddRow(new string[] {
                             "BlaBla",
                             "2371",
                             "Forming",
@@ -182,9 +184,9 @@ this.ScenarioInitialize(scenarioInfo);
                             "900",
                             "20"});
 #line 13
- testRunner.And("Create new groups", ((string)(null)), table46, "And ");
+ testRunner.And("Create new groups", ((string)(null)), table74, "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table47 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table75 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -196,7 +198,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "GitHubAccount",
                             "PhoneNumber",
                             "Role"});
-                table47.AddRow(new string[] {
+                table75.AddRow(new string[] {
                             "Gennadiy",
                             "Krokodilov",
                             "string",
@@ -208,7 +210,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "string",
                             "89514551247",
                             "Student"});
-                table47.AddRow(new string[] {
+                table75.AddRow(new string[] {
                             "Gennadiy",
                             "Bukin",
                             "string",
@@ -220,7 +222,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "string",
                             "89998887766",
                             "Student"});
-                table47.AddRow(new string[] {
+                table75.AddRow(new string[] {
                             "Gennadiy",
                             "Golub",
                             "string",
@@ -232,7 +234,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "string",
                             "89998887766",
                             "Student"});
-                table47.AddRow(new string[] {
+                table75.AddRow(new string[] {
                             "Serafima",
                             "Pekova",
                             "string",
@@ -245,19 +247,19 @@ this.ScenarioInitialize(scenarioInfo);
                             "89998887766",
                             "Teacher"});
 #line 16
- testRunner.And("Add users to group \"BlaBla\"", ((string)(null)), table47, "And ");
+ testRunner.And("Add users to group \"BlaBla\"", ((string)(null)), table75, "And ");
 #line hidden
 #line 22
  testRunner.Given("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table48 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table76 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password"});
-                table48.AddRow(new string[] {
+                table76.AddRow(new string[] {
                             "witch@teacher.com",
                             "password"});
 #line 23
- testRunner.Given("Authorize user in service as teacher", ((string)(null)), table48, "Given ");
+ testRunner.Given("Authorize user in service as teacher", ((string)(null)), table76, "Given ");
 #line hidden
 #line 26
  testRunner.And("Click on create lesson", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
