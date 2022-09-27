@@ -53,7 +53,7 @@
             return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//*[text()='{fullNameOfTeacher}']/..")));
         }
 
-        public void ChooseTeacher(List<string> fullNamesOfTeachers)
+        public void ChooseTeachers(List<string> fullNamesOfTeachers)
         {
             foreach (var fullNameOfTeacher in fullNamesOfTeachers)
             {
@@ -70,7 +70,7 @@
             return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//*[text()='{fullNameOfTutor}']/..")));
         }
 
-        public void ChooseTutor(List<string> fullNamesOfTutors)
+        public void ChooseTutors(List<string> fullNamesOfTutors)
         {
             foreach (var fullNameOfTutor in fullNamesOfTutors)
             {
@@ -81,7 +81,7 @@
             }
         }
 
-        public IWebElement GetLabelElement(string errorMessege)
+        public IWebElement GetLabelElementByText(string errorMessege)
         {
             return _driver.FindElement(By.XPath($"//*[text()='{errorMessege}']"));
         }

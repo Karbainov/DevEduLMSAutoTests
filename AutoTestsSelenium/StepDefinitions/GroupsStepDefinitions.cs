@@ -18,8 +18,8 @@ namespace AutoTestsSelenium.StepDefinitions
             page.EnterGroupName(newGroup.GroupName);
             page.ClickCoursesComboBox();
             page.ClickDesiredCourseByName(newGroup.CourseName);
-            page.ChooseTeacher(newGroup.FullNameOfTeacher);
-            page.ChooseTutor(newGroup.FullNameOfTutor);
+            page.ChooseTeachers(newGroup.FullNameOfTeacher);
+            page.ChooseTutors(newGroup.FullNameOfTutor);
         }
 
         [When(@"Fills in edit group data")]
@@ -30,8 +30,8 @@ namespace AutoTestsSelenium.StepDefinitions
             page.EnterGroupName(newGroup.GroupName);
             page.ClickCoursesComboBox();
             page.ClickDesiredCourseByName(newGroup.CourseName);
-            page.ChooseTeacher(newGroup.FullNameOfTeacher);
-            page.ChooseTutor(newGroup.FullNameOfTutor);
+            page.ChooseTeachers(newGroup.FullNameOfTeacher);
+            page.ChooseTutors(newGroup.FullNameOfTutor);
         }
 
         [When(@"Click button saves group")]
@@ -166,7 +166,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void ThenErrorMessageAboutAbsenceOfGroupDataWhenCreatingGroupShouldBe(string expectedErrorMessege)
         {
             var page = new GroupCreationManagerPage();
-            var actualElement = page.GetLabelElement(expectedErrorMessege);
+            var actualElement = page.GetLabelElementByText(expectedErrorMessege);
             Assert.Equal(expectedErrorMessege, actualElement.Text);
             //TODO Message does not appear that the course is not selected (Task 2.6.2)
         }
@@ -175,7 +175,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void ThenErrorMessageAboutAbsenceOfGroupDataWhenEditingGroupShouldBe(string expectedErrorMessege)
         {
             var page = new GroupEditingManagerPage();
-            var actualElement = page.GetLabelElement(expectedErrorMessege);
+            var actualElement = page.GetLabelElementByText(expectedErrorMessege);
             Assert.Equal(expectedErrorMessege, actualElement.Text);
             //TODO Message does not appear that the course is not selected (Task 2.17.6)
         }
