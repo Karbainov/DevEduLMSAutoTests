@@ -24,4 +24,3 @@ Scenario: Lesson creation as draft and publishing
 	| Email             | Password |
 	| witch@teacher.com | password |
 	And Click on create lesson
-
