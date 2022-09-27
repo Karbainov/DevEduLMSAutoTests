@@ -1,9 +1,9 @@
 ﻿namespace AutoTestsSelenium.PageObjects
 {
     public class HomeworkExtraditionTeacherPage : AbstractTeacherAuthorizedPage
-    {
+    { 
+        private const string PageUrl = $"{Urls.Host}/new-homework/edit-task/";    
         private string _groupName;
-        public const string PageUrl = $"{Urls.Host}/new-homework";
         public IWebElement RadioButtonNumberGroup => _driver.FindElement(By.XPath($"//*[text()='{_groupName}']"));
         public IWebElement TextBoxStartDate => _driver.FindElement(By.XPath($"//*[text()='Дата выдачи задания']//input"));
         public IWebElement TextBoxEndDate => _driver.FindElement(By.XPath($"//*[text()='Срок сдачи задания']//input"));
@@ -24,10 +24,15 @@
            _driver.Navigate().GoToUrl(PageUrl);      
         }
 
-        public IWebElement GetNumberGroup(string groupName)
+        public IWebElement GetRadioButtonByGroupName(string groupName)
         {
-            return _driver.FindElement(By.XPath($"//*[text()='{groupName}']"));
+            return _driver.FindElement(By.XPath($"//*[text()='{groupName}']/ancestor::*[@class='radio-button']"));
         }
+
+        public void ClickRadioButtonGroupName(string groupName)
+        {
+            GetRadioButtonByGroupName(groupName).Click();
+        }             
 
         public void InputStarDate(string startDate)
         {

@@ -42,8 +42,11 @@ namespace AutoTestsSelenium.PageObjects
 
         public void ClickDesiredCourseByName(string courseName)
         {
-            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(0.5));
-            webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//li[text()='{courseName}']"))).Click();
+            if (courseName != "")
+            {
+                WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(0.5));
+                webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//li[text()='{courseName}']"))).Click();
+            }
         }
 
         public IWebElement GetDesiredTeacherByName(string fullNameOfTeacher)
@@ -54,7 +57,10 @@ namespace AutoTestsSelenium.PageObjects
 
         public void ChooseTeacher(string fullNameOfTeacher)
         {
-            GetDesiredTeacherByName(fullNameOfTeacher).Click();
+            if (fullNameOfTeacher != "")
+            {
+                GetDesiredTeacherByName(fullNameOfTeacher).Click();
+            }
         }
         
         public IWebElement GetDesiredTutorByName(string fullNameOfTutor)
@@ -65,7 +71,10 @@ namespace AutoTestsSelenium.PageObjects
 
         public void ChooseTutor(string fullNameOfTutor)
         {
-            GetDesiredTutorByName(fullNameOfTutor).Click();
+            if (fullNameOfTutor != "")
+            {
+                GetDesiredTutorByName(fullNameOfTutor).Click();
+            }
         }
     }
 }

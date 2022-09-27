@@ -25,8 +25,8 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
         [Given(@"authorize as manager")]
         public void GivenAuthorizeAsAManager(Table table)
         {
-            List<SwaggerSignInRequest> signInRequests = table.CreateSet<SwaggerSignInRequest>().ToList();
-            SwaggerSignInRequest managerSignInRequest = signInRequests[0];
+            List<SignInRequest> signInRequests = table.CreateSet<SignInRequest>().ToList();
+            SignInRequest managerSignInRequest = signInRequests[0];
             _managerToken = _authenticationClient.AuthorizeUser(managerSignInRequest);
         }
 
