@@ -1,5 +1,3 @@
-using TechTalk.SpecFlow.Assist;
-
 namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
@@ -84,7 +82,6 @@ namespace AutoTestsSelenium.StepDefinitions
             };
             Assert.Equivalent(expectedUser, actualUser);
         }
-
 
         [Then(@"Excaption message empty Last Name ""([^""]*)"" should appear")]
         public void ThenExcaptionMessageEmptyLastNameShouldAppear(string excaptionMessage)
