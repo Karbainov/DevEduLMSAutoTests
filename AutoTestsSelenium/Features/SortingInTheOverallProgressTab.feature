@@ -72,7 +72,7 @@ Scenario: Teacher sorts students by status
 	And Authorize user in service as teacher
 	| Email            | Password |
 	| maks@teacher.com | password |
-	When Teacher create new homework for new group "Паровозик любви"
+	And Teacher create new homework for group "Паровозик любви"
 	| Name  | Description  | Link                     | StartDate  | EndDate    |
 	| QeQe | LubluDushit  | https://hd.kinopoisk.ru/ | 28.09.2022 | 29.09.2022 |
 	And Teacher logged out

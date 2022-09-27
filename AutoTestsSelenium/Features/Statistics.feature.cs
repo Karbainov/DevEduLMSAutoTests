@@ -236,7 +236,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "28.09.2022",
                             "09.10.2022"});
 #line 26
- testRunner.And("teacher create new homework for group \"Group 1\"", ((string)(null)), table116, "And ");
+ testRunner.And("Teacher create new homework for group \"Group 1\"", ((string)(null)), table116, "And ");
 #line hidden
 #line 29
  testRunner.And("Teacher logged out", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
