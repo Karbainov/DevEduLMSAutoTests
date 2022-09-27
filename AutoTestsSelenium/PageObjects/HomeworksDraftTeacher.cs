@@ -21,7 +21,7 @@
         public void GetNameHomework(string nameHomework)
         {
             WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(1));
-            webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//[text()='{nameHomework}']/following-sibling::a"))).Click();
+            webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//*[text()='{nameHomework}']/following-sibling::a"))).Click();
         }
     }
 }

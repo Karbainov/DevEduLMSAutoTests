@@ -25,10 +25,10 @@
 
         public void ClickSortBottomButton(string taskName)
         {
-            GetSortBottom(taskName).Click();
+            GetSortBottomButtonByName(taskName).Click();
         }
 
-        public IWebElement GetSortBottom(string taskName)
+        public IWebElement GetSortBottomButtonByName(string taskName)
         {
             return _driver.FindElement(By.XPath($"//*[starts-with(text(),'{taskName}')]/ancestor::div[starts-with(@class,'swiper-slide')]/div[contains(@class,'buttons')]/child::button[starts-with(@class,'button-style-reset')]/child::*[name()='svg' and @class='arrow-bottom ']"));
         }

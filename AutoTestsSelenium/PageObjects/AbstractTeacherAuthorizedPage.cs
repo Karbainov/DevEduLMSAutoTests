@@ -4,7 +4,7 @@
     {
         public IWebElement ButtonAddLessonSideBar => GetButtonAddLessonSideBar();
         public IWebElement ButtonLessonsSideBar => GetButtonLessonsSideBar();
-        public IWebElement ButtonHomeworksSideBar => _driver.FindElement(By.XPath($"//*[text()='Домашние задания']/.."));
+        public IWebElement ButtonHomeworksSideBar => GetButtonHomeworkSideBar();
         public IWebElement ButtonAddHomeworksSideBar => GetButtonAddHomewrksSideBar();
         public IWebElement ButtonCheckHomeworksSideBar => _driver.FindElement(By.XPath($"//*[text()='Проверка заданий']/.."));
         public IWebElement ButtonGeneralProgressSideBar => GetButtonGeneralProgressSideBar();
@@ -26,7 +26,7 @@
 
         public void ClickHomeworksButton()
         {
-            ButtonHomeworksSideBar.Click();
+            GetButtonHomeworkSideBar().Click();
         }
 
         public void ClickAddHomeworksButton()
@@ -53,6 +53,12 @@
         {
             WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(0.5));
             return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//*[text()='Занятия']/..")));
+        }
+
+        private IWebElement GetButtonHomeworkSideBar()
+        {
+            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(0.5));
+            return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//*[text()='Домашние задания']/..")));
         }
 
         private IWebElement GetButtonAddHomewrksSideBar()

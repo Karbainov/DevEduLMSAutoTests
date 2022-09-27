@@ -68,14 +68,14 @@ Scenario: Teacher sorts students by status
 	| Fakunto   | Arano      | Student |
 	| Lolo      | Nabokova   | Student |
 	| Maksim    | Karbainov  | Teacher |
-	When Open DevEdu site https://piter-education.ru:7074/login
+	When Open DevEdu web site https://piter-education.ru:7074/
 	And Authorize user in service as teacher
 	| Email            | Password |
 	| maks@teacher.com | password |
 	When Teacher create new homework for new group "Паровозик любви"
 	| Name  | Description  | Link                     | StartDate  | EndDate    |
-	| QeQe | LubluDushit  | https://hd.kinopoisk.ru/ | 26.09.2022 | 28.09.2022 |
-	And Exit account as teacher
+	| QeQe | LubluDushit  | https://hd.kinopoisk.ru/ | 28.09.2022 | 29.09.2022 |
+	And Teacher logged out
 	And Students did their homework "QeQe"
 	| Email             | Password |
 	| isi@gmail.com     | password |
@@ -95,8 +95,8 @@ Scenario: Teacher sorts students by status
 	| Valya  Baikova    | Сдано		|
 	| Fakunto Arano     | Сдано		|
 	| Lolo Nabokova     | не сдано	|
-	And Teacher should see students results to homework in tab General Progress	
+	And Teacher open tab General Progress	
 	When Teacher click ascending sorting in a column "Покрыть"
-	Then Teacher see list after sort
+	Then Teacher should see list after sort on ABC
 	And Teacher click descending sorting in a column "Покрыть"
-	Then Teacher see list after sort
+	Then Teacher should see list after sort on CBA

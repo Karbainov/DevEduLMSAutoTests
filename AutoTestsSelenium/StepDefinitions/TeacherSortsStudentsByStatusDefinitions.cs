@@ -1,32 +1,10 @@
-using OpenQA.Selenium.Support.Extensions;
-
 namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
     public class TeacherSortsStudentsByStatusDefinitions
     {
-        private IWebDriver _driver;
-
-        [When(@"Teacher create new homework for new group ""([^""]*)""")]
-        public void WhenTeacherCreateNewHomeworkForNewGroup(string nameGroup, Table table)
-        {
-            HomeworkCreationTeacherPage homeworkCreationTeacherPage;
-            homeworkCreationTeacherPage = new HomeworkCreationTeacherPage();
-            homeworkCreationTeacherPage.ClickHomeworksButton();
-            homeworkCreationTeacherPage.ClickCreateHomework();
-            AddNewHomework homework = table.CreateInstance<AddNewHomework>();
-            homeworkCreationTeacherPage.ClickRadioButtonGroupName(nameGroup);
-            homeworkCreationTeacherPage.InputStarDate(homework.StartDate);
-            homeworkCreationTeacherPage.InputEndDate(homework.EndDate);
-            homeworkCreationTeacherPage.InputNameHomework(homework.Name);
-            homeworkCreationTeacherPage.InputDescriptionHomework(homework.Description);
-            homeworkCreationTeacherPage.InputLink(homework.Link);
-            homeworkCreationTeacherPage.ClickAddLinkButton();
-            homeworkCreationTeacherPage.ClickPublishButton();
-        }
-
-        [When(@"Teacher should see students results to homework in tab General Progress")]
-        public void WhenTeacherShouldSeeStudentsResultsToHomeworkInTabGeneralProgress()
+        [When(@"Teacher open tab General Progress")]
+        public void WhenTeacherOpenTabGeneralProgress()
         {
             HomeworksTeacherPage homeworksTeacherPage;
             homeworksTeacherPage = new HomeworksTeacherPage();
@@ -39,23 +17,24 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             GeneralStudentsProgressTeacherPage generalStudentsProgressTeacherPage;
             generalStudentsProgressTeacherPage = new GeneralStudentsProgressTeacherPage();
-            generalStudentsProgressTeacherPage.OpenThisPage();
-            var driver = SingleWebDriver.GetInstance();
-            driver.ExecuteJavaScript("document.body.style.zoom='0.5'");
-            Thread.Sleep(100);//Without this, the zoom does not have time to change
-            driver.ExecuteJavaScript("document.querySelector('#root > div > main > div.journals > div.flex-container.journal-content-container > div.scroll-content-div > div.swiper.swiper-initialized.swiper-horizontal.swiper-pointer-events.first-swiper.swiper-backface-hidden > div.swiper-wrapper').setAttribute('style','transform: translate3d(0px, 0px, 0px);')");
-            driver.ExecuteJavaScript("document.querySelector('#root > div > main > div.journals > div.flex-container.journal-content-container > div.scroll-content-div > div:nth-child(2) > div.swiper-wrapper').setAttribute('style','transform: translate3d(0px, 0px, 0px);')");
+            var helper = new ModelsHelper();
             generalStudentsProgressTeacherPage.ClickSortBottomButton(taskName);
         }
 
-        [Then(@"Teacher see list after sort")]
-        public void ThenTeacherSeeListAfterSort()
+        [Then(@"Teacher should see list after sort on ABC")]
+        public void ThenTeacherShouldSeeListAfterSortOnABC()
         {
             throw new PendingStepException();
         }
 
         [Then(@"Teacher click descending sorting in a column ""([^""]*)""")]
         public void ThenTeacherClickDescendingSortingInAColumn(string name)
+        {
+            throw new PendingStepException();
+        }
+
+        [Then(@"Teacher should see list after sort on CBA")]
+        public void ThenTeacherShouldSeeListAfterSortOnCBA()
         {
             throw new PendingStepException();
         }
