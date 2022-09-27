@@ -1,3 +1,5 @@
+using OpenQA.Selenium.Support.Extensions;
+
 namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
@@ -8,7 +10,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenOpenProfilePage()
         {
             ProfilePage profilePage = new ProfilePage();
-            profilePage.OpenThisPage();
+            profilePage.ClickNameButton();
         }
 
         [When(@"Click on photo")]
@@ -19,22 +21,28 @@ namespace AutoTestsSelenium.StepDefinitions
 
         }
 
-        [When(@"Click on add new file")]
-        public void WhenClickOnAddNewFile()
-        {
-            throw new PendingStepException();
-        }
-
         [When(@"Add new photo")]
         public void WhenAddNewPhoto()
         {
-            throw new PendingStepException();
+            ProfilePage page = new ProfilePage();
+            string scrypt = "document.querySelector('#root > div.modal-background > div > div.buttons-container > label > input').setAttribute('class','display')";
+            var driver = SingleWebDriver.GetInstance();
+            driver.ExecuteJavaScript(scrypt);
+            string filePath = Directory.GetCurrentDirectory();
+            filePath = filePath.Replace("bin\\Debug\\net6.0", "TestPhotoFile.jpg");
+            page.InputFile.SendKeys(filePath);
+            page.ClickButtonSavePhoto();
+            page.RefreshPage();
         }
 
-        [Then(@"user should see the updated photo")]
+        [Then(@"User should see the updated photo")]
         public void ThenUserShouldSeeTheUpdatedPhoto()
         {
-            throw new PendingStepException();
+            ProfilePage page = new ProfilePage();
+            var photos = page.Photos;
+            int expectedPhotosCount = 2;
+            int actualPhotosCount = photos.Count;
+            Assert.Equal(expectedPhotosCount, actualPhotosCount);
         }
     }
 }

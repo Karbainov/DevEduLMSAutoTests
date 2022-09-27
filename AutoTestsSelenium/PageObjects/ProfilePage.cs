@@ -13,8 +13,10 @@
         public IWebElement TextBoxEnterPhone => _driver.FindElement(By.XPath($"//input[@name='phoneNumber']"));
         public IWebElement TextBoxEnterBirthDate => _driver.FindElement(By.XPath($"//*[@class='form-control']"));
         public IWebElement ButtonSave => _driver.FindElement(By.XPath($"//button[@class='sc-bczRLJ iJvUkY btn btn-fill flex-container']"));
-        public IWebElement IconPhoto => _driver.FindElement(By.XPath($"//.[@class='avatar - photo']"));
-
+        public IWebElement IconPhoto => _driver.FindElement(By.XPath($"//*[@class='svg-text']"));
+        public IWebElement InputFile => _driver.FindElement(By.XPath($"//input[@type='file']"));
+        public IWebElement ButtonSavePhoto => _driver.FindElement(By.XPath($"//label[text()='Сохранить']"));
+        public List<IWebElement> Photos => _driver.FindElements(By.XPath(@"//img")).ToList();
         public ProfilePage()
         {
         }
@@ -27,6 +29,11 @@
         public void ClickOnProfilePhoto()
         {
             IconPhoto.Click();
+        }
+
+        public void ClickButtonSavePhoto()
+        {
+            ButtonSavePhoto.Click();
         }
     }
 }
