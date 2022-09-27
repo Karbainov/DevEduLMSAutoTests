@@ -9,7 +9,7 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             AddNewHomework homework = table.CreateInstance<AddNewHomework>();
             var homeworkCreationPage = new HomeworkCreationTeacherPage();
-            homeworkCreationPage.ClickCreateHomework();
+            homeworkCreationPage.ClickAddHomeworksButton();
             homeworkCreationPage.ClickRadioButtonGroupName(groupName);
             homeworkCreationPage.InputStarDate(homework.StartDate);
             homeworkCreationPage.InputEndDate(homework.EndDate);
@@ -33,7 +33,7 @@ namespace AutoTestsSelenium.StepDefinitions
                 authorizationPage.EnterEmail(student.Email);
                 authorizationPage.EnterPassword(student.Password);
                 authorizationPage.ClickEnterButton();
-                homeworksStudentPage.OpenThisPage();
+                homeworksStudentPage.ClickHomeworksButton();
                 homeworksStudentPage.ClickGoToTaskButton(homeworkName);
                 homeworksStudentPage.RefreshPage();
                 answerHomework.EnterAnswer(studentsAnswer);
@@ -78,12 +78,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void ThenTeacherShouldSeeStudentsResultsToHomeworkInTabGeneralProgress(string homeworkName, Table table)
         {
             var generalProgressTeacher = new GeneralStudentsProgressTeacherPage();
-            generalProgressTeacher.OpenThisPage();
-            var driver = SingleWebDriver.GetInstance();
-            driver.ExecuteJavaScript("document.body.style.zoom='0.5'");
-            Thread.Sleep(100);//Without this, the zoom does not have time to change
-            driver.ExecuteJavaScript("document.querySelector('#root > div > main > div.journals > div.flex-container.journal-content-container > div.scroll-content-div > div.swiper.swiper-initialized.swiper-horizontal.swiper-pointer-events.first-swiper.swiper-backface-hidden > div.swiper-wrapper').setAttribute('style','transform: translate3d(0px, 0px, 0px);')");
-            driver.ExecuteJavaScript("document.querySelector('#root > div > main > div.journals > div.flex-container.journal-content-container > div.scroll-content-div > div:nth-child(2) > div.swiper-wrapper').setAttribute('style','transform: translate3d(0px, 0px, 0px);')");
+            generalProgressTeacher.ClickGeneralProgressButton();
             var expectedResults = new List<GeneralProgressResultsModel>();
             var expectedHWresults = table.CreateSet<StudentsHomeworkResultModel>().ToList();
             expectedResults.Add(new GeneralProgressResultsModel{ HomeworkName = homeworkName, StudentsHomeworkResults = expectedHWresults });

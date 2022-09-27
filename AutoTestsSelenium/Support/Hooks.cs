@@ -10,7 +10,7 @@
             _cleaner = new DBCleaner();
         }
 
-        [BeforeScenario(new string[] { "@sudent", "@teacher", "@methodist", "@registration" })]
+        [BeforeScenario(new string[] { "@sudent", "@teacher", "@methodist", "@registration", "@authentication", "@negative" })]
         public void BeforeScenarioWithTag()
         {
             _cleaner.ClearDB();
@@ -19,8 +19,8 @@
         [AfterScenario]
         public void AfterScenario()
         {
-            _cleaner.ClearDB();
             SingleWebDriver.CloseDriver();
+            _cleaner.ClearDB();
         }
     }
 }

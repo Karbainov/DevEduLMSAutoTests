@@ -2,7 +2,7 @@
 {
     public abstract class AbstractManagerAuthorizedPage : AbstractAuthorizedPage
     {
-        public IWebElement ButtonGroupsSideBar => _driver.FindElement(By.XPath($"//*[text()='Группы']/.."));
+        public IWebElement ButtonGroupsSideBar => GetButtonGroupsSideBar();
         public IWebElement ButtonAddGroupSideBar => GetButtonAddGroupSideBar();
         public IWebElement ButtonSudentsListSideBar => _driver.FindElement(By.XPath($"//*[text()='Список студентов']/.."));
         public IWebElement ButtonPaymentTableSideBar => _driver.FindElement(By.XPath($"//*[text()='Таблица оплат']/.."));
@@ -41,6 +41,12 @@
         {
             WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(0.5));
             return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//*[text()='Создать группу']/..")));
+        }
+        
+        private IWebElement GetButtonGroupsSideBar()
+        {
+            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(0.5));
+            return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//*[text()='Группы']/..")));
         }
     }
 }

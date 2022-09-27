@@ -14,8 +14,8 @@
 
         [Given(@"Authorize user in service")]
         [Given(@"Authorize user in service as teacher")]
-        [When(@"Authorize user in service")]
         [Given(@"Authorize user in service as manager")]
+        [When(@"Authorize user in service")]
         [When(@"Authorize user in service as manager")]
         [When(@"Authorize user in service as methodist")]
         [When(@"Authorize user in service as student")]
@@ -31,11 +31,11 @@
             authorizationUnauthorizedPage.ClickEnterButton();
         }
 
-        [When(@"Exit account as manager")]
-        [When(@"Exit account as methodist")]
-        [When(@"Exit account as teacher")]
-        [When(@"Exit account as tutor")]
-        [When(@"Exit account as student")]
+        [When(@"Manager logged out")]
+        [When(@"Methodist logged out")]
+        [When(@"Teacher logged out")]
+        [When(@"Tutor logged out")]
+        [When(@"Student logged out")]
         public void WhenExitAccountAsManager()
         {
             GroupCreationManagerPage groupCreationManagerPage = new GroupCreationManagerPage();

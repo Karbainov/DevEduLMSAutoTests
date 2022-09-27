@@ -6,16 +6,6 @@ namespace AutoTestsSelenium.StepDefinitions
     [Binding]
     public class CheckWorkWithHomeworkStepDefinitions
     {
-        private IWebDriver _driver;
-
-        [When(@"Open DevEdu site https://piter-education.ru:7074/login")]
-        public void WhenOpenDevEduSite()
-        {
-            _driver = SingleWebDriver.GetInstance();
-            _driver.Manage().Window.Maximize();
-            _driver.Navigate().GoToUrl(Urls.Host);
-        }
-
         [When(@"Methodist click button homework")]
         public void WhenMethodistClickButtonHomework()
         {
