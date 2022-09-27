@@ -23,13 +23,13 @@ Scenario: Sort by surname
 	| Gennadiy  | Yula       | Student |
 	| Gennadiy  | Akril      | Student |
 	| Serafima  | Pekova     | Teacher |
-	And Create new task
+	And Create new task for group "BlaBla"
 	| Name  | Description | Links  | IsRequired |
 	| Apple | Lemon       | string | true       |
-	And Add new homeworks
+	And Add new homeworks for group "BlaBla" task "Apple"
 	| StartDate  | EndDate    |
     | 01.10.2022 | 25.10.2022 |
-	Given Students authorize and send their homework
+	Given Send students homework for group "BlaBla" task "Apple"
 	| Email              | Password | String         |
 	| kroko@gmail.com    | password | link@razdva.ru |
 	| bukin@student.com  | password | link@razdva.ru |
@@ -42,5 +42,5 @@ Scenario: Sort by surname
 	| Email             | Password |
 	| witch@teacher.com | password |
 	Given Teacher go to common progress
-	When Teacher sort students by sername
-	Then Students should sort by sername
+	When Teacher sort students by surname
+	Then Students should sort by surname

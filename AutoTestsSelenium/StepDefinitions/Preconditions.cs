@@ -103,7 +103,7 @@ namespace AutoTestsSelenium.StepDefinitions
             }
         }
 
-        [Given(@"Create new task")]
+        [Given(@"Create new task for group ""([^""]*)""")]
         public void GivenCreateNewTasks(string groupName, Table table)
         {
             int groupId = GetGroupIdByName(groupName);
@@ -115,7 +115,7 @@ namespace AutoTestsSelenium.StepDefinitions
             }
         }
 
-        [Given(@"Add new homeworks")]
+        [Given(@"Add new homeworks for group ""([^""]*)"" task ""([^""]*)""")]
         public void GivenAddNewHomeworks(string groupName, string taskName, Table table)
         {
             int groupId = GetGroupIdByName(groupName);
@@ -127,6 +127,40 @@ namespace AutoTestsSelenium.StepDefinitions
             }
         }
 
+        [Given(@"Send students homework for group ""([^""]*)"" task ""([^""]*)""")]
+        public void GivenSendStudentsHomework(string groupName, string taskName, Table table)
+        {
+            int homeworkId = GetHomeworkIdByGroupId(groupName, taskName);
+            List<SignInRequest> students = table.CreateSet<SignInRequest>().ToList();
+            foreach (var student in students)
+            {
+                
+                _authClient.AuthorizeUser(Email, student.Password);
+            }
+        }
+
+        private int GetHomeworkIdByGroupId(string groupName, string taskName)
+        {
+            int homeworkId = 0;
+            int groupId = GetGroupIdByName(groupName);
+            List<GetHomeworkByGroupIdResponse> allHomeworks = _homeworksClient.GetAllHomeworksByGroupId(groupId, _adminsToken);
+            foreach (var homework in allHomeworks)
+            {
+                if (homework.TaskInHW.Name == taskName)
+                {
+                    homeworkId = homework.Id;
+                    break;
+                }
+            }
+            if (homeworkId == 0)
+            {
+                throw new ArgumentOutOfRangeException("There is no task with this name");
+            }
+            else
+            {
+                return homeworkId;
+            }
+        }
         private int GetGroupIdByName(string groupName)
         {
             int groupId = 0;
