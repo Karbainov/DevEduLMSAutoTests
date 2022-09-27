@@ -14,7 +14,6 @@
         public IWebElement CheckBoxConfirmRules => _driver.FindElement(By.XPath($"//*[@class='custom-checkbox']"));
         public IWebElement ButtonRegistrate => _driver.FindElement(By.XPath($"//*[@type='submit']"));
         public IWebElement ButtonCancelRegistration => _driver.FindElement(By.XPath($"//*[@type='reset']"));
-        public IWebElement ModalWindowWelcome => _driver.FindElements(By.XPath($"//*[text()='Добро пожаловать!!']")).FirstOrDefault()!;
         public IWebElement ExcaptionLastNameMessage => _driver.FindElement(By.XPath("//label[@for='lastName']/following-sibling::*[@class='attention']"));
         public IWebElement ExcaptionFirstNameMessage => _driver.FindElement(By.XPath("//label[@for='firstName']/following-sibling::*[@class='attention']"));
         public IWebElement ExcaptionEmailMessage => _driver.FindElement(By.XPath("//label[@for='email']/following-sibling::*[@class='attention']"));
@@ -22,17 +21,11 @@
         public IWebElement ExcaptionRepeatPasswordMessage => _driver.FindElement(By.XPath($"//label[@for='repeat-password']/following-sibling::*[@class='attention']"));
         public IWebElement ExcaptionPrivatePolicyMessage => _driver.FindElement(By.XPath("//label[@for='policy']/following-sibling::*[@class='attention']"));
         public IWebElement ExcaptionBirthDateMessage => _driver.FindElement(By.XPath($"//label[@for='datepicker']/following-sibling::*[@class='attention']"));
-        public IWebElement ModalWindowExcaption => GetModalWindowRegistrationException();
+        public IWebElement ModalWindow => GetModalWindow();
 
         public RegistrationPage()
         {
            
-        }
-
-        public bool IsModalWindowWelcomeDisapear()
-        {
-            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(5));
-            return webDriverWait.Until<bool>(ExpectedConditions.InvisibilityOfElementLocated(By.XPath($"//*[text()='Добро пожаловать!!']")));
         }
 
         public void EnterLastName(string lastName)
@@ -99,10 +92,16 @@
             _driver.Navigate().GoToUrl(PageUrl);
         }
 
-        private IWebElement GetModalWindowRegistrationException()
+        private IWebElement GetModalWindow()
         {
             WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(1));
             return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//div[starts-with(@class,'notification-window')]")));
+        }
+
+        public bool IsModalWindowWelcomeDisapear(int disapierTime)
+        {
+            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(disapierTime));
+            return webDriverWait.Until<bool>(ExpectedConditions.InvisibilityOfElementLocated(By.XPath($"//*[text()='Добро пожаловать!!']")));
         }
     }
 }
