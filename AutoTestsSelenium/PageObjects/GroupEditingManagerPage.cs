@@ -8,9 +8,6 @@
         public IWebElement ComboBoxCourses => _driver.FindElement(By.XPath($"//div[@class='drop-down-filter  ']"));
         public IWebElement ButtonSave => _driver.FindElement(By.XPath($"//button[text()='Сохранить']"));
         public IWebElement ButtonCancelEditGroup => _driver.FindElement(By.XPath($"//*[text()='Отмена']"));
-        public IWebElement LabelEmptyGroupName => _driver.FindElement(By.XPath($"//*[text()='Вы не указали название']"));
-        public IWebElement LabelEmptyCourseComboBox => _driver.FindElement(By.XPath($"//*[text()='Вы не выбрали курс']"));
-        public IWebElement LabelEmptyTeacherCheckBox => _driver.FindElement(By.XPath($"//*[text()='Вы не выбрали преподавателя']"));
 
         public GroupEditingManagerPage()
         {
@@ -45,37 +42,48 @@
         {
             if (courseName != "")
             {
-                WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(0.5));
+                WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(1));
                 webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//li[text()='{courseName}']"))).Click();
             }
         }
 
         public IWebElement GetDesiredTeacherByName(string fullNameOfTeacher)
         {
-            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(0.5));
+            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(1));
             return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//*[text()='{fullNameOfTeacher}']/..")));
         }
 
-        public void ChooseTeacher(string fullNameOfTeacher)
+        public void ChooseTeacher(List<string> fullNamesOfTeachers)
         {
-            if (fullNameOfTeacher != "")
+            foreach (var fullNameOfTeacher in fullNamesOfTeachers)
             {
-                GetDesiredTeacherByName(fullNameOfTeacher).Click();
+                if (fullNameOfTeacher != "")
+                {
+                    GetDesiredTeacherByName(fullNameOfTeacher).Click();
+                }
             }
         }
 
         public IWebElement GetDesiredTutorByName(string fullNameOfTutor)
         {
-            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(0.5));
+            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(1));
             return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//*[text()='{fullNameOfTutor}']/..")));
         }
 
-        public void ChooseTutor(string fullNameOfTutor)
+        public void ChooseTutor(List<string> fullNamesOfTutors)
         {
-            if (fullNameOfTutor != "")
+            foreach (var fullNameOfTutor in fullNamesOfTutors)
             {
-                GetDesiredTutorByName(fullNameOfTutor).Click();
+                if (fullNameOfTutor != "")
+                {
+                    GetDesiredTutorByName(fullNameOfTutor).Click();
+                }
             }
+        }
+
+        public IWebElement GetLabelElement(string errorMessege)
+        {
+            return _driver.FindElement(By.XPath($"//*[text()='{errorMessege}']"));
         }
     }
 }
