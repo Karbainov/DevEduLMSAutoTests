@@ -2,7 +2,7 @@
 {
     public abstract class AbstractAuthorizedPage : AbstractPage
     {
-        public IWebElement ButtonNameSideBar => _driver.FindElement(By.XPath($"//div[@class='avatar-block transition-styles ']/*[@href='/settings']"));
+        public IWebElement ButtonNameSideBar => GetButtonNameSideBar();
         public IWebElement ButtonNotificationsSideBar => _driver.FindElement(By.XPath($"//*[text()='Уведомления']/.."));
         public IWebElement ComboBoxRoles => _driver.FindElement(By.XPath($"//*[@class='user-roles-wrapper']"));
         public IWebElement ButtonSettingsSideBar => _driver.FindElement(By.XPath($"//*[text()='Настройки']/.."));
@@ -46,6 +46,21 @@
                 _ => throw new ArgumentOutOfRangeException(nameof(role)),
             };
             _driver.FindElement(By.XPath($"//li[text()='{role}']")).Click();
+        }
+
+        public string GetUserFullName()
+        {
+            var buttonName = ButtonNameSideBar;
+            var lastName = _driver.FindElement(By.XPath($"//*[contains(@class,'avatar-name m')]")).Text;
+            var firstName = _driver.FindElement(By.XPath($"//*[contains(@class,'avatar-name t')]")).Text;
+            string fullName = $"{lastName} {firstName}";
+            return fullName;
+        }
+
+        private IWebElement GetButtonNameSideBar()
+        {
+            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(1));
+            return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//div[@class='avatar-block transition-styles ']/*[@href='/settings']")));
         }
     }
 }

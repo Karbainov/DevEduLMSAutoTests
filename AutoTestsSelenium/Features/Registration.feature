@@ -56,10 +56,19 @@ Scenario: User try to registration with wrong data format in Birth Date textbox
 	And Open registration page
 	And Fill all requared fields
 	| FirstName | LastName | Patronymic | BirthDate | Password | RepeatPassword | Email             | PhoneNumber  |
-	| Mister    | Проппер  | Иваныч     | 31.07.199 | Azino777 | Azino777       | propper12@mail.ru | +79992314545 |
+	| Mister    | Проппер  | Иваныч     | <Date>    | Azino777 | Azino777       | propper12@mail.ru | +79992314545 |
 	And Click on private policy checkbox
 	When Click on register button
 	Then Excaption message wrong Date Birth "Введите корректную дату" should appear
+	Examples: 
+	| Date       |
+	| 25.09.2030 |
+	| 25.09.199  |
+	| 25.09      |
+	| 25.09.     |
+	| 09.2000    |
+	| 09..2000   |
+	| .09.2000   |
 
 @registration @negative
 Scenario: User try to registration with empty password textbox
