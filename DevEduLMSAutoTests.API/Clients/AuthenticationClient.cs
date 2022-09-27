@@ -20,7 +20,7 @@
             return response;
         }
 
-        public string AuthorizeUser(SwaggerSignInRequest request, HttpStatusCode expectedCode = HttpStatusCode.OK)
+        public string AuthorizeUser(SignInRequest request, HttpStatusCode expectedCode = HttpStatusCode.OK)
         {
             string json = JsonSerializer.Serialize(request);
             HttpClient client = new HttpClient();

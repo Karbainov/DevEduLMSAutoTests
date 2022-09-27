@@ -1,29 +1,9 @@
+using OpenQA.Selenium.Support.Extensions;
 namespace AutoTestsSelenium.StepDefinitions
 {
     [Binding]
     public class StatisticsStepDefinitions
     {
-        private IWebDriver _driver;
-
-        [When(@"Open DevEdu web site")]
-        public void WhenOpenDevEduWebSite()
-        {
-            _driver = SingleWebDriver.GetInstance();
-            _driver.Manage().Window.Maximize();
-            _driver.Navigate().GoToUrl(Urls.Host);
-        }
-
-        [When(@"Authorize user")]
-        public void WhenAuthorizeAsAUser(Table table)
-        {
-            SwaggerSignInRequest signIn = table.CreateInstance<SwaggerSignInRequest>();
-            var authorizationPage = new AuthorizationUnauthorizedPage();
-            authorizationPage.OpenThisPage();
-            authorizationPage.EnterEmail(signIn.Email);
-            authorizationPage.EnterPassword(signIn.Password);
-            authorizationPage.ClickEnterButton();
-        }
-
         [When(@"teacher create new homework for group ""([^""]*)""")]
         public void WhenTeacherCreateNewHomeworkForGroup(string groupName, Table table)
         {
@@ -40,13 +20,6 @@ namespace AutoTestsSelenium.StepDefinitions
             homeworkCreationPage.ClickPublishButton();
         }
 
-        [When(@"User exit")]
-        public void WhenUserExit()
-        {
-            var page = new HomeworkCreationTeacherPage();
-            page.ClickExitButton();
-        }
-
         [When(@"Students did their homework ""([^""]*)""")]
         public void WhenStudentsDidTheirHomework(string homeworkName, Table table)
         {
@@ -54,15 +27,15 @@ namespace AutoTestsSelenium.StepDefinitions
             var homeworksStudentPage = new HomeworksStudentPage();
             var answerHomework = new HomeworkAnswerStudentsPage();
             string studentsAnswer = "https://github.com";
-            List<SwaggerSignInRequest> _studensSignIn = table.CreateSet<SwaggerSignInRequest>().ToList();
+            List<SignInRequest> _studensSignIn = table.CreateSet<SignInRequest>().ToList();
             foreach (var student in _studensSignIn)
             {
                 authorizationPage.EnterEmail(student.Email);
                 authorizationPage.EnterPassword(student.Password);
                 authorizationPage.ClickEnterButton();
-                homeworksStudentPage.OpenThisPage();
+                homeworksStudentPage.ClickHomeworksButton();
                 homeworksStudentPage.ClickGoToTaskButton(homeworkName);
-                _driver.Navigate().Refresh();
+                homeworksStudentPage.RefreshPage();
                 answerHomework.EnterAnswer(studentsAnswer);
                 answerHomework.ClickSendAnswerButton();
                 answerHomework.ClickExitButton();
@@ -90,28 +63,27 @@ namespace AutoTestsSelenium.StepDefinitions
             var expectedResults = table.CreateSet<StudentsHomeworkResultModel>().ToList();
             var actualResultsElements = _homeworksTeacherPage.StudentsResults;
             var actualResults = new List<StudentsHomeworkResultModel>();
-            for(int i = 1; i <= actualResultsElements.Count; i++)
+            for (int i = 1; i <= actualResultsElements.Count; i++)
             {
                 string xpathName = $"//div[@class='homework-result-container']/div[@class='table-row'][{i}]/div[1]";
                 string xpathResult = $"//div[@class='homework-result-container']/div[@class='table-row'][{i}]/div[3]";
-                string studentsName = actualResultsElements[i-1].FindElement(By.XPath(xpathName)).Text;
-                string studentsResult = actualResultsElements[i-1].FindElement(By.XPath(xpathResult)).Text;
+                string studentsName = actualResultsElements[i - 1].FindElement(By.XPath(xpathName)).Text;
+                string studentsResult = actualResultsElements[i - 1].FindElement(By.XPath(xpathResult)).Text;
                 actualResults.Add(new StudentsHomeworkResultModel() { FullName = studentsName, Result = studentsResult });
             }
             Assert.Equal(expectedResults, actualResults);
         }
         
-        [Then(@"teacher should see students results to homework ""([^""]*)"" in tab General Progress")]
+        [Then(@"Teacher should see students results to homework ""([^""]*)"" in tab General Progress")]
         public void ThenTeacherShouldSeeStudentsResultsToHomeworkInTabGeneralProgress(string homeworkName, Table table)
         {
             var generalProgressTeacher = new GeneralStudentsProgressTeacherPage();
-            generalProgressTeacher.OpenThisPage();
-            //TODO: сделать чтобы были читаемы все элементы
-            Thread.Sleep(15000); //уменьшить масштаб страницы, прокрутить ползунок, иначе не считывает информацию
+            generalProgressTeacher.ClickGeneralProgressButton();
             var expectedResults = new List<GeneralProgressResultsModel>();
             var expectedHWresults = table.CreateSet<StudentsHomeworkResultModel>().ToList();
             expectedResults.Add(new GeneralProgressResultsModel{ HomeworkName = homeworkName, StudentsHomeworkResults = expectedHWresults });
-            var actualResults = GeneralProgressResultsModel.GetResults(generalProgressTeacher);
+            var helper = new ModelsHelper();
+            var actualResults = helper.GetResults(generalProgressTeacher);
             Assert.Equal(expectedResults, actualResults);
         }
     }

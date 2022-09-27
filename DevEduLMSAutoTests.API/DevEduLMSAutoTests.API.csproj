@@ -21,6 +21,9 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.1" />
+    <PackageReference Include="Selenium.Support" Version="4.4.0" />
+    <PackageReference Include="Selenium.WebDriver" Version="4.4.0" />
+    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="105.0.5195.5200" />
     <PackageReference Include="SpecFlow.Plus.LivingDocPlugin" Version="3.9.57" />
     <PackageReference Include="FluentAssertions" Version="6.7.0" />
     <PackageReference Include="SpecFlow.xUnit" Version="3.9.74" />
