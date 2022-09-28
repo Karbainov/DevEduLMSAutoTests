@@ -13,7 +13,7 @@
         public IWebElement TextBoxEnterPhone => _driver.FindElement(By.XPath($"//input[@name='phoneNumber']"));
         public IWebElement TextBoxEnterBirthDate => _driver.FindElement(By.XPath($"//*[@class='form-control']"));
         public IWebElement ButtonSave => _driver.FindElement(By.XPath($"//button[@class='sc-bczRLJ iJvUkY btn btn-fill flex-container']"));
-        public IWebElement IconPhoto => _driver.FindElement(By.XPath($"//*[@class='svg-text']"));
+        public IWebElement IconPhoto => _driver.FindElement(By.XPath($"//span[@class='avatar-text']/*"));
         public IWebElement InputFile => _driver.FindElement(By.XPath($"//input[@type='file']"));
         public IWebElement ButtonSavePhoto => GetButtonSavePhoto();
         public List<IWebElement> Photos => _driver.FindElements(By.XPath(@"//img")).ToList();

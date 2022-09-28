@@ -6,6 +6,8 @@ namespace AutoTestsSelenium.StepDefinitions
     public class UserChangeProfilePhotoStepDefinitions
     {
 
+        private string _profilePhotoLink;
+
         [When(@"Open profile page")]
         public void WhenOpenProfilePage()
         {
@@ -20,7 +22,7 @@ namespace AutoTestsSelenium.StepDefinitions
             profilePage.ClickOnProfilePhoto();
 
         }
-        [When(@"Add new photo ""([^""]*)""")]
+        [When(@"Add photo ""([^""]*)""")]
         public void WhenAddNewPhoto(string photoName)
         {
             ProfilePage page = new ProfilePage();
@@ -55,8 +57,8 @@ namespace AutoTestsSelenium.StepDefinitions
         }
 
 
-        [Then(@"User should see the updated photo")]
-        public void ThenUserShouldSeeTheUpdatedPhoto()
+        [Then(@"User should see his photo")]
+        public void ThenUserShouldSeeHisPhoto()
         {
             ProfilePage page = new ProfilePage();
             Thread.Sleep(1000);//download waiting
@@ -70,6 +72,7 @@ namespace AutoTestsSelenium.StepDefinitions
                 actualLinks.Add(photo.GetAttribute("src"));
             }
             Assert.True(actualLinks.TrueForAll(x=>x.Equals(actualLinks.First())));
+            _profilePhotoLink = actualLinks.FirstOrDefault();
         }
 
         [When(@"Click cancel button")]
@@ -85,6 +88,24 @@ namespace AutoTestsSelenium.StepDefinitions
             ProfilePage page = new ProfilePage();
             var photos = page.Photos;
             Assert.Empty(photos);
+        }
+
+        [Then(@"User should see the updated photo")]
+        public void ThenUserShouldSeeTheUpdatedPhoto()
+        {
+            ProfilePage page = new ProfilePage();
+            Thread.Sleep(1000);//download waiting
+            var photos = page.Photos;
+            int expectedPhotosCount = 2;
+            int actualPhotosCount = photos.Count;
+            Assert.Equal(expectedPhotosCount, actualPhotosCount);
+            List<string> actualLinks = new List<string>();
+            foreach (var photo in photos)
+            {
+                actualLinks.Add(photo.GetAttribute("src"));
+            }
+            Assert.True(actualLinks.TrueForAll(x => x.Equals(actualLinks.First())));
+            Assert.False(actualLinks.TrueForAll(x => x.Equals(_profilePhotoLink)));
         }
     }
 }

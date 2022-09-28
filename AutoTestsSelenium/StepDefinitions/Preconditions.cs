@@ -103,7 +103,9 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             SignInRequest signIn = table.CreateInstance<SignInRequest>();
             string token = _authClient.AuthorizeUser(signIn);
-
+            string filePath = Directory.GetCurrentDirectory();
+            filePath = filePath.Replace("bin\\Debug\\net6.0", $"Support\\UsersPhotos\\{photoName}");
+            _usersClient.AddPhotoForUser(token, filePath);
         }
 
 
