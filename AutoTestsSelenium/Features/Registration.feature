@@ -171,4 +171,4 @@ Scenario: User try to register an account with an already registered email
 	| Мистер    | Проппер  | Иванов     | 31.07.1998 | Azino777 | Azino777       | ilya1@student.com | +79992314545 |
 	And Click on private policy checkbox 
 	When Click on register button
-	Then User should see the modal window with text "Данный Email уже зарегистрирован"
+	Then User should see the modal window with text "Чот наебнулось("

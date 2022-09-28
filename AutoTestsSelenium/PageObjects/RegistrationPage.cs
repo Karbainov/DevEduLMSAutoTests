@@ -46,10 +46,20 @@
         public void EnterBirthDate(string birthDate)
         {
             Actions setDate = new Actions(_driver);
-            setDate.DoubleClick(TextBoxBirthDate).
-                SendKeys(birthDate).
-                Build().
-                Perform();
+            if (birthDate != null && birthDate != "")
+            {
+                setDate.DoubleClick(TextBoxBirthDate).
+                    SendKeys(birthDate).
+                    Build().
+                    Perform();
+            }
+            else
+            {
+                setDate.DoubleClick(TextBoxBirthDate).
+                    SendKeys(" ").
+                    Build().
+                    Perform();
+            }
         }
 
         public void EnterPassword(string password)
