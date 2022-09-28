@@ -3,12 +3,12 @@ namespace AutoTestsSelenium.StepDefinitions
     [Binding]
     public class StatisticsStepDefinitions
     {
-        [When(@"teacher create new homework for group ""([^""]*)""")]
+        [When(@"Teacher create new homework for group ""([^""]*)""")]
         public void WhenTeacherCreateNewHomeworkForGroup(string groupName, Table table)
         {
             AddNewHomework homework = table.CreateInstance<AddNewHomework>();
             var homeworkCreationPage = new HomeworkCreationTeacherPage();
-            homeworkCreationPage.ClickCreateHomework();
+            homeworkCreationPage.ClickAddHomeworksButton();
             homeworkCreationPage.ClickRadioButtonGroupName(groupName);
             homeworkCreationPage.InputStarDate(homework.StartDate);
             homeworkCreationPage.InputEndDate(homework.EndDate);

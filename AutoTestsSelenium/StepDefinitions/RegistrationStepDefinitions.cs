@@ -40,16 +40,23 @@ namespace AutoTestsSelenium.StepDefinitions
             registrationPage.ClickOnButtonRegistrate();
         }
 
-        [Then(@"User should see the welcome modal window")]
-        public void ThenUserShouldSeeTheWelcomeModalWindow()
+        [Then(@"User should see the modal window with text ""([^""]*)""")]
+        public void ThenUserShouldSeeTheModalWindowWithText(string modalWindowText)
         {
             RegistrationPage registrationPage = new RegistrationPage();
-            Thread.Sleep(500);
-            Assert.NotNull(registrationPage.ModalWindowWelcome);
+            string expectedText = modalWindowText;
+            string actualText = registrationPage.ModalWindow.Text;
+            Assert.Equal(expectedText, actualText);
+        }
+
+        [Then(@"Modal window shoul disapear after (.*) seconds")]
+        public void ThenModalWindowShoulDisapearAfterSeconds(int disapierTime)
+        {
+            RegistrationPage registrationPage = new RegistrationPage();
+            Assert.True(registrationPage.IsModalWindowWelcomeDisapear(disapierTime));
         }
 
         [When(@"Click on athorization sidebar button")]
-        [Then(@"Click on athorization sidebar button")]
         public void WhenClickOnAthorizationSidebarButton()
         {
             AuthorizationUnauthorizedPage authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage();
@@ -57,11 +64,9 @@ namespace AutoTestsSelenium.StepDefinitions
         }
 
         [When(@"Click on user's profile")]
-        [Then(@"Click on user's profile")]
         public void WhenClickOnUsersProfile()
         {
             ProfilePage profilePage = new ProfilePage();
-            Thread.Sleep(200);
             profilePage.ClickNameButton();
         }
 
@@ -77,7 +82,7 @@ namespace AutoTestsSelenium.StepDefinitions
                 FirstName = profilePage.TextBoxEnterFirstName.GetAttribute(attributeName),
                 Patronymic = profilePage.TextBoxEnterPatronymic.GetAttribute(attributeName),
                 BirthDate = profilePage.TextBoxEnterBirthDate.GetAttribute(attributeName),
-                Email = profilePage.TextBoxEmail.GetAttribute(attributeName),
+                Email = profilePage.TextBoxEmail.GetAttribute(attributeName), 
                 PhoneNumber = profilePage.TextBoxEnterPhone.GetAttribute(attributeName)
             };
             Assert.Equivalent(expectedUser, actualUser);
@@ -143,15 +148,6 @@ namespace AutoTestsSelenium.StepDefinitions
             RegistrationPage page = new RegistrationPage();
             string expectedMessage = excaptionMessage;
             string actualMessage = page.ExcaptionBirthDateMessage.Text;
-            Assert.Equal(expectedMessage, actualMessage);
-        }
-
-        [Then(@"User should see the exception modal window\twith text ""([^""]*)""")]
-        public void ThenUserShouldSeeTheExceptionModalWindowWithText(string excaptionMessage)
-        {
-            RegistrationPage page = new RegistrationPage();
-            string expectedMessage = excaptionMessage;
-            string actualMessage = page.ModalWindowExcaption.Text;
             Assert.Equal(expectedMessage, actualMessage);
         }
     }
