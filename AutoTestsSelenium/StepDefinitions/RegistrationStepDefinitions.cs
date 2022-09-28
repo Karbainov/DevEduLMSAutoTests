@@ -3,13 +3,6 @@ namespace AutoTestsSelenium.StepDefinitions
     [Binding]
     public class RegistrationStepDefinitions
     {
-        private SignInRequest _SignInRequest;
-        private RegistrationModel _user;
-
-        public RegistrationStepDefinitions()
-        {
-        }
-
         [Given(@"Open registration page")]
         public void GivenOpenRegistrationPage()
         {
@@ -22,20 +15,15 @@ namespace AutoTestsSelenium.StepDefinitions
         public void GivenFillAllRequaredFields(Table table)
         {
             RegistrationPage registrationPage = new RegistrationPage();
-            _user = table.CreateInstance<RegistrationModel>();
-            registrationPage.EnterFirstName(_user.FirstName);
-            registrationPage.EnterLastName(_user.LastName);
-            registrationPage.EnterPatronymic(_user.Patronymic);
-            registrationPage.EnterBirthDate(_user.BirthDate);
-            registrationPage.EnterPassword(_user.Password);
-            registrationPage.EnterRepeatPassword(_user.RepeatPassword);
-            registrationPage.EnterEmail(_user.Email);
-            registrationPage.EnterPhone(_user.PhoneNumber);
-            _SignInRequest = new SignInRequest()
-            {
-                Email = _user.Email,
-                Password = _user.Password
-            };
+            var user = table.CreateInstance<RegistrationModel>();
+            registrationPage.EnterFirstName(user.FirstName);
+            registrationPage.EnterLastName(user.LastName);
+            registrationPage.EnterPatronymic(user.Patronymic);
+            registrationPage.EnterBirthDate(user.BirthDate);
+            registrationPage.EnterPassword(user.Password);
+            registrationPage.EnterRepeatPassword(user.RepeatPassword);
+            registrationPage.EnterEmail(user.Email);
+            registrationPage.EnterPhone(user.PhoneNumber);
         }
 
         [Given(@"Click on private policy checkbox")]
@@ -52,16 +40,23 @@ namespace AutoTestsSelenium.StepDefinitions
             registrationPage.ClickOnButtonRegistrate();
         }
 
-        [Then(@"User should see the welcome modal window")]
-        public void ThenUserShouldSeeTheWelcomeModalWindow()
+        [Then(@"User should see the modal window with text ""([^""]*)""")]
+        public void ThenUserShouldSeeTheModalWindowWithText(string modalWindowText)
         {
             RegistrationPage registrationPage = new RegistrationPage();
-            Thread.Sleep(500);
-            Assert.NotNull(registrationPage.ModalWindowWelcome);
+            string expectedText = modalWindowText;
+            string actualText = registrationPage.ModalWindow.Text;
+            Assert.Equal(expectedText, actualText);
+        }
+
+        [Then(@"Modal window shoul disapear after (.*) seconds")]
+        public void ThenModalWindowShoulDisapearAfterSeconds(int disapierTime)
+        {
+            RegistrationPage registrationPage = new RegistrationPage();
+            Assert.True(registrationPage.IsModalWindowWelcomeDisapear(disapierTime));
         }
 
         [When(@"Click on athorization sidebar button")]
-        [Then(@"Click on athorization sidebar button")]
         public void WhenClickOnAthorizationSidebarButton()
         {
             AuthorizationUnauthorizedPage authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage();
@@ -69,17 +64,16 @@ namespace AutoTestsSelenium.StepDefinitions
         }
 
         [When(@"Click on user's profile")]
-        [Then(@"Click on user's profile")]
         public void WhenClickOnUsersProfile()
         {
             ProfilePage profilePage = new ProfilePage();
-            Thread.Sleep(200);
             profilePage.ClickNameButton();
         }
 
         [Then(@"User should see his actual information")]
-        public void ThenUserShouldSeeHisActualInformation()
+        public void ThenUserShouldSeeHisActualInformation(Table table)
         {
+            var expectedUser = table.CreateInstance<RegistrationModel>();
             ProfilePage profilePage = new ProfilePage();
             string attributeName = "value";
             RegistrationModel actualUser = new RegistrationModel()
@@ -88,12 +82,10 @@ namespace AutoTestsSelenium.StepDefinitions
                 FirstName = profilePage.TextBoxEnterFirstName.GetAttribute(attributeName),
                 Patronymic = profilePage.TextBoxEnterPatronymic.GetAttribute(attributeName), 
                 BirthDate = profilePage.TextBoxEnterBirthDate.GetAttribute(attributeName),
-                Password = _user.Password,
-                RepeatPassword = _user.RepeatPassword,
                 Email = profilePage.TextBoxEmail.GetAttribute(attributeName), 
                 PhoneNumber = profilePage.TextBoxEnterPhone.GetAttribute(attributeName)
             };
-            Assert.Equivalent(_user, actualUser);
+            Assert.Equivalent(expectedUser, actualUser);
         }
 
         [Then(@"Excaption message empty Last Name ""([^""]*)"" should appear")]
@@ -156,15 +148,6 @@ namespace AutoTestsSelenium.StepDefinitions
             RegistrationPage page = new RegistrationPage();
             string expectedMessage = excaptionMessage;
             string actualMessage = page.ExcaptionBirthDateMessage.Text;
-            Assert.Equal(expectedMessage, actualMessage);
-        }
-
-        [Then(@"User should see the exception modal window\twith text ""([^""]*)""")]
-        public void ThenUserShouldSeeTheExceptionModalWindowWithText(string excaptionMessage)
-        {
-            RegistrationPage page = new RegistrationPage();
-            string expectedMessage = excaptionMessage;
-            string actualMessage = page.ModalWindowExcaption.Text;
             Assert.Equal(expectedMessage, actualMessage);
         }
     }
