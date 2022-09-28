@@ -11,6 +11,12 @@ Scenario: User change photo in his profile
 	| ilya1@student.com | password |
 	And Open profile page
 	And Click on photo
-	And Add new photo 
+	And Add new photo "<PhotoName>"
+	And Click save photo
+	Then Modal window should disapier
+	When Refresh page
 	Then User should see the updated photo
-	
+	Examples: 
+	| PhotoName      |
+	| BigPhoto.png   |
+	| SmallPhoto.jpg |

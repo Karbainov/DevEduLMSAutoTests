@@ -80,15 +80,23 @@ namespace AutoTestsSelenium.Features
             this.TestTearDown();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="User change photo in his profile")]
+        [Xunit.SkippableTheoryAttribute(DisplayName="User change photo in his profile")]
         [Xunit.TraitAttribute("FeatureTitle", "UserChangeProfilePhoto")]
         [Xunit.TraitAttribute("Description", "User change photo in his profile")]
         [Xunit.TraitAttribute("Category", "photo")]
-        public void UserChangePhotoInHisProfile()
+        [Xunit.InlineDataAttribute("BigPhoto.png", new string[0])]
+        [Xunit.InlineDataAttribute("SmallPhoto.jpg", new string[0])]
+        public void UserChangePhotoInHisProfile(string photoName, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
                     "photo"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("PhotoName", photoName);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User change photo in his profile", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 4
 this.ScenarioInitialize(scenarioInfo);
@@ -100,7 +108,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table114 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table128 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -112,7 +120,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "GitHubAccount",
                             "PhoneNumber",
                             "Role"});
-                table114.AddRow(new string[] {
+                table128.AddRow(new string[] {
                             "Ilya1",
                             "Baikov",
                             "string",
@@ -125,19 +133,19 @@ this.ScenarioInitialize(scenarioInfo);
                             "89998887766",
                             "Student"});
 #line 5
- testRunner.Given("Register new users with roles", ((string)(null)), table114, "Given ");
+ testRunner.Given("Register new users with roles", ((string)(null)), table128, "Given ");
 #line hidden
 #line 8
  testRunner.When("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table115 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table129 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password"});
-                table115.AddRow(new string[] {
+                table129.AddRow(new string[] {
                             "ilya1@student.com",
                             "password"});
 #line 9
- testRunner.And("Authorize user in service", ((string)(null)), table115, "And ");
+ testRunner.And("Authorize user in service", ((string)(null)), table129, "And ");
 #line hidden
 #line 12
  testRunner.And("Open profile page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -146,9 +154,18 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Click on photo", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 14
- testRunner.And("Add new photo", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("Add new photo \"{0}\"", photoName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 15
+ testRunner.And("Click save photo", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 16
+ testRunner.Then("Modal window should disapier", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 17
+ testRunner.When("Refresh page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 18
  testRunner.Then("User should see the updated photo", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

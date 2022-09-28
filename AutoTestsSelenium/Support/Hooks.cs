@@ -10,7 +10,7 @@
             _cleaner = new DBCleaner();
         }
 
-        [BeforeScenario(new string[] { "@student", "@teacher", "@methodist", "@registration", "@authentication", "@negative", "@group" })]
+        [BeforeScenario()]
         public void BeforeScenarioWithTag()
         {
             _cleaner.ClearDB();

@@ -15,7 +15,7 @@
         public IWebElement ButtonSave => _driver.FindElement(By.XPath($"//button[@class='sc-bczRLJ iJvUkY btn btn-fill flex-container']"));
         public IWebElement IconPhoto => _driver.FindElement(By.XPath($"//*[@class='svg-text']"));
         public IWebElement InputFile => _driver.FindElement(By.XPath($"//input[@type='file']"));
-        public IWebElement ButtonSavePhoto => _driver.FindElement(By.XPath($"//label[text()='Сохранить']"));
+        public IWebElement ButtonSavePhoto => GetButtonSavePhoto();
         public List<IWebElement> Photos => _driver.FindElements(By.XPath(@"//img")).ToList();
         public ProfilePage()
         {
@@ -34,6 +34,18 @@
         public void ClickButtonSavePhoto()
         {
             ButtonSavePhoto.Click();
+        }
+
+        public bool IsModalWindowPhotoDisapier()
+        {
+            WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(2));
+            return webDriverWait.Until<bool>(ExpectedConditions.InvisibilityOfElementLocated(By.XPath($"//div[contains(@class,'modal-window')]")));
+        }
+
+        private IWebElement GetButtonSavePhoto()
+        {
+            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(3));
+            return wait.Until(ExpectedConditions.ElementExists(By.XPath($"//label[text()='Сохранить']")));
         }
     }
 }
