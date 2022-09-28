@@ -2,7 +2,6 @@
 {
     public class UpdateLessonRequest
     {
-
         [JsonPropertyName("additionalMaterials")]
         public string AdditionalMaterials { get; set; }
 

@@ -19,9 +19,9 @@
             return responseLesson;
         }
 
-         public AddLessonResponse UpdateLesson(UpdateLessonRequest updateLesson, int lessonId, string tokenTeacher)
+        public AddLessonResponse UpdateLesson(UpdateLessonRequest updateLesson, int lessonId, string tokenTeacher)
         {
-            string json= JsonSerializer.Serialize(updateLesson);
+            string json = JsonSerializer.Serialize(updateLesson);
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", tokenTeacher);
             HttpRequestMessage message = new HttpRequestMessage()
@@ -65,6 +65,5 @@
                 (response.Content.ReadAsStringAsync().Result)!;
             return responseLessons;
         }
-
     }
 }

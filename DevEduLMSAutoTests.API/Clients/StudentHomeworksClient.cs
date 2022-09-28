@@ -84,6 +84,5 @@
             AddStudentHomeworkResponse content = JsonSerializer.Deserialize<AddStudentHomeworkResponse>(response.Content.ReadAsStringAsync().Result)!;
             return content;
         }
-
     }
 }

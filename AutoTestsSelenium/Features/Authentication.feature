@@ -53,35 +53,35 @@ Scenario: Authentication with wrong password or email
 
 @authentication @negative
 Scenario: Authentication with wrong email format
-	Given Register new users with roles
-	| FirstName | LastName | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
-	| Ilya      | Baikov   | string     | ilya@student.com | ilya     | password | SaintPetersburg | 02.07.2000 | string        | 89817051890 | Student |
-	And Open DevEdu web site https://piter-education.ru:7074/
-	And Open authorization page
-	And Enter email "<Email>"
-	And Enter password "password"
-	When Click button Enter
-	Then Exception message under email textbox should appear with text "Введен некорректный email"
-	Examples: 
-	| Email       |
-	|             |
-	| ilya        |
-	| ilya@       |
-	| ilya@mail   |
-	| ilya@mail.  |
-	| ilya@mail.r |
-	| ilya@.ru    |
-	| @mail.ru    |
+    Given Register new users with roles
+    | FirstName | LastName | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
+    | Ilya      | Baikov   | string     | ilya@student.com | ilya     | password | SaintPetersburg | 02.07.2000 | string        | 89817051890 | Student |
+    And Open DevEdu web site https://piter-education.ru:7074/
+    And Open authorization page
+    And Enter email "<Email>"
+    And Enter password "password"
+    When Click button Enter
+    Then Exception message under email textbox should appear with text "Введен некорректный email"
+    Examples: 
+    | Email       |
+    |             |
+    | ilya        |
+    | ilya@       |
+    | ilya@mail   |
+    | ilya@mail.  |
+    | ilya@mail.r |
+    | ilya@.ru    |
+    | @mail.ru    |
 
 @authentication @negative
 Scenario: Authentication with empty email and password textboxes
 Given Register new users with roles
-	| FirstName | LastName | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
-	| Ilya      | Baikov   | string     | ilya@student.com | ilya     | password | SaintPetersburg | 02.07.2000 | string        | 89817051890 | Student |
-	And Open DevEdu web site https://piter-education.ru:7074/
-	And Open authorization page
-	And Enter email ""
-	And Enter password ""
-	When Click button Enter
-	Then Exception message under email textbox should appear with text "Введен некорректный email"
-	And Exception message under password textbox should appear with text "Введите пароль"
+    | FirstName | LastName | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
+    | Ilya      | Baikov   | string     | ilya@student.com | ilya     | password | SaintPetersburg | 02.07.2000 | string        | 89817051890 | Student |
+    And Open DevEdu web site https://piter-education.ru:7074/
+    And Open authorization page
+    And Enter email ""
+    And Enter password ""
+    When Click button Enter
+    Then Exception message under email textbox should appear with text "Введен некорректный email"
+    And Exception message under password textbox should appear with text "Введите пароль"

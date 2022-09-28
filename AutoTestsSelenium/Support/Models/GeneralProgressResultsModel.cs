@@ -1,6 +1,4 @@
-﻿using System.Xml.Linq;
-
-namespace AutoTestsSelenium.Support.Models
+﻿namespace AutoTestsSelenium.Support.Models
 {
     public class GeneralProgressResultsModel
     {

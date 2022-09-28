@@ -7,7 +7,6 @@
 
         public HomeworksMethodistPage()
         {
-
         }
 
         public override void OpenThisPage()

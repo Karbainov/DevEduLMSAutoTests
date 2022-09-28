@@ -70,7 +70,6 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             _groupId = _groupsClient.CreateNewGroup(newGroup, _managerToken).Id;
         }
 
-
         [Given(@"methodist create topic")]
         public void GivenMethodistCreateTopic(Table table)
         {
@@ -94,7 +93,6 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             _groupsClient = new GroupsClient();
             _groupsClient.AddUserToGroup(_groupId, _teacherId, OptionsSwagger.RoleTeacher, _adminToken);
         }
-
 
         [Given(@"teacher sees a draft lesson")]
         public void GivenTeacherSeesADraftLesson()

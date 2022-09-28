@@ -64,6 +64,5 @@
             HttpStatusCode actualCode = httpResponsec.StatusCode;
             Assert.Equal(expectedCode, actualCode);
         }
-
     }
 }
