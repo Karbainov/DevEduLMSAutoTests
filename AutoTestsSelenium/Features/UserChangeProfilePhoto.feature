@@ -1,7 +1,7 @@
 ﻿Feature: UserChangeProfilePhoto
 
 @photo 
-Scenario: User change photo in his profile
+Scenario: User set photo in his profile
 	Given Register new users with roles
 	| FirstName | LastName   | Patronymic | Email             | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 	| Ilya1     | Baikov     | string     | ilya1@student.com | ilya1    | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student |
@@ -20,3 +20,31 @@ Scenario: User change photo in his profile
 	| PhotoName      |
 	| BigPhoto.png   |
 	| SmallPhoto.jpg |
+
+@photo
+Scenario: User cancel adding photo
+	Given Register new users with roles
+	| FirstName | LastName   | Patronymic | Email             | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
+	| Ilya1     | Baikov     | string     | ilya1@student.com | ilya1    | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student |
+	When Open DevEdu web site https://piter-education.ru:7074/
+	And Authorize user in service
+	| Email             | Password |
+	| ilya1@student.com | password |
+	And Open profile page
+	And Click on photo
+	And Add new photo "SmallPhoto.jpg"
+	And Click cancel button
+	And Refresh page
+	Then Photo should not appear 
+
+@photo
+Scenario: User change photo in profile
+	Given Register new users with roles
+	| FirstName | LastName   | Patronymic | Email             | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
+	| Ilya1     | Baikov     | string     | ilya1@student.com | ilya1    | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student |
+	And Users photo is "photoName"
+	| Email             | Password |
+	| ilya1@student.com | password |
+	And Authorize user in service
+	| Email             | Password |
+	| ilya1@student.com | password |

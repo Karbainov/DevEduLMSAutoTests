@@ -71,5 +71,20 @@ namespace AutoTestsSelenium.StepDefinitions
             }
             Assert.True(actualLinks.TrueForAll(x=>x.Equals(actualLinks.First())));
         }
+
+        [When(@"Click cancel button")]
+        public void WhenClickCancelButton()
+        {
+            ProfilePage page = new ProfilePage();
+            page.ClickButtonCancelAddPhoto();
+        }
+
+        [Then(@"Photo should not appear")]
+        public void ThenPhotoShouldNotAppear()
+        {
+            ProfilePage page = new ProfilePage();
+            var photos = page.Photos;
+            Assert.Empty(photos);
+        }
     }
 }

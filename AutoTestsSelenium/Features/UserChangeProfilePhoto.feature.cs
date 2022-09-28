@@ -80,13 +80,13 @@ namespace AutoTestsSelenium.Features
             this.TestTearDown();
         }
         
-        [Xunit.SkippableTheoryAttribute(DisplayName="User change photo in his profile")]
+        [Xunit.SkippableTheoryAttribute(DisplayName="User set photo in his profile")]
         [Xunit.TraitAttribute("FeatureTitle", "UserChangeProfilePhoto")]
-        [Xunit.TraitAttribute("Description", "User change photo in his profile")]
+        [Xunit.TraitAttribute("Description", "User set photo in his profile")]
         [Xunit.TraitAttribute("Category", "photo")]
         [Xunit.InlineDataAttribute("BigPhoto.png", new string[0])]
         [Xunit.InlineDataAttribute("SmallPhoto.jpg", new string[0])]
-        public void UserChangePhotoInHisProfile(string photoName, string[] exampleTags)
+        public void UserSetPhotoInHisProfile(string photoName, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "photo"};
@@ -97,7 +97,7 @@ namespace AutoTestsSelenium.Features
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("PhotoName", photoName);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User change photo in his profile", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User set photo in his profile", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 4
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -167,6 +167,85 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 18
  testRunner.Then("User should see the updated photo", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="User cancel adding photo")]
+        [Xunit.TraitAttribute("FeatureTitle", "UserChangeProfilePhoto")]
+        [Xunit.TraitAttribute("Description", "User cancel adding photo")]
+        public void UserCancelAddingPhoto()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User cancel adding photo", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 24
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table130 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "Patronymic",
+                            "Email",
+                            "Username",
+                            "Password",
+                            "City",
+                            "BirthDate",
+                            "GitHubAccount",
+                            "PhoneNumber",
+                            "Role"});
+                table130.AddRow(new string[] {
+                            "Ilya1",
+                            "Baikov",
+                            "string",
+                            "ilya1@student.com",
+                            "ilya1",
+                            "password",
+                            "SaintPetersburg",
+                            "23.07.1993",
+                            "string",
+                            "89998887766",
+                            "Student"});
+#line 25
+  testRunner.Given("Register new users with roles", ((string)(null)), table130, "Given ");
+#line hidden
+#line 28
+ testRunner.When("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table131 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Email",
+                            "Password"});
+                table131.AddRow(new string[] {
+                            "ilya1@student.com",
+                            "password"});
+#line 29
+ testRunner.And("Authorize user in service", ((string)(null)), table131, "And ");
+#line hidden
+#line 32
+ testRunner.And("Open profile page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 33
+ testRunner.And("Click on photo", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 34
+ testRunner.And("Add new photo \"SmallPhoto.jpg\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 35
+ testRunner.And("Click cancel button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 36
+ testRunner.And("Refresh page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 37
+ testRunner.Then("Photo should not appear", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

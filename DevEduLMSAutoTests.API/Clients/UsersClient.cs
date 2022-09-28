@@ -63,5 +63,19 @@
                 (response.Content.ReadAsStringAsync().Result)!;
             return users;
         }
+
+        public string AddPhotoForUser(string token, HttpStatusCode expectedCode = HttpStatusCode.Created)
+        {
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            HttpRequestMessage request = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Post,
+                RequestUri = new System.Uri($"{UrlsSwagger.Users}/photo"),
+                //Content = new StringContent
+            };
+            client.
+            HttpResponseMessage message = client.Send()
+        }
     }
 }

@@ -98,6 +98,15 @@ namespace AutoTestsSelenium.StepDefinitions
             }
         }
 
+        [Given(@"Users photo is ""([^""]*)""")]
+        public void GivenUsersPhotoIs(string photoName, Table table)
+        {
+            SignInRequest signIn = table.CreateInstance<SignInRequest>();
+            string token = _authClient.AuthorizeUser(signIn);
+
+        }
+
+
         private int GetGroupIdByName(string groupName)
         {
             int groupId = 0;
