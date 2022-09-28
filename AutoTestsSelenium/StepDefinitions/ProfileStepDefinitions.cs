@@ -3,15 +3,15 @@ namespace AutoTestsSelenium.StepDefinitions
     [Binding]
     public class ProfileStepDefinitions
     {
-        [When(@"Click button settings")]
-        public void WhenClickButtonSettings()
+        [When(@"Open profile page by click on user name")]
+        public void WhenOpenProfilePageByClickOnUserName()
         {
             var page = new ProfilePage();
-            page.ClickSettingsButton();
+            page.ClickNameButton();
         }
 
-        [When(@"Fills data")]
-        public void WhenFillsData(Table table)
+        [When(@"Fills data profile")]
+        public void WhenFillsDataProfile(Table table)
         {
             var data = table.CreateInstance<RegistrationModel>();
             var page = new ProfilePage();
@@ -23,11 +23,49 @@ namespace AutoTestsSelenium.StepDefinitions
             page.EnterPhone(data.PhoneNumber);
         }
 
-        [When(@"Click button save")]
-        public void WhenClickButtonSave()
+        [When(@"Fills password data")]
+        public void WhenFillsPasswordData(Table table)
+        {
+            var data = table.CreateInstance<RegistrationModel>();
+            var page = new ChandingPasswordPage();
+            page.EnterOldPassword(data.OldPassword);
+            page.EnterNewPassword(data.Password);
+            page.EnterRepeatNewPassword(data.RepeatPassword);
+        }
+
+        [When(@"Click button save profile changes")]
+        public void WhenClickButtonSave«rofile—hanges()
         {
             var page = new ProfilePage();
             page.ClickSaveButton();
+        }
+
+        [When(@"Click button save password changes")]
+        public void WhenClickButtonSavePasswordChanges()
+        {
+            var page = new ChandingPasswordPage();
+            page.ClickSaveButton();
+        }
+
+        [When(@"Click editing password")]
+        public void WhenClickEditingPassword()
+        {
+            var page = new ProfilePage();
+            page.ClickPasswordEditElement();
+        }
+
+        [When(@"Click button cancels profile changes")]
+        public void WhenClickButtonCancelsProfileChanges()
+        {
+            var page = new ProfilePage();
+            page.ClickCancelButton();
+        }
+
+        [When(@"Click button cancels password changes in profile")]
+        public void WhenClickButtonCancelsPasswordChangesInProfile()
+        {
+            var page = new ChandingPasswordPage();
+            page.ClickCancelButton();
         }
 
         [When(@"Refresh page")]

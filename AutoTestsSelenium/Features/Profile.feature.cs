@@ -87,6 +87,7 @@ namespace AutoTestsSelenium.Features
         [Xunit.TraitAttribute("Category", "tutor")]
         [Xunit.TraitAttribute("Category", "methodist")]
         [Xunit.TraitAttribute("Category", "student")]
+        [Xunit.TraitAttribute("Category", "profile")]
         [Xunit.InlineDataAttribute("isi@gmail.com", "11345578", new string[0])]
         [Xunit.InlineDataAttribute("maks@gmail.com", "22345678", new string[0])]
         [Xunit.InlineDataAttribute("elisey@gmail.com", "13345678", new string[0])]
@@ -97,7 +98,8 @@ namespace AutoTestsSelenium.Features
                     "teacher",
                     "tutor",
                     "methodist",
-                    "student"};
+                    "student",
+                    "profile"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -193,7 +195,7 @@ testRunner.And("Open DevEdu web site https://piter-education.ru:7074/", ((string
 testRunner.And("Authorize user in service", ((string)(null)), table83, "And ");
 #line hidden
 #line 17
-testRunner.When("Click button settings", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("Open profile page by click on user name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table84 = new TechTalk.SpecFlow.Table(new string[] {
                             "LastName",
@@ -210,10 +212,10 @@ testRunner.When("Click button settings", ((string)(null)), ((TechTalk.SpecFlow.T
                             "89514713285",
                             "https://github.com/"});
 #line 18
-testRunner.And("Fills data", ((string)(null)), table84, "And ");
+testRunner.And("Fills data profile", ((string)(null)), table84, "And ");
 #line hidden
 #line 21
-testRunner.And("Click button save", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("Click button save profile changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 22
 testRunner.And("Refresh page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -236,6 +238,334 @@ testRunner.And("Refresh page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null
                             "https://github.com/"});
 #line 23
 testRunner.Then("Profile data must match the changed ones", ((string)(null)), table85, "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Student changes password in profile")]
+        [Xunit.TraitAttribute("FeatureTitle", "Profile")]
+        [Xunit.TraitAttribute("Description", "Student changes password in profile")]
+        [Xunit.TraitAttribute("Category", "student")]
+        [Xunit.TraitAttribute("Category", "profile")]
+        public void StudentChangesPasswordInProfile()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "student",
+                    "profile"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Student changes password in profile", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 34
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table86 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "Patronymic",
+                            "Email",
+                            "Username",
+                            "Password",
+                            "City",
+                            "BirthDate",
+                            "GitHubAccount",
+                            "PhoneNumber",
+                            "Role"});
+                table86.AddRow(new string[] {
+                            "Isabella",
+                            "Abramson",
+                            "string",
+                            "isi@gmail.com",
+                            "Bella",
+                            "11345578",
+                            "SaintPetersburg",
+                            "22.05.2001",
+                            "string",
+                            "89514551247",
+                            "Student"});
+#line 35
+testRunner.Given("Register new users with roles", ((string)(null)), table86, "Given ");
+#line hidden
+#line 38
+testRunner.And("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table87 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Email",
+                            "Password"});
+                table87.AddRow(new string[] {
+                            "isi@gmail.com",
+                            "11345578"});
+#line 39
+testRunner.And("Authorize user in service as student", ((string)(null)), table87, "And ");
+#line hidden
+#line 42
+testRunner.When("Open profile page by click on user name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 43
+testRunner.And("Click editing password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table88 = new TechTalk.SpecFlow.Table(new string[] {
+                            "OldPassword",
+                            "Password",
+                            "RepeatPassword"});
+                table88.AddRow(new string[] {
+                            "11345578",
+                            "77777777",
+                            "77777777"});
+#line 44
+testRunner.And("Fills password data", ((string)(null)), table88, "And ");
+#line hidden
+#line 47
+testRunner.And("Click button save password changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 48
+testRunner.And("Student logged out", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 49
+testRunner.And("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 50
+testRunner.And("Enter email \"isi@gmail.com\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 51
+testRunner.And("Enter password \"77777777\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 52
+testRunner.And("Click button Enter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 53
+testRunner.Then("Text with name on sidebar should be \"Abramson Isabella\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 54
+testRunner.And("Text with role on sidebar should be \"Студент\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 55
+testRunner.And("The notification page should open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Student cancels profile editing")]
+        [Xunit.TraitAttribute("FeatureTitle", "Profile")]
+        [Xunit.TraitAttribute("Description", "Student cancels profile editing")]
+        [Xunit.TraitAttribute("Category", "student")]
+        [Xunit.TraitAttribute("Category", "profile")]
+        public void StudentCancelsProfileEditing()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "student",
+                    "profile"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Student cancels profile editing", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 58
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table89 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "Patronymic",
+                            "Email",
+                            "Username",
+                            "Password",
+                            "City",
+                            "BirthDate",
+                            "GitHubAccount",
+                            "PhoneNumber",
+                            "Role"});
+                table89.AddRow(new string[] {
+                            "Isabella",
+                            "Abramson",
+                            "string",
+                            "isi@gmail.com",
+                            "Bella",
+                            "11345578",
+                            "SaintPetersburg",
+                            "22.05.2001",
+                            "string",
+                            "89514551247",
+                            "Student"});
+#line 59
+testRunner.Given("Register new users with roles", ((string)(null)), table89, "Given ");
+#line hidden
+#line 62
+testRunner.And("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table90 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Email",
+                            "Password"});
+                table90.AddRow(new string[] {
+                            "isi@gmail.com",
+                            "11345578"});
+#line 63
+testRunner.And("Authorize user in service as student", ((string)(null)), table90, "And ");
+#line hidden
+#line 66
+testRunner.When("Open profile page by click on user name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table91 = new TechTalk.SpecFlow.Table(new string[] {
+                            "LastName",
+                            "FirstName",
+                            "Patronymic",
+                            "BirthDate",
+                            "PhoneNumber",
+                            "GitHubAccount"});
+                table91.AddRow(new string[] {
+                            "Родригес",
+                            "Бендер",
+                            "Блестящийзад",
+                            "01.01.2022",
+                            "89514713285",
+                            "https://github.com/"});
+#line 67
+testRunner.And("Fills data profile", ((string)(null)), table91, "And ");
+#line hidden
+#line 70
+testRunner.And("Click button cancels profile changes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 71
+testRunner.And("Refresh page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table92 = new TechTalk.SpecFlow.Table(new string[] {
+                            "LastName",
+                            "FirstName",
+                            "Patronymic",
+                            "BirthDate",
+                            "Email",
+                            "PhoneNumber",
+                            "GitHubAccount"});
+                table92.AddRow(new string[] {
+                            "Abramson",
+                            "Isabella",
+                            "string",
+                            "22.05.2001",
+                            "isi@gmail.com",
+                            "89514551247",
+                            "string"});
+#line 72
+testRunner.Then("Profile data must match the changed ones", ((string)(null)), table92, "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="Student cancels password changes in profile")]
+        [Xunit.TraitAttribute("FeatureTitle", "Profile")]
+        [Xunit.TraitAttribute("Description", "Student cancels password changes in profile")]
+        [Xunit.TraitAttribute("Category", "student")]
+        [Xunit.TraitAttribute("Category", "profile")]
+        public void StudentCancelsPasswordChangesInProfile()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "student",
+                    "profile"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Student cancels password changes in profile", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 77
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table93 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "Patronymic",
+                            "Email",
+                            "Username",
+                            "Password",
+                            "City",
+                            "BirthDate",
+                            "GitHubAccount",
+                            "PhoneNumber",
+                            "Role"});
+                table93.AddRow(new string[] {
+                            "Isabella",
+                            "Abramson",
+                            "string",
+                            "isi@gmail.com",
+                            "Bella",
+                            "11345578",
+                            "SaintPetersburg",
+                            "22.05.2001",
+                            "string",
+                            "89514551247",
+                            "Student"});
+#line 78
+testRunner.Given("Register new users with roles", ((string)(null)), table93, "Given ");
+#line hidden
+#line 81
+testRunner.And("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table94 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Email",
+                            "Password"});
+                table94.AddRow(new string[] {
+                            "isi@gmail.com",
+                            "11345578"});
+#line 82
+testRunner.And("Authorize user in service as student", ((string)(null)), table94, "And ");
+#line hidden
+#line 85
+testRunner.When("Open profile page by click on user name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 86
+testRunner.And("Click editing password", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table95 = new TechTalk.SpecFlow.Table(new string[] {
+                            "OldPassword",
+                            "Password",
+                            "RepeatPassword"});
+                table95.AddRow(new string[] {
+                            "11345578",
+                            "77777777",
+                            "77777777"});
+#line 87
+testRunner.And("Fills password data", ((string)(null)), table95, "And ");
+#line hidden
+#line 90
+testRunner.And("Click button cancels password changes in profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 91
+testRunner.And("Student logged out", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 92
+testRunner.And("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 93
+testRunner.And("Enter email \"isi@gmail.com\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 94
+testRunner.And("Enter password \"11345578\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 95
+testRunner.And("Click button Enter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 96
+testRunner.Then("Text with name on sidebar should be \"Abramson Isabella\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 97
+testRunner.And("Text with role on sidebar should be \"Студент\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 98
+testRunner.And("The notification page should open", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
