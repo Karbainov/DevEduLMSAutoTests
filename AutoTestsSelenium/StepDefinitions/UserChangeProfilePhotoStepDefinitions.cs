@@ -22,6 +22,7 @@ namespace AutoTestsSelenium.StepDefinitions
             profilePage.ClickOnProfilePhoto();
 
         }
+
         [When(@"Add photo ""([^""]*)""")]
         public void WhenAddNewPhoto(string photoName)
         {
@@ -55,7 +56,6 @@ namespace AutoTestsSelenium.StepDefinitions
             Thread.Sleep(1000);//upload waiting
             page.RefreshPage();
         }
-
 
         [Then(@"User should see his photo")]
         public void ThenUserShouldSeeHisPhoto()
