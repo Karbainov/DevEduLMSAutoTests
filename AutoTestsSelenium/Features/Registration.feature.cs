@@ -978,7 +978,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("Click on register button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 174
- testRunner.Then("User should see the modal window with text \"Данный Email уже зарегистрирован\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("User should see the modal window with text \"Чот наебнулось(\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
