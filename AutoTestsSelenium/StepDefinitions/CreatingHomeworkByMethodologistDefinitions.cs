@@ -3,6 +3,8 @@ namespace AutoTestsSelenium.StepDefinitions
     [Binding]
     public class CreatingHomeworkByMethodologistDefinitions
     {
+        private IWebDriver _driver;
+
         [When(@"Methodist click button add task")]
         public void WhenMethodistClickButtonAddTask()
         {

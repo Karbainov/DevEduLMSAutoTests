@@ -42,7 +42,7 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             HomeworksDraftTeacherPage homeworksDraftTeacherPage;
             homeworksDraftTeacherPage = new HomeworksDraftTeacherPage();
-            homeworksDraftTeacherPage.GetNameHomework(nameHomework);
+            homeworksDraftTeacherPage.ClickLinkHomeworkByName(nameHomework);
             HomeworksTeacherPage homeworksTeacherPage;
             homeworksTeacherPage = new HomeworksTeacherPage();
             homeworksTeacherPage.ClickHomeworksButton();
