@@ -84,14 +84,14 @@ namespace AutoTestsSelenium.StepDefinitions
             string attributeName = "value";
             RegistrationModel actualUser = new RegistrationModel()
             {
-                LastName = profilePage.TextBoxEnterLastName.GetAttribute(attributeName),
-                FirstName = profilePage.TextBoxEnterFirstName.GetAttribute(attributeName),
-                Patronymic = profilePage.TextBoxEnterPatronymic.GetAttribute(attributeName), 
-                BirthDate = profilePage.TextBoxEnterBirthDate.GetAttribute(attributeName),
+                LastName = profilePage.TextBoxLastName.GetAttribute(attributeName),
+                FirstName = profilePage.TextBoxFirstName.GetAttribute(attributeName),
+                Patronymic = profilePage.TextBoxPatronymic.GetAttribute(attributeName), 
+                BirthDate = profilePage.TextBoxBirthDate.GetAttribute(attributeName),
                 Password = _user.Password,
                 RepeatPassword = _user.RepeatPassword,
                 Email = profilePage.TextBoxEmail.GetAttribute(attributeName), 
-                PhoneNumber = profilePage.TextBoxEnterPhone.GetAttribute(attributeName)
+                PhoneNumber = profilePage.TextBoxPhone.GetAttribute(attributeName)
             };
             Assert.Equivalent(_user, actualUser);
         }
