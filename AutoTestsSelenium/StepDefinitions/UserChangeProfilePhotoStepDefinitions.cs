@@ -8,25 +8,25 @@ namespace AutoTestsSelenium.StepDefinitions
 
         private string _profilePhotoLink;
 
-        [When(@"Open profile page")]
+        [When(@"Open profile page by click on users name")]
         public void WhenOpenProfilePage()
         {
-            ProfilePage profilePage = new ProfilePage();
-            profilePage.ClickNameButton();
+            var page = new ProfilePage();
+            page.ClickNameButton();
         }
 
         [When(@"Click on photo")]
         public void WhenClickOnPhoto()
         {
-            ProfilePage profilePage = new ProfilePage();
-            profilePage.ClickOnProfilePhoto();
+            var page = new ProfilePage();
+            page.ClickOnProfilePhoto();
 
         }
 
         [When(@"Add photo ""([^""]*)""")]
         public void WhenAddNewPhoto(string photoName)
         {
-            ProfilePage page = new ProfilePage();
+            var page = new ProfilePage();
             string scrypt = "document.querySelector('#root > div.modal-background > div > div.buttons-container > label > input').setAttribute('class','display')";
             var driver = SingleWebDriver.GetInstance();
             driver.ExecuteJavaScript(scrypt);
@@ -38,21 +38,21 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Click save photo")]
         public void WhenClickSavePhoto()
         {
-            ProfilePage page = new ProfilePage();
+            var page = new ProfilePage();
             page.ClickButtonSavePhoto();
         }
 
         [Then(@"Modal window should disapier")]
         public void ThenModalWindowShouldDisapier()
         {
-            ProfilePage page = new ProfilePage();
+            var page = new ProfilePage();
             Assert.True(page.IsModalWindowPhotoDisapier());
         }
 
         [When(@"Refresh page")]
         public void WhenRefreshPage()
         {
-            ProfilePage page = new ProfilePage();
+            var page = new ProfilePage();
             Thread.Sleep(1000);//upload waiting
             page.RefreshPage();
         }
@@ -60,7 +60,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [Then(@"User should see his photo")]
         public void ThenUserShouldSeeHisPhoto()
         {
-            ProfilePage page = new ProfilePage();
+            var page = new ProfilePage();
             Thread.Sleep(1000);//download waiting
             var photos = page.Photos;
             int expectedPhotosCount = 2;
@@ -78,14 +78,14 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Click cancel button")]
         public void WhenClickCancelButton()
         {
-            ProfilePage page = new ProfilePage();
+            var page = new ProfilePage();
             page.ClickButtonCancelAddPhoto();
         }
 
         [Then(@"Photo should not appear")]
         public void ThenPhotoShouldNotAppear()
         {
-            ProfilePage page = new ProfilePage();
+            var page = new ProfilePage();
             var photos = page.Photos;
             Assert.Empty(photos);
         }
@@ -93,7 +93,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [Then(@"User should see the updated photo")]
         public void ThenUserShouldSeeTheUpdatedPhoto()
         {
-            ProfilePage page = new ProfilePage();
+            var page = new ProfilePage();
             Thread.Sleep(1000);//download waiting
             var photos = page.Photos;
             int expectedPhotosCount = 2;

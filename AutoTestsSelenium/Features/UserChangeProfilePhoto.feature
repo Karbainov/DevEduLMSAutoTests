@@ -5,11 +5,11 @@ Scenario: User set photo in his profile
 	Given Register new users with roles
 	| FirstName | LastName   | Patronymic | Email             | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 	| Ilya1     | Baikov     | string     | ilya1@student.com | ilya1    | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student |
-	When Open DevEdu web site https://piter-education.ru:7074/
+	And Open DevEdu web site https://piter-education.ru:7074/
 	And Authorize user in service
 	| Email             | Password |
 	| ilya1@student.com | password |
-	And Open profile page
+	When Open profile page by click on users name
 	And Click on photo
 	And Add photo "<PhotoName>"
 	And Click save photo
@@ -26,11 +26,11 @@ Scenario: User cancel adding photo
 	Given Register new users with roles
 	| FirstName | LastName   | Patronymic | Email             | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 	| Ilya1     | Baikov     | string     | ilya1@student.com | ilya1    | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student |
-	When Open DevEdu web site https://piter-education.ru:7074/
+	And Open DevEdu web site https://piter-education.ru:7074/
 	And Authorize user in service
 	| Email             | Password |
 	| ilya1@student.com | password |
-	And Open profile page
+	When Open profile page by click on users name
 	And Click on photo
 	And Add photo "SmallPhoto.jpg"
 	And Click cancel button
@@ -45,7 +45,7 @@ Scenario: User change photo in profile
 	And Authorize user in service
 	| Email             | Password |
 	| ilya1@student.com | password |
-	When Open profile page
+	When Open profile page by click on users name
 	And Click on photo
 	And Add photo "SmallPhoto.jpg"
 	And Click save photo
