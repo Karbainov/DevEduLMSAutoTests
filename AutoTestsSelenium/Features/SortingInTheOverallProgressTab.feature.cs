@@ -584,14 +584,38 @@ this.ScenarioInitialize(scenarioInfo);
 #line 99
  testRunner.When("Teacher click ascending sorting in a column \"Покрыть\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
+                TechTalk.SpecFlow.Table table118 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FukkName",
+                            "Result"});
+                table118.AddRow(new string[] {
+                            "Барабан Second",
+                            "Не сдано"});
+                table118.AddRow(new string[] {
+                            "Ворона Амеба",
+                            "Проверить"});
+                table118.AddRow(new string[] {
+                            "Абрикос Филя",
+                            "Сдано с опозданием"});
 #line 100
- testRunner.Then("Teacher should see list after sort on ABC", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Teacher should see list after sort on ABC", ((string)(null)), table118, "Then ");
 #line hidden
-#line 101
+#line 105
  testRunner.And("Teacher click descending sorting in a column \"Покрыть\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 102
- testRunner.Then("Teacher should see list after sort on CBA", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                TechTalk.SpecFlow.Table table119 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FukkName",
+                            "Result"});
+                table119.AddRow(new string[] {
+                            "Абрикос Филя",
+                            "Сдано с опозданием"});
+                table119.AddRow(new string[] {
+                            "Ворона Амеба",
+                            "Проверить"});
+                table119.AddRow(new string[] {
+                            "Барабан Second",
+                            "Не сдано"});
+#line 106
+ testRunner.Then("Teacher should see list after sort on CBA", ((string)(null)), table119, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

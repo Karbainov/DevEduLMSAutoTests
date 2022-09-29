@@ -98,5 +98,13 @@ Scenario: Teacher sorts students by status
 	And Teacher open tab General Progress	
 	When Teacher click ascending sorting in a column "Покрыть"
 	Then Teacher should see list after sort on ABC
+	| FukkName       | Result             |
+	| Барабан Second | Не сдано           |
+	| Ворона Амеба   | Проверить          |
+	| Абрикос Филя   | Сдано с опозданием |
 	And Teacher click descending sorting in a column "Покрыть"
 	Then Teacher should see list after sort on CBA
+	| FukkName       | Result             |
+	| Абрикос Филя   | Сдано с опозданием |
+	| Ворона Амеба   | Проверить          |
+	| Барабан Second | Не сдано           |
