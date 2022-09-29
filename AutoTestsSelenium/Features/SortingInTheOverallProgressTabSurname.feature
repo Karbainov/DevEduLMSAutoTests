@@ -48,6 +48,7 @@ Scenario: Sort by surname
 	| Email             | Password |
 	| witch@teacher.com | password |
 	Given Teacher go to common progress
+	And Choose group "BlaBla"
 	When Teacher sort students by surname
 	Then Students should sort by surname
 	| FullName            | Result   |

@@ -9,7 +9,6 @@
         public List<IWebElement> AllResults => _driver.FindElements(By.XPath($"//div[@class='scroll-content-div']/div[2]/descendant::div[starts-with(@class,'one-block')]")).ToList();
         public IWebElement BottomScrollBar => _driver.FindElement(By.XPath($"//div[contains(@class,'swiper-ini')][2]//div[@class='swiper-wrapper']"));
         public IWebElement ButtonSortBySurname => _driver.FindElement(By.XPath($"//button[text()='Сортировать по фамилии']"));
-
         public GeneralStudentsProgressTeacherPage()
         {
         }
@@ -24,6 +23,11 @@
             return _driver.FindElement(By.XPath($"//*[text()='{groupName}']/.."));
         }
 
+        public void ClickDesiredGroup(string groupName)
+        {
+            GetDesiredGroupByName(groupName).Click();
+        }
+
         public void ClickOnBottomScrollBar()
         {
             BottomScrollBar.Click();
@@ -36,12 +40,18 @@
 
         public List<IWebElement> GetAllResults()
         {
-            return _driver.FindElements(By.XPath($"//*[@class='one-block block-column']")).ToList();
+            return _driver.FindElements(By.XPath($"//*[@class='one-block block-column']/b")).ToList();
         }
 
         public List<IWebElement> GetAllFullNames()
         {
-            return _driver.FindElements(By.XPath($"//*[@class='one-block students-list']")).ToList();
+            List<IWebElement> names = _driver.FindElements(By.XPath($"//*[@class='one-block students-list']")).ToList();
+            List<IWebElement> namesWithouTitles = new List<IWebElement>();
+            for (int i=1; i<names.Count; i++)
+            {
+                namesWithouTitles.Add(names[i]);
+            }
+            return namesWithouTitles;
         }
     }
 }

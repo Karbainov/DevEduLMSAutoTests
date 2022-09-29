@@ -310,6 +310,9 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("Teacher go to common progress", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 51
+ testRunner.And("Choose group \"BlaBla\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 52
  testRunner.When("Teacher sort students by surname", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table104 = new TechTalk.SpecFlow.Table(new string[] {
@@ -330,7 +333,7 @@ this.ScenarioInitialize(scenarioInfo);
                 table104.AddRow(new string[] {
                             "Gennadiy Yula",
                             "Не сдано"});
-#line 52
+#line 53
  testRunner.Then("Students should sort by surname", ((string)(null)), table104, "Then ");
 #line hidden
             }

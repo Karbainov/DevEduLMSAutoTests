@@ -1,4 +1,5 @@
 using AutoTestsSelenium.PageObjects;
+using OpenQA.Selenium.Support.Extensions;
 using TechTalk.SpecFlow.Assist;
 
 namespace AutoTestsSelenium.StepDefinitions
@@ -13,6 +14,13 @@ namespace AutoTestsSelenium.StepDefinitions
             generalProgress.ClickGeneralProgressButton();
         }
 
+        [Given(@"Choose group ""([^""]*)""")]
+        public void GivenChooseGroup(string groupName)
+        {
+            var generalProgress = new GeneralStudentsProgressTeacherPage();
+            generalProgress.ClickDesiredGroup(groupName);
+        }
+
         [When(@"Teacher sort students by surname")]
         public void WhenTeacherSortStudentsBySurname()
         {
@@ -23,6 +31,8 @@ namespace AutoTestsSelenium.StepDefinitions
         [Then(@"Students should sort by surname")]
         public void ThenStudentsShouldSortBySurname(Table table)
         {
+            var driver = SingleWebDriver.GetInstance();
+            driver.ExecuteJavaScript("document.body.style.zoom='0.5'");
             var generalProgress = new GeneralStudentsProgressTeacherPage();
             List<StudentsHomeworkResultModel> studentsResults = table.CreateSet<StudentsHomeworkResultModel>().ToList();
             List<string> expected = new List<string>();
@@ -46,7 +56,6 @@ namespace AutoTestsSelenium.StepDefinitions
                 studentResult.Add(result.Text);
             }
             Assert.Equal(expected, studentResult);
-
         }
     }
 }
