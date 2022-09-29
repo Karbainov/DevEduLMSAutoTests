@@ -83,7 +83,7 @@ namespace AutoTestsSelenium.StepDefinitions
                 Patronymic = profilePage.TextBoxEnterPatronymic.GetAttribute(attributeName), 
                 BirthDate = profilePage.TextBoxEnterBirthDate.GetAttribute(attributeName),
                 Email = profilePage.TextBoxEmail.GetAttribute(attributeName), 
-                PhoneNumber = profilePage.TextBoxEnterPhone.GetAttribute(attributeName)
+                PhoneNumber = profilePage.TextBoxPhone.GetAttribute(attributeName)
             };
             Assert.Equivalent(expectedUser, actualUser);
         }
