@@ -1,5 +1,7 @@
 ﻿using DevEduLMSAutoTests.API.Clients;
 using DevEduLMSAutoTests.API.Support.Models.Response;
+using System.Text.RegularExpressions;
+using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
 namespace AutoTestsSelenium.StepDefinitions
@@ -12,6 +14,7 @@ namespace AutoTestsSelenium.StepDefinitions
         private UsersClient _usersClient;
         private TasksClient _tasksClient;
         private HomeworksClient _homeworksClient;
+        private StudentHomeworksClient _studentHomeworksClient;
         private string _adminsToken;
 
         public Preconditions()
@@ -21,6 +24,7 @@ namespace AutoTestsSelenium.StepDefinitions
             _usersClient = new UsersClient();
             _tasksClient = new TasksClient();
             _homeworksClient = new HomeworksClient();
+            _studentHomeworksClient = new StudentHomeworksClient();
             _adminsToken = _authClient.AuthorizeUser(OptionsSwagger.AdminSignIn);
         }
 
@@ -127,18 +131,66 @@ namespace AutoTestsSelenium.StepDefinitions
             }
         }
 
-        [Given(@"Send students homework for group ""([^""]*)"" task ""([^""]*)""")]
-        public void GivenSendStudentsHomework(string groupName, string taskName, Table table)
+        [Given(@"Send homework for group ""([^""]*)"" task ""([^""]*)""")]
+        public void GivenSendHomeworkByStudent(string groupName, string taskName, Table table)
         {
             int homeworkId = GetHomeworkIdByGroupId(groupName, taskName);
-            List<SignInRequest> students = table.CreateSet<SignInRequest>().ToList();
-            foreach (var student in students)
+            List<SignInModelWithStudentHomeworkRequest> studentsHomeworks = table.CreateSet<SignInModelWithStudentHomeworkRequest>().ToList();
+            foreach (var student in studentsHomeworks)
             {
-                
-                _authClient.AuthorizeUser(Email, student.Password);
+                SignInRequest studentSignIn = student.CreateSignInRequest(student);
+                string token = _authClient.AuthorizeUser(studentSignIn);
+                AddHomeworkByStudentRequest homeworkRequest = student.CreateAddHomeworkByStudentRequest(student);
+                homeworkRequest.HomeworkId = homeworkId;
+                _studentHomeworksClient.AddHomework(homeworkRequest, token);
             }
         }
 
+        [Given(@"Accept (.*) homeworks and decline (.*) in group ""([^""]*)"" task ""([^""]*)""")]
+        public void GivenAcceptAndDeclineHomeworks(int acceptAmount, int declineAmount, string groupName, string taskName, Table table)
+        {
+            int studentHomeworkId = 0;
+            List<RegistationModelWithRole> students = table.CreateSet<RegistationModelWithRole>().ToList();
+            for (int i=0; i < acceptAmount; i++)
+            {
+                foreach (var student in students)
+                {
+                    studentHomeworkId = GetStudentHomeworkIdByUserIdAndHomeworkId(groupName, taskName, student.FirstName, student.LastName);
+                    _studentHomeworksClient.Approve(studentHomeworkId, _adminsToken);
+                }
+            }
+            for (int i= acceptAmount-1; i< acceptAmount+declineAmount; i++)
+            {
+                foreach (var student in students)
+                {
+                    studentHomeworkId = GetStudentHomeworkIdByUserIdAndHomeworkId(groupName, taskName, student.FirstName, student.LastName);
+                    _studentHomeworksClient.DeclineHomework(studentHomeworkId, _adminsToken);
+                }
+            }
+        }
+        
+        private int GetStudentHomeworkIdByUserIdAndHomeworkId(string groupName, string taskName, string firstName, string lastName)
+        {
+            int homeworkId = GetHomeworkIdByGroupId(groupName, taskName);
+            int studentHomeworkId = 0;
+            int userId = GetUsersIdByFullName(firstName, lastName);
+            List<GetStudentHomeworkByUserIdResponse> studentsHomeworks = _studentHomeworksClient.GetStudentHomeworkByStudentId(userId, _adminsToken);
+            foreach (var studentHomework in studentsHomeworks)
+            {
+                if (studentHomework.Homework.TaskInHW.Name == taskName && studentHomework.Homework.Id == homeworkId)
+                {
+                    studentHomeworkId = studentHomework.Id;
+                }
+            }
+            if (studentHomeworkId == 0)
+            {
+                throw new ArgumentOutOfRangeException("There is no searching student homework");
+            }
+            else
+            {
+                return studentHomeworkId;
+            }
+        }
         private int GetHomeworkIdByGroupId(string groupName, string taskName)
         {
             int homeworkId = 0;
@@ -182,7 +234,7 @@ namespace AutoTestsSelenium.StepDefinitions
                 return groupId;
             }
         }
-        
+
         private int GetTaskIdByName(string taskName)
         {
             int taskId = 0;
@@ -225,5 +277,5 @@ namespace AutoTestsSelenium.StepDefinitions
                 return userId;
             }
         }
-    }
+    }   
 }

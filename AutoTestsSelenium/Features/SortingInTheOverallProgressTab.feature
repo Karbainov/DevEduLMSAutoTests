@@ -29,14 +29,20 @@ Scenario: Sort by surname
 	And Add new homeworks for group "BlaBla" task "Apple"
 	| StartDate  | EndDate    |
     | 01.10.2022 | 25.10.2022 |
-	Given Send students homework for group "BlaBla" task "Apple"
-	| Email              | Password | String         |
-	| kroko@gmail.com    | password | link@razdva.ru |
-	| bukin@student.com  | password | link@razdva.ru |
-	| golub@student.com  | password | link@razdva.ru |
-	| yula@student.com   | password | link@razdva.ru |
-	| kraska@student.com | password | link@razdva.ru |
-	Given Accept three homeworks and decline two
+	Given Students authorize and send homework for group "BlaBla" task "Apple"
+	| Email              | Password | HomeworkId | Answer         |
+	| kroko@gmail.com    | password |            | link@razdva.ru |
+	| bukin@student.com  | password |            | link@razdva.ru |
+	| golub@student.com  | password |            | link@razdva.ru |
+	| yula@student.com   | password |            | link@razdva.ru |
+	| kraska@student.com | password |            | link@razdva.ru |
+	Given Accept 3 homeworks and decline 2 in group "BlaBla" task "Apple"
+	| FirstName | LastName   |
+	| Gennadiy  | Krokodilov |
+	| Gennadiy  | Bukin      |
+	| Gennadiy  | Golub      |
+	| Gennadiy  | Yula       |
+	| Gennadiy  | Akril      |
 	Given Open DevEdu web site https://piter-education.ru:7074/
 	Given Authorize user in service as teacher
 	| Email             | Password |
