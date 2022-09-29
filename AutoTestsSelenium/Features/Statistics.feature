@@ -23,9 +23,9 @@ Scenario: Teacher chek students homeworks results
 	And Authorize user in service as teacher
 	| Email             | Password |
 	| anton@teacher.com | password |
-	And teacher create new homework for group "Group 1"
+	And Teacher create new homework for group "Group 1"
 	| Name  | Description         | Link               | StartDate  | EndDate    |
-	| Lists | Make your own lists | https://google.com | 26.09.2022 | 09.10.2022 |
+	| Lists | Make your own lists | https://google.com | 28.09.2022 | 09.10.2022 |
 	And Teacher logged out
 	And Students did their homework "Lists"
 	| Email             | Password |
