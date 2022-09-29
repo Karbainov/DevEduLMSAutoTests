@@ -43,7 +43,7 @@
 
         public void ClickDesiredCourseByName(string courseName)
         {
-            if (courseName != "")
+            if (courseName != null)
             {
                 WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(1));
                 webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//li[text()='{courseName}']"))).Click();
@@ -58,9 +58,9 @@
 
         public void ChooseTeachers(List<string> fullNamesOfTeachers)
         {
-            foreach (var fullNameOfTeacher in fullNamesOfTeachers)
+            if (fullNamesOfTeachers != null)
             {
-                if (fullNameOfTeacher != "")
+                foreach (var fullNameOfTeacher in fullNamesOfTeachers)
                 {
                     GetDesiredTeacherByName(fullNameOfTeacher).Click();
                 }
@@ -75,9 +75,9 @@
 
         public void ChooseTutors(List<string> fullNamesOfTutors)
         {
-            foreach (var fullNameOfTutor in fullNamesOfTutors)
+            if (fullNamesOfTutors != null)
             {
-                if (fullNameOfTutor != "")
+                foreach (var fullNameOfTutor in fullNamesOfTutors)
                 {
                     GetDesiredTutorByName(fullNameOfTutor).Click();
                 }
