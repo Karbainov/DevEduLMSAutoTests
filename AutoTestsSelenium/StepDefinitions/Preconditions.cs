@@ -1,8 +1,5 @@
 ﻿using DevEduLMSAutoTests.API.Clients;
 using DevEduLMSAutoTests.API.Support.Models.Response;
-using System.Text.RegularExpressions;
-using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Assist;
 
 namespace AutoTestsSelenium.StepDefinitions
 {

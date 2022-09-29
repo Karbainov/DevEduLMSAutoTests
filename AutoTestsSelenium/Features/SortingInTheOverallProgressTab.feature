@@ -50,3 +50,9 @@ Scenario: Sort by surname
 	Given Teacher go to common progress
 	When Teacher sort students by surname
 	Then Students should sort by surname
+	| Name                | Result   |
+	| Gennadiy Akril      | Не сдано |
+	| Gennadiy Bukin      | Сдано    |
+	| Gennadiy Golub      | Сдано    |
+	| Gennadiy Krokodilov | Cдано    |
+	| Gennadiy Yula       | Не сдано |
