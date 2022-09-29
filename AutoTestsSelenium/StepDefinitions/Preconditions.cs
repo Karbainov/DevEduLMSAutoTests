@@ -98,6 +98,17 @@ namespace AutoTestsSelenium.StepDefinitions
             }
         }
 
+        [Given(@"Users photo is ""([^""]*)""")]
+        public void GivenUsersPhotoIs(string photoName, Table table)
+        {
+            SignInRequest signIn = table.CreateInstance<SignInRequest>();
+            string token = _authClient.AuthorizeUser(signIn);
+            string filePath = Directory.GetCurrentDirectory();
+            filePath = filePath.Replace("bin\\Debug\\net6.0", $"Support\\UsersPhotos\\{photoName}");
+            _usersClient.AddPhotoForUser(token, filePath);
+        }
+
+
         private int GetGroupIdByName(string groupName)
         {
             int groupId = 0;
