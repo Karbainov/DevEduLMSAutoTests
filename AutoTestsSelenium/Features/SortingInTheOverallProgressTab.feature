@@ -36,13 +36,13 @@ Scenario: Sort by surname
 	| golub@student.com  | password |            | link@razdva.ru |
 	| yula@student.com   | password |            | link@razdva.ru |
 	| kraska@student.com | password |            | link@razdva.ru |
-	#Given Check homeworks in group "BlaBla" task "Apple"
-	#| FirstName | LastName   | Result   |
-	#| Gennadiy  | Krokodilov | Сдано    |
-	#| Gennadiy  | Bukin      | Сдано    |
-	#| Gennadiy  | Golub      | Сдано    |
-	#| Gennadiy  | Yula       | Не сдано |
-	#| Gennadiy  | Akril      | Не сдано |
+	Given Check homeworks in group "BlaBla" task "Apple"
+	| FirstName | LastName   | Result   |
+	| Gennadiy  | Krokodilov | Сдано    |
+	| Gennadiy  | Bukin      | Сдано    |
+	| Gennadiy  | Golub      | Сдано    |
+	| Gennadiy  | Yula       | Не сдано |
+	| Gennadiy  | Akril      | Не сдано |
 	Given Open DevEdu web site https://piter-education.ru:7074/
 	Given Authorize user in service as teacher
 	| Email             | Password |
