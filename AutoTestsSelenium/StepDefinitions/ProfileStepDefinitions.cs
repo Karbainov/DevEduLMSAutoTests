@@ -34,7 +34,7 @@ namespace AutoTestsSelenium.StepDefinitions
         }
 
         [When(@"Click button save profile changes")]
-        public void WhenClickButtonSave«rofile—hanges()
+        public void WhenClickButtonSaveProfileChanges()
         {
             var page = new ProfilePage();
             page.ClickSaveButton();
@@ -51,7 +51,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenClickEditingPassword()
         {
             var page = new ProfilePage();
-            page.ClickPasswordEditElement();
+            page.ClickChangePasswordButton();
         }
 
         [When(@"Click button cancels profile changes")]

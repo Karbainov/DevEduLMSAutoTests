@@ -4,7 +4,7 @@
     {
         private const string PageUrl = $"{Urls.Host}/settings";
         public IWebElement TextBoxEmail => _driver.FindElement(By.XPath($"//*[text()='Email']/input"));
-        public IWebElement EditElementPassword => _driver.FindElement(By.XPath($"//*[@href='/change-password']"));
+        public IWebElement ButtonChangePassword => _driver.FindElement(By.XPath($"//*[@href='/change-password']"));
         public IWebElement TextBoxLastName => _driver.FindElement(By.XPath($"//*[text()='Фамилия']/input"));
         public IWebElement TextBoxFirstName => _driver.FindElement(By.XPath($"//*[text()='Имя']/input"));
         public IWebElement TextBoxPatronymic => _driver.FindElement(By.XPath($"//*[text()='Отчество']/input"));
@@ -23,9 +23,9 @@
             _driver.Navigate().GoToUrl(PageUrl);
         }
 
-        public void ClickPasswordEditElement()
+        public void ClickChangePasswordButton()
         {
-            EditElementPassword.Click();
+            ButtonChangePassword.Click();
         }
 
         public void EnterLastName(string lastName)
