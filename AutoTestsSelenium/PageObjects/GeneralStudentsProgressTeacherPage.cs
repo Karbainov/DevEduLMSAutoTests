@@ -8,6 +8,7 @@
         public List<IWebElement> StudentsNames => _driver.FindElements(By.XPath($"//button[text()='Сортировать по фамилии']/../following-sibling::div")).ToList();
         public List<IWebElement> AllResults => _driver.FindElements(By.XPath($"//div[@class='scroll-content-div']/div[2]/descendant::div[starts-with(@class,'one-block')]")).ToList();
         public IWebElement BottomScrollBar => _driver.FindElement(By.XPath($"//div[contains(@class,'swiper-ini')][2]//div[@class='swiper-wrapper']"));
+        public IWebElement ButtonSortBySurname => _driver.FindElement(By.XPath($"//button[text()='Сортировать по фамилии']"));
 
         public GeneralStudentsProgressTeacherPage()
         {
@@ -26,6 +27,21 @@
         public void ClickOnBottomScrollBar()
         {
             BottomScrollBar.Click();
+        }
+
+        public void ClickSortBySurname()
+        {
+            ButtonSortBySurname.Click();
+        }
+
+        public List<IWebElement> GetAllResults()
+        {
+            return _driver.FindElements(By.XPath($"//*[@class='one-block block-column']")).ToList();
+        }
+
+        public List<IWebElement> GetAllFullNames()
+        {
+            return _driver.FindElements(By.XPath($"//*[@class='one-block students-list']")).ToList();
         }
     }
 }

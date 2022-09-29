@@ -36,13 +36,13 @@ Scenario: Sort by surname
 	| golub@student.com  | password |            | link@razdva.ru |
 	| yula@student.com   | password |            | link@razdva.ru |
 	| kraska@student.com | password |            | link@razdva.ru |
-	Given Accept 3 homeworks and decline 2 in group "BlaBla" task "Apple"
-	| FirstName | LastName   |
-	| Gennadiy  | Krokodilov |
-	| Gennadiy  | Bukin      |
-	| Gennadiy  | Golub      |
-	| Gennadiy  | Yula       |
-	| Gennadiy  | Akril      |
+	#Given Accept 3 homeworks and decline 2 in group "BlaBla" task "Apple"
+	#| FirstName | LastName   |
+	#| Gennadiy  | Krokodilov |
+	#| Gennadiy  | Bukin      |
+	#| Gennadiy  | Golub      |
+	#| Gennadiy  | Yula       |
+	#| Gennadiy  | Akril      |
 	Given Open DevEdu web site https://piter-education.ru:7074/
 	Given Authorize user in service as teacher
 	| Email             | Password |
@@ -50,7 +50,7 @@ Scenario: Sort by surname
 	Given Teacher go to common progress
 	When Teacher sort students by surname
 	Then Students should sort by surname
-	| Name                | Result   |
+	| FullName            | Result   |
 	| Gennadiy Akril      | Не сдано |
 	| Gennadiy Bukin      | Сдано    |
 	| Gennadiy Golub      | Сдано    |
