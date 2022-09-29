@@ -61,17 +61,17 @@ Scenario: Authentication with wrong email format
 	And Enter email "<Email>"
 	And Enter password "password"
 	When Click button Enter
-	Then Exception message under email textbox should appear with text "<Message>"
+	Then Exception message under email textbox should appear with text "Введен некорректный email"
 	Examples: 
-	| Email       | Message                   |
-	|             | Введите Email             |
-	| ilya        | Введен некорректный email |
-	| ilya@       | Введен некорректный email |
-	| ilya@mail   | Введен некорректный email |
-	| ilya@mail.  | Введен некорректный email |
-	| ilya@mail.r | Введен некорректный email |
-	| ilya@.ru    | Введен некорректный email |
-	| @mail.ru    | Введен некорректный email |
+	| Email       |
+	|             |
+	| ilya        |
+	| ilya@       |
+	| ilya@mail   |
+	| ilya@mail.  |
+	| ilya@mail.r |
+	| ilya@.ru    |
+	| @mail.ru    |
 
 @authentication @negative
 Scenario: Authentication with empty email and password textboxes
@@ -83,5 +83,5 @@ Given Register new users with roles
 	And Enter email ""
 	And Enter password ""
 	When Click button Enter
-	Then Exception message under email textbox should appear with text "Введите Email"
+	Then Exception message under email textbox should appear with text "Введен некорректный email"
 	And Exception message under password textbox should appear with text "Введите пароль"

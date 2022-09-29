@@ -3,7 +3,7 @@
     public class HomeworksDraftTeacherPage : AbstractTeacherAuthorizedPage
     {       
         private const string PageUrl = $"{Urls.Host}/homeworks/draft";
-        
+
         public HomeworksDraftTeacherPage()
         {
         }
@@ -18,10 +18,15 @@
             return _driver.FindElement(By.XPath($"//*[text()='{courseName}']/.."));
         }
 
-        public void GetNameHomework(string nameHomework)
+        public IWebElement GetLinkHomeworkByName(string nameHomework)
         {
             WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(1));
-            webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//[text()='{nameHomework}']/following-sibling::a"))).Click();
+            return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//*[text()='{nameHomework}']/following-sibling::a")));
+        }
+
+        public void ClickLinkHomeworkByName(string nameHomework)
+        {
+            GetLinkHomeworkByName(nameHomework).Click();
         }
     }
 }
