@@ -166,8 +166,8 @@ namespace AutoTestsSelenium.StepDefinitions
         public void ThenErrorMessageAboutAbsenceOfGroupDataWhenCreatingGroupShouldBe(string expectedErrorMessege)
         {
             var page = new GroupCreationManagerPage();
-            var actualElement = page.GetLabelElementByText(expectedErrorMessege);
-            Assert.Equal(expectedErrorMessege, actualElement.Text);
+            var actualErrorMessege = page.GetErrorMessege(expectedErrorMessege);
+            Assert.Equal(expectedErrorMessege, actualErrorMessege);
             //TODO Message does not appear that the course is not selected (Task 2.6.2)
         }
 
@@ -175,8 +175,8 @@ namespace AutoTestsSelenium.StepDefinitions
         public void ThenErrorMessageAboutAbsenceOfGroupDataWhenEditingGroupShouldBe(string expectedErrorMessege)
         {
             var page = new GroupEditingManagerPage();
-            var actualElement = page.GetLabelElementByText(expectedErrorMessege);
-            Assert.Equal(expectedErrorMessege, actualElement.Text);
+            var actualErrorMessege = page.GetErrorMessege(expectedErrorMessege);
+            Assert.Equal(expectedErrorMessege, actualErrorMessege);
             //TODO Message does not appear that the course is not selected (Task 2.17.6)
         }
 

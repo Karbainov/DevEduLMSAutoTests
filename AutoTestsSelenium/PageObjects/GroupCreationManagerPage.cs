@@ -7,6 +7,9 @@ namespace AutoTestsSelenium.PageObjects
         public IWebElement ComboBoxCourses => _driver.FindElement(By.XPath($"//div[@class='drop-down-filter  ']"));
         public IWebElement ButtonSave => _driver.FindElement(By.XPath($"//button[text()='Сохранить']"));
         public IWebElement ButtonCancelCreateGroup => _driver.FindElement(By.XPath($"//*[text()='Отмена']"));
+        public IWebElement LabelUnderGroupNameTextBox => _driver.FindElement(By.XPath($"//*[text()='Название']/span"));
+        public IWebElement LabelUnderCourcesComboBox => _driver.FindElement(By.XPath($"//*[text()='Курс']/../span"));
+        public IWebElement LabelUnderTeachersCheckBoxs => _driver.FindElement(By.XPath($"//*[text()='Преподаватель:']/../span"));
 
         public GroupCreationManagerPage()
         {
@@ -80,9 +83,22 @@ namespace AutoTestsSelenium.PageObjects
             }
         }
 
-        public IWebElement GetLabelElementByText(string errorMessege)
+        public string GetErrorMessege(string expectedErrorMessege)
         {
-            return _driver.FindElement(By.XPath($"//*[text()='{errorMessege}']"));
+            string actualErrorMessege = "";
+            if (expectedErrorMessege == "Вы не указали название")
+            {
+                actualErrorMessege = LabelUnderGroupNameTextBox.Text;
+            }
+            else if (expectedErrorMessege == "Вы не выбрали курс")
+            {
+                actualErrorMessege = LabelUnderCourcesComboBox.Text;
+            }
+            else if (expectedErrorMessege == "Вы не выбрали преподавателя")
+            {
+                actualErrorMessege = LabelUnderTeachersCheckBoxs.Text;
+            }
+            return actualErrorMessege;
         }
     }
 }

@@ -14,8 +14,8 @@ And Authorize user in service as manager
 | marina@example.com | marinamarina |
 When Click button create group
 And Fills in group data
-| GroupName | CourseName | FullNameOfTeacher | FullNameOfTutor |
-| BaseSPb   | Базовый C# | Maksim Karbainov  |                 |
+| GroupName | CourseName | FullNameOfTeacher |
+| BaseSPb   | Базовый C# | Maksim Karbainov  |
 And Click button saves group
 And Click button students list
 And Additing student "Isabella Abramson" to group "BaseSPb"
@@ -130,8 +130,8 @@ And Click button saves edit group
 And Click button groups
 And Click button group with name "BaseSPb"
 Then Should be a teachers and tutors in group
-| GroupName | CourseName | FullNameOfTeacher   | FullNameOfTutor   |
-|           |            | <FullNameOfTeacher> | <FullNameOfTutor> |
+| FullNameOfTeacher   | FullNameOfTutor   |
+| <FullNameOfTeacher> | <FullNameOfTutor> |
 Examples: 
 | FullNameOfTeacher                  | FullNameOfTutor             |
 | Maksim Karbainov                   | Elisey Kakoyto              |
@@ -159,8 +159,8 @@ When Click button groups
 And Click button group with name "BaseSPb"
 And Click button edit
 And Fills in edit group data
-| GroupName | CourseName    | FullNameOfTeacher | FullNameOfTutor |
-| QASPb     | QA Automation | Maksim Karbainov  |                 |
+| GroupName | CourseName    | FullNameOfTeacher |
+| QASPb     | QA Automation | Maksim Karbainov  |
 And Click button saves edit group
 And Click button groups
 Then Manager should find group "QASPb" in list groups
@@ -183,15 +183,15 @@ And Add users to group "BaseSPb"
 | FirstName | LastName   | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 | Maksim    | Karbainov  | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
 And Open DevEdu web site https://piter-education.ru:7074/
-And Authorize user in service
+And Authorize user in service as manager
 | Email              | Password     |
 | marina@example.com | marinamarina |
 When Click button groups
 And Click button group with name "BaseSPb"
 And Click button edit
 And Fills in edit group data
-| GroupName | CourseName    | FullNameOfTeacher | FullNameOfTutor |
-| QASPb     | QA Automation | Maksim Karbainov  |                 |
+| GroupName | CourseName    | FullNameOfTeacher |
+| QASPb     | QA Automation | Maksim Karbainov  |
 And Click button cancels editing of group
 And Click button groups
 Then Manager should find group "BaseSPb" in list groups

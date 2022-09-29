@@ -166,13 +166,11 @@ testRunner.When("Click button create group", ((string)(null)), ((TechTalk.SpecFl
                 TechTalk.SpecFlow.Table table25 = new TechTalk.SpecFlow.Table(new string[] {
                             "GroupName",
                             "CourseName",
-                            "FullNameOfTeacher",
-                            "FullNameOfTutor"});
+                            "FullNameOfTeacher"});
                 table25.AddRow(new string[] {
                             "BaseSPb",
                             "Базовый C#",
-                            "Maksim Karbainov",
-                            ""});
+                            "Maksim Karbainov"});
 #line 16
 testRunner.And("Fills in group data", ((string)(null)), table25, "And ");
 #line hidden
@@ -836,13 +834,9 @@ testRunner.And("Click button groups", ((string)(null)), ((TechTalk.SpecFlow.Tabl
 testRunner.And("Click button group with name \"BaseSPb\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table43 = new TechTalk.SpecFlow.Table(new string[] {
-                            "GroupName",
-                            "CourseName",
                             "FullNameOfTeacher",
                             "FullNameOfTutor"});
                 table43.AddRow(new string[] {
-                            "",
-                            "",
                             string.Format("{0}", fullNameOfTeacher),
                             string.Format("{0}", fullNameOfTutor)});
 #line 132
@@ -983,13 +977,11 @@ testRunner.And("Click button edit", ((string)(null)), ((TechTalk.SpecFlow.Table)
                 TechTalk.SpecFlow.Table table48 = new TechTalk.SpecFlow.Table(new string[] {
                             "GroupName",
                             "CourseName",
-                            "FullNameOfTeacher",
-                            "FullNameOfTutor"});
+                            "FullNameOfTeacher"});
                 table48.AddRow(new string[] {
                             "QASPb",
                             "QA Automation",
-                            "Maksim Karbainov",
-                            ""});
+                            "Maksim Karbainov"});
 #line 161
 testRunner.And("Fills in edit group data", ((string)(null)), table48, "And ");
 #line hidden
@@ -1135,7 +1127,7 @@ testRunner.And("Open DevEdu web site https://piter-education.ru:7074/", ((string
                             "marina@example.com",
                             "marinamarina"});
 #line 186
-testRunner.And("Authorize user in service", ((string)(null)), table53, "And ");
+testRunner.And("Authorize user in service as manager", ((string)(null)), table53, "And ");
 #line hidden
 #line 189
 testRunner.When("Click button groups", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -1149,13 +1141,11 @@ testRunner.And("Click button edit", ((string)(null)), ((TechTalk.SpecFlow.Table)
                 TechTalk.SpecFlow.Table table54 = new TechTalk.SpecFlow.Table(new string[] {
                             "GroupName",
                             "CourseName",
-                            "FullNameOfTeacher",
-                            "FullNameOfTutor"});
+                            "FullNameOfTeacher"});
                 table54.AddRow(new string[] {
                             "QASPb",
                             "QA Automation",
-                            "Maksim Karbainov",
-                            ""});
+                            "Maksim Karbainov"});
 #line 192
 testRunner.And("Fills in edit group data", ((string)(null)), table54, "And ");
 #line hidden
