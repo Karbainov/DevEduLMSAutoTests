@@ -48,63 +48,51 @@ Scenario: Sort by surname
 @teacher
 Scenario: Teacher sorts students by status
 	Given Register new users with roles
-	| FirstName | LastName   | Patronymic | Email              | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
-	| Isabella  | Abramson   | string     | isi@gmail.com      | Bella    | password | SaintPetersburg | 22.05.2001 | string        | 89514551247 | Student |
-	| Lilya     | Baikov     | string     | lil@student.com    | Lil      | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student |
-	| Diana     | Noname     | string     | ilya2@student.com  | ilya2    | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student |
-	| Valya     | Baikova    | string     | ilya3@student.com  | ilya3    | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student |
-	| Fakunto   | Arano      | string     | ilya4@student.com  | ilya4    | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student |
-	| Lolo      | Nabokova   | string     | ilya5@student.com  | ilya5    | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student |
-	| Maksim    | Karbainov  | string     | maks@teacher.com   | Maksim   | password | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
+	| FirstName | LastName  | Patronymic | Email             | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
+	| Барабан   | Second    | string     | isi@gmail.com     | Bella    | password | SaintPetersburg | 22.05.2001 | string        | 89514551247 | Student |
+	| Ворона    | Амеба     | string     | lil@student.com   | Lil      | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student |
+	| Абрикос   | Филя      | string     | ilya2@student.com | ilya2    | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student |
+	| Maksim    | Karbainov | string     | maks@teacher.com  | Maksim   | password | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
 	And Create new groups
 	| Name            | CourseId | GroupStatusId | StartDate  | EndDate    | Timetable | PaymentPerMonth | PaymentsCount |
 	| Паровозик любви | 1370     | Forming       | 25.09.2022 | 30.01.2023 | string    | 5000            | 10            |
 	And Add users to group "Паровозик любви"
-	| FirstName | LastName   | Role    |
-	| Isabella  | Abramson   | Student |
-	| Lilya     | Baikov     | Student |
-	| Diana     | Noname     | Student |
-	| Valya     | Baikova    | Student |
-	| Fakunto   | Arano      | Student |
-	| Lolo      | Nabokova   | Student |
-	| Maksim    | Karbainov  | Teacher |
+	| FirstName | LastName  | Role    |
+	| Барабан   | Second    | Student |
+	| Ворона    | Амеба     | Student |
+	| Абрикос   | Филя      | Student |
+	| Maksim    | Karbainov | Teacher |
 	When Open DevEdu web site https://piter-education.ru:7074/
 	And Authorize user in service as teacher
 	| Email            | Password |
 	| maks@teacher.com | password |
 	And Teacher create new homework for group "Паровозик любви"
-	| Name  | Description  | Link                     | StartDate  | EndDate    |
-	| QeQe | LubluDushit  | https://hd.kinopoisk.ru/  | 29.09.2022 | 01.10.2022 |
+	| Name      | Description  | Link                      | StartDate  | EndDate    |
+	| Структуры | LubluDushit  | https://hd.kinopoisk.ru/  | 29.09.2022 | 01.10.2022 |
 	And Teacher logged out
-	And Students did their homework "QeQe"
+	And Students did their homework "Структуры"
 	| Email             | Password |
 	| isi@gmail.com     | password |
 	| lil@student.com   | password |
 	| ilya2@student.com | password |
-	| ilya3@student.com | password |
-	| ilya4@student.com | password |
-	| ilya5@student.com | password |
 	And Authorize user in service as teacher
 	| Email            | Password |
 	| maks@teacher.com | password |
 	And Teacher rate homeworks
-	|  Email            | Result	|
-	| Isabella Abramson | Сдано		|
-	| Lilya Baikov      | Сдано     |
-	| Diana Noname      | не сдано  |
-	| Valya  Baikova    | Сдано		|
-	| Fakunto Arano     | Сдано		|
-	| Lolo Nabokova     | не сдано	|
+	| Email          | Result           |
+	| Барабан Second | Проверить правки |
+	| Ворона Амеба   | Не сдано         |
+	| Абрикос Филя   | Не сдано         |
 	And Teacher open tab General Progress	
-	When Teacher click ascending sorting in a column "Покрыть"
-	Then Teacher should see list "Покрыть" after sort on ABC
-	| FullName       | Result             |
-	| Барабан Second | Не сдано           |
-	| Ворона Амеба   | Проверить          |
-	| Абрикос Филя   | Сдано с опозданием |
-	And Teacher click descending sorting in a column "Покрыть"
-	Then Teacher should see list "Покрыть" after sort on CBA
-	| FukkName       | Result             |
-	| Абрикос Филя   | Сдано с опозданием |
-	| Ворона Амеба   | Проверить          |
-	| Барабан Second | Не сдано           |
+	When Teacher click ascending sorting in a column "Структуры"
+	Then Teacher should see list "Структуры" after sort on ABC
+	| FullName       | Result           |
+	| Абрикос Филя   | Не сдано         |
+	| Ворона Амеба   | Не сдано         |
+	| Барабан Second | Проверить правки |
+	And Teacher click descending sorting in a column "Структуры"
+	Then Teacher should see list "Структуры" after sort on CBA
+	| FullName       | Result           |
+	| Барабан Second | Проверить правки |
+	| Абрикос Филя   | Не сдано         |
+	| Ворона Амеба   | Не сдано         |

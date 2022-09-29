@@ -8,6 +8,7 @@
         public List<IWebElement> StudentsNames => _driver.FindElements(By.XPath($"//button[text()='Сортировать по фамилии']/../following-sibling::div")).ToList();
         public List<IWebElement> AllResults => _driver.FindElements(By.XPath($"//div[@class='scroll-content-div']/div[2]/descendant::div[starts-with(@class,'one-block')]")).ToList();
         public IWebElement BottomScrollBar => _driver.FindElement(By.XPath($"//div[contains(@class,'swiper-ini')][2]//div[@class='swiper-wrapper']"));
+        public IWebElement TopScrollBar => _driver.FindElement(By.XPath($"//div[@class='scroll-content-div']/div[1]/div/div[@class='swiper-scrollbar-drag']"));
 
         public GeneralStudentsProgressTeacherPage()
         {
@@ -35,17 +36,39 @@
 
         public IWebElement GetSortBottomButtonByName(string taskName)
         {
-            return _driver.FindElement(By.XPath($"//*[starts-with(text(),'{taskName}')]/ancestor::div[starts-with(@class,'swiper-slide')]/div[contains(@class,'buttons')]/child::button[starts-with(@class,'button-style-reset')]/child::*[name()='svg' and @class='arrow-bottom ']"));
+            try
+            {
+                return _driver.FindElement(By.XPath($"//*[contains(text(),'{taskName}')]/../following-sibling::div/button[2]"));
+            }
+            catch (OpenQA.Selenium.NoSuchElementException)
+            {
+                return _driver.FindElement(By.XPath($"//*[contains(text(),'{taskName}')]/../../following-sibling::div/button[2]"));
+            }
         }
 
         public IWebElement GetSortTopButtonByName(string taskName)
         {
-            return _driver.FindElement(By.XPath($"//*[starts-with(text(),'{taskName}')]/ancestor::div[starts-with(@class,'swiper-slide')]/div[contains(@class,'buttons')]/child::button[starts-with(@class,'button-style-reset')]/child::*[name()='svg' and @class='arrow-top ']"));
-        }
+            try
+            {
+                return _driver.FindElement(By.XPath($"//*[contains(text(),'{taskName}')]/../following-sibling::div/button[1]"));
+            }
+            catch (OpenQA.Selenium.NoSuchElementException)
+            {
+                return _driver.FindElement(By.XPath($"//*[contains(text(),'{taskName}')]/../../following-sibling::div/button[1]"));
+            }
+        }    
 
         public void ClickOnBottomScrollBar()
         {
             BottomScrollBar.Click();
+        }
+
+        public void MoveLeftTopScrollBar()
+        {
+            new Actions(_driver)
+                .DragAndDropToOffset(TopScrollBar, -200, 0)
+                .Build()
+                .Perform();
         }
     }
 }
