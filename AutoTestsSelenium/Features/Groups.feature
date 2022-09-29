@@ -284,29 +284,29 @@ Scenario: Manager creates a group, edits the group without choosing a course neg
 
 @manager @group @editing @negative
 Scenario: Manager creates a group, edits the group without choosing a teacher negative test
-Given Register new users with roles
-| FirstName | LastName   | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
-| Maksim    | Karbainov  | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
-| Elisey    | Kakoyto    | string     | elisey@gmail.com | Elisey   | 13345678 | SaintPetersburg | 07.10.1996 | string        | 89518963148 | Tutor   |
-And Create new groups
-| Name    | CourseName | GroupStatusId | StartDate  | EndDate    | Timetable | PaymentPerMonth | PaymentsCount |
-| BaseSPb | Базовый C# | Forming       | 29.09.2022 | 25.01.2023 | string    | 2500            | 3             |
-And Add users to group "BaseSPb"
-| FirstName | LastName   | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
-| Maksim    | Karbainov  | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
-| Elisey    | Kakoyto    | string     | elisey@gmail.com | Elisey   | 13345678 | SaintPetersburg | 07.10.1996 | string        | 89518963148 | Tutor   |
-When Open DevEdu web site https://piter-education.ru:7074/
-And Authorize user in service as manager
-| Email              | Password     |
-| marina@example.com | marinamarina |
-When Click button groups
-And Click button group with name "BaseSPb"
-And Click button edit
-And Fills in group data
-| GroupName | CourseName | FullNameOfTeacher | FullNameOfTutor |
-| BaseSPb   | Базовый C# |                   | Elisey Kakoyto  |
-And Click button saves edit group
-Then Error message about lack of teacher selection, when editing group should be "Вы не выбрали преподавателя"
+    Given Register new users with roles
+    | FirstName | LastName   | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
+    | Maksim    | Karbainov  | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
+    | Elisey    | Kakoyto    | string     | elisey@gmail.com | Elisey   | 13345678 | SaintPetersburg | 07.10.1996 | string        | 89518963148 | Tutor   |
+    And Create new groups
+    | Name    | CourseName | GroupStatusId | StartDate  | EndDate    | Timetable | PaymentPerMonth | PaymentsCount |
+    | BaseSPb | Базовый C# | Forming       | 29.09.2022 | 25.01.2023 | string    | 2500            | 3             |
+    And Add users to group "BaseSPb"
+    | FirstName | LastName   | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
+    | Maksim    | Karbainov  | string     | maks@gmail.com   | Maksim   | 22345678 | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
+    | Elisey    | Kakoyto    | string     | elisey@gmail.com | Elisey   | 13345678 | SaintPetersburg | 07.10.1996 | string        | 89518963148 | Tutor   |
+    When Open DevEdu web site https://piter-education.ru:7074/
+    And Authorize user in service as manager
+    | Email              | Password     |
+    | marina@example.com | marinamarina |
+    When Click button groups
+    And Click button group with name "BaseSPb"
+    And Click button edit
+    And Fills in group data
+    | GroupName | CourseName | FullNameOfTeacher | FullNameOfTutor |
+    | BaseSPb   | Базовый C# |                   | Elisey Kakoyto  |
+    And Click button saves edit group
+    Then Error message about lack of teacher selection, when editing group should be "Вы не выбрали преподавателя"
 
 @group @student
 Scenario: The group completed the basic course and moved on to the next one. The student sees the history of his courses.

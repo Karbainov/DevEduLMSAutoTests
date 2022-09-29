@@ -72,7 +72,7 @@ namespace AutoTestsSelenium.StepDefinitions
                 actualLinks.Add(photo.GetAttribute("src"));
             }
             Assert.True(actualLinks.TrueForAll(x=>x.Equals(actualLinks.First())));
-            _profilePhotoLink = actualLinks.FirstOrDefault();
+            _profilePhotoLink = actualLinks.First();
         }
 
         [When(@"Click cancel button")]

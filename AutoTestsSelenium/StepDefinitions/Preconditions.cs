@@ -108,7 +108,6 @@ namespace AutoTestsSelenium.StepDefinitions
             _usersClient.AddPhotoForUser(token, filePath);
         }
 
-
         private int GetGroupIdByName(string groupName)
         {
             int groupId = 0;
