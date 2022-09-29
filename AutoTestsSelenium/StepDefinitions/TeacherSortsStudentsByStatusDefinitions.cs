@@ -18,6 +18,7 @@ namespace AutoTestsSelenium.StepDefinitions
             GeneralStudentsProgressTeacherPage generalStudentsProgressTeacherPage;
             generalStudentsProgressTeacherPage = new GeneralStudentsProgressTeacherPage();
             var helper = new ModelsHelper();
+            var actualResults = helper.GetReducedScale(generalStudentsProgressTeacherPage);
             generalStudentsProgressTeacherPage.ClickSortBottomButton(taskName);
         }
 

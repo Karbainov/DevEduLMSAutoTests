@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium.Support.Extensions;
+﻿using Docker.DotNet.Models;
+using OpenQA.Selenium.Support.Extensions;
 
 namespace AutoTestsSelenium.Support
 {
@@ -30,6 +31,17 @@ namespace AutoTestsSelenium.Support
                 }
                 methodsResult.Add(new GeneralProgressResultsModel() { HomeworkName = hwName, StudentsHomeworkResults = results });
             }
+            return methodsResult;
+        }
+
+        public List<GeneralProgressResultsModel> GetReducedScale(GeneralStudentsProgressTeacherPage page)
+        {
+            var driver = SingleWebDriver.GetInstance();
+            driver.ExecuteJavaScript("document.body.style.zoom='0.5'");
+            Thread.Sleep(100);//Without this, the zoom does not have time to change
+            driver.ExecuteJavaScript("document.querySelector('#root > div > main > div.journals > div.flex-container.journal-content-container > div.scroll-content-div > div.swiper.swiper-initialized.swiper-horizontal.swiper-pointer-events.first-swiper.swiper-backface-hidden > div.swiper-wrapper').setAttribute('style','transform: translate3d(0px, 0px, 0px);')");
+            driver.ExecuteJavaScript("document.querySelector('#root > div > main > div.journals > div.flex-container.journal-content-container > div.scroll-content-div > div:nth-child(2) > div.swiper-wrapper').setAttribute('style','transform: translate3d(0px, 0px, 0px);')");
+            var methodsResult = new List<GeneralProgressResultsModel>();
             return methodsResult;
         }
 
