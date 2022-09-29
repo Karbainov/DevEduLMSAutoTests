@@ -19,7 +19,7 @@ And Fills data profile
 | LastName | FirstName | Patronymic   | BirthDate  | PhoneNumber | GitHubAccount       |
 | Родригес | Бендер    | Блестящийзад | 01.01.2022 | 89514713285 | https://github.com/ |
 And Click button save profile changes
-And Refresh page
+And Refresh profile page
 Then Profile data must match the changed ones
 | LastName | FirstName | Patronymic   | BirthDate  | Email   | PhoneNumber | GitHubAccount       |
 | Родригес | Бендер    | Блестящийзад | 01.01.2022 | <Email> | 89514713285 | https://github.com/ |
@@ -68,7 +68,7 @@ And Fills data profile
 | LastName | FirstName | Patronymic   | BirthDate  | PhoneNumber | GitHubAccount       |
 | Родригес | Бендер    | Блестящийзад | 01.01.2022 | 89514713285 | https://github.com/ |
 And Click button cancels profile changes
-And Refresh page
+And Refresh profile page
 Then Profile data must match the changed ones
 | LastName | FirstName | Patronymic | BirthDate  | Email         | PhoneNumber | GitHubAccount |
 | Abramson | Isabella  | string     | 22.05.2001 | isi@gmail.com | 89514551247 | string        |

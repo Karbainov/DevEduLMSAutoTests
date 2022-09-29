@@ -9,7 +9,7 @@ Scenario: User set photo in his profile
 	And Authorize user in service
 	| Email             | Password |
 	| ilya1@student.com | password |
-	When Open profile page by click on users name
+	When Open profile page by click on user name
 	And Click on photo
 	And Add photo "<PhotoName>"
 	And Click save photo
@@ -30,7 +30,7 @@ Scenario: User cancel adding photo
 	And Authorize user in service
 	| Email             | Password |
 	| ilya1@student.com | password |
-	When Open profile page by click on users name
+	When Open profile page by click on user name
 	And Click on photo
 	And Add photo "SmallPhoto.jpg"
 	And Click cancel button
@@ -45,7 +45,7 @@ Scenario: User change photo in profile
 	And Authorize user in service
 	| Email             | Password |
 	| ilya1@student.com | password |
-	When Open profile page by click on users name
+	When Open profile page by click on user name
 	And Click on photo
 	And Add photo "SmallPhoto.jpg"
 	And Click save photo

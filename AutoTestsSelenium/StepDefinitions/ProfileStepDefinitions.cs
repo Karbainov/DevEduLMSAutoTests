@@ -3,13 +3,6 @@ namespace AutoTestsSelenium.StepDefinitions
     [Binding]
     public class ProfileStepDefinitions
     {
-        [When(@"Open profile page by click on user name")]
-        public void WhenOpenProfilePageByClickOnUserName()
-        {
-            var page = new ProfilePage();
-            page.ClickNameButton();
-        }
-
         [When(@"Fills data profile")]
         public void WhenFillsDataProfile(Table table)
         {
@@ -68,8 +61,8 @@ namespace AutoTestsSelenium.StepDefinitions
             page.ClickCancelButton();
         }
 
-        [When(@"Refresh page")]
-        public void WhenRefreshPage()
+        [When(@"Refresh profile page")]
+        public void WhenRefreshProfilePage()
         {
             var page = new ProfilePage();
             page.RefreshPage();
