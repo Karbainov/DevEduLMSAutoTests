@@ -585,7 +585,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("Teacher click ascending sorting in a column \"Покрыть\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table118 = new TechTalk.SpecFlow.Table(new string[] {
-                            "FukkName",
+                            "FullName",
                             "Result"});
                 table118.AddRow(new string[] {
                             "Барабан Second",
@@ -597,7 +597,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Абрикос Филя",
                             "Сдано с опозданием"});
 #line 100
- testRunner.Then("Teacher should see list after sort on ABC", ((string)(null)), table118, "Then ");
+ testRunner.Then("Teacher should see list \"Покрыть\" after sort on ABC", ((string)(null)), table118, "Then ");
 #line hidden
 #line 105
  testRunner.And("Teacher click descending sorting in a column \"Покрыть\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -615,7 +615,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Барабан Second",
                             "Не сдано"});
 #line 106
- testRunner.Then("Teacher should see list after sort on CBA", ((string)(null)), table119, "Then ");
+ testRunner.Then("Teacher should see list \"Покрыть\" after sort on CBA", ((string)(null)), table119, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
