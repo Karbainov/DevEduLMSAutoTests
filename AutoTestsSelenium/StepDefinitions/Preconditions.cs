@@ -131,7 +131,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [Given(@"Students authorize and send homework for group ""([^""]*)"" task ""([^""]*)""")]
         public void GivenSendHomeworkByStudent(string groupName, string taskName, Table table)
         {
-            int homeworkId = GetHomeworkIdByGroupId(groupName, taskName);
+            int homeworkId = GetHomeworkIdByGroupNameAndTaskName(groupName, taskName);
             List<SignInModelWithStudentHomeworkRequest> studentsHomeworks = table.CreateSet<SignInModelWithStudentHomeworkRequest>().ToList();
             foreach (var student in studentsHomeworks)
             {
@@ -143,24 +143,21 @@ namespace AutoTestsSelenium.StepDefinitions
             }
         }
 
-        [Given(@"Accept (.*) homeworks and decline (.*) in group ""([^""]*)"" task ""([^""]*)""")]
-        public void GivenAcceptAndDeclineHomeworks(int acceptAmount, int declineAmount, string groupName, string taskName, Table table)
+        [Given(@"Check homeworks in group ""([^""]*)"" task ""([^""]*)""")]
+        public void GivenCheckHomeworks(string groupName, string taskName, Table table)
         {
             int studentHomeworkId = 0;
-            List<RegistationModelWithRole> students = table.CreateSet<RegistationModelWithRole>().ToList();
-            for (int i=0; i < acceptAmount; i++)
+            List<StudentsHomeworkResultModelWithSeparateName> students = table.CreateSet<StudentsHomeworkResultModelWithSeparateName>().ToList();
+            for (int i=0; i < students.Count; i++)
             {
-                foreach (var student in students)
+                if (students[i].Result == "Сдано")
                 {
-                    studentHomeworkId = GetStudentHomeworkIdByUserIdAndHomeworkId(groupName, taskName, student.FirstName, student.LastName);
+                    studentHomeworkId = GetStudentHomeworkIdByUserIdAndHomeworkId(groupName, taskName, students[i].FirstName, students[i].LastName);
                     _studentHomeworksClient.Approve(studentHomeworkId, _adminsToken);
                 }
-            }
-            for (int i= acceptAmount-1; i< acceptAmount+declineAmount; i++)
-            {
-                foreach (var student in students)
+                else if (students[i].Result == "Не сдано")
                 {
-                    studentHomeworkId = GetStudentHomeworkIdByUserIdAndHomeworkId(groupName, taskName, student.FirstName, student.LastName);
+                    studentHomeworkId = GetStudentHomeworkIdByUserIdAndHomeworkId(groupName, taskName, students[i].FirstName, students[i].LastName);
                     _studentHomeworksClient.DeclineHomework(studentHomeworkId, _adminsToken);
                 }
             }
@@ -168,7 +165,7 @@ namespace AutoTestsSelenium.StepDefinitions
         
         private int GetStudentHomeworkIdByUserIdAndHomeworkId(string groupName, string taskName, string firstName, string lastName)
         {
-            int homeworkId = GetHomeworkIdByGroupId(groupName, taskName);
+            int homeworkId = GetHomeworkIdByGroupNameAndTaskName(groupName, taskName);
             int studentHomeworkId = 0;
             int userId = GetUsersIdByFullName(firstName, lastName);
             List<GetStudentHomeworkByUserIdResponse> studentsHomeworks = _studentHomeworksClient.GetStudentHomeworkByStudentId(userId, _adminsToken);
@@ -188,7 +185,7 @@ namespace AutoTestsSelenium.StepDefinitions
                 return studentHomeworkId;
             }
         }
-        private int GetHomeworkIdByGroupId(string groupName, string taskName)
+        private int GetHomeworkIdByGroupNameAndTaskName(string groupName, string taskName)
         {
             int homeworkId = 0;
             int groupId = GetGroupIdByName(groupName);
