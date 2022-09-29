@@ -131,7 +131,7 @@ namespace AutoTestsSelenium.StepDefinitions
             }
         }
 
-        [Given(@"Send homework for group ""([^""]*)"" task ""([^""]*)""")]
+        [Given(@"Students authorize and send homework for group ""([^""]*)"" task ""([^""]*)""")]
         public void GivenSendHomeworkByStudent(string groupName, string taskName, Table table)
         {
             int homeworkId = GetHomeworkIdByGroupId(groupName, taskName);

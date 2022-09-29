@@ -263,50 +263,59 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
                 TechTalk.SpecFlow.Table table102 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
-                            "Password"});
-                table102.AddRow(new string[] {
-                            "kroko@gmail.com",
-                            "password"});
-                table102.AddRow(new string[] {
-                            "bukin@student.com",
-                            "password"});
-                table102.AddRow(new string[] {
-                            "golub@student.com",
-                            "password"});
-                table102.AddRow(new string[] {
-                            "yula@student.com",
-                            "password"});
-                table102.AddRow(new string[] {
-                            "kraska@student.com",
-                            "password"});
-#line 32
- testRunner.Given("Authorize user in service as student", ((string)(null)), table102, "Given ");
-#line hidden
-                TechTalk.SpecFlow.Table table103 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Password",
                             "HomeworkId",
                             "Answer"});
-                table103.AddRow(new string[] {
+                table102.AddRow(new string[] {
                             "kroko@gmail.com",
+                            "password",
+                            "",
                             "link@razdva.ru"});
-                table103.AddRow(new string[] {
+                table102.AddRow(new string[] {
                             "bukin@student.com",
+                            "password",
+                            "",
                             "link@razdva.ru"});
-                table103.AddRow(new string[] {
+                table102.AddRow(new string[] {
                             "golub@student.com",
+                            "password",
+                            "",
                             "link@razdva.ru"});
-                table103.AddRow(new string[] {
+                table102.AddRow(new string[] {
                             "yula@student.com",
+                            "password",
+                            "",
                             "link@razdva.ru"});
-                table103.AddRow(new string[] {
+                table102.AddRow(new string[] {
                             "kraska@student.com",
+                            "password",
+                            "",
                             "link@razdva.ru"});
+#line 32
+ testRunner.Given("Students authorize and send homework for group \"BlaBla\" task \"Apple\"", ((string)(null)), table102, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table103 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName"});
+                table103.AddRow(new string[] {
+                            "Gennadiy",
+                            "Krokodilov"});
+                table103.AddRow(new string[] {
+                            "Gennadiy",
+                            "Bukin"});
+                table103.AddRow(new string[] {
+                            "Gennadiy",
+                            "Golub"});
+                table103.AddRow(new string[] {
+                            "Gennadiy",
+                            "Yula"});
+                table103.AddRow(new string[] {
+                            "Gennadiy",
+                            "Akril"});
 #line 39
- testRunner.And("Send homework for group \"BlaBla\" task \"Apple\"", ((string)(null)), table103, "And ");
+ testRunner.Given("Accept 3 homeworks and decline 2 in group \"BlaBla\" task \"Apple\"", ((string)(null)), table103, "Given ");
 #line hidden
 #line 46
- testRunner.Given("Accept three homeworks and decline two", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 47
  testRunner.Given("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table104 = new TechTalk.SpecFlow.Table(new string[] {
@@ -315,16 +324,16 @@ this.ScenarioInitialize(scenarioInfo);
                 table104.AddRow(new string[] {
                             "witch@teacher.com",
                             "password"});
-#line 48
+#line 47
  testRunner.Given("Authorize user in service as teacher", ((string)(null)), table104, "Given ");
 #line hidden
-#line 51
+#line 50
  testRunner.Given("Teacher go to common progress", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 52
+#line 51
  testRunner.When("Teacher sort students by surname", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 53
+#line 52
  testRunner.Then("Students should sort by surname", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
