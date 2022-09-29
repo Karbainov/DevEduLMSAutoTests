@@ -1,6 +1,4 @@
-using AutoTestsSelenium.PageObjects;
 using OpenQA.Selenium.Support.Extensions;
-using TechTalk.SpecFlow.Assist;
 
 namespace AutoTestsSelenium.StepDefinitions
 {
@@ -31,9 +29,10 @@ namespace AutoTestsSelenium.StepDefinitions
         [Then(@"Students should sort by surname")]
         public void ThenStudentsShouldSortBySurname(Table table)
         {
+            var generalProgress = new GeneralStudentsProgressTeacherPage();
+            generalProgress.MoveLeftTopScrollBar();
             var driver = SingleWebDriver.GetInstance();
             driver.ExecuteJavaScript("document.body.style.zoom='0.5'");
-            var generalProgress = new GeneralStudentsProgressTeacherPage();
             List<StudentsHomeworkResultModel> studentsResults = table.CreateSet<StudentsHomeworkResultModel>().ToList();
             List<string> expected = new List<string>();
             foreach (var student in studentsResults)
