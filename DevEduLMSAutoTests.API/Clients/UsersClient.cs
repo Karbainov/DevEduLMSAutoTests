@@ -63,5 +63,21 @@
                 (response.Content.ReadAsStringAsync().Result)!;
             return users;
         }
+
+        public async void AddPhotoForUser(string token, string filePath, HttpStatusCode expectedCode = HttpStatusCode.Created)
+        {
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var requestContent = new MultipartFormDataContent();
+            byte[] imageData = File.ReadAllBytes(filePath);
+            var imageContent = new ByteArrayContent(imageData);
+            imageContent.Headers.ContentType = MediaTypeHeaderValue.Parse("image/jpeg");
+            requestContent.Add(imageContent);
+            var response = await client.PostAsync($"{UrlsSwagger.Users}/photo", requestContent);
+            var actualCode = response.StatusCode;
+            string linkToPhoto = response.Content.ReadAsStringAsync().Result;
+            Assert.Equal(actualCode, expectedCode);
+            Assert.Contains(@"/media/userPhoto/", linkToPhoto);
+        }
     }
 }
