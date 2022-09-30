@@ -6,24 +6,21 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Methodist click button homework")]
         public void WhenMethodistClickButtonHomework()
         {
-            HomeworkCreationMethodistPage homeworkMethodist;
-            homeworkMethodist = new HomeworkCreationMethodistPage();
+            var homeworkMethodist = new HomeworkCreationMethodistPage();
             homeworkMethodist.ClickHomeworksButton();
         }
 
         [When(@"Methodist click button add homework")]
         public void WhenMethodistClickButtonAddHomework()
         {
-            HomeworksMethodistPage homeworksMethodistPage;
-            homeworksMethodistPage = new HomeworksMethodistPage();
+            var homeworksMethodistPage = new HomeworksMethodistPage();
             homeworksMethodistPage.ClickAddHomework();        
         }
 
         [When(@"Methodist create homework course name ""([^""]*)""")]
         public void WhenMethodistCreateHomeworkCourseName(string courseName, Table table)
         {
-            HomeworkCreationMethodistPage homeworkMethodist;
-            homeworkMethodist = new HomeworkCreationMethodistPage();
+            var homeworkMethodist = new HomeworkCreationMethodistPage();
             AddNewHomework createHomework = table.CreateInstance<AddNewHomework>();
             homeworkMethodist.ClickChoiceGroupNumber(courseName);
             homeworkMethodist.InputNameGroup(createHomework.Name);
@@ -37,11 +34,9 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Teacher lays out the task ""([^""]*)"" created by the methodologist")]
         public void WhenTeacherLaysOutTheTaskCreatedByTheMethodologist(string nameHomework)
         {
-            HomeworksDraftTeacherPage homeworksDraftTeacherPage;
-            homeworksDraftTeacherPage = new HomeworksDraftTeacherPage();
+            var homeworksDraftTeacherPage = new HomeworksDraftTeacherPage();
             homeworksDraftTeacherPage.ClickLinkHomeworkByName(nameHomework);
-            HomeworksTeacherPage homeworksTeacherPage;
-            homeworksTeacherPage = new HomeworksTeacherPage();
+            var homeworksTeacherPage = new HomeworksTeacherPage();
             homeworksTeacherPage.ClickHomeworksButton();
             homeworksTeacherPage.ClickSavedHomeworkButton();
             //TODO saved as draft HW are not saved. Emptiness (Task 2.5)
@@ -50,8 +45,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Teacher create issuing homework course name ""([^""]*)""")]
         public void WhenTeacherCreateIssuingHomeworkCourseName(string groupName, Table table)
         {          
-            HomeworkExtraditionTeacherPage homeworkExtraditionTeacherPage;
-            homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage();
+            var homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage();
             AddNewHomework homework = table.CreateInstance<AddNewHomework>();
             homeworkExtraditionTeacherPage.ClickRadioButtonGroupName(groupName);
             homeworkExtraditionTeacherPage.InputStarDate(homework.StartDate);
@@ -66,8 +60,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [Then(@"Teacher click button publish")]
         public void ThenTeacherClickButtonPublish()
         {
-            HomeworkExtraditionTeacherPage homeworkExtraditionTeacherPage;
-            homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage();
+            var homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage();
             homeworkExtraditionTeacherPage.ClickPublish();
             //TODO saved as draft HW are not saved. Emptiness (Task 2.5)
         }
@@ -75,8 +68,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Teacher see all task")]
         public void WhenSeeAllTask()
         {
-            HomeworksTeacherPage homeworksTeacherPage;
-            homeworksTeacherPage = new HomeworksTeacherPage();
+            var homeworksTeacherPage = new HomeworksTeacherPage();
             homeworksTeacherPage.ClickAddHomeworksButton();
             homeworksTeacherPage.ClickExitButton();
             //TODO saved as draft HW are not saved. Emptiness (Task 2.5)
@@ -85,24 +77,21 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Student click button homework")]
         public void WhenStudentClickButtonHomework()
         {
-            HomeworksStudentPage homeworksStudentPage;
-            homeworksStudentPage = new HomeworksStudentPage();
+            var homeworksStudentPage = new HomeworksStudentPage();
             homeworksStudentPage.ClickHomeworksButton();
         }
 
         [When(@"Studen click button to the task")]
         public void WhenStudenClickButtonToTheTask()
         {
-             HomeworksStudentPage homeworksStudentPage;
-            homeworksStudentPage = new HomeworksStudentPage();
+            var homeworksStudentPage = new HomeworksStudentPage();
             homeworksStudentPage.GoToTaskButton();
         }
 
         [When(@"Studen attaches a link ""([^""]*)"" to the completed task")]
         public void WhenStudenAttachesALinkToTheCompletedTask(string link)
         {
-            HomeworksStudentPage homeworksStudentPage;
-            homeworksStudentPage = new HomeworksStudentPage();
+            var homeworksStudentPage = new HomeworksStudentPage();
             homeworksStudentPage.InputLinkAnswer(link);
             //TODO saved as draft HW are not saved. Emptiness (Task 2.5)
         }
@@ -110,16 +99,14 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Studen click airplane icon")]
         public void WhenStudenClickAirplaneIcon()
         {
-            HomeworksStudentPage homeworksStudentPage;
-            homeworksStudentPage = new HomeworksStudentPage();
+            var homeworksStudentPage = new HomeworksStudentPage();
             homeworksStudentPage.SendAnswerButton();          
         }
 
         [When(@"Teacher checks homework")]
         public void WhenTeacherChecksHomework()
         {
-            HomeworksTeacherPage homeworksTeacherPage;
-            homeworksTeacherPage = new HomeworksTeacherPage();
+            var homeworksTeacherPage = new HomeworksTeacherPage();
             homeworksTeacherPage.ClickCheckHomeworksButton();
             //TODO homework is not reviewed.Emptiness (Task 2.5)
         }
@@ -134,8 +121,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Student attached link ""([^""]*)"" of corrected homework")]
         public void WhenStudentAttachedLinkOfCorrectedHomework(string link)
         {
-            HomeworksStudentPage homeworksStudentPage;
-            homeworksStudentPage = new HomeworksStudentPage();
+            var homeworksStudentPage = new HomeworksStudentPage();
             homeworksStudentPage.ClickHomeworksButton();
             homeworksStudentPage.GoToTaskButton();
             homeworksStudentPage.InputLinkAnswer(link);
@@ -146,8 +132,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [Then(@"Teacher accepted homework")]
         public void ThenTeacherAcceptedHomework()
         {
-            HomeworksTeacherPage homeworksTeacherPage;
-            homeworksTeacherPage = new HomeworksTeacherPage();
+            var homeworksTeacherPage = new HomeworksTeacherPage();
             homeworksTeacherPage.ClickCheckHomeworksButton();
             //TODO do not continue step due to missing step:Teacher returned homework
         }

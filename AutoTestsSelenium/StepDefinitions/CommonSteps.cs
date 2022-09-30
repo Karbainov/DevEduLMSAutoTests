@@ -26,8 +26,8 @@
         [When(@"Authorize user in service as tutor")]
         public void WhenSignInUserInServiceAsManager(Table table)
         {
-            AuthorizationUnauthorizedPage authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage();
-            SignInRequest user = table.CreateInstance<SignInRequest>();
+            var authorizationUnauthorizedPage = new AuthorizationUnauthorizedPage();
+            var user = table.CreateInstance<SignInRequest>();
             authorizationUnauthorizedPage.OpenThisPage();
             authorizationUnauthorizedPage.EnterEmail(user.Email);
             authorizationUnauthorizedPage.EnterPassword(user.Password);
@@ -41,7 +41,7 @@
         [When(@"Student logged out")]
         public void WhenExitAccountAsManager()
         {
-            GroupCreationManagerPage groupCreationManagerPage = new GroupCreationManagerPage();
+            var groupCreationManagerPage = new GroupCreationManagerPage();
             groupCreationManagerPage.ClickExitButton();
         }
     }

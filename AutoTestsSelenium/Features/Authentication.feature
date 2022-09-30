@@ -6,8 +6,8 @@ User must enter a valid email and password to successfully authenticate.
 @authentication
 Scenario: Authentication on DevEdu web site
 	Given Register new users with roles
-	| FirstName | LastName | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
-	| Andrey      | Baikov   | string     | Andrey@student.com | Andrey     | password | SaintPetersburg | 02.07.2000 | string        | 89817051890 | Student |
+	| FirstName | LastName | Patronymic | Email              | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
+	| Andrey    | Baikov   | string     | Andrey@student.com | Andrey   | password | SaintPetersburg | 02.07.2000 | string        | 89817051890 | Student |
 	And Open DevEdu web site https://piter-education.ru:7074/
 	And Open authorization page
 	And Enter email "Andrey@student.com"
@@ -20,8 +20,8 @@ Scenario: Authentication on DevEdu web site
 @authentication
 Scenario: Cancel authentication
 	Given Register new users with roles
-	| FirstName | LastName | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
-	| Andrey      | Baikov   | string     | Andrey@student.com | Andrey     | password | SaintPetersburg | 02.07.2000 | string        | 89817051890 | Student |
+	| FirstName | LastName | Patronymic | Email              | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
+	| Andrey    | Baikov   | string     | Andrey@student.com | Andrey   | password | SaintPetersburg | 02.07.2000 | string        | 89817051890 | Student |
 	And Open DevEdu web site https://piter-education.ru:7074/
 	And Open authorization page
 	And Enter email "Andrey@student.com"
@@ -34,8 +34,8 @@ Scenario: Cancel authentication
 @authentication @negative
 Scenario: Authentication with wrong password or email
 	Given Register new users with roles
-	| FirstName | LastName | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
-	| Andrey      | Baikov   | string     | Andrey@student.com | Andrey     | password | SaintPetersburg | 02.07.2000 | string        | 89817051890 | Student |
+	| FirstName | LastName | Patronymic | Email              | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
+	| Andrey    | Baikov   | string     | Andrey@student.com | Andrey   | password | SaintPetersburg | 02.07.2000 | string        | 89817051890 | Student |
 	And Open DevEdu web site https://piter-education.ru:7074/
 	And Open authorization page
 	And Enter email "<Email>"
@@ -43,8 +43,8 @@ Scenario: Authentication with wrong password or email
 	When Click button Enter
 	Then Exception message under password textbox should appear with text "<Message>"
 	Examples: 
-	| Email            | Password   | Message                       |
-	| maks@student.com | password   | Неправильные логин или пароль |
+	| Email              | Password   | Message                       |
+	| maks@student.com   | password   | Неправильные логин или пароль |
 	| Andrey@student.com | passpass   | Неправильные логин или пароль |
 	| Andrey@student.com | PASSWORD   | Неправильные логин или пароль |
 	| Andrey@student.com | password11 | Неправильные логин или пароль |
@@ -54,8 +54,8 @@ Scenario: Authentication with wrong password or email
 @authentication @negative
 Scenario: Authentication with wrong email format
 	Given Register new users with roles
-	| FirstName | LastName | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
-	| Andrey      | Baikov   | string     | Andrey@student.com | Andrey     | password | SaintPetersburg | 02.07.2000 | string        | 89817051890 | Student |
+	| FirstName | LastName | Patronymic | Email              | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
+	| Andrey    | Baikov   | string     | Andrey@student.com | Andrey   | password | SaintPetersburg | 02.07.2000 | string        | 89817051890 | Student |
 	And Open DevEdu web site https://piter-education.ru:7074/
 	And Open authorization page
 	And Enter email "<Email>"
@@ -63,21 +63,21 @@ Scenario: Authentication with wrong email format
 	When Click button Enter
 	Then Exception message under email textbox should appear with text "Введен некорректный email"
 	Examples: 
-	| Email       |
-	|             |
+	| Email         |
+	|               |
 	| Andrey        |
 	| Andrey@       |
 	| Andrey@mail   |
 	| Andrey@mail.  |
 	| Andrey@mail.r |
 	| Andrey@.ru    |
-	| @mail.ru    |
+	| @mail.ru      |
 
 @authentication @negative
 Scenario: Authentication with empty email and password textboxes
 Given Register new users with roles
-	| FirstName | LastName | Patronymic | Email            | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
-	| Andrey      | Baikov   | string     | Andrey@student.com | Andrey     | password | SaintPetersburg | 02.07.2000 | string        | 89817051890 | Student |
+	| FirstName | LastName | Patronymic | Email              | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
+	| Andrey    | Baikov   | string     | Andrey@student.com | Andrey   | password | SaintPetersburg | 02.07.2000 | string        | 89817051890 | Student |
 	And Open DevEdu web site https://piter-education.ru:7074/
 	And Open authorization page
 	And Enter email ""

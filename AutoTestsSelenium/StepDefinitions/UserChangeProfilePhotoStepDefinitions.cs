@@ -53,7 +53,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenRefreshPage()
         {
             var page = new ProfilePage();
-            Thread.Sleep(1000);//upload waiting
+            Thread.Sleep(800);//upload waiting
             page.RefreshPage();
         }
 
@@ -61,7 +61,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void ThenUserShouldSeeHisPhoto()
         {
             var page = new ProfilePage();
-            Thread.Sleep(1000);//download waiting
+            Thread.Sleep(800);//download waiting
             var photos = page.Photos;
             int expectedPhotosCount = 2;
             int actualPhotosCount = photos.Count;
@@ -94,7 +94,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void ThenUserShouldSeeTheUpdatedPhoto()
         {
             var page = new ProfilePage();
-            Thread.Sleep(1000);//download waiting
+            Thread.Sleep(800);//download waiting
             var photos = page.Photos;
             int expectedPhotosCount = 2;
             int actualPhotosCount = photos.Count;

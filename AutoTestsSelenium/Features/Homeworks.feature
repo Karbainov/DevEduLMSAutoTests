@@ -5,17 +5,17 @@ A short summary of the feature
 @teacher @student @manager
 Scenario: Assigned homework by teacher, turned in by student
 	Given Register new users with roles
-	| FirstName | LastName | Patronymic | Email               | Username | Password | City            | BirthDate   | GitHubAccount | PhoneNumber | Role      |
-	| Andrey1     | Baikov   | string     | Andrey21@student.com    | Andrey     | password | SaintPetersburg | 02.07.2000  | string        | 89817051890 | Student   |
-	| Lera      | Puzikova | string     | lera21@methodist.com  | lera     | password | SaintPetersburg | 31.01.2000  | string        | 89817051892 | Methodist |
-	| Vitya     | Strashko | string     | vitya21@teacher.com   | vitya    | password | SaintPetersburg | 01.08.1995  | string        | 89817051893 | Teacher   |
+	| FirstName | LastName | Patronymic | Email                | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role      |
+	| Andrey1   | Baikov   | string     | Andrey21@student.com | Andrey   | password | SaintPetersburg | 02.07.2000 | string        | 89817051890 | Student   |
+	| Lera      | Puzikova | string     | lera21@methodist.com | lera     | password | SaintPetersburg | 31.01.2000 | string        | 89817051892 | Methodist |
+	| Vitya     | Strashko | string     | vitya21@teacher.com  | vitya    | password | SaintPetersburg | 01.08.1995 | string        | 89817051893 | Teacher   |
 	And Create new groups
 	| Name          | CourseName | GroupStatusId | StartDate  | EndDate    | Timetable | PaymentPerMonth | PaymentsCount |
 	| GropForTest   | Базовый C# | Forming       | 26.08.2022 | 26.08.2023 | string    | 5000            | 10            |
 	And Add users to group "GropForTest"
 	| FirstName | LastName | Role    |
 	| Vitya     | Strashko | Teacher |
-	| Andrey1     | Baikov   | Student |
+	| Andrey1   | Baikov   | Student |
 	When Open DevEdu web site https://piter-education.ru:7074/
 	And Authorize user in service as methodist
 	| Email                | Password |
@@ -37,8 +37,8 @@ Scenario: Assigned homework by teacher, turned in by student
 	When Teacher see all task
 	And Teacher logged out
 	And Authorize user in service as student 
-	| Email               | Password |
-	| Andrey21@student.com  | password |
+	| Email                | Password |
+	| Andrey21@student.com | password |
 	And Student click button homework
 	And Studen click button to the task
 	And Studen attaches a link "https://hd.kinopoisk.ru/" to the completed task
@@ -51,8 +51,8 @@ Scenario: Assigned homework by teacher, turned in by student
 	And Teacher returned homework
 	And Teacher logged out
 	And Authorize user in service as student
-	| Email              | Password | 
-	| Andrey21@student.com | password | 
+	| Email                | Password |
+	| Andrey21@student.com | password |
 	And Student attached link "https://hd.kinopoisk.ru/" of corrected homework
 	And Student logged out
 	And Authorize user in service as teacher
@@ -63,10 +63,10 @@ Scenario: Assigned homework by teacher, turned in by student
 @teacher @student @manager @methodist
 Scenario:  Creating an assignment by a methodologist for students
 	Given Register new users with roles
-	| FirstName | LastName | Patronymic | Email               | Username | Password | City            | BirthDate   | GitHubAccount | PhoneNumber | Role      |
-	| Milana    | Maxina   | string     | milana@student.com    | mila     | password | SaintPetersburg | 02.07.2000  | string        | 89817051890 | Student   |
-	| Lera      | Puzikova | string     | lera21@methodist.com  | lera     | password | SaintPetersburg | 31.01.2000  | string        | 89817051892 | Methodist |
-	| Vitya     | Strashko | string     | vitya21@teacher.com   | vitya    | password | SaintPetersburg | 01.08.1995  | string        | 89817051893 | Teacher   |
+	| FirstName | LastName | Patronymic | Email                | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role      |
+	| Milana    | Maxina   | string     | milana@student.com   | mila     | password | SaintPetersburg | 02.07.2000 | string        | 89817051890 | Student   |
+	| Lera      | Puzikova | string     | lera21@methodist.com | lera     | password | SaintPetersburg | 31.01.2000 | string        | 89817051892 | Methodist |
+	| Vitya     | Strashko | string     | vitya21@teacher.com  | vitya    | password | SaintPetersburg | 01.08.1995 | string        | 89817051893 | Teacher   |
 	When Open DevEdu web site https://piter-education.ru:7074/
 	And Authorize user in service as methodist
 	| Email                | Password     | 

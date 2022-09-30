@@ -6,7 +6,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Teacher create new homework for group ""([^""]*)""")]
         public void WhenTeacherCreateNewHomeworkForGroup(string groupName, Table table)
         {
-            AddNewHomework homework = table.CreateInstance<AddNewHomework>();
+            var homework = table.CreateInstance<AddNewHomework>();
             var homeworkCreationPage = new HomeworkCreationTeacherPage();
             homeworkCreationPage.ClickAddHomeworksButton();
             homeworkCreationPage.ClickRadioButtonGroupName(groupName);
@@ -26,8 +26,8 @@ namespace AutoTestsSelenium.StepDefinitions
             var homeworksStudentPage = new HomeworksStudentPage();
             var answerHomework = new HomeworkAnswerStudentsPage();
             string studentsAnswer = "https://github.com";
-            List<SignInRequest> _studensSignIn = table.CreateSet<SignInRequest>().ToList();
-            foreach (var student in _studensSignIn)
+            var studensSignIn = table.CreateSet<SignInRequest>().ToList();
+            foreach (var student in studensSignIn)
             {
                 authorizationPage.EnterEmail(student.Email);
                 authorizationPage.EnterPassword(student.Password);
@@ -56,11 +56,11 @@ namespace AutoTestsSelenium.StepDefinitions
         [Then(@"Teacher should see students results in homework ""([^""]*)"" page")]
         public void ThenTeacherShouldSeeStudentsResultsInHomeworkPage(string homeworkName, Table table)
         {
-            var _homeworksTeacherPage = new HomeworksTeacherPage();
-            _homeworksTeacherPage.OpenThisPage();
-            _homeworksTeacherPage.ClickGoToTaskButton(homeworkName);
+            var homeworksTeacherPage = new HomeworksTeacherPage();
+            homeworksTeacherPage.OpenThisPage();
+            homeworksTeacherPage.ClickGoToTaskButton(homeworkName);
             var expectedResults = table.CreateSet<StudentsHomeworkResultModel>().ToList();
-            var actualResultsElements = _homeworksTeacherPage.StudentsResults;
+            var actualResultsElements = homeworksTeacherPage.StudentsResults;
             var actualResults = new List<StudentsHomeworkResultModel>();
             for (int i = 1; i <= actualResultsElements.Count; i++)
             {

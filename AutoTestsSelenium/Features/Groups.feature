@@ -253,8 +253,8 @@ Scenario: Manager creates a group, edits a group without data negative test
 @group @student
 Scenario: The group completed the basic course and moved on to the next one. The student sees the history of his courses.
 	Given Register new users with roles
-	| FirstName | LastName | Patronymic | Email           | Username | Password  | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
-	| Вася      | Ложкин   | Вилкович   | vasyok@dev.com  | Lojka    | password | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Student |
+	| FirstName | LastName | Patronymic | Email          | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
+	| Вася      | Ложкин   | Вилкович   | vasyok@dev.com | Lojka    | password | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Student |
 	And Create new groups
 	| Name       | CourseName    | GroupStatusId | StartDate  | EndDate    | Timetable | PaymentPerMonth | PaymentsCount |
 	| Navigators | Базовый C#    | Completed     | 21.02.2022 | 30.05.2022 | string    | 2500            | 3             |

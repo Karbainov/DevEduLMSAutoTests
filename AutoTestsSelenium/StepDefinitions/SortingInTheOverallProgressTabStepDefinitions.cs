@@ -26,7 +26,7 @@ namespace AutoTestsSelenium.StepDefinitions
             generalProgress.MoveLeftTopScrollBar();
             var driver = SingleWebDriver.GetInstance();
             driver.ExecuteJavaScript("document.body.style.zoom='0.5'");
-            List<StudentsHomeworkResultModel> studentsResults = table.CreateSet<StudentsHomeworkResultModel>().ToList();
+            var studentsResults = table.CreateSet<StudentsHomeworkResultModel>().ToList();
             List<string> expected = new List<string>();
             foreach (var student in studentsResults)
             {
@@ -53,8 +53,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Teacher open tab General Progress")]
         public void WhenTeacherOpenTabGeneralProgress()
         {
-            HomeworksTeacherPage homeworksTeacherPage;
-            homeworksTeacherPage = new HomeworksTeacherPage();
+            var homeworksTeacherPage = new HomeworksTeacherPage();
             homeworksTeacherPage.ClickGeneralProgressButton();
             //TODO Mock(Tack 2.27)
         }
@@ -62,10 +61,8 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Teacher click ascending sorting in a column ""([^""]*)""")]
         public void WhenTeacherClickAscendingSortingInAColumn(string taskName)
         {
-            GeneralStudentsProgressTeacherPage generalStudentsProgressTeacherPage;
-            generalStudentsProgressTeacherPage = new GeneralStudentsProgressTeacherPage();
+            var generalStudentsProgressTeacherPage = new GeneralStudentsProgressTeacherPage();
             generalStudentsProgressTeacherPage.MoveLeftTopScrollBar();
-            Thread.Sleep(5000);
             generalStudentsProgressTeacherPage.ClickSortBottomButton(taskName);
         }
 
@@ -82,8 +79,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [Then(@"Teacher click descending sorting in a column ""([^""]*)""")]
         public void ThenTeacherClickDescendingSortingInAColumn(string taskName)
         {
-            GeneralStudentsProgressTeacherPage generalStudentsProgressTeacherPage;
-            generalStudentsProgressTeacherPage = new GeneralStudentsProgressTeacherPage();
+            var generalStudentsProgressTeacherPage = new GeneralStudentsProgressTeacherPage();
             generalStudentsProgressTeacherPage.MoveLeftTopScrollBar();
             generalStudentsProgressTeacherPage.ClickSortTopButton(taskName);
         }

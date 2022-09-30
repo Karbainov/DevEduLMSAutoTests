@@ -164,12 +164,12 @@ Scenario: User try to registration with correct information but doesn't click on
 @registration @negative
 Scenario: User try to register an account with an already registered email
 	Given Register new users with roles
-	| FirstName | LastName   | Patronymic | Email             | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
-	| Andrey1     | Baikov     | string     | Andrey1@student.com | Andrey1    | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student |
+	| FirstName | LastName | Patronymic | Email               | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
+	| Andrey1   | Baikov   | string     | Andrey1@student.com | Andrey1  | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student |
 	And Open DevEdu web site https://piter-education.ru:7074/
 	And Open registration page
 	And Fill all requared fields
-	| FirstName | LastName | Patronymic | BirthDate  | Password | RepeatPassword | Email             | PhoneNumber   |
+	| FirstName | LastName | Patronymic | BirthDate  | Password | RepeatPassword | Email               | PhoneNumber  |
 	| Мистер    | Проппер  | Иванов     | 31.07.1998 | Azino777 | Azino777       | Andrey1@student.com | +79992314545 |
 	And Click on private policy checkbox 
 	When Click on register button

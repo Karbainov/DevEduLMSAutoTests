@@ -5,11 +5,11 @@ Set and edot photo in profile.
 @photo 
 Scenario: User set photo in his profile
 	Given Register new users with roles
-	| FirstName | LastName   | Patronymic | Email             | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
-	| Andrey1     | Baikov     | string     | Andrey1@student.com | Andrey1    | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student |
+	| FirstName | LastName | Patronymic | Email               | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
+	| Andrey1   | Baikov   | string     | Andrey1@student.com | Andrey1  | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student |
 	And Open DevEdu web site https://piter-education.ru:7074/
 	And Authorize user in service
-	| Email             | Password |
+	| Email               | Password |
 	| Andrey1@student.com | password |
 	When Open profile page by click on user name
 	And Click on photo
@@ -26,11 +26,11 @@ Scenario: User set photo in his profile
 @photo
 Scenario: User cancel adding photo
 	Given Register new users with roles
-	| FirstName | LastName   | Patronymic | Email             | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
-	| Andrey1     | Baikov     | string     | Andrey1@student.com | Andrey1    | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student |
+	| FirstName | LastName | Patronymic | Email               | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
+	| Andrey1   | Baikov   | string     | Andrey1@student.com | Andrey1  | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student |
 	And Open DevEdu web site https://piter-education.ru:7074/
 	And Authorize user in service
-	| Email             | Password |
+	| Email               | Password |
 	| Andrey1@student.com | password |
 	When Open profile page by click on user name
 	And Click on photo
@@ -42,10 +42,10 @@ Scenario: User cancel adding photo
 @photo
 Scenario: User change photo in profile
 	Given Register new users with roles
-	| FirstName | LastName   | Patronymic | Email             | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
-	| Andrey1     | Baikov     | string     | Andrey1@student.com | Andrey1    | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student |
+	| FirstName | LastName | Patronymic | Email               | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
+	| Andrey1   | Baikov   | string     | Andrey1@student.com | Andrey1  | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student |
 	And Authorize user in service
-	| Email             | Password |
+	| Email               | Password |
 	| Andrey1@student.com | password |
 	When Open profile page by click on user name
 	And Click on photo
