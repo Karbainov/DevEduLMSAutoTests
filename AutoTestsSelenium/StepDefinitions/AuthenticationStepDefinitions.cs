@@ -4,6 +4,7 @@ namespace AutoTestsSelenium.StepDefinitions
     public class AuthenticationStepDefinitions
     {
         [Given(@"Open authorization page")]
+        [When(@"Open authorization page")]
         public void GivenOpenAuthorizationPage()
         {
             AuthorizationUnauthorizedPage page = new AuthorizationUnauthorizedPage();
@@ -33,37 +34,36 @@ namespace AutoTestsSelenium.StepDefinitions
             page.ClickEnterButton();
         }
 
+        [When(@"Click button Cancel")]
+        public void WhenClickButtonCancel()
+        {
+            AuthorizationUnauthorizedPage page = new AuthorizationUnauthorizedPage();
+            page.ClickCancelButton();
+        }
+
         [Then(@"The notification page should open")]
         public void ThenTheNotificationPageShouldOpen()
         {
             string expectedUrl = $"{Urls.Host}/";
             string actialUrl = SingleWebDriver.GetInstance().Url;
             Assert.Equal(expectedUrl, actialUrl);
+            //TODO authorization page remains (Task 2.12)
         }
 
         [Then(@"Text with name on sidebar should be ""([^""]*)""")]
-        public void ThenTextWithNameOnSidebarShouldBe(string fullName)
+        public void ThenTextWithNameOnSidebarShouldBe(string expectedName)
         {
             NotificationsPage page = new NotificationsPage();
-            string expectedName = fullName;
             string actualName = page.GetUserFullName();
             Assert.Equal(expectedName, actualName);
         }
 
         [Then(@"Text with role on sidebar should be ""([^""]*)""")]
-        public void ThenTextWithRoleOnSidebarShouldBe(string role)
+        public void ThenTextWithRoleOnSidebarShouldBe(string expectedRole)
         {
             NotificationsPage page = new NotificationsPage();
-            string expectedRole = role;
             string actualRole = page.ComboBoxRoles.Text;
             Assert.Equal(expectedRole, actualRole);
-        }
-
-        [When(@"Click button Cancel")]
-        public void WhenClickButtonCancel()
-        {
-            AuthorizationUnauthorizedPage page = new AuthorizationUnauthorizedPage();
-            page.ClickCancelButton();
         }
 
         [Then(@"Text in email textbox should be empty")]

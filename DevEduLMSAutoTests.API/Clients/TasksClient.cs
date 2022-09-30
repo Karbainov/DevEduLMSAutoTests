@@ -68,6 +68,20 @@
             return responseTask;
         }
 
+        public List<TaskResponse> GetAllTasks(string token)
+        {
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            HttpRequestMessage message = new HttpRequestMessage()
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new System.Uri($"{UrlsSwagger.Tasks}")
+            };
+            HttpResponseMessage response = client.Send(message);
+            List<TaskResponse> tasksResponse = JsonSerializer.Deserialize<List<TaskResponse>>
+                (response.Content.ReadAsStringAsync().Result);
+            return tasksResponse;
+        }
         public AddTasksByTeacherResponse CreateTask(AddTasksByTeacherRequest model, string token, HttpStatusCode expected = HttpStatusCode.Created)
         {
             string json = JsonSerializer.Serialize(model);

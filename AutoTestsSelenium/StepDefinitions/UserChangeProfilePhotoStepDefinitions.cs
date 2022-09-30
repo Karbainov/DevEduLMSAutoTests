@@ -8,7 +8,7 @@ namespace AutoTestsSelenium.StepDefinitions
 
         private string _profilePhotoLink;
 
-        [When(@"Open profile page by click on users name")]
+        [When(@"Open profile page by click on user name")]
         public void WhenOpenProfilePage()
         {
             var page = new ProfilePage();

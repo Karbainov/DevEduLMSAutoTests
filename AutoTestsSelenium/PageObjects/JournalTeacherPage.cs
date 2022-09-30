@@ -13,7 +13,6 @@
         {
             _driver.Navigate().GoToUrl(PageUrl);
         }
-
         public IWebElement GetDesiredGroupByName(string groupName)
         {
             return _driver.FindElement(By.XPath($"//*[text()='{groupName}']/.."));

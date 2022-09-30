@@ -13,8 +13,11 @@
         }
 
         [Given(@"Authorize user in service")]
-        [Given(@"Authorize user in service as teacher")]
         [Given(@"Authorize user in service as manager")]
+        [Given(@"Authorize user in service as methodist")]
+        [Given(@"Authorize user in service as student")]
+        [Given(@"Authorize user in service as teacher")]
+        [Given(@"Authorize user in service as tutor")]
         [When(@"Authorize user in service")]
         [When(@"Authorize user in service as manager")]
         [When(@"Authorize user in service as methodist")]

@@ -223,7 +223,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "ЗаданиеЗадание",
                             "сделай то то",
                             "http://fjfjf.com",
-                            "20.09.2022",
+                            "30.09.2022",
                             "31.12.2022"});
 #line 30
     testRunner.And("Teacher fill out a new assignment form course name \"QA Automation\"", ((string)(null)), table21, "And ");

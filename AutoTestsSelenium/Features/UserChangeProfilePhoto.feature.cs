@@ -108,7 +108,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table128 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table126 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -120,7 +120,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "GitHubAccount",
                             "PhoneNumber",
                             "Role"});
-                table128.AddRow(new string[] {
+                table126.AddRow(new string[] {
                             "Ilya1",
                             "Baikov",
                             "string",
@@ -133,22 +133,22 @@ this.ScenarioInitialize(scenarioInfo);
                             "89998887766",
                             "Student"});
 #line 5
- testRunner.Given("Register new users with roles", ((string)(null)), table128, "Given ");
+ testRunner.Given("Register new users with roles", ((string)(null)), table126, "Given ");
 #line hidden
 #line 8
- testRunner.When("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table129 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table127 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password"});
-                table129.AddRow(new string[] {
+                table127.AddRow(new string[] {
                             "ilya1@student.com",
                             "password"});
 #line 9
- testRunner.And("Authorize user in service", ((string)(null)), table129, "And ");
+ testRunner.And("Authorize user in service", ((string)(null)), table127, "And ");
 #line hidden
 #line 12
- testRunner.And("Open profile page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("Open profile page by click on user name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 13
  testRunner.And("Click on photo", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -192,7 +192,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table130 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table128 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -204,7 +204,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "GitHubAccount",
                             "PhoneNumber",
                             "Role"});
-                table130.AddRow(new string[] {
+                table128.AddRow(new string[] {
                             "Ilya1",
                             "Baikov",
                             "string",
@@ -217,22 +217,22 @@ this.ScenarioInitialize(scenarioInfo);
                             "89998887766",
                             "Student"});
 #line 26
- testRunner.Given("Register new users with roles", ((string)(null)), table130, "Given ");
+ testRunner.Given("Register new users with roles", ((string)(null)), table128, "Given ");
 #line hidden
 #line 29
- testRunner.When("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-                TechTalk.SpecFlow.Table table131 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table129 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password"});
-                table131.AddRow(new string[] {
+                table129.AddRow(new string[] {
                             "ilya1@student.com",
                             "password"});
 #line 30
- testRunner.And("Authorize user in service", ((string)(null)), table131, "And ");
+ testRunner.And("Authorize user in service", ((string)(null)), table129, "And ");
 #line hidden
 #line 33
- testRunner.And("Open profile page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.When("Open profile page by click on user name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 34
  testRunner.And("Click on photo", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -273,7 +273,7 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-                TechTalk.SpecFlow.Table table132 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table130 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
                             "LastName",
                             "Patronymic",
@@ -285,7 +285,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "GitHubAccount",
                             "PhoneNumber",
                             "Role"});
-                table132.AddRow(new string[] {
+                table130.AddRow(new string[] {
                             "Ilya1",
                             "Baikov",
                             "string",
@@ -298,19 +298,19 @@ this.ScenarioInitialize(scenarioInfo);
                             "89998887766",
                             "Student"});
 #line 42
- testRunner.Given("Register new users with roles", ((string)(null)), table132, "Given ");
+ testRunner.Given("Register new users with roles", ((string)(null)), table130, "Given ");
 #line hidden
-                TechTalk.SpecFlow.Table table133 = new TechTalk.SpecFlow.Table(new string[] {
+                TechTalk.SpecFlow.Table table131 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password"});
-                table133.AddRow(new string[] {
+                table131.AddRow(new string[] {
                             "ilya1@student.com",
                             "password"});
 #line 45
- testRunner.And("Authorize user in service", ((string)(null)), table133, "And ");
+ testRunner.And("Authorize user in service", ((string)(null)), table131, "And ");
 #line hidden
 #line 48
- testRunner.When("Open profile page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("Open profile page by click on user name", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 49
  testRunner.And("Click on photo", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
