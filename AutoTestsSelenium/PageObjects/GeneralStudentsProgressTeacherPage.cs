@@ -29,15 +29,39 @@
             GetSortBottomButtonByName(taskName).Click();
         }
 
+        public void ClickSortTopButton(string taskName)
+        {
+            GetSortTopButtonByName(taskName).Click();
+        }
+
         public IWebElement GetSortBottomButtonByName(string taskName)
         {
-            return _driver.FindElement(By.XPath($"//*[starts-with(text(),'{taskName}')]/ancestor::div[starts-with(@class,'swiper-slide')]/div[contains(@class,'buttons')]/child::button[starts-with(@class,'button-style-reset')]/child::*[name()='svg' and @class='arrow-bottom ']"));
+            try
+            {
+                return _driver.FindElement(By.XPath($"//*[contains(text(),'{taskName}')]/../following-sibling::div/button[2]"));
+            }
+            catch (OpenQA.Selenium.NoSuchElementException)
+            {
+                return _driver.FindElement(By.XPath($"//*[contains(text(),'{taskName}')]/../../following-sibling::div/button[2]"));
+            }
         }
 
         public void ClickDesiredGroup(string groupName)
         {
             GetDesiredGroupByName(groupName).Click();
         }
+
+        public IWebElement GetSortTopButtonByName(string taskName)
+        {
+            try
+            {
+                return _driver.FindElement(By.XPath($"//*[contains(text(),'{taskName}')]/../following-sibling::div/button[1]"));
+            }
+            catch (OpenQA.Selenium.NoSuchElementException)
+            {
+                return _driver.FindElement(By.XPath($"//*[contains(text(),'{taskName}')]/../../following-sibling::div/button[1]"));
+            }
+        }    
 
         public void ClickOnBottomScrollBar()
         {

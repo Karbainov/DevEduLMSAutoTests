@@ -17,26 +17,38 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             GeneralStudentsProgressTeacherPage generalStudentsProgressTeacherPage;
             generalStudentsProgressTeacherPage = new GeneralStudentsProgressTeacherPage();
-            var helper = new ModelsHelper();
+            generalStudentsProgressTeacherPage.MoveLeftTopScrollBar();
+            Thread.Sleep(5000);
             generalStudentsProgressTeacherPage.ClickSortBottomButton(taskName);
         }
 
-        [Then(@"Teacher should see list after sort on ABC")]
-        public void ThenTeacherShouldSeeListAfterSortOnABC()
+        [Then(@"Teacher should see list ""([^""]*)"" after sort on ABC")]
+        public void ThenTeacherShouldSeeListAfterSortOnABC(string homeworkName,Table table)
         {
-            throw new PendingStepException();
+            var expectedResults = table.CreateSet<StudentsHomeworkResultModel>().ToList();
+            var page = new GeneralStudentsProgressTeacherPage();
+            var helper = new ModelsHelper();
+            var actualResults = helper.GetHomeworkResultsByHomeworkName(page, homeworkName);
+            Assert.Equivalent(expectedResults, actualResults);
         }
 
         [Then(@"Teacher click descending sorting in a column ""([^""]*)""")]
-        public void ThenTeacherClickDescendingSortingInAColumn(string name)
+        public void ThenTeacherClickDescendingSortingInAColumn(string taskName)
         {
-            throw new PendingStepException();
+            GeneralStudentsProgressTeacherPage generalStudentsProgressTeacherPage;
+            generalStudentsProgressTeacherPage = new GeneralStudentsProgressTeacherPage();
+            generalStudentsProgressTeacherPage.MoveLeftTopScrollBar();
+            generalStudentsProgressTeacherPage.ClickSortTopButton(taskName);
         }
 
-        [Then(@"Teacher should see list after sort on CBA")]
-        public void ThenTeacherShouldSeeListAfterSortOnCBA()
+        [Then(@"Teacher should see list ""([^""]*)"" after sort on CBA")]
+        public void ThenTeacherShouldSeeListAfterSortOnCBA(string homeworkName,Table table)
         {
-            throw new PendingStepException();
+            var expectedResults = table.CreateSet<StudentsHomeworkResultModel>().ToList();
+            var page = new GeneralStudentsProgressTeacherPage();
+            var helper = new ModelsHelper();
+            var actualResults = helper.GetHomeworkResultsByHomeworkName(page, homeworkName);
+            Assert.Equivalent(expectedResults, actualResults);
         }
     }
 }
