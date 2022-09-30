@@ -114,7 +114,6 @@ namespace AutoTestsSelenium.StepDefinitions
             _usersClient.AddPhotoForUser(token, filePath);
         }
 
-
         [Given(@"Create new task for group ""([^""]*)""")]
         public void GivenCreateNewTasks(string groupName, Table table)
         {
