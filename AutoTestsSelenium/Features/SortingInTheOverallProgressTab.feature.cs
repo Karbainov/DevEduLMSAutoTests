@@ -84,10 +84,12 @@ namespace AutoTestsSelenium.Features
         [Xunit.TraitAttribute("FeatureTitle", "SortingInTheOverallProgressTab")]
         [Xunit.TraitAttribute("Description", "Sort by surname")]
         [Xunit.TraitAttribute("Category", "teacher")]
+        [Xunit.TraitAttribute("Category", "homework")]
         public void SortBySurname()
         {
             string[] tagsOfScenario = new string[] {
-                    "teacher"};
+                    "teacher",
+                    "homework"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Sort by surname", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
@@ -268,28 +270,33 @@ this.ScenarioInitialize(scenarioInfo);
                 table108.AddRow(new string[] {
                             "kroko@gmail.com",
                             "password",
+                            "",
                             "link@razdva.ru"});
                 table108.AddRow(new string[] {
                             "bukin@student.com",
                             "password",
+                            "",
                             "link@razdva.ru"});
                 table108.AddRow(new string[] {
                             "golub@student.com",
                             "password",
+                            "",
                             "link@razdva.ru"});
                 table108.AddRow(new string[] {
                             "yula@student.com",
                             "password",
+                            "",
                             "link@razdva.ru"});
                 table108.AddRow(new string[] {
                             "kraska@student.com",
                             "password",
+                            "",
                             "link@razdva.ru"});
 #line 32
  testRunner.Given("Students authorize and send their homework", ((string)(null)), table108, "Given ");
 #line hidden
-#line 39
- testRunner.Given("Admin accept three homeworks and decline two", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 46
+ testRunner.Given("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 40
  testRunner.Given("Open a browser and open login page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
@@ -303,14 +310,35 @@ this.ScenarioInitialize(scenarioInfo);
 #line 41
  testRunner.Given("Teacher authorize", ((string)(null)), table109, "Given ");
 #line hidden
-#line 44
+#line 50
  testRunner.Given("Teacher go to common progress", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 45
- testRunner.When("Teacher sort students by sername", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 51
+ testRunner.And("Choose group \"BlaBla\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 46
- testRunner.Then("Students should sort by sername", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 52
+ testRunner.When("Teacher sort students by surname", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table104 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FullName",
+                            "Result"});
+                table104.AddRow(new string[] {
+                            "Gennadiy Akril",
+                            "Не сдано"});
+                table104.AddRow(new string[] {
+                            "Gennadiy Bukin",
+                            "Сдано"});
+                table104.AddRow(new string[] {
+                            "Gennadiy Golub",
+                            "Сдано"});
+                table104.AddRow(new string[] {
+                            "Gennadiy Krokodilov",
+                            "Cдано"});
+                table104.AddRow(new string[] {
+                            "Gennadiy Yula",
+                            "Не сдано"});
+#line 53
+ testRunner.Then("Students should sort by surname", ((string)(null)), table104, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -326,7 +354,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "teacher"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Teacher sorts students by status", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 49
+#line 62
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))

@@ -322,15 +322,15 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.TraitAttribute("Description", "Authentication with wrong email format")]
         [Xunit.TraitAttribute("Category", "authentication")]
         [Xunit.TraitAttribute("Category", "negative")]
-        [Xunit.InlineDataAttribute("", "Введите Email", new string[0])]
-        [Xunit.InlineDataAttribute("ilya", "Введен некорректный email", new string[0])]
-        [Xunit.InlineDataAttribute("ilya@", "Введен некорректный email", new string[0])]
-        [Xunit.InlineDataAttribute("ilya@mail", "Введен некорректный email", new string[0])]
-        [Xunit.InlineDataAttribute("ilya@mail.", "Введен некорректный email", new string[0])]
-        [Xunit.InlineDataAttribute("ilya@mail.r", "Введен некорректный email", new string[0])]
-        [Xunit.InlineDataAttribute("ilya@.ru", "Введен некорректный email", new string[0])]
-        [Xunit.InlineDataAttribute("@mail.ru", "Введен некорректный email", new string[0])]
-        public void AuthenticationWithWrongEmailFormat(string email, string message, string[] exampleTags)
+        [Xunit.InlineDataAttribute("", new string[0])]
+        [Xunit.InlineDataAttribute("ilya", new string[0])]
+        [Xunit.InlineDataAttribute("ilya@", new string[0])]
+        [Xunit.InlineDataAttribute("ilya@mail", new string[0])]
+        [Xunit.InlineDataAttribute("ilya@mail.", new string[0])]
+        [Xunit.InlineDataAttribute("ilya@mail.r", new string[0])]
+        [Xunit.InlineDataAttribute("ilya@.ru", new string[0])]
+        [Xunit.InlineDataAttribute("@mail.ru", new string[0])]
+        public void AuthenticationWithWrongEmailFormat(string email, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "authentication",
@@ -342,7 +342,6 @@ this.ScenarioInitialize(scenarioInfo);
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("Email", email);
-            argumentsOfScenario.Add("Message", message);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Authentication with wrong email format", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 55
 this.ScenarioInitialize(scenarioInfo);
@@ -397,7 +396,8 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("Click button Enter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 64
- testRunner.Then(string.Format("Exception message under email textbox should appear with text \"{0}\"", message), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Exception message under email textbox should appear with text \"Введен некорректны" +
+                        "й email\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -468,7 +468,8 @@ testRunner.Given("Register new users with roles", ((string)(null)), table5, "Giv
  testRunner.When("Click button Enter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 86
- testRunner.Then("Exception message under email textbox should appear with text \"Введите Email\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Exception message under email textbox should appear with text \"Введен некорректны" +
+                        "й email\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 87
  testRunner.And("Exception message under password textbox should appear with text \"Введите пароль\"" +
