@@ -47,7 +47,7 @@ Scenario: Sort by surname
 	Given Authorize user in service as teacher
 	| Email             | Password |
 	| witch@teacher.com | password |
-	Given Teacher go to common progress
+	When Teacher open tab General Progress	
 	And Choose group "BlaBla"
 	When Teacher sort students by surname
 	Then Students should sort by surname

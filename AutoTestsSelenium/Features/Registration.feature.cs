@@ -143,8 +143,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "Azino777",
                             "propper12@mail.ru",
                             string.Format("{0}", phone)});
-#line 7
- testRunner.And("Fill all requared fields", ((string)(null)), table81, "And ");
+#line 9
+    testRunner.And("Fill all requared fields", ((string)(null)), table81, "And ");
 #line hidden
 #line 12
     testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -155,14 +155,20 @@ this.ScenarioInitialize(scenarioInfo);
 #line 14
     testRunner.Then("User should see the modal window with text \"Добро пожаловать!!\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
+#line 15
+    testRunner.And("Modal window shoul disapear after 4 seconds", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 16
+    testRunner.When("Click on athorization sidebar button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
                 TechTalk.SpecFlow.Table table82 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
                             "Password"});
                 table82.AddRow(new string[] {
                             "propper12@mail.ru",
                             "Azino777"});
-#line 15
- testRunner.And("Authorize user in service", ((string)(null)), table82, "And ");
+#line 17
+    testRunner.And("Authorize user in service", ((string)(null)), table82, "And ");
 #line hidden
 #line 20
     testRunner.And("Click on user\'s profile", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -181,8 +187,8 @@ this.ScenarioInitialize(scenarioInfo);
                             string.Format("{0}", date),
                             "propper12@mail.ru",
                             string.Format("{0}", phone)});
-#line 19
- testRunner.Then("User should see his actual information", ((string)(null)), table83, "Then ");
+#line 21
+    testRunner.Then("User should see his actual information", ((string)(null)), table83, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -234,8 +240,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "Azino777",
                             "propper12@mail.ru",
                             "+79992314545"});
-#line 37
- testRunner.And("Fill all requared fields", ((string)(null)), table84, "And ");
+#line 39
+    testRunner.And("Fill all requared fields", ((string)(null)), table84, "And ");
 #line hidden
 #line 42
     testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -296,8 +302,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "Azino777",
                             "propper12@mail.ru",
                             "+79992314545"});
-#line 48
- testRunner.And("Fill all requared fields", ((string)(null)), table85, "And ");
+#line 50
+    testRunner.And("Fill all requared fields", ((string)(null)), table85, "And ");
 #line hidden
 #line 53
     testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -358,8 +364,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "Azino777",
                             "",
                             "+79992314545"});
-#line 59
- testRunner.And("Fill all requared fields", ((string)(null)), table86, "And ");
+#line 61
+    testRunner.And("Fill all requared fields", ((string)(null)), table86, "And ");
 #line hidden
 #line 64
     testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -433,8 +439,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "Azino777",
                             "propper12@mail.ru",
                             "+79992314545"});
-#line 70
- testRunner.And("Fill all requared fields", ((string)(null)), table87, "And ");
+#line 72
+    testRunner.And("Fill all requared fields", ((string)(null)), table87, "And ");
 #line hidden
 #line 75
     testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -495,8 +501,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "Azino777",
                             "propper12@mail.ru",
                             "+79992314545"});
-#line 90
- testRunner.And("Fill all requared fields", ((string)(null)), table88, "And ");
+#line 92
+    testRunner.And("Fill all requared fields", ((string)(null)), table88, "And ");
 #line hidden
 #line 95
     testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -557,8 +563,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "",
                             "propper12@mail.ru",
                             "+79992314545"});
-#line 101
- testRunner.And("Fill all requared fields", ((string)(null)), table89, "And ");
+#line 103
+    testRunner.And("Fill all requared fields", ((string)(null)), table89, "And ");
 #line hidden
 #line 106
     testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -622,8 +628,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "Azino777",
                             "propper12@mail.ru",
                             "+79992314545"});
-#line 112
- testRunner.And("Fill all requared fields", ((string)(null)), table90, "And ");
+#line 114
+    testRunner.And("Fill all requared fields", ((string)(null)), table90, "And ");
 #line hidden
 #line 117
     testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -687,8 +693,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "Azino",
                             "propper12@mail.ru",
                             "+79992314545"});
-#line 123
- testRunner.And("Fill all requared fields", ((string)(null)), table91, "And ");
+#line 125
+    testRunner.And("Fill all requared fields", ((string)(null)), table91, "And ");
 #line hidden
 #line 128
     testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -749,8 +755,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "Azino778",
                             "propper12@mail.ru",
                             "+79992314545"});
-#line 134
- testRunner.And("Fill all requared fields", ((string)(null)), table92, "And ");
+#line 136
+    testRunner.And("Fill all requared fields", ((string)(null)), table92, "And ");
 #line hidden
 #line 139
     testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -811,8 +817,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "Azino777",
                             "propper12",
                             "+79992314545"});
-#line 145
- testRunner.And("Fill all requared fields", ((string)(null)), table93, "And ");
+#line 147
+    testRunner.And("Fill all requared fields", ((string)(null)), table93, "And ");
 #line hidden
 #line 150
     testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -876,8 +882,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "Azino777",
                             "propper12@mail.ru",
                             "+79992314545"});
-#line 156
- testRunner.And("Fill all requared fields", ((string)(null)), table94, "And ");
+#line 158
+    testRunner.And("Fill all requared fields", ((string)(null)), table94, "And ");
 #line hidden
 #line 161
     testRunner.When("Click on register button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -936,8 +942,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "string",
                             "89998887766",
                             "Student"});
-#line 164
- testRunner.Given("Register new users with roles", ((string)(null)), table95, "Given ");
+#line 166
+    testRunner.Given("Register new users with roles", ((string)(null)), table95, "Given ");
 #line hidden
 #line 169
     testRunner.And("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -963,8 +969,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "Azino777",
                             "ilya1@student.com",
                             "+79992314545"});
-#line 169
- testRunner.And("Fill all requared fields", ((string)(null)), table96, "And ");
+#line 171
+    testRunner.And("Fill all requared fields", ((string)(null)), table96, "And ");
 #line hidden
 #line 174
     testRunner.And("Click on private policy checkbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

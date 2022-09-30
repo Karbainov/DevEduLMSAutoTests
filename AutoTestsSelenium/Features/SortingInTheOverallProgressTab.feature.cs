@@ -336,7 +336,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("Authorize user in service as teacher", ((string)(null)), table104, "Given ");
 #line hidden
 #line 50
- testRunner.Given("Teacher go to common progress", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.When("Teacher open tab General Progress", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 51
  testRunner.And("Choose group \"BlaBla\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

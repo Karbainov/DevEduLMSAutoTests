@@ -165,7 +165,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "89995554433",
                             "Teacher"});
 #line 7
- testRunner.Given("Register new users with roles", ((string)(null)), table116, "Given ");
+    testRunner.Given("Register new users with roles", ((string)(null)), table116, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table117 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
@@ -186,7 +186,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "5000",
                             "10"});
 #line 13
- testRunner.And("Create new groups", ((string)(null)), table117, "And ");
+    testRunner.And("Create new groups", ((string)(null)), table117, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table118 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
@@ -209,7 +209,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Efremenkov",
                             "Teacher"});
 #line 16
- testRunner.And("Add users to group \"Group 1\"", ((string)(null)), table118, "And ");
+    testRunner.And("Add users to group \"Group 1\"", ((string)(null)), table118, "And ");
 #line hidden
 #line 22
     testRunner.When("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
@@ -221,7 +221,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "anton@teacher.com",
                             "password"});
 #line 23
- testRunner.And("Authorize user in service as teacher", ((string)(null)), table119, "And ");
+    testRunner.And("Authorize user in service as teacher", ((string)(null)), table119, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table120 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
@@ -236,7 +236,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "28.09.2022",
                             "09.10.2022"});
 #line 26
- testRunner.And("Teacher create new homework for group \"Group 1\"", ((string)(null)), table120, "And ");
+    testRunner.And("Teacher create new homework for group \"Group 1\"", ((string)(null)), table120, "And ");
 #line hidden
 #line 29
     testRunner.And("Teacher logged out", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -254,7 +254,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "ilya3@student.com",
                             "password"});
 #line 30
- testRunner.And("Students did their homework \"Lists\"", ((string)(null)), table121, "And ");
+    testRunner.And("Students did their homework \"Lists\"", ((string)(null)), table121, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table122 = new TechTalk.SpecFlow.Table(new string[] {
                             "Email",
@@ -263,7 +263,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "anton@teacher.com",
                             "password"});
 #line 35
- testRunner.And("Authorize user in service as teacher", ((string)(null)), table122, "And ");
+    testRunner.And("Authorize user in service as teacher", ((string)(null)), table122, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table123 = new TechTalk.SpecFlow.Table(new string[] {
                             "FullName",
@@ -278,7 +278,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Ilya3 Baikov",
                             "Сдано"});
 #line 38
- testRunner.And("Teacher rate homeworks", ((string)(null)), table123, "And ");
+    testRunner.And("Teacher rate homeworks", ((string)(null)), table123, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table124 = new TechTalk.SpecFlow.Table(new string[] {
                             "FullName",
@@ -293,7 +293,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Ilya3 Baikov",
                             "Сдано"});
 #line 43
- testRunner.Then("Teacher should see students results in homework \"Lists\" page", ((string)(null)), table124, "Then ");
+    testRunner.Then("Teacher should see students results in homework \"Lists\" page", ((string)(null)), table124, "Then ");
 #line hidden
                 TechTalk.SpecFlow.Table table125 = new TechTalk.SpecFlow.Table(new string[] {
                             "FullName",
@@ -308,7 +308,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Ilya3 Baikov",
                             "Сдано"});
 #line 48
- testRunner.And("Teacher should see students results to homework \"Lists\" in tab General Progress", ((string)(null)), table125, "And ");
+    testRunner.And("Teacher should see students results to homework \"Lists\" in tab General Progress", ((string)(null)), table125, "And ");
 #line hidden
             }
             this.ScenarioCleanup();

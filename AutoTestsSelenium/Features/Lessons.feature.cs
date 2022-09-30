@@ -163,7 +163,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "89998887766",
                             "Teacher"});
 #line 7
- testRunner.Given("Register new users with roles", ((string)(null)), table63, "Given ");
+    testRunner.Given("Register new users with roles", ((string)(null)), table63, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table64 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
@@ -184,7 +184,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "900",
                             "20"});
 #line 13
- testRunner.And("Create new groups", ((string)(null)), table64, "And ");
+    testRunner.And("Create new groups", ((string)(null)), table64, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table65 = new TechTalk.SpecFlow.Table(new string[] {
                             "FirstName",
@@ -247,7 +247,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "89998887766",
                             "Teacher"});
 #line 16
- testRunner.And("Add users to group \"BlaBla\"", ((string)(null)), table65, "And ");
+    testRunner.And("Add users to group \"BlaBla\"", ((string)(null)), table65, "And ");
 #line hidden
 #line 22
     testRunner.Given("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
@@ -259,7 +259,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "witch@teacher.com",
                             "password"});
 #line 23
- testRunner.Given("Authorize user in service as teacher", ((string)(null)), table66, "Given ");
+    testRunner.Given("Authorize user in service as teacher", ((string)(null)), table66, "Given ");
 #line hidden
 #line 26
     testRunner.And("Click on create lesson", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
