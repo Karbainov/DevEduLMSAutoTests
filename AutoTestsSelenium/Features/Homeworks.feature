@@ -1,4 +1,4 @@
-﻿Feature: CheckWorkWithHomework
+﻿Feature: Homeworks
 
 A short summary of the feature
 

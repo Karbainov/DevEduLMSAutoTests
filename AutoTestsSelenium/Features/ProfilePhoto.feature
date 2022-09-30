@@ -1,4 +1,4 @@
-﻿Feature: UserChangeProfilePhoto
+﻿Feature: ProfilePhoto
 
 Set and edot photo in profile.
 
