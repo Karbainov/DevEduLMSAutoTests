@@ -18,6 +18,5 @@
         public const string Homeworks = $"{Host}/api/Homeworks";
         public const string Topics = $"{Host}/api/Topics";
         public const string Lessons = $"{Host}/api/Lessons";
-
     }
 }

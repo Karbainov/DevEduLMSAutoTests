@@ -53,7 +53,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void WhenRefreshPage()
         {
             var page = new ProfilePage();
-            Thread.Sleep(1000);//upload waiting
+            Thread.Sleep(800);//upload waiting
             page.RefreshPage();
         }
 
@@ -61,7 +61,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void ThenUserShouldSeeHisPhoto()
         {
             var page = new ProfilePage();
-            Thread.Sleep(1000);//download waiting
+            Thread.Sleep(800);//download waiting
             var photos = page.Photos;
             int expectedPhotosCount = 2;
             int actualPhotosCount = photos.Count;
@@ -72,7 +72,7 @@ namespace AutoTestsSelenium.StepDefinitions
                 actualLinks.Add(photo.GetAttribute("src"));
             }
             Assert.True(actualLinks.TrueForAll(x=>x.Equals(actualLinks.First())));
-            _profilePhotoLink = actualLinks.FirstOrDefault();
+            _profilePhotoLink = actualLinks.First();
         }
 
         [When(@"Click cancel button")]
@@ -94,7 +94,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void ThenUserShouldSeeTheUpdatedPhoto()
         {
             var page = new ProfilePage();
-            Thread.Sleep(1000);//download waiting
+            Thread.Sleep(800);//download waiting
             var photos = page.Photos;
             int expectedPhotosCount = 2;
             int actualPhotosCount = photos.Count;

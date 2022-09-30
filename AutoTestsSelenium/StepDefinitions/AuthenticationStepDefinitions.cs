@@ -7,7 +7,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Open authorization page")]
         public void GivenOpenAuthorizationPage()
         {
-            AuthorizationUnauthorizedPage page = new AuthorizationUnauthorizedPage();
+            var page = new AuthorizationUnauthorizedPage();
             page.OpenThisPage();
         }
 
@@ -15,7 +15,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Enter email ""([^""]*)""")]
         public void WhenEnterEmail(string email)
         {
-            AuthorizationUnauthorizedPage page = new AuthorizationUnauthorizedPage();
+            var page = new AuthorizationUnauthorizedPage();
             page.EnterEmail(email);
         }
 
@@ -23,21 +23,21 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Enter password ""([^""]*)""")]
         public void WhenEnterPassword(string password)
         {
-            AuthorizationUnauthorizedPage page = new AuthorizationUnauthorizedPage();
+            var page = new AuthorizationUnauthorizedPage();
             page.EnterPassword(password);
         }
 
         [When(@"Click button Enter")]
         public void WhenClickButtonEnter()
         {
-            AuthorizationUnauthorizedPage page = new AuthorizationUnauthorizedPage();
+            var page = new AuthorizationUnauthorizedPage();
             page.ClickEnterButton();
         }
 
         [When(@"Click button Cancel")]
         public void WhenClickButtonCancel()
         {
-            AuthorizationUnauthorizedPage page = new AuthorizationUnauthorizedPage();
+            var page = new AuthorizationUnauthorizedPage();
             page.ClickCancelButton();
         }
 
@@ -53,7 +53,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [Then(@"Text with name on sidebar should be ""([^""]*)""")]
         public void ThenTextWithNameOnSidebarShouldBe(string expectedName)
         {
-            NotificationsPage page = new NotificationsPage();
+            var page = new NotificationsPage();
             string actualName = page.GetUserFullName();
             Assert.Equal(expectedName, actualName);
         }
@@ -61,7 +61,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [Then(@"Text with role on sidebar should be ""([^""]*)""")]
         public void ThenTextWithRoleOnSidebarShouldBe(string expectedRole)
         {
-            NotificationsPage page = new NotificationsPage();
+            var page = new NotificationsPage();
             string actualRole = page.ComboBoxRoles.Text;
             Assert.Equal(expectedRole, actualRole);
         }
@@ -69,7 +69,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [Then(@"Text in email textbox should be empty")]
         public void ThenTextInEmailTextboxShouldBeEmpty()
         {
-            AuthorizationUnauthorizedPage page = new AuthorizationUnauthorizedPage();
+            var page = new AuthorizationUnauthorizedPage();
             string expectedEmail = "";
             string actualEmail = page.TextBoxEmail.Text;
             Assert.Equal(expectedEmail, actualEmail);
@@ -78,7 +78,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [Then(@"Label in email textbox should be ""([^""]*)""")]
         public void ThenLabelInEmailTextboxShouldBe(string label)
         {
-            AuthorizationUnauthorizedPage page = new AuthorizationUnauthorizedPage();
+            var page = new AuthorizationUnauthorizedPage();
             string expectedLabel = label;
             string actualLabel = page.TextBoxEmail.GetAttribute("placeholder");
             Assert.Equal(expectedLabel, actualLabel);
@@ -87,7 +87,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [Then(@"Text in password textbox should be empty")]
         public void ThenTextInPasswordTextboxShouldBeEmpty()
         {
-            AuthorizationUnauthorizedPage page = new AuthorizationUnauthorizedPage();
+            var page = new AuthorizationUnauthorizedPage();
             string expectedPassword = "";
             string actualPassword = page.TextBoxPassword.Text;
             Assert.Equal(expectedPassword, actualPassword);
@@ -96,7 +96,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [Then(@"Exception message under password textbox should appear with text ""([^""]*)""")]
         public void ThenExcaptionMessageWrongPasswordOrEmailShouldAppear(string exceptionMessage)
         {
-            AuthorizationUnauthorizedPage page = new AuthorizationUnauthorizedPage();
+            var page = new AuthorizationUnauthorizedPage();
             string expectedMessage = exceptionMessage;
             string actualMessage = page.LabelUnderPasswordTextBox.Text;
             Assert.Equal(expectedMessage, actualMessage);
@@ -105,7 +105,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [Then(@"Exception message under email textbox should appear with text ""([^""]*)""")]
         public void ThenExceptionMessageEmptyEmailShouldAppear(string exceptionMessage)
         {
-            AuthorizationUnauthorizedPage page = new AuthorizationUnauthorizedPage();
+            var page = new AuthorizationUnauthorizedPage();
             string expectedMessage = exceptionMessage;
             string actualMessage = page.LabelUnderEmailTextBox.Text;
             Assert.Equal(expectedMessage, actualMessage);

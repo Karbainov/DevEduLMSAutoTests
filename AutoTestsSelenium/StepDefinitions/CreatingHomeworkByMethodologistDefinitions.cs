@@ -3,13 +3,10 @@ namespace AutoTestsSelenium.StepDefinitions
     [Binding]
     public class CreatingHomeworkByMethodologistDefinitions
     {
-        private IWebDriver _driver;
-
         [When(@"Methodist click button add task")]
         public void WhenMethodistClickButtonAddTask()
         {
-            HomeworksMethodistPage homeworksMethodistPage;
-            homeworksMethodistPage = new HomeworksMethodistPage();
+            var homeworksMethodistPage = new HomeworksMethodistPage();
             homeworksMethodistPage.ClickHomeworksButton();
             homeworksMethodistPage.ClickAddHomework();
         }
@@ -17,9 +14,8 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Methodist create draft Homework course name ""([^""]*)""")]
         public void WhenMethodistCreateDraftHomeworkCourseName(string courseName, Table table)
         {
-            AddNewHomework createHomework = table.CreateInstance<AddNewHomework>();
-            HomeworkCreationMethodistPage homeworkMethodistPage;
-            homeworkMethodistPage = new HomeworkCreationMethodistPage();
+            var createHomework = table.CreateInstance<AddNewHomework>();
+            var homeworkMethodistPage = new HomeworkCreationMethodistPage();
             homeworkMethodistPage.ClickChoiceGroupNumber(courseName);
             homeworkMethodistPage.InputNameGroup(createHomework.Name);
             homeworkMethodistPage.InputDescriptionHomework(createHomework.Description);
@@ -30,16 +26,14 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Methodist click button save as draft")]
         public void ThenMethodistClickButtonSaveAsDraft()
         {
-            HomeworkCreationMethodistPage homeworkMethodistPage;
-            homeworkMethodistPage = new HomeworkCreationMethodistPage();
+            var homeworkMethodistPage = new HomeworkCreationMethodistPage();
             homeworkMethodistPage.ClickButtonSaveDraft();
         }
 
         [When(@"Methodist see all created homeworks")]
         public void WhenMethodistSeeAllCreatedHomeworks()
         {
-            HomeworkCreationMethodistPage homeworkMethodistPage;
-            homeworkMethodistPage = new HomeworkCreationMethodistPage();
+            var homeworkMethodistPage = new HomeworkCreationMethodistPage();
             homeworkMethodistPage.ClickHomeworksButton();
             //TODO The methodologist does not see his drafts. emptiness(Task 2.3)
         }
@@ -68,8 +62,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Teacher click button homework assignment")]
         public void WhenTeacherClickButtonHomeworkAssignment()
         {
-            HomeworkExtraditionTeacherPage homeworkExtraditionTeacherPage;
-            homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage();
+            var homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage();
             homeworkExtraditionTeacherPage.ClickHomeworksButton();
             homeworkExtraditionTeacherPage.ClickAddHomeworksButton();
         }
@@ -77,9 +70,8 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Teacher fill out a new assignment form course name ""([^""]*)""")]
         public void WhenTeacherFillOutANewAssignmentFormCourseName(string courseName, Table table)
         {
-            HomeworkExtraditionTeacherPage homeworkExtraditionTeacherPage;
-            homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage();
-            AddNewHomework homework = table.CreateInstance<AddNewHomework>();
+            var homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage();
+            var homework = table.CreateInstance<AddNewHomework>();
             homeworkExtraditionTeacherPage.ClickRadioButtonGroupName(courseName);
             homeworkExtraditionTeacherPage.InputStarDate(homework.StartDate);
             homeworkExtraditionTeacherPage.InputEndDate(homework.EndDate);
@@ -93,16 +85,14 @@ namespace AutoTestsSelenium.StepDefinitions
         [When(@"Teacher click button publish")]
         public void WhenTeacherClickButtonPublish()
         {
-            HomeworkExtraditionTeacherPage homeworkExtraditionTeacherPage;
-            homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage();
+            var homeworkExtraditionTeacherPage = new HomeworkExtraditionTeacherPage();
             homeworkExtraditionTeacherPage.ClickPublish();
         }
 
         [Then(@"Student should sees homework")]
         public void ThenStudentShouldSeesHomework()
         {
-            HomeworksStudentPage homeworksStudentPage;
-            homeworksStudentPage = new HomeworksStudentPage();
+            var homeworksStudentPage = new HomeworksStudentPage();
             homeworksStudentPage.ClickHomeworksButton();
             //TODO Homework does not appear. emptiness (Tasl 2.3)
         }

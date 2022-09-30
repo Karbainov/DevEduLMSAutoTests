@@ -19,7 +19,6 @@
         private List<AddTopicToCourseResponse> _expectedTopicPosition;
         private AddTopicToCourseResponse _newTopic;
 
-
         [Given(@"register new user metodist")]
         public void GivenRegisterNewUsers(Table table)
         {
@@ -119,7 +118,5 @@
             AddTopicToCourseResponse updatedTopicPosition = _expectedTopicPosition[0];
             Assert.Contains(updatedTopicPosition, listOfTopics);
         }
-
-
     }
 }

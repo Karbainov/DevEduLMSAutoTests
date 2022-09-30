@@ -5,14 +5,7 @@ namespace AutoTestsSelenium.StepDefinitions
     [Binding]
     public class SortingInTheOverallProgressTabStepDefinitions
     {
-        [Given(@"Teacher go to common progress")]
-        public void GivenTeacherGoToCommonProgress()
-        {
-            var generalProgress = new GeneralStudentsProgressTeacherPage();
-            generalProgress.ClickGeneralProgressButton();
-        }
-
-        [Given(@"Choose group ""([^""]*)""")]
+        [When(@"Choose group ""([^""]*)""")]
         public void GivenChooseGroup(string groupName)
         {
             var generalProgress = new GeneralStudentsProgressTeacherPage();
@@ -33,7 +26,7 @@ namespace AutoTestsSelenium.StepDefinitions
             generalProgress.MoveLeftTopScrollBar();
             var driver = SingleWebDriver.GetInstance();
             driver.ExecuteJavaScript("document.body.style.zoom='0.5'");
-            List<StudentsHomeworkResultModel> studentsResults = table.CreateSet<StudentsHomeworkResultModel>().ToList();
+            var studentsResults = table.CreateSet<StudentsHomeworkResultModel>().ToList();
             List<string> expected = new List<string>();
             foreach (var student in studentsResults)
             {
@@ -55,6 +48,50 @@ namespace AutoTestsSelenium.StepDefinitions
                 studentResult.Add(result.Text);
             }
             Assert.Equal(expected, studentResult);
+        }
+
+        [When(@"Teacher open tab General Progress")]
+        public void WhenTeacherOpenTabGeneralProgress()
+        {
+            var homeworksTeacherPage = new HomeworksTeacherPage();
+            homeworksTeacherPage.ClickGeneralProgressButton();
+            //TODO Mock(Tack 2.27)
+        }
+
+        [When(@"Teacher click ascending sorting in a column ""([^""]*)""")]
+        public void WhenTeacherClickAscendingSortingInAColumn(string taskName)
+        {
+            var generalStudentsProgressTeacherPage = new GeneralStudentsProgressTeacherPage();
+            generalStudentsProgressTeacherPage.MoveLeftTopScrollBar();
+            generalStudentsProgressTeacherPage.ClickSortBottomButton(taskName);
+        }
+
+        [Then(@"Teacher should see list ""([^""]*)"" after sort on ABC")]
+        public void ThenTeacherShouldSeeListAfterSortOnABC(string homeworkName, Table table)
+        {
+            var expectedResults = table.CreateSet<StudentsHomeworkResultModel>().ToList();
+            var page = new GeneralStudentsProgressTeacherPage();
+            var helper = new ModelsHelper();
+            var actualResults = helper.GetHomeworkResultsByHomeworkName(page, homeworkName);
+            Assert.Equivalent(expectedResults, actualResults);
+        }
+
+        [Then(@"Teacher click descending sorting in a column ""([^""]*)""")]
+        public void ThenTeacherClickDescendingSortingInAColumn(string taskName)
+        {
+            var generalStudentsProgressTeacherPage = new GeneralStudentsProgressTeacherPage();
+            generalStudentsProgressTeacherPage.MoveLeftTopScrollBar();
+            generalStudentsProgressTeacherPage.ClickSortTopButton(taskName);
+        }
+
+        [Then(@"Teacher should see list ""([^""]*)"" after sort on CBA")]
+        public void ThenTeacherShouldSeeListAfterSortOnCBA(string homeworkName, Table table)
+        {
+            var expectedResults = table.CreateSet<StudentsHomeworkResultModel>().ToList();
+            var page = new GeneralStudentsProgressTeacherPage();
+            var helper = new ModelsHelper();
+            var actualResults = helper.GetHomeworkResultsByHomeworkName(page, homeworkName);
+            Assert.Equivalent(expectedResults, actualResults);
         }
     }
 }

@@ -143,10 +143,10 @@ testRunner.Given("register as user", ((string)(null)), table3, "Given ");
                             "2000",
                             "true"});
 #line 13
- testRunner.And("manager add payment to student user", ((string)(null)), table5, "And ");
+    testRunner.And("manager add payment to student user", ((string)(null)), table5, "And ");
 #line hidden
 #line 16
- testRunner.And("manager can see this payment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("manager can see this payment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
                             "Date",
@@ -157,16 +157,16 @@ testRunner.Given("register as user", ((string)(null)), table3, "Given ");
                             "3000",
                             "true"});
 #line 17
- testRunner.And("manager updates this payment", ((string)(null)), table6, "And ");
+    testRunner.And("manager updates this payment", ((string)(null)), table6, "And ");
 #line hidden
 #line 20
- testRunner.And("manager can see the updated payment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("manager can see the updated payment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 21
- testRunner.And("manager delete this payment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("manager delete this payment", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 22
- testRunner.And("manager can see that the payment deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("manager can see that the payment deleted", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

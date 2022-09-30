@@ -1,7 +1,5 @@
-﻿
-namespace DevEduLMSAutoTests.API.StepDefinitions
+﻿namespace DevEduLMSAutoTests.API.StepDefinitions
 {
-
     [Binding]
     public class PaymentStepDefinitions
     {
@@ -79,6 +77,5 @@ namespace DevEduLMSAutoTests.API.StepDefinitions
             List<AddPaymentToUserResponse> listOfPayments = _paymentClient.GetPaymentsByUserId(_userId, _managerToken);
             Assert.DoesNotContain(_updatedPayment, listOfPayments);
         }
-
     }
 }

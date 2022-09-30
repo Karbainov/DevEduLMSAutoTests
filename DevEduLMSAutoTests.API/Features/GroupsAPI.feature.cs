@@ -155,7 +155,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "89518963148",
                             "Tutor"});
 #line 7
-testRunner.Given("register new users with roles in service", ((string)(null)), table1, "Given ");
+    testRunner.Given("register new users with roles in service", ((string)(null)), table1, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
@@ -176,13 +176,13 @@ testRunner.Given("register new users with roles in service", ((string)(null)), t
                             "2500",
                             "3"});
 #line 12
-testRunner.When("manager create new group in service", ((string)(null)), table2, "When ");
+    testRunner.When("manager create new group in service", ((string)(null)), table2, "When ");
 #line hidden
 #line 15
-testRunner.And("manager add users to group in service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("manager add users to group in service", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 16
-testRunner.Then("authorize users in service and check group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then("authorize users in service and check group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

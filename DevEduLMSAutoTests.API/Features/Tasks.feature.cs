@@ -172,7 +172,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "89995554433",
                             "Tutor"});
 #line 9
- testRunner.Given("register new users with roles", ((string)(null)), table21, "Given ");
+    testRunner.Given("register new users with roles", ((string)(null)), table21, "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table22 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
@@ -193,10 +193,10 @@ this.ScenarioInitialize(scenarioInfo);
                             "5000",
                             "10"});
 #line 15
- testRunner.And("manager create new group", ((string)(null)), table22, "And ");
+    testRunner.And("manager create new group", ((string)(null)), table22, "And ");
 #line hidden
 #line 18
- testRunner.And("manager add users to group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("manager add users to group", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table23 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
@@ -211,7 +211,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "true",
                             "1370"});
 #line 19
- testRunner.And("methodist create new task", ((string)(null)), table23, "And ");
+    testRunner.And("methodist create new task", ((string)(null)), table23, "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table24 = new TechTalk.SpecFlow.Table(new string[] {
                             "Name",
@@ -224,10 +224,10 @@ this.ScenarioInitialize(scenarioInfo);
                             "3",
                             "true"});
 #line 22
- testRunner.And("methodist update task", ((string)(null)), table24, "And ");
+    testRunner.And("methodist update task", ((string)(null)), table24, "And ");
 #line hidden
 #line 26
- testRunner.When("teacher sees task by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.When("teacher sees task by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table25 = new TechTalk.SpecFlow.Table(new string[] {
                             "StartDate",
@@ -236,10 +236,10 @@ this.ScenarioInitialize(scenarioInfo);
                             "15.09.2022",
                             "30.09.2022"});
 #line 27
- testRunner.And("teacher post task", ((string)(null)), table25, "And ");
+    testRunner.And("teacher post task", ((string)(null)), table25, "And ");
 #line hidden
 #line 30
- testRunner.Then("student should sees task", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then("student should sees task", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

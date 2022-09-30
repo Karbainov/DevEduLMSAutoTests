@@ -28,7 +28,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [Given(@"Register new users with roles")]
         public void GivenAdministratorRegistersNewUsersWithRoles(Table table)
         {
-            List<RegistationModelWithRole> newUsers = table.CreateSet<RegistationModelWithRole>().ToList();
+            var newUsers = table.CreateSet<RegistationModelWithRole>().ToList();
             foreach (var user in newUsers)
             {
                 RegisterRequest registerRequest = user.CreateRegisterRequest(user);
@@ -81,7 +81,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [Given(@"Create new groups")]
         public void GivenAdminCreateNewGroups(Table table)
         {
-            List<CreateGroupRequest> groups = table.CreateSet<CreateGroupRequest>().ToList();
+            var groups = table.CreateSet<CreateGroupRequest>().ToList();
             foreach (var group in groups)
             {
                 if (group.CourseName != null)
@@ -96,7 +96,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void GivenAdminAddUsersToGroup(string groupName, Table table)
         {
             int groupId = GetGroupIdByName(groupName);
-            List<RegistationModelWithRole> users = table.CreateSet<RegistationModelWithRole>().ToList();
+            var users = table.CreateSet<RegistationModelWithRole>().ToList();
             foreach (var user in users)
             {
                 int userId = GetUsersIdByFullName(user.FirstName, user.LastName);
@@ -107,7 +107,7 @@ namespace AutoTestsSelenium.StepDefinitions
         [Given(@"Users photo is ""([^""]*)""")]
         public void GivenUsersPhotoIs(string photoName, Table table)
         {
-            SignInRequest signIn = table.CreateInstance<SignInRequest>();
+            var signIn = table.CreateInstance<SignInRequest>();
             string token = _authClient.AuthorizeUser(signIn);
             string filePath = Directory.GetCurrentDirectory();
             filePath = filePath.Replace("bin\\Debug\\net6.0", $"Support\\UsersPhotos\\{photoName}");
@@ -118,7 +118,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void GivenCreateNewTasks(string groupName, Table table)
         {
             int groupId = GetGroupIdByName(groupName);
-            List<AddTasksByTeacherRequest> tasks = table.CreateSet<AddTasksByTeacherRequest>().ToList();
+            var tasks = table.CreateSet<AddTasksByTeacherRequest>().ToList();
             foreach (var task in tasks)
             {
                 task.GroupId = groupId;
@@ -131,7 +131,7 @@ namespace AutoTestsSelenium.StepDefinitions
         {
             int groupId = GetGroupIdByName(groupName);
             int taskId = GetTaskIdByName(taskName);
-            List<AddHomeworkRequest> homeworks = table.CreateSet<AddHomeworkRequest>().ToList();
+            var homeworks = table.CreateSet<AddHomeworkRequest>().ToList();
             foreach (var homework in homeworks)
             {
                 _homeworksClient.AddHomework(homework, groupId, taskId, _adminsToken);
@@ -142,12 +142,12 @@ namespace AutoTestsSelenium.StepDefinitions
         public void GivenSendHomeworkByStudent(string groupName, string taskName, Table table)
         {
             int homeworkId = GetHomeworkIdByGroupNameAndTaskName(groupName, taskName);
-            List<SignInModelWithStudentHomeworkRequest> studentsHomeworks = table.CreateSet<SignInModelWithStudentHomeworkRequest>().ToList();
+            var studentsHomeworks = table.CreateSet<SignInModelWithStudentHomeworkRequest>().ToList();
             foreach (var student in studentsHomeworks)
             {
                 SignInRequest studentSignIn = student.CreateSignInRequest(student);
                 string token = _authClient.AuthorizeUser(studentSignIn);
-                AddHomeworkByStudentRequest homeworkRequest = student.CreateAddHomeworkByStudentRequest(student);
+                var homeworkRequest = student.CreateAddHomeworkByStudentRequest(student);
                 homeworkRequest.HomeworkId = homeworkId;
                 _studentHomeworksClient.AddHomework(homeworkRequest, token);
             }
@@ -157,7 +157,7 @@ namespace AutoTestsSelenium.StepDefinitions
         public void GivenCheckHomeworks(string groupName, string taskName, Table table)
         {
             int studentHomeworkId = 0;
-            List<StudentsHomeworkResultModelWithSeparateName> students = table.CreateSet<StudentsHomeworkResultModelWithSeparateName>().ToList();
+            var students = table.CreateSet<StudentsHomeworkResultModelWithSeparateName>().ToList();
             for (int i=0; i < students.Count; i++)
             {
                 if (students[i].Result == "Сдано")
@@ -178,7 +178,7 @@ namespace AutoTestsSelenium.StepDefinitions
             int homeworkId = GetHomeworkIdByGroupNameAndTaskName(groupName, taskName);
             int studentHomeworkId = 0;
             int userId = GetUsersIdByFullName(firstName, lastName);
-            List<GetStudentHomeworkByUserIdResponse> studentsHomeworks = _studentHomeworksClient.GetStudentHomeworkByStudentId(userId, _adminsToken);
+            var studentsHomeworks = _studentHomeworksClient.GetStudentHomeworkByStudentId(userId, _adminsToken);
             foreach (var studentHomework in studentsHomeworks)
             {
                 if (studentHomework.Homework.TaskInHW.Name == taskName && studentHomework.Homework.Id == homeworkId)
@@ -195,11 +195,12 @@ namespace AutoTestsSelenium.StepDefinitions
                 return studentHomeworkId;
             }
         }
+
         private int GetHomeworkIdByGroupNameAndTaskName(string groupName, string taskName)
         {
             int homeworkId = 0;
             int groupId = GetGroupIdByName(groupName);
-            List<GetHomeworkByGroupIdResponse> allHomeworks = _homeworksClient.GetAllHomeworksByGroupId(groupId, _adminsToken);
+            var allHomeworks = _homeworksClient.GetAllHomeworksByGroupId(groupId, _adminsToken);
             foreach (var homework in allHomeworks)
             {
                 if (homework.TaskInHW.Name == taskName)
@@ -217,10 +218,11 @@ namespace AutoTestsSelenium.StepDefinitions
                 return homeworkId;
             }
         }
+
         private int GetGroupIdByName(string groupName)
         {
             int groupId = 0;
-            List<GetAllGroupsResponse> allGroups = _groupsClient.GetAllGroups(_adminsToken);
+            var allGroups = _groupsClient.GetAllGroups(_adminsToken);
             foreach (var group in allGroups)
             {
                 if (group.Name == groupName)

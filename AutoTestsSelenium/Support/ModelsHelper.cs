@@ -1,5 +1,4 @@
-﻿using Docker.DotNet.Models;
-using OpenQA.Selenium.Support.Extensions;
+﻿using OpenQA.Selenium.Support.Extensions;
 
 namespace AutoTestsSelenium.Support
 {

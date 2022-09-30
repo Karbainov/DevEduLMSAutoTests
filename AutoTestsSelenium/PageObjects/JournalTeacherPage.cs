@@ -17,7 +17,5 @@
         {
             return _driver.FindElement(By.XPath($"//*[text()='{groupName}']/.."));
         }
-
-
     }
 }

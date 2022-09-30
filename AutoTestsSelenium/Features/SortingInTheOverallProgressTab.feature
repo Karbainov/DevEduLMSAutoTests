@@ -28,7 +28,7 @@ Scenario: Sort by surname
 	| Apple | Lemon       | string | true       |
 	And Add new homeworks for group "BlaBla" task "Apple"
 	| StartDate  | EndDate    |
-    | 01.10.2022 | 25.10.2022 |
+	| 01.10.2022 | 25.10.2022 |
 	Given Students authorize and send homework for group "BlaBla" task "Apple"
 	| Email              | Password | HomeworkId | Answer         |
 	| kroko@gmail.com    | password |            | link@razdva.ru |
@@ -47,7 +47,7 @@ Scenario: Sort by surname
 	Given Authorize user in service as teacher
 	| Email             | Password |
 	| witch@teacher.com | password |
-	Given Teacher go to common progress
+	When Teacher open tab General Progress	
 	And Choose group "BlaBla"
 	When Teacher sort students by surname
 	Then Students should sort by surname
@@ -61,11 +61,11 @@ Scenario: Sort by surname
 @teacher
 Scenario: Teacher sorts students by status
 	Given Register new users with roles
-	| FirstName | LastName  | Patronymic | Email             | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
-	| Барабан   | Second    | string     | isi@gmail.com     | Bella    | password | SaintPetersburg | 22.05.2001 | string        | 89514551247 | Student |
-	| Ворона    | Амеба     | string     | lil@student.com   | Lil      | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student |
-	| Абрикос   | Филя      | string     | ilya2@student.com | ilya2    | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student |
-	| Maksim    | Karbainov | string     | maks@teacher.com  | Maksim   | password | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
+	| FirstName | LastName  | Patronymic | Email               | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
+	| Барабан   | Second    | string     | isi@gmail.com       | Bella    | password | SaintPetersburg | 22.05.2001 | string        | 89514551247 | Student |
+	| Ворона    | Амеба     | string     | lil@student.com     | Lil      | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student |
+	| Абрикос   | Филя      | string     | Andrey2@student.com | Andrey2  | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student |
+	| Maksim    | Karbainov | string     | maks@teacher.com    | Maksim   | password | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
 	And Create new groups
 	| Name            | CourseId | GroupStatusId | StartDate  | EndDate    | Timetable | PaymentPerMonth | PaymentsCount |
 	| Паровозик любви | 1370     | Forming       | 25.09.2022 | 30.01.2023 | string    | 5000            | 10            |
@@ -84,10 +84,10 @@ Scenario: Teacher sorts students by status
 	| Структуры | LubluDushit  | https://hd.kinopoisk.ru/  | 30.09.2022 | 02.10.2022 |
 	And Teacher logged out
 	And Students did their homework "Структуры"
-	| Email             | Password |
-	| isi@gmail.com     | password |
-	| lil@student.com   | password |
-	| ilya2@student.com | password |
+	| Email               | Password |
+	| isi@gmail.com       | password |
+	| lil@student.com     | password |
+	| Andrey2@student.com | password |
 	And Authorize user in service as teacher
 	| Email            | Password |
 	| maks@teacher.com | password |

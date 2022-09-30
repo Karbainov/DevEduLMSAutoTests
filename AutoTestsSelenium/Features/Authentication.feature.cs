@@ -115,11 +115,11 @@ this.ScenarioInitialize(scenarioInfo);
                             "PhoneNumber",
                             "Role"});
                 table1.AddRow(new string[] {
-                            "Ilya",
+                            "Andrey",
                             "Baikov",
                             "string",
-                            "ilya@student.com",
-                            "ilya",
+                            "Andrey@student.com",
+                            "Andrey",
                             "password",
                             "SaintPetersburg",
                             "02.07.2000",
@@ -136,7 +136,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 13
- testRunner.And("Enter email \"ilya@student.com\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Enter email \"Andrey@student.com\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 14
  testRunner.And("Enter password \"password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -145,7 +145,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("Click button Enter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 16
- testRunner.Then("Text with name on sidebar should be \"Baikov Ilya\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Text with name on sidebar should be \"Baikov Andrey\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 17
  testRunner.And("Text with role on sidebar should be \"Студент\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -190,11 +190,11 @@ this.ScenarioInitialize(scenarioInfo);
                             "PhoneNumber",
                             "Role"});
                 table2.AddRow(new string[] {
-                            "Ilya",
+                            "Andrey",
                             "Baikov",
                             "string",
-                            "ilya@student.com",
-                            "ilya",
+                            "Andrey@student.com",
+                            "Andrey",
                             "password",
                             "SaintPetersburg",
                             "02.07.2000",
@@ -211,7 +211,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Open authorization page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 27
- testRunner.And("Enter email \"ilya@student.com\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Enter email \"Andrey@student.com\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 28
  testRunner.And("Enter password \"password\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -238,11 +238,11 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.TraitAttribute("Category", "authentication")]
         [Xunit.TraitAttribute("Category", "negative")]
         [Xunit.InlineDataAttribute("maks@student.com", "password", "Неправильные логин или пароль", new string[0])]
-        [Xunit.InlineDataAttribute("ilya@student.com", "passpass", "Неправильные логин или пароль", new string[0])]
-        [Xunit.InlineDataAttribute("ilya@student.com", "PASSWORD", "Неправильные логин или пароль", new string[0])]
-        [Xunit.InlineDataAttribute("ilya@student.com", "password11", "Неправильные логин или пароль", new string[0])]
-        [Xunit.InlineDataAttribute("ilya@student.com", "pass", "Неправильные логин или пароль", new string[0])]
-        [Xunit.InlineDataAttribute("ilya@student.com", "", "Введите пароль", new string[0])]
+        [Xunit.InlineDataAttribute("Andrey@student.com", "passpass", "Неправильные логин или пароль", new string[0])]
+        [Xunit.InlineDataAttribute("Andrey@student.com", "PASSWORD", "Неправильные логин или пароль", new string[0])]
+        [Xunit.InlineDataAttribute("Andrey@student.com", "password11", "Неправильные логин или пароль", new string[0])]
+        [Xunit.InlineDataAttribute("Andrey@student.com", "pass", "Неправильные логин или пароль", new string[0])]
+        [Xunit.InlineDataAttribute("Andrey@student.com", "", "Введите пароль", new string[0])]
         public void AuthenticationWithWrongPasswordOrEmail(string email, string password, string message, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -281,11 +281,11 @@ this.ScenarioInitialize(scenarioInfo);
                             "PhoneNumber",
                             "Role"});
                 table3.AddRow(new string[] {
-                            "Ilya",
+                            "Andrey",
                             "Baikov",
                             "string",
-                            "ilya@student.com",
-                            "ilya",
+                            "Andrey@student.com",
+                            "Andrey",
                             "password",
                             "SaintPetersburg",
                             "02.07.2000",
@@ -323,12 +323,12 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.TraitAttribute("Category", "authentication")]
         [Xunit.TraitAttribute("Category", "negative")]
         [Xunit.InlineDataAttribute("", new string[0])]
-        [Xunit.InlineDataAttribute("ilya", new string[0])]
-        [Xunit.InlineDataAttribute("ilya@", new string[0])]
-        [Xunit.InlineDataAttribute("ilya@mail", new string[0])]
-        [Xunit.InlineDataAttribute("ilya@mail.", new string[0])]
-        [Xunit.InlineDataAttribute("ilya@mail.r", new string[0])]
-        [Xunit.InlineDataAttribute("ilya@.ru", new string[0])]
+        [Xunit.InlineDataAttribute("Andrey", new string[0])]
+        [Xunit.InlineDataAttribute("Andrey@", new string[0])]
+        [Xunit.InlineDataAttribute("Andrey@mail", new string[0])]
+        [Xunit.InlineDataAttribute("Andrey@mail.", new string[0])]
+        [Xunit.InlineDataAttribute("Andrey@mail.r", new string[0])]
+        [Xunit.InlineDataAttribute("Andrey@.ru", new string[0])]
         [Xunit.InlineDataAttribute("@mail.ru", new string[0])]
         public void AuthenticationWithWrongEmailFormat(string email, string[] exampleTags)
         {
@@ -366,11 +366,11 @@ this.ScenarioInitialize(scenarioInfo);
                             "PhoneNumber",
                             "Role"});
                 table4.AddRow(new string[] {
-                            "Ilya",
+                            "Andrey",
                             "Baikov",
                             "string",
-                            "ilya@student.com",
-                            "ilya",
+                            "Andrey@student.com",
+                            "Andrey",
                             "password",
                             "SaintPetersburg",
                             "02.07.2000",
@@ -438,11 +438,11 @@ this.ScenarioInitialize(scenarioInfo);
                             "PhoneNumber",
                             "Role"});
                 table5.AddRow(new string[] {
-                            "Ilya",
+                            "Andrey",
                             "Baikov",
                             "string",
-                            "ilya@student.com",
-                            "ilya",
+                            "Andrey@student.com",
+                            "Andrey",
                             "password",
                             "SaintPetersburg",
                             "02.07.2000",
