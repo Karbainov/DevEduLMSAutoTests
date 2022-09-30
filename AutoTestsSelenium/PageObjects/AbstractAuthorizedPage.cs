@@ -6,7 +6,7 @@
         public IWebElement ButtonNotificationsSideBar => _driver.FindElement(By.XPath($"//*[text()='Уведомления']/.."));
         public IWebElement ComboBoxRoles => _driver.FindElement(By.XPath($"//*[@class='user-roles-wrapper']"));
         public IWebElement ButtonSettingsSideBar => _driver.FindElement(By.XPath($"//*[text()='Настройки']/.."));
-        public IWebElement ButtonExitSideBar => _driver.FindElement(By.XPath($"//*[text()='Выйти']/ancestor::button"));
+        public IWebElement ButtonExitSideBar => _driver.FindElement(By.XPath($"//*[text()='Выйти']/.."));
         
         protected AbstractAuthorizedPage()
         {
@@ -60,7 +60,7 @@
         private IWebElement GetButtonNameSideBar()
         {
             WebDriverWait webDriverWait = new WebDriverWait(_driver, TimeSpan.FromSeconds(1));
-            return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//div[@class='avatar-block transition-styles ']/*[@href='/settings']")));
+            return webDriverWait.Until(ExpectedConditions.ElementExists(By.XPath($"//*[@class='user-info-wrapper']/*[@href='/settings']")));
         }
     }
 }
