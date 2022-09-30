@@ -28,7 +28,7 @@ Scenario: Sort by surname
 	| Apple | Lemon       | string | true       |
 	And Add new homeworks for group "BlaBla" task "Apple"
 	| StartDate  | EndDate    |
-    | 01.10.2022 | 25.10.2022 |
+	| 01.10.2022 | 25.10.2022 |
 	Given Students authorize and send homework for group "BlaBla" task "Apple"
 	| Email              | Password | HomeworkId | Answer         |
 	| kroko@gmail.com    | password |            | link@razdva.ru |

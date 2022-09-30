@@ -1457,6 +1457,135 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioCleanup();
         }
         
+        [Xunit.SkippableFactAttribute(DisplayName="The group completed the basic course and moved on to the next one. The student se" +
+            "es the history of his courses.")]
+        [Xunit.TraitAttribute("FeatureTitle", "Groups")]
+        [Xunit.TraitAttribute("Description", "The group completed the basic course and moved on to the next one. The student se" +
+            "es the history of his courses.")]
+        [Xunit.TraitAttribute("Category", "group")]
+        [Xunit.TraitAttribute("Category", "student")]
+        public void TheGroupCompletedTheBasicCourseAndMovedOnToTheNextOne_TheStudentSeesTheHistoryOfHisCourses_()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "group",
+                    "student"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("The group completed the basic course and moved on to the next one. The student se" +
+                    "es the history of his courses.", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 254
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table63 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "Patronymic",
+                            "Email",
+                            "Username",
+                            "Password",
+                            "City",
+                            "BirthDate",
+                            "GitHubAccount",
+                            "PhoneNumber",
+                            "Role"});
+                table63.AddRow(new string[] {
+                            "Вася",
+                            "Ложкин",
+                            "Вилкович",
+                            "vasyok@dev.com",
+                            "Lojka",
+                            "password",
+                            "SaintPetersburg",
+                            "18.05.1995",
+                            "string",
+                            "89521496531",
+                            "Student"});
+#line 255
+ testRunner.Given("Register new users with roles", ((string)(null)), table63, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table64 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Name",
+                            "CourseName",
+                            "GroupStatusId",
+                            "StartDate",
+                            "EndDate",
+                            "Timetable",
+                            "PaymentPerMonth",
+                            "PaymentsCount"});
+                table64.AddRow(new string[] {
+                            "Navigators",
+                            "Базовый C#",
+                            "Completed",
+                            "21.02.2022",
+                            "30.05.2022",
+                            "string",
+                            "2500",
+                            "3"});
+                table64.AddRow(new string[] {
+                            "Winners",
+                            "QA Automation",
+                            "Forming",
+                            "21.06.2022",
+                            "10.10.2022",
+                            "string",
+                            "7500",
+                            "3"});
+#line 258
+ testRunner.And("Create new groups", ((string)(null)), table64, "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table65 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "Role"});
+                table65.AddRow(new string[] {
+                            "Вася",
+                            "Ложкин",
+                            "Student"});
+#line 262
+ testRunner.And("Add users to group \"Navigators\"", ((string)(null)), table65, "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table66 = new TechTalk.SpecFlow.Table(new string[] {
+                            "FirstName",
+                            "LastName",
+                            "Role"});
+                table66.AddRow(new string[] {
+                            "Вася",
+                            "Ложкин",
+                            "Student"});
+#line 265
+ testRunner.And("Add users to group \"Winners\"", ((string)(null)), table66, "And ");
+#line hidden
+#line 268
+ testRunner.And("Open DevEdu web site https://piter-education.ru:7074/", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+                TechTalk.SpecFlow.Table table67 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Email",
+                            "Password"});
+                table67.AddRow(new string[] {
+                            "vasyok@dev.com",
+                            "password"});
+#line 269
+ testRunner.When("Authorize user in service as student", ((string)(null)), table67, "When ");
+#line hidden
+#line 272
+ testRunner.And("Click button lessons as student", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 273
+ testRunner.Then("Student checks presence of group by name course \"Базовый C#\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 274
+ testRunner.And("Student checks presence of group by name course \"QA Automation\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
         [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
         [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
         public class FixtureData : System.IDisposable
