@@ -29,7 +29,7 @@ Scenario:  Creating an assignment by a methodologist for students
 	And Teacher click button homework assignment
 	And Teacher fill out a new assignment form course name "QA Automation"
 	|Name            | Description      | Link             |StartDate  | EndDate   |
-	| ЗаданиеЗадание | сделай то то     |http://fjfjf.com  |20.09.2022 | 31.12.2022|
+	| ЗаданиеЗадание | сделай то то     |http://fjfjf.com  |30.09.2022 | 31.12.2022|
 	And Teacher click button publish
 	And Teacher logged out
 	And Authorize user in service as student

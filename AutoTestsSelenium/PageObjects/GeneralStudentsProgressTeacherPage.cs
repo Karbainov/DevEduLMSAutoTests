@@ -96,13 +96,5 @@
                 .Build()
                 .Perform();
         }
-
-        public void MoveLeftTopScrollBar()
-        {
-            new Actions(_driver)
-                .DragAndDropToOffset(TopScrollBar, -200, 0)
-                .Build()
-                .Perform();
-        }
     }
 }

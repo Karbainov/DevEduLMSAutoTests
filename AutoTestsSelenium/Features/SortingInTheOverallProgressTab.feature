@@ -81,7 +81,7 @@ Scenario: Teacher sorts students by status
 	| maks@teacher.com | password |
 	And Teacher create new homework for group "Паровозик любви"
 	| Name      | Description  | Link                      | StartDate  | EndDate    |
-	| Структуры | LubluDushit  | https://hd.kinopoisk.ru/  | 29.09.2022 | 01.10.2022 |
+	| Структуры | LubluDushit  | https://hd.kinopoisk.ru/  | 30.09.2022 | 02.10.2022 |
 	And Teacher logged out
 	And Students did their homework "Структуры"
 	| Email             | Password |
