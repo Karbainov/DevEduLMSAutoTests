@@ -64,7 +64,7 @@ Scenario: Teacher sorts students by status
 	| FirstName | LastName  | Patronymic | Email             | Username | Password | City            | BirthDate  | GitHubAccount | PhoneNumber | Role    |
 	| Барабан   | Second    | string     | isi@gmail.com     | Bella    | password | SaintPetersburg | 22.05.2001 | string        | 89514551247 | Student |
 	| Ворона    | Амеба     | string     | lil@student.com   | Lil      | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student |
-	| Абрикос   | Филя      | string     | ilya2@student.com | ilya2    | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student |
+	| Абрикос   | Филя      | string     | Andrey2@student.com | Andrey2    | password | SaintPetersburg | 23.07.1993 | string        | 89998887766 | Student |
 	| Maksim    | Karbainov | string     | maks@teacher.com  | Maksim   | password | SaintPetersburg | 18.05.1995 | string        | 89521496531 | Teacher |
 	And Create new groups
 	| Name            | CourseId | GroupStatusId | StartDate  | EndDate    | Timetable | PaymentPerMonth | PaymentsCount |
@@ -87,7 +87,7 @@ Scenario: Teacher sorts students by status
 	| Email             | Password |
 	| isi@gmail.com     | password |
 	| lil@student.com   | password |
-	| ilya2@student.com | password |
+	| Andrey2@student.com | password |
 	And Authorize user in service as teacher
 	| Email            | Password |
 	| maks@teacher.com | password |

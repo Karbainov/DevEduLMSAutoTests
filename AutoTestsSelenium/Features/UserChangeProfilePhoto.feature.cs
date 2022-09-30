@@ -121,11 +121,11 @@ this.ScenarioInitialize(scenarioInfo);
                             "PhoneNumber",
                             "Role"});
                 table131.AddRow(new string[] {
-                            "Ilya1",
+                            "Andrey1",
                             "Baikov",
                             "string",
-                            "ilya1@student.com",
-                            "ilya1",
+                            "Andrey1@student.com",
+                            "Andrey1",
                             "password",
                             "SaintPetersburg",
                             "23.07.1993",
@@ -142,7 +142,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Email",
                             "Password"});
                 table132.AddRow(new string[] {
-                            "ilya1@student.com",
+                            "Andrey1@student.com",
                             "password"});
 #line 11
  testRunner.And("Authorize user in service", ((string)(null)), table132, "And ");
@@ -205,11 +205,11 @@ this.ScenarioInitialize(scenarioInfo);
                             "PhoneNumber",
                             "Role"});
                 table133.AddRow(new string[] {
-                            "Ilya1",
+                            "Andrey1",
                             "Baikov",
                             "string",
-                            "ilya1@student.com",
-                            "ilya1",
+                            "Andrey1@student.com",
+                            "Andrey1",
                             "password",
                             "SaintPetersburg",
                             "23.07.1993",
@@ -226,7 +226,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Email",
                             "Password"});
                 table134.AddRow(new string[] {
-                            "ilya1@student.com",
+                            "Andrey1@student.com",
                             "password"});
 #line 32
  testRunner.And("Authorize user in service", ((string)(null)), table134, "And ");
@@ -286,11 +286,11 @@ this.ScenarioInitialize(scenarioInfo);
                             "PhoneNumber",
                             "Role"});
                 table135.AddRow(new string[] {
-                            "Ilya1",
+                            "Andrey1",
                             "Baikov",
                             "string",
-                            "ilya1@student.com",
-                            "ilya1",
+                            "Andrey1@student.com",
+                            "Andrey1",
                             "password",
                             "SaintPetersburg",
                             "23.07.1993",
@@ -304,7 +304,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "Email",
                             "Password"});
                 table136.AddRow(new string[] {
-                            "ilya1@student.com",
+                            "Andrey1@student.com",
                             "password"});
 #line 47
  testRunner.And("Authorize user in service", ((string)(null)), table136, "And ");

@@ -117,11 +117,11 @@ this.ScenarioInitialize(scenarioInfo);
                             "PhoneNumber",
                             "Role"});
                 table121.AddRow(new string[] {
-                            "Ilya1",
+                            "Andrey1",
                             "Baikov",
                             "string",
-                            "ilya1@student.com",
-                            "ilya1",
+                            "Andrey1@student.com",
+                            "Andrey1",
                             "password",
                             "SaintPetersburg",
                             "23.07.1993",
@@ -129,11 +129,11 @@ this.ScenarioInitialize(scenarioInfo);
                             "89998887766",
                             "Student"});
                 table121.AddRow(new string[] {
-                            "Ilya2",
+                            "Andrey2",
                             "Baikov",
                             "string",
-                            "ilya2@student.com",
-                            "ilya2",
+                            "Andrey2@student.com",
+                            "Andrey2",
                             "password",
                             "SaintPetersburg",
                             "23.07.1993",
@@ -141,11 +141,11 @@ this.ScenarioInitialize(scenarioInfo);
                             "89998887766",
                             "Student"});
                 table121.AddRow(new string[] {
-                            "Ilya3",
+                            "Andrey3",
                             "Baikov",
                             "string",
-                            "ilya3@student.com",
-                            "ilya3",
+                            "Andrey3@student.com",
+                            "Andrey3",
                             "password",
                             "SaintPetersburg",
                             "23.07.1993",
@@ -193,15 +193,15 @@ this.ScenarioInitialize(scenarioInfo);
                             "LastName",
                             "Role"});
                 table123.AddRow(new string[] {
-                            "Ilya1",
+                            "Andrey1",
                             "Baikov",
                             "Student"});
                 table123.AddRow(new string[] {
-                            "Ilya2",
+                            "Andrey2",
                             "Baikov",
                             "Student"});
                 table123.AddRow(new string[] {
-                            "Ilya3",
+                            "Andrey3",
                             "Baikov",
                             "Student"});
                 table123.AddRow(new string[] {
@@ -245,13 +245,13 @@ this.ScenarioInitialize(scenarioInfo);
                             "Email",
                             "Password"});
                 table126.AddRow(new string[] {
-                            "ilya1@student.com",
+                            "Andrey1@student.com",
                             "password"});
                 table126.AddRow(new string[] {
-                            "ilya2@student.com",
+                            "Andrey2@student.com",
                             "password"});
                 table126.AddRow(new string[] {
-                            "ilya3@student.com",
+                            "Andrey3@student.com",
                             "password"});
 #line 30
  testRunner.And("Students did their homework \"Lists\"", ((string)(null)), table126, "And ");
@@ -269,13 +269,13 @@ this.ScenarioInitialize(scenarioInfo);
                             "FullName",
                             "Result"});
                 table128.AddRow(new string[] {
-                            "Ilya1 Baikov",
+                            "Andrey1 Baikov",
                             "Сдано"});
                 table128.AddRow(new string[] {
-                            "Ilya2 Baikov",
+                            "Andrey2 Baikov",
                             "Сдано"});
                 table128.AddRow(new string[] {
-                            "Ilya3 Baikov",
+                            "Andrey3 Baikov",
                             "Сдано"});
 #line 38
  testRunner.And("Teacher rate homeworks", ((string)(null)), table128, "And ");
@@ -284,13 +284,13 @@ this.ScenarioInitialize(scenarioInfo);
                             "FullName",
                             "Result"});
                 table129.AddRow(new string[] {
-                            "Ilya1 Baikov",
+                            "Andrey1 Baikov",
                             "Сдано"});
                 table129.AddRow(new string[] {
-                            "Ilya2 Baikov",
+                            "Andrey2 Baikov",
                             "Сдано"});
                 table129.AddRow(new string[] {
-                            "Ilya3 Baikov",
+                            "Andrey3 Baikov",
                             "Сдано"});
 #line 43
  testRunner.Then("Teacher should see students results in homework \"Lists\" page", ((string)(null)), table129, "Then ");
@@ -299,13 +299,13 @@ this.ScenarioInitialize(scenarioInfo);
                             "FullName",
                             "Result"});
                 table130.AddRow(new string[] {
-                            "Ilya1 Baikov",
+                            "Andrey1 Baikov",
                             "Сдано"});
                 table130.AddRow(new string[] {
-                            "Ilya2 Baikov",
+                            "Andrey2 Baikov",
                             "Сдано"});
                 table130.AddRow(new string[] {
-                            "Ilya3 Baikov",
+                            "Andrey3 Baikov",
                             "Сдано"});
 #line 48
  testRunner.And("Teacher should see students results to homework \"Lists\" in tab General Progress", ((string)(null)), table130, "And ");

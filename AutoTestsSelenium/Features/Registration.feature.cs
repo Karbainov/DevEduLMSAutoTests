@@ -931,11 +931,11 @@ this.ScenarioInitialize(scenarioInfo);
                             "PhoneNumber",
                             "Role"});
                 table100.AddRow(new string[] {
-                            "Ilya1",
+                            "Andrey1",
                             "Baikov",
                             "string",
-                            "ilya1@student.com",
-                            "ilya1",
+                            "Andrey1@student.com",
+                            "Andrey1",
                             "password",
                             "SaintPetersburg",
                             "23.07.1993",
@@ -967,7 +967,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "31.07.1998",
                             "Azino777",
                             "Azino777",
-                            "ilya1@student.com",
+                            "Andrey1@student.com",
                             "+79992314545"});
 #line 171
  testRunner.And("Fill all requared fields", ((string)(null)), table101, "And ");

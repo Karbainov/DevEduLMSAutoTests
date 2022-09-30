@@ -429,8 +429,8 @@ this.ScenarioInitialize(scenarioInfo);
                             "Абрикос",
                             "Филя",
                             "string",
-                            "ilya2@student.com",
-                            "ilya2",
+                            "Andrey2@student.com",
+                            "Andrey2",
                             "password",
                             "SaintPetersburg",
                             "23.07.1993",
@@ -536,7 +536,7 @@ this.ScenarioInitialize(scenarioInfo);
                             "lil@student.com",
                             "password"});
                 table116.AddRow(new string[] {
-                            "ilya2@student.com",
+                            "Andrey2@student.com",
                             "password"});
 #line 86
  testRunner.And("Students did their homework \"Структуры\"", ((string)(null)), table116, "And ");
